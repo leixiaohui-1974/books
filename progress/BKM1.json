@@ -1,0 +1,36 @@
+{
+  "book_id": "M1",
+  "book_title": "明渠水动力降阶建模",
+  "total_chapters": 10,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 5400,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成ROM需求背景、技术路径与工程场景章节框架",
+        "[DONE] 已补充可复现实例、习题与拓展阅读",
+        "[DONE] 已完成四角色评审并执行🟡级修改",
+        "[TODO] 图1-1与图1-2待统一出图阶段生成正式图稿",
+        "[TODO] 近五年ROM方法对比与跨季节算例待补充"
+      ]
+    },
+    "ch02": {"status": "pending"},
+    "ch03": {"status": "pending"},
+    "ch04": {"status": "pending"},
+    "ch05": {"status": "pending"},
+    "ch06": {"status": "pending"},
+    "ch07": {"status": "pending"},
+    "ch08": {"status": "pending"},
+    "ch09": {"status": "pending"},
+    "ch10": {"status": "pending"}
+  },
+  "overall_progress": "10.0%"
+}

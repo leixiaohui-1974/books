@@ -230,11 +230,47 @@
       ]
     },
     "ch13": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 5600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成沙坪梯级协同、ODD放权与一键调流程章节框架",
+        "[DONE] 已补充认知AI协同、门禁回退与暴雨+检修例题",
+        "[DONE] 已完成四角色评审并执行🟡级修改",
+        "[DONE] 已完成章节质量检查清单（对照§6）并补充到定稿",
+        "[DONE] 已完成r2复核：质量检查条目细化为§6全量清单",
+        "[TODO] 图13-1与图13-2待统一出图阶段生成正式图稿",
+        "[TODO] 跨季节量化对比与响应时限样例待补充"
+      ]
     },
     "ch14": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 5600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成CHS学科四支柱、WNAL+ODD路线图与标准化章节框架",
+        "[DONE] 已补充3年升级蓝图例题与学科建设自评清单",
+        "[DONE] 已完成四角色评审并执行🟡级修改",
+        "[DONE] 已完成章节质量检查清单（对照§6）并补充到定稿",
+        "[DONE] 已完成r2复核：质量检查条目细化为§6全量清单",
+        "[TODO] 图14-1与图14-2待统一出图阶段生成正式图稿",
+        "[TODO] 国际对标量化样本与里程碑看板示例待补充"
+      ]
     }
   },
-  "overall_progress": "85.7%"
+  "overall_progress": "100.0%"
 }
