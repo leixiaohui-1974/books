@@ -103,11 +103,39 @@
       ]
     },
     "ch07": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已补充能力模型与岗位对应表",
+        "[DONE] 已加入90天启动计划与推进失败点清单",
+        "[DONE] 已强化与WNAL等级跃迁及ODD/Safety Envelope关系"
+      ]
     },
     "ch08": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 2300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已新增上线前闭环检查清单",
+        "[DONE] 已补充跨章术语一致性声明",
+        "[DONE] 已强化WNAL L4/L5前瞻问题"
+      ]
     }
   },
-  "overall_progress": "75.0%"
+  "overall_progress": "100.0%"
 }
