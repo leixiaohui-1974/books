@@ -1,0 +1,85 @@
+{
+  "book_id": "T2a",
+  "book_title": "水系统控制论：建模与控制",
+  "total_chapters": 16,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 6200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已补充学习目标、例题、习题与拓展阅读完整教学结构",
+        "[DONE] 已建立八原理与WNAL、HydroOS、ODD/Safety Envelope跨章接口",
+        "[TODO] 图1-1与图1-2待统一出图阶段生成正式图稿"
+      ]
+    },
+    "ch02": {
+      "status": "completed",
+      "word_count": 5100,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 8,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已补充控制结构选型检查清单，增强可教性",
+        "[DONE] 已显式统一 X_safe 与 X_ODD 的集合关系表达",
+        "[DONE] 已增加前馈失效降级策略条目以提升可治理性",
+        "[TODO] 图2-1与表2-1待统一出图阶段生成正式图稿"
+      ]
+    },
+    "ch03": {
+      "status": "pending"
+    },
+    "ch04": {
+      "status": "pending"
+    },
+    "ch05": {
+      "status": "pending"
+    },
+    "ch06": {
+      "status": "pending"
+    },
+    "ch07": {
+      "status": "pending"
+    },
+    "ch08": {
+      "status": "pending"
+    },
+    "ch09": {
+      "status": "pending"
+    },
+    "ch10": {
+      "status": "pending"
+    },
+    "ch11": {
+      "status": "pending"
+    },
+    "ch12": {
+      "status": "pending"
+    },
+    "ch13": {
+      "status": "pending"
+    },
+    "ch14": {
+      "status": "pending"
+    },
+    "ch15": {
+      "status": "pending"
+    },
+    "ch16": {
+      "status": "pending"
+    }
+  },
+  "overall_progress": "12.5%"
+}

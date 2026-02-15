@@ -1,0 +1,99 @@
+<!-- Change log
+v2 2026-02-16: Revised after four-role review — added minimum readiness checklist, reinforced Ch1→Ch2 transition, and clarified auditability language
+v1 2026-02-16: First draft
+-->
+
+# Chapter 1 Introduction: The Control Challenge in Water Systems
+
+---
+
+> **Key Insight Box**
+>
+> Water infrastructure is no longer limited by hardware capacity alone. In many regions, the primary bottleneck is operational intelligence: how fast operators can interpret uncertainty, coordinate actions, and keep the system inside safe boundaries.
+
+## 1.1 A global shift from operation by experience to operation by cybernetics
+
+In 2023, a large inter-basin transfer corridor in North China experienced a compound event: intense rainfall in one section, maintenance outage in another, and communication jitter in a control segment. The physical assets remained available, but dispatching quality degraded quickly because human teams faced too many coupled decisions at once. Similar patterns have been reported globally in irrigation canals, urban water networks, and hydropower cascades. The lesson is consistent: infrastructure scale is increasing faster than human-only operational capacity.
+
+Cybernetics of Hydro Systems (CHS) is proposed as a system-level response to this gap. CHS does not replace hydraulic engineering; it upgrades operational logic by integrating modeling, control, intelligence, and governance in one coherent framework.
+
+## 1.2 Why traditional operation paradigms are reaching their limits
+
+Three structural pressures are reshaping water operations worldwide:
+
+1. **Climate non-stationarity**: historical hydrologic distributions are less reliable for future operations;
+2. **Infrastructure aging**: many critical assets are operating beyond their originally intended service assumptions;
+3. **Coupled objectives**: supply reliability, flood control, ecology, and energy are increasingly optimized together rather than separately.
+
+Under these pressures, manual dispatching and siloed automation are often not enough. Systems need to be observable, controllable, and auditable under uncertainty.
+
+## 1.3 Positioning CHS in the international landscape
+
+CHS is not presented as an isolated concept. It builds on core cybernetics and control traditions (Wiener, Qian, modern hydrosystem control) while adding water-specific operational structure:
+
+- a unified language for dynamics and constraints,
+- explicit autonomy levels for water networks,
+- engineering-grade safety boundaries,
+- in-the-loop verification before and during deployment,
+- human-machine co-governance with accountability.
+
+This positioning makes CHS interoperable with mainstream control and AI communities, while staying grounded in hydraulic realities.
+
+[Figure 1-1: Evolution from SCADA-centered operation to CHS-centered autonomous operation]
+{Description: A timeline with three eras: manual operation, SCADA-centered automation, CHS-enabled autonomy. Show key capability changes in sensing, decision latency, coordination, and auditability.}
+{Size: full page}
+{Color scheme: blue theme}
+
+## 1.4 Core terminology used throughout this monograph
+
+To avoid ambiguity, this chapter establishes the shared terms used in later chapters:
+
+- **Water Network Autonomy Levels (WNAL)**: six levels (L0-L5) describing the maturity of autonomous operation;
+- **Operational Design Domain (ODD)**: the set of conditions under which autonomous functions are designed and validated to operate;
+- **Safety Envelope**: explicit safe operating boundaries with graded actions;
+- **Water Network Operating System (HydroOS)**: the runtime operating architecture integrating control and intelligence services;
+- **Hierarchical Distributed Control (HDC)**: multi-layer coordination architecture for complex hydraulic systems.
+
+These terms are treated as technical standards, not interchangeable labels.
+
+## 1.5 Minimum readiness checklist (before autonomy scaling)
+
+| Item | Minimum requirement | Why it matters |
+|---|---|---|
+| Observability | Critical states are measurable or reliably estimable | No trustworthy control without state awareness |
+| Controllability | Key risk variables are physically influenceable in time | Prevents “visible but uncontrollable” operation |
+| ODD definition | Operating boundary and exit criteria are explicit | Avoids unsafe overreach |
+| Safety Envelope | Red/amber/green zones and lockout logic are defined | Keeps optimization under hard safety constraints |
+| Human takeover | Roles, triggers, and audit trail are implemented | Ensures accountability during abnormal events |
+
+## 1.6 What this book will and will not do
+
+This book is designed as an international monograph for researchers and advanced practitioners. It will:
+
+- define the conceptual and mathematical foundation of CHS,
+- provide architecture and verification frameworks,
+- present representative cases from water transfer and hydropower operation,
+- identify open research problems for the next decade.
+
+It will not attempt to provide region-specific operational manuals or site-specific parameter catalogs. Those belong to project-level documentation.
+
+## 1.7 Chapter map and reading guidance
+
+The rest of the book follows a logic from foundations to implementation:
+
+- **Chapter 2**: theoretical foundations and the Eight Principles of CHS;
+- **Chapter 3**: architecture of autonomous water networks (WNAL, HydroOS, SCADA+MAS fusion);
+- **Chapter 4**: verification and validation pipeline (SIM-SIL-HIL, ODD-based testing, runtime monitoring);
+- **Chapter 5**: case studies from Jiaodong Water Transfer and Shaoping Hydropower;
+- **Chapter 6**: perspectives and research agenda.
+
+Readers from hydraulics may focus first on Chapters 2 and 5; readers from AI/control may start from Chapters 3 and 4 and then backtrack to Chapter 2 for domain grounding.
+
+[Figure 1-2: Chapter dependency map]
+{Description: Directed graph showing how Chapters 2-6 depend on concepts introduced in Chapter 1.}
+{Size: half page}
+{Color scheme: grayscale}
+
+## 1.8 Chapter summary and bridge to Chapter 2
+
+The control challenge in water systems is fundamentally a systems challenge: high coupling, high uncertainty, and high consequence under real-time constraints. CHS is introduced as a unifying discipline to bridge hydraulic physics, control intelligence, and operational governance. With this framing in place, Chapter 2 formalizes the theoretical foundations and introduces the Eight Principles that support scalable and trustworthy autonomy.

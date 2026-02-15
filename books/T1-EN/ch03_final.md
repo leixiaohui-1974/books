@@ -1,0 +1,112 @@
+<!-- Change log
+v2 2026-02-16: Revised after four-role review — added architecture readiness checklist and explicit naming consistency for Physical AI/Cognitive AI
+v1 2026-02-16: First draft
+-->
+
+# Chapter 3 Architecture of Autonomous Water Networks
+
+---
+
+> **Key Insight Box**
+>
+> Architecture is where theory becomes operational capability. Without explicit layering, interfaces, and governance hooks, even strong control theory cannot scale to network-level autonomy.
+
+## 3.1 From theoretical principles to implementable architecture
+
+Chapter 2 established the Eight Principles of CHS. This chapter translates those principles into system architecture. The design target is practical: support safe, auditable, and scalable autonomy across heterogeneous hydraulic assets and operational contexts.
+
+## 3.2 WNAL L0-L5 as architecture maturity levels
+
+Water Network Autonomy Levels (WNAL) provide the capability staircase for architecture planning:
+
+- **L0**: manual operation with limited telemetry;
+- **L1**: digital monitoring with operator-led control;
+- **L2**: assisted control with bounded automation;
+- **L3**: conditional autonomy inside explicit ODD;
+- **L4**: high autonomy with rare human intervention in predefined domains;
+- **L5**: generalized autonomy across broad conditions.
+
+Architecture choices should be made against target level claims, not abstract “smartness.”
+
+[Figure 3-1: WNAL architecture capability staircase]
+{Description: Stair-step chart mapping L0-L5 to sensing, control authority, decision latency, and governance requirements.}
+{Size: half page}
+{Color scheme: blue theme}
+
+## 3.3 HydroOS three-tier architecture
+
+A practical Water Network Operating System (HydroOS) can be described in three tiers:
+
+1. **Device Abstraction Tier**: unifies SCADA endpoints, sensors, actuators, and protocol adapters;
+2. **Physical AI Tier (Physical AI Engine)**: runs models, estimators, and control optimizers constrained by hydraulic feasibility;
+3. **Cognitive AI Tier (Cognitive AI Engine)**: performs interpretation, alert prioritization, explanation, and operator collaboration.
+
+The three-tier split prevents logic coupling and enables independent verification and upgrades.
+
+## 3.4 SCADA+MAS Fusion Architecture
+
+CHS architecture is not “SCADA replacement.” It is SCADA extension through Multi-Agent System (MAS) coordination:
+
+- SCADA ensures deterministic telemetry and command pathways;
+- MAS agents coordinate local objectives and global constraints;
+- supervisory policies enforce ODD boundaries and Safety Envelope rules.
+
+This SCADA+MAS Fusion Architecture preserves reliability while enabling adaptive coordination.
+
+[Figure 3-2: SCADA+MAS Fusion Architecture]
+{Description: Layered diagram showing SCADA data/control plane, MAS coordination plane, and policy/safety supervision plane, with bidirectional interfaces to HydroOS tiers.}
+{Size: full page}
+{Color scheme: blue theme}
+
+## 3.5 Runtime safety and governance hooks
+
+Architecture must natively support:
+
+- ODD state evaluation,
+- Safety Envelope monitoring,
+- policy gating and interlock,
+- human takeover triggers,
+- immutable audit logging.
+
+If these hooks are bolted on after deployment, architecture debt becomes a safety risk.
+
+## 3.6 Interface design principles
+
+For cross-vendor and cross-region interoperability, CHS recommends three interface principles:
+
+1. **Semantic consistency**: common definitions for state, event, and action objects;
+2. **Deterministic command paths**: critical control loops must not depend on best-effort channels;
+3. **Versioned contracts**: model/service upgrades require backward-compatible interface control.
+
+[Table 3-1: Minimal interface contract for autonomous operation]
+| Interface domain | Required fields | Failure handling |
+|---|---|---|
+| State telemetry | timestamp, quality flag, source ID, state vector | quarantine invalid streams |
+| Control command | target, constraint set, expiration, signature | fallback to safe default policy |
+| Safety event | severity, trigger, affected assets, required action | mandatory escalation + logging |
+| Human takeover | role ID, reason, scope, timeout | enforce handover confirmation |
+
+## 3.7 Architecture readiness checklist (minimum L3 gate)
+
+| Gate | Minimum criterion |
+|---|---|
+| Observability gate | Critical states and quality flags are available in operational latency |
+| Control gate | Constrained control actions are executable for major risk variables |
+| Safety gate | ODD + Safety Envelope + interlock policy are machine-enforceable |
+| Verification gate | Reproducible SIM-SIL-HIL evidence exists for key scenarios |
+| Governance gate | Human takeover and audit chain are tested in drill conditions |
+
+## 3.8 Architecture anti-patterns
+
+Common failures in water autonomy programs include:
+
+- treating visualization dashboards as architecture,
+- deploying AI services without explicit safety gateways,
+- skipping interface governance and relying on ad hoc integration,
+- scaling pilots before reproducible in-the-loop verification.
+
+These anti-patterns often produce brittle systems with weak accountability. Staged rollout from bounded ODD slices is recommended before wider autonomy claims.
+
+## 3.9 Chapter summary and bridge to Chapter 4
+
+This chapter translated CHS principles into architecture patterns: WNAL maturity framing, HydroOS three-tier structure, SCADA+MAS Fusion Architecture, and runtime governance hooks. With architecture defined, the next question is trust evidence. Chapter 4 introduces the verification and validation framework (SIM-SIL-HIL, ODD-based testing, and runtime monitoring).

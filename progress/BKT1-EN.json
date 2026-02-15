@@ -1,0 +1,110 @@
+{
+  "book_id": "T1-EN",
+  "book_title": "Cybernetics of Hydro Systems: Principles and Perspectives",
+  "total_chapters": 6,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 2800,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 8,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] Added key-insight opening and CHS positioning",
+        "[DONE] Clarified WNAL/ODD/Safety Envelope terminology for international readers",
+        "[TODO] Insert finalized Figure 1-1 and Figure 1-2 during unified graphics pass"
+      ]
+    },
+    "ch02": {
+      "status": "completed",
+      "word_count": 3000,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] Added minimum deployment gates table",
+        "[DONE] Clarified Safety Envelope boundary-violation trigger sequence",
+        "[DONE] Strengthened Ch2→Ch3 transition and transferability statement"
+      ]
+    },
+    "ch03": {
+      "status": "completed",
+      "word_count": 3200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] Added architecture readiness checklist for minimum L3 gate",
+        "[DONE] Anchored Physical AI Engine and Cognitive AI Engine naming consistency",
+        "[DONE] Added staged rollout recommendation for bounded ODD slices"
+      ]
+    },
+    "ch04": {
+      "status": "completed",
+      "word_count": 3100,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] Added pre-release checklist for deployment gate control",
+        "[DONE] Clarified runtime monitoring as complement to pre-deployment V&V",
+        "[DONE] Added fixed mitigation trigger order for violation handling"
+      ]
+    },
+    "ch05": {
+      "status": "completed",
+      "word_count": 3000,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] Added cross-case go/no-go checklist before scale-up",
+        "[DONE] Explicitly marked quantitative outcomes as pending data authorization",
+        "[DONE] Added benchmark portability statement for cross-region transfer"
+      ]
+    },
+    "ch06": {
+      "status": "completed",
+      "word_count": 2800,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] Added institutional action checklist for 2026-2030 execution window",
+        "[DONE] Strengthened reproducible evidence as cross-site acceptance criterion",
+        "[TODO] Await authorized cross-region implementation cost/time statistics"
+      ]
+    }
+  },
+  "overall_progress": "100.0%"
+}
