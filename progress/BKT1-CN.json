@@ -1,0 +1,23 @@
+{
+  "book_id": "T1-CN",
+  "book_title": "水系统控制论",
+  "total_chapters": 8,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 15000,
+      "review_passed": true,
+      "review_scores": {"A": 8, "B": 8, "C": 8},
+      "last_updated": "2026-02-15",
+      "issues": ["[TODO] 需核实最新灌溉面积统计数据"]
+    },
+    "ch02": { "status": "pending" },
+    "ch03": { "status": "pending" },
+    "ch04": { "status": "pending" },
+    "ch05": { "status": "pending" },
+    "ch06": { "status": "pending" },
+    "ch07": { "status": "pending" },
+    "ch08": { "status": "pending" }
+  },
+  "overall_progress": "12.5%"
+}
