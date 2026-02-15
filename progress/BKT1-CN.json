@@ -7,17 +7,107 @@
       "status": "completed",
       "word_count": 15000,
       "review_passed": true,
-      "review_scores": {"A": 8, "B": 8, "C": 8},
+      "review_scores": {
+        "A": 8,
+        "B": 8,
+        "C": 8
+      },
       "last_updated": "2026-02-15",
-      "issues": ["[TODO] 需核实最新灌溉面积统计数据"]
+      "issues": [
+        "[TODO] 需核实最新灌溉面积统计数据"
+      ]
     },
-    "ch02": { "status": "pending" },
-    "ch03": { "status": "pending" },
-    "ch04": { "status": "pending" },
-    "ch05": { "status": "pending" },
-    "ch06": { "status": "pending" },
-    "ch07": { "status": "pending" },
-    "ch08": { "status": "pending" }
+    "ch02": {
+      "status": "completed",
+      "word_count": 4900,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 按复评重写章节结构并补充形式化定义",
+        "[DONE] 已加入异常工况四态机与人工接管审计要求",
+        "[TODO] 待图件统一阶段补齐图2-1正式图稿",
+        "[DONE] 已完成跨章一致性复检并补充接口声明（r3）"
+      ]
+    },
+    "ch03": {
+      "status": "completed",
+      "word_count": 4300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已补充八原理依赖导图与最小实施清单",
+        "[DONE] 已强化与WNAL分级章节衔接",
+        "[DONE] 已完成跨章一致性复检并补充接口声明（r3）"
+      ]
+    },
+    "ch04": {
+      "status": "completed",
+      "word_count": 4100,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已补充WNAL阶梯图与误判纠偏表",
+        "[DONE] 已加入等级准入检查清单与八原理映射",
+        "[DONE] 已完成跨章一致性复检并补充接口声明（r3）"
+      ]
+    },
+    "ch05": {
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已补充HydroOS三层架构图与角色职责矩阵",
+        "[DONE] 已加入最小上线门槛清单并强化WNAL映射",
+        "[DONE] 已完成跨章一致性复检并补充接口声明（r3）"
+      ]
+    },
+    "ch06": {
+      "status": "completed",
+      "word_count": 3300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": 9
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已补充统一评价表与上线前后指标模板",
+        "[TODO] 案例定量指标待工程数据授权后补齐"
+      ]
+    },
+    "ch07": {
+      "status": "pending"
+    },
+    "ch08": {
+      "status": "pending"
+    }
   },
-  "overall_progress": "12.5%"
+  "overall_progress": "75.0%"
 }
