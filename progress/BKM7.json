@@ -1,0 +1,143 @@
+{
+  "book_id": "M7",
+  "book_title": "水网操作系统：HydroOS设计与实现",
+  "total_chapters": 10,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 3800,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成绪论章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch02需补充组件依赖矩阵与接口契约示例",
+        "[TODO] ch08需补充发布流水线与在环测试联动工单模板"
+      ]
+    },
+    "ch02": {
+      "status": "completed",
+      "word_count": 4000,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成总体架构与组件划分章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch03需补充多厂商协议适配测试基线",
+        "[TODO] ch07需补充门禁规则版本化管理规范"
+      ]
+    },
+    "ch03": {
+      "status": "completed",
+      "word_count": 4100,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成设备抽象层与驱动适配章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch04需补充事件总线QoS等级与消息重放策略",
+        "[TODO] ch08需补充协议适配回归测试自动化脚本模板"
+      ]
+    },
+    "ch04": {
+      "status": "completed",
+      "word_count": 4200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成实时数据总线与事件系统章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch05需补充任务编排SLA与调度冲突仲裁策略",
+        "[TODO] ch08需补充重放审批流与工单系统字段映射模板"
+      ]
+    },
+    "ch05": {
+      "status": "completed",
+      "word_count": 4300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成任务编排与调度引擎章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch06需补充算法服务托管资源隔离策略",
+        "[TODO] ch08需补充任务仲裁审计报表模板编号"
+      ]
+    },
+    "ch06": {
+      "status": "completed",
+      "word_count": 4300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成控制与优化服务托管章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch07需补充门禁规则变更审批矩阵",
+        "[TODO] ch08需补充灰度发布回滚工单模板编号"
+      ]
+    },
+    "ch07": {
+      "status": "completed",
+      "word_count": 1852,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成安全门禁与审计系统章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch08需补充门禁结果与发布流水线工单字段映射",
+        "[TODO] ch08需补充紧急越权放行的补偿性审计模板"
+      ]
+    },
+    "ch08": {
+      "status": "pending"
+    },
+    "ch09": {
+      "status": "pending"
+    },
+    "ch10": {
+      "status": "pending"
+    }
+  },
+  "overall_progress": "70.0%"
+}
