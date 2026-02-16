@@ -1,0 +1,224 @@
+{
+  "book_id": "M2",
+  "book_title": "水网预测控制",
+  "total_chapters": 12,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 3300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成绪论章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch02需补充鲁棒可行性推导细节",
+        "[TODO] ch11/ch12需落地门禁清单模板"
+      ]
+    },
+    "ch02": {
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成MPC基本理论章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch06需补充Tube MPC不确定集标定细节",
+        "[TODO] ch10需补充求解超时门禁参数表"
+      ]
+    },
+    "ch03": {
+      "status": "completed",
+      "word_count": 3700,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成线性MPC与明渠控制章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch06需补充鲁棒约束收紧与不确定集映射",
+        "[TODO] ch10需补充求解器超时降级策略"
+      ]
+    },
+    "ch04": {
+      "status": "completed",
+      "word_count": 3900,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成非线性MPC与管网控制章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch06需补充约束收紧定量关系",
+        "[TODO] ch10需补充硬件资源预算模板"
+      ]
+    },
+    "ch05": {
+      "status": "completed",
+      "word_count": 3800,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成分布式MPC架构章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch06需补充不确定集下协调收敛影响分析",
+        "[TODO] ch10需补充网络时延预算与告警阈值模板"
+      ]
+    },
+    "ch06": {
+      "status": "completed",
+      "word_count": 3900,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成鲁棒MPC与不确定性处理章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch10需补充收紧系数与超时阈值联动表",
+        "[TODO] ch10需补充实时监测看板指标模板"
+      ]
+    },
+    "ch07": {
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成经济型MPC章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch10需补充经济收益与安全事件联动看板模板",
+        "[TODO] ch10需补充设备启停寿命折算模板"
+      ]
+    },
+    "ch08": {
+      "status": "completed",
+      "word_count": 3500,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成自适应MPC与在线学习章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch10需补充学习收益-计算开销联动看板",
+        "[TODO] ch10需补充版本审计与回退工单模板"
+      ]
+    },
+    "ch09": {
+      "status": "completed",
+      "word_count": 3700,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成MPC与安全约束集成章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch10需补联锁触发与求解时延关联分析",
+        "[TODO] ch10需补实时告警分级与响应SOP模板"
+      ]
+    },
+    "ch10": {
+      "status": "completed",
+      "word_count": 3900,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成MPC实时计算优化章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch11需补充试点上线门禁清单模板",
+        "[TODO] ch12需补充课程实验评分rubric模板"
+      ]
+    },
+    "ch11": {
+      "status": "completed",
+      "word_count": 4000,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成胶东调水MPC实践章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch12需补充沙坪梯级多站协同参数映射表",
+        "[TODO] ch12需补充课程实验评分rubric与验收样表"
+      ]
+    },
+    "ch12": {
+      "status": "completed",
+      "word_count": 4200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成沙坪梯级MPC实践章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] 与M8对齐站点编号与正式工单模板编号",
+        "[TODO] 课程实验需补自动采分接口字段映射"
+      ]
+    }
+  },
+  "overall_progress": "100.0%"
+}
