@@ -125,19 +125,67 @@
       "issues": [
         "[DONE] 已完成安全门禁与审计系统章节初稿与定稿",
         "[DONE] 已完成四角色评审并通过",
-        "[TODO] ch08需补充门禁结果与发布流水线工单字段映射",
-        "[TODO] ch08需补充紧急越权放行的补偿性审计模板"
+        "[DONE] ch08已补充门禁结果与发布流水线工单字段映射",
+        "[DONE] ch08已补充紧急越权放行的补偿性审计模板"
       ]
     },
     "ch08": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 4500,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成在环测试与发布流水线章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch09已补充API契约测试与门禁策略联动",
+        "[DONE] ch10已补充交付度量看板与跨章节验收清单"
+      ]
     },
     "ch09": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 4300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成HydroOS API与应用生态章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch10已补充全书交付度量看板与指标解释",
+        "[DONE] ch10已补充跨章节验收清单与最终发布门禁总表"
+      ]
     },
     "ch10": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 4200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成交付度量与全书验收章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐交付看板、跨章节验收清单、最终发布门禁总表",
+        "[INFO] M7全书10章已全部完成"
+      ]
     }
   },
-  "overall_progress": "70.0%"
+  "overall_progress": "100.0%",
+  "book_notes": [
+    "[DONE] M7全书写作→评审→进度更新闭环已完成（ch01-ch10）"
+  ]
 }
