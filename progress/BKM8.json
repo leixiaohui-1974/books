@@ -1,0 +1,266 @@
+{
+  "book_id": "M8",
+  "book_title": "水利工程自主运行实践——胶东调水与沙坪水电站",
+  "total_chapters": 14,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 3200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成绪论章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[TODO] ch02补充胶东调水工程概况参数表与边界条件",
+        "[TODO] ch03补充输水明渠建模参数敏感性示例"
+      ]
+    },
+    "ch02": {
+      "status": "completed",
+      "word_count": 3400,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成胶东调水工程概况章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch03已补充输水明渠建模参数敏感性示例图",
+        "[DONE] ch04已补充SCADA+HDC接口字段与联调清单模板"
+      ]
+    },
+    "ch03": {
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成输水明渠水力建模章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch04已补充SCADA+HDC接口字段与模型变量映射模板",
+        "[DONE] ch05已补充MPC参数整定与时滞补偿实操示例"
+      ]
+    },
+    "ch04": {
+      "status": "completed",
+      "word_count": 3500,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成SCADA+HDC控制系统设计章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch05已补充MPC参数整定与模式切换联动实操示例",
+        "[DONE] ch06已补充在环联调覆盖度与发布门禁映射"
+      ]
+    },
+    "ch05": {
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成MPC在线优化调度章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch06已补充在环测试覆盖度与发布门禁映射",
+        "[DONE] ch07已补充运行效果评估指标与MPC策略对比基线"
+      ]
+    },
+    "ch06": {
+      "status": "completed",
+      "word_count": 3500,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成在环测试与验证章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch07已补充运行效果评估指标与MPC策略对比基线",
+        "[DONE] ch07已补充测试覆盖度与上线表现的回溯分析模板"
+      ]
+    },
+    "ch07": {
+      "status": "completed",
+      "word_count": 3400,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成运行效果评估章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch08已补充沙坪水电站工程概况参数表与胶东差异对照",
+        "[DONE] ch09已补充发电-泄洪一体化建模中的约束分层示例"
+      ]
+    },
+    "ch08": {
+      "status": "completed",
+      "word_count": 3500,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成大渡河沙坪水电站概况章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch07提出的沙坪参数表与胶东差异对照",
+        "[DONE] ch09已补充发电-泄洪一体化建模中的约束分层示例与最小风险状态表达",
+        "[DONE] ch10已补充认知智能告警解释链与人机切换门禁模板"
+      ]
+    },
+    "ch09": {
+      "status": "completed",
+      "word_count": 3800,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成发电-泄洪一体化建模章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch08提出的约束分层示例与最小风险状态表达",
+        "[DONE] ch10已补充ODD切换条件、门禁状态与认知AI解释变量模板",
+        "[DONE] ch11已补充梯级跨站协调时延预算与异常回退策略联动"
+      ]
+    },
+    "ch10": {
+      "status": "completed",
+      "word_count": 3900,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成认知智能+ODD+HDC控制设计章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch08/ch09提出的ODD切换、门禁状态与认知AI解释变量模板",
+        "[DONE] ch11已补充跨站协调时延预算、权限冲突与MRS传播示例",
+        "[DONE] ch11已补充跨站告警合并与优先级处置模板"
+      ]
+    },
+    "ch11": {
+      "status": "completed",
+      "word_count": 4000,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成蒲布-深溪沟-镇头-沙坪梯级一键调章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch09/ch10提出的跨站时延预算、权限冲突、MRS传播与告警合并跟踪项",
+        "[DONE] ch12已补充跨站冲突可解释推荐样例与建议-执行偏差反馈机制",
+        "[DONE] ch12已补充跨站事件票据自动流转与升级模板"
+      ]
+    },
+    "ch12": {
+      "status": "completed",
+      "word_count": 3900,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成认知AI辅助决策系统章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch11提出的冲突可解释推荐、建议-执行偏差反馈、票据自动流转升级跟踪项",
+        "[DONE] ch13已补充认知决策KPI与运行效益映射、采纳率-风险改善相关性分析",
+        "[DONE] ch13已补充跨站工单闭环效率与人力负荷变化对比模板"
+      ]
+    },
+    "ch13": {
+      "status": "completed",
+      "word_count": 3800,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成综合效益分析章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch12提出的KPI映射、采纳率-风险改善相关性、工单闭环效率与人力负荷模板跟踪项",
+        "[DONE] ch14已补充推广路线图验收门槛与跨流域迁移重标定要点",
+        "[DONE] ch14已补充组织培训、值班手册与运维标准更新模板"
+      ]
+    },
+    "ch14": {
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成结论与推广前景章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch13提出的推广路线图验收门槛、跨流域迁移重标定与组织运维模板跟踪项",
+        "[DONE] 全书章节完成，进入出版与图表生成准备阶段"
+      ]
+    }
+  },
+  "overall_progress": "100.0%"
+}

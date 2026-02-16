@@ -1,0 +1,177 @@
+{
+  "book_id": "M9",
+  "book_title": "水系统运行工程导论",
+  "total_chapters": 12,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 3300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成绪论章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch02已补充状态表示与指标体系可视化模板",
+        "[DONE] ch02已补充可观测性关系说明与值班看板字段示例"
+      ]
+    },
+    "ch02": {
+      "status": "completed",
+      "word_count": 3500,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成运行状态表示与指标体系章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch01提出的可观测性说明与值班看板字段跟踪项",
+        "[TODO] ch03补充不确定性来源分类图与传播定量表达",
+        "[TODO] ch03补充预测误差超阈值处置模板"
+      ]
+    },
+    "ch03": {
+      "status": "completed",
+      "word_count": 3700,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成运行过程建模与不确定性表达章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch02提出的不确定性来源分类图与传播定量表达",
+        "[DONE] 已补齐ch02提出的预测误差超阈值处置模板",
+        "[DONE] ch04已补充多目标决策权重敏感性示例",
+        "[DONE] ch04已补充约束冲突可行域解释图与发布前门禁检查单"
+      ]
+    },
+    "ch04": {
+      "status": "completed",
+      "word_count": 3800,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成运行决策与多目标优化章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch03提出的多目标决策权重敏感性示例",
+        "[DONE] 已补齐ch03提出的约束冲突可行域解释图与发布前门禁检查单",
+        "[DONE] ch05已补充多层级协调时序图与收敛性直觉说明",
+        "[DONE] ch05已增加跨班组交接策略冻结窗口模板"
+      ]
+    },
+    "ch05": {
+      "status": "completed",
+      "word_count": 3900,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成多层级协同调度与分层执行章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch04提出的多层级协调时序图与收敛性直觉说明",
+        "[DONE] 已补齐ch04提出的跨班组交接策略冻结窗口模板",
+        "[DONE] ch06已补充绩效指标看板分层映射表与指标-动作因果链示意",
+        "[DONE] ch06已增加班后复盘会议标准议程模板"
+      ]
+    },
+    "ch06": {
+      "status": "completed",
+      "word_count": 4000,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成运行绩效评估与持续改进章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch05提出的绩效指标看板分层映射表与指标-动作因果链示意",
+        "[DONE] 已补齐ch05提出的班后复盘会议标准议程模板",
+        "[DONE] ch07已补充风险分级响应矩阵模板与韧性指标关联图",
+        "[DONE] ch07已增加应急演练复盘清单模板"
+      ]
+    },
+    "ch07": {
+      "status": "completed",
+      "word_count": 4100,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成运行风险治理与系统韧性章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch06提出的风险分级响应矩阵模板与韧性指标关联图",
+        "[DONE] 已补齐ch06提出的应急演练复盘清单模板",
+        "[DONE] ch08已补充平台能力-治理需求映射表与可信度分级说明",
+        "[DONE] ch08已增加值班台告警聚类与推荐动作模板"
+      ]
+    },
+    "ch08": {
+      "status": "completed",
+      "word_count": 4200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成数字化运行平台与智能辅助决策章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch07提出的平台能力-治理需求映射表与可信度分级说明",
+        "[DONE] 已补齐ch07提出的值班台告警聚类与推荐动作模板",
+        "[TODO] ch09补充组织角色能力矩阵模板与制度执行成熟度量表",
+        "[TODO] ch09增加班组培训与考核闭环模板"
+      ]
+    },
+    "ch09": {
+      "status": "pending"
+    },
+    "ch10": {
+      "status": "pending"
+    },
+    "ch11": {
+      "status": "pending"
+    },
+    "ch12": {
+      "status": "pending"
+    }
+  },
+  "overall_progress": "66.7%"
+}
