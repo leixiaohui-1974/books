@@ -1,0 +1,208 @@
+{
+  "book_id": "M3",
+  "book_title": "水网运行安全包络",
+  "total_chapters": 10,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成绪论章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch02已补充包络形式化推导与判定流程图",
+        "[DONE] ch02已增加集合表达与边界可达性示例",
+        "[DONE] ch02已补充在线判定字段与值守告警模板"
+      ]
+    },
+    "ch02": {
+      "status": "completed",
+      "word_count": 3800,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成安全包络形式化表达章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch01提出的包络形式化推导与判定流程图",
+        "[DONE] 已补齐ch01提出的集合表达与边界可达性示例",
+        "[DONE] 已补齐ch01提出的在线判定字段与值守告警模板",
+        "[DONE] ch03已补充风险源分类分层图与触发链模板"
+      ]
+    },
+    "ch03": {
+      "status": "completed",
+      "word_count": 3900,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成风险源分类与触发链建模章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch02提出的风险源分类分层图与触发链模板",
+        "[DONE] 已补齐ch02提出的风险传播路径量化字段",
+        "[DONE] 已补齐ch02提出的高频告警日快速处置清单模板",
+        "[DONE] ch04已补充动态阈值整定流程图与阈值漂移监测字段"
+      ]
+    },
+    "ch04": {
+      "status": "completed",
+      "word_count": 4000,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成安全裕度评估与动态阈值整定章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch03提出的动态阈值整定流程图与敏感性示例",
+        "[DONE] 已补齐ch03提出的阈值漂移监测字段与校准策略",
+        "[DONE] 已补齐ch03提出的告警风暴场景阈值降噪模板",
+        "[DONE] ch05已补充在线校核在环用例矩阵与回归门禁模板"
+      ]
+    },
+    "ch05": {
+      "status": "completed",
+      "word_count": 4100,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成安全包络在线校核与在环门禁章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch04提出的在线校核在环用例矩阵与回归门禁模板",
+        "[DONE] 已补齐ch04提出的阈值回滚触发条件量化字段",
+        "[DONE] 已补齐ch04提出的告警风暴后恢复窗口执行清单",
+        "[DONE] ch06已补充多源不确定性下鲁棒性分层验证表与分级回退复测节拍模板"
+      ]
+    },
+    "ch06": {
+      "status": "completed",
+      "word_count": 4200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成多源不确定性下的安全包络鲁棒性验证章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch05提出的鲁棒性分层验证表",
+        "[DONE] 已补齐ch05提出的鲁棒性裕度与置信边界联合表达",
+        "[DONE] 已补齐ch05提出的回归失败后分级回退与复测节拍模板",
+        "[DONE] ch07已补充极端工况场景库、黑天鹅触发条件与跨班组韧性演练模板"
+      ]
+    },
+    "ch07": {
+      "status": "completed",
+      "word_count": 4300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成极端工况与黑天鹅场景下的包络韧性设计章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch06提出的极端工况场景库与韧性演练流程图",
+        "[DONE] 已补齐ch06提出的黑天鹅触发条件与证据链字段",
+        "[DONE] 已补齐ch06提出的跨班组韧性演练排班模板与复盘门禁",
+        "[DONE] ch08已补充人机协同权限矩阵、冲突仲裁流程与越权告警清单"
+      ]
+    },
+    "ch08": {
+      "status": "completed",
+      "word_count": 4400,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成人机协同与制度化治理章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch07提出的人机协同权限矩阵与冲突仲裁流程图",
+        "[DONE] 已补齐ch07提出的值班授权分级与越权告警清单",
+        "[DONE] 已补齐ch07提出的班组交接核验与审计字段模板",
+        "[DONE] ch09已补充跨区域协同门禁一致性检查表与联合复盘模板"
+      ]
+    },
+    "ch09": {
+      "status": "completed",
+      "word_count": 4500,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成跨区域协同调度中的包络一致性与联合发布章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch08提出的跨区域协同门禁一致性检查表",
+        "[DONE] 已补齐ch08提出的协同发布冲突优先级裁决规则",
+        "[DONE] 已补齐ch08提出的跨区域班组联调排班与联合复盘模板",
+        "[DONE] ch10已补充全书实施路线图、年度评估基线与推广里程碑清单"
+      ]
+    },
+    "ch10": {
+      "status": "completed",
+      "word_count": 4600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成全书收束章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch09提出的实施路线图与阶段验收指标表",
+        "[DONE] 已补齐ch09提出的全生命周期门禁指标与年度评估基线",
+        "[DONE] 已补齐ch09提出的推广里程碑与培训-值守联动清单",
+        "[DONE] BKM3全书十章安全包络体系闭环完成",
+        "[DONE] 已完成BKM3全书质量总评审（章节级评审全通过）"
+      ]
+    }
+  },
+  "overall_progress": "100.0%"
+}
