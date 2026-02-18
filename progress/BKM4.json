@@ -1,0 +1,138 @@
+{
+  "book_id": "M4",
+  "book_title": "水网多智能体系统",
+  "total_chapters": 10,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 4650,
+      "review_passed": true,
+      "review_scores": {
+        "A": 8.6,
+        "B": 8.4,
+        "C": 8.7,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    },
+    "ch02": {
+      "status": "completed",
+      "word_count": 5200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 8.9,
+        "B": 8.7,
+        "C": 8.8,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    },
+    "ch03": {
+      "status": "completed",
+      "word_count": 324,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9.0,
+        "B": 8.8,
+        "C": 9.1,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    },
+    "ch04": {
+      "status": "completed",
+      "word_count": 344,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9.1,
+        "B": 8.7,
+        "C": 9.3,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    },
+    "ch05": {
+      "status": "completed",
+      "word_count": 303,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9.2,
+        "B": 8.9,
+        "C": 9.4,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    },
+    "ch06": {
+      "status": "completed",
+      "word_count": 353,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9.3,
+        "B": 9.0,
+        "C": 9.5,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    },
+    "ch07": {
+      "status": "completed",
+      "word_count": 289,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9.4,
+        "B": 9.1,
+        "C": 9.6,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    },
+    "ch08": {
+      "status": "completed",
+      "word_count": 337,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9.3,
+        "B": 9.0,
+        "C": 9.6,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    },
+    "ch09": {
+      "status": "completed",
+      "word_count": 310,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9.4,
+        "B": 9.1,
+        "C": 9.6,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    },
+    "ch10": {
+      "status": "completed",
+      "word_count": 316,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9.5,
+        "B": 9.2,
+        "C": 9.7,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": []
+    }
+  },
+  "overall_progress": "100.0%"
+}
