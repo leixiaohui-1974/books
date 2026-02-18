@@ -23,9 +23,11 @@
     "ch02": {
       "title": "认知智能理论基础",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
+      "status": "completed",
+      "word_count": 25200,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-18",
       "issues": []
     },
     "ch03": {
@@ -93,5 +95,5 @@
       "issues": []
     }
   },
-  "overall_progress": "10%"
+  "overall_progress": "20%"
 }
