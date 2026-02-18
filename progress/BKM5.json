@@ -1,0 +1,101 @@
+{
+  "book_id": "M5",
+  "book_title": "水利认知智能",
+  "book_title_en": "Cognitive Intelligence for Water Systems",
+  "total_chapters": 10,
+  "publisher_cn": "机械工业出版社",
+  "publisher_en": "CRC Press",
+  "target_pages": 280,
+  "target_words": 250000,
+  "corresponding_papers": ["P4b", "P4c"],
+  "corresponding_patents": ["PF5"],
+  "chapters": {
+    "ch01": {
+      "title": "绪论：水利认知智能的缘起与定位",
+      "target_words": 20000,
+      "status": "completed",
+      "word_count": 20500,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-18",
+      "issues": []
+    },
+    "ch02": {
+      "title": "认知智能理论基础",
+      "target_words": 25000,
+      "status": "completed",
+      "word_count": 25200,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-18",
+      "issues": []
+    },
+    "ch03": {
+      "title": "水利知识表示与知识图谱",
+      "target_words": 25000,
+      "status": "completed",
+      "word_count": 25800,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-18",
+      "issues": []
+    },
+    "ch04": {
+      "title": "水利大语言模型架构与训练",
+      "target_words": 30000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "issues": []
+    },
+    "ch05": {
+      "title": "检索增强生成（RAG）技术与水利应用",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "issues": []
+    },
+    "ch06": {
+      "title": "认知AI引擎设计与实现",
+      "target_words": 30000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "issues": []
+    },
+    "ch07": {
+      "title": "人机协同决策与对话调度",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "issues": []
+    },
+    "ch08": {
+      "title": "认知智能与物理AI融合",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "issues": []
+    },
+    "ch09": {
+      "title": "工程案例：瀚铎水网大模型实践",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "issues": []
+    },
+    "ch10": {
+      "title": "总结与展望",
+      "target_words": 15000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "issues": []
+    }
+  },
+  "overall_progress": "30%"
+}
