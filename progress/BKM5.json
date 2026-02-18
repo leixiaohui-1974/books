@@ -33,9 +33,11 @@
     "ch03": {
       "title": "水利知识表示与知识图谱",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
+      "status": "completed",
+      "word_count": 25800,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-18",
       "issues": []
     },
     "ch04": {
@@ -95,5 +97,5 @@
       "issues": []
     }
   },
-  "overall_progress": "20%"
+  "overall_progress": "30%"
 }
