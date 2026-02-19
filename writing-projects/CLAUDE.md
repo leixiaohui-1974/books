@@ -114,6 +114,7 @@ git push
 写作过程中可随时参考仓库中的已有材料：
 - `books/research-materials/` — 研究分析材料
 - `books/books/` — 已有书稿章节
+- `references/citation_style_guide.md` — 参考文献格式规范（GB/T 7714 + SCI期刊格式）
 - 其他 `writing-projects/` 下已完成的文档
 
 ---
@@ -206,11 +207,11 @@ git push
 ### 写作流程
 
 ```
-提纲确认 → git保存提纲 → 背景检索 → 撰写初稿 → git保存 → 多角色评审 → git保存 → 达标？
-                                                                      ↑              ↓ 否
-                                                                      └── 修改+git ←─┘
-                                                                           ↓ 是
-                                                                      输出终稿+git → 提示下一篇
+提纲确认 → git保存提纲 → 背景检索 → 撰写初稿 → 参考文献验证关卡 → git保存 → 多角色评审 → git保存 → 达标？
+                                                   ↑ 🔴未清零返回修正       ↑                  ↓ 否
+                                                                              └── 修改+git ←─┘
+                                                                                   ↓ 是
+                                                                              输出终稿+git → 提示下一篇
 ```
 
 **步骤0：创建写作计划目录**（首次进入写作模式时）
@@ -229,8 +230,15 @@ git push
 - 撰写前**必读**（按顺序，不可跳过）：
   1. `references/writing_craft_guide.md` → 该文体的写作技法和句型库
   2. `references/gold_standard_fragments.md` → 该文体的优秀范文片段（设定质量基线）
-  3. `agents/[文体]_reviewer.md` → 评审诊断模式（提前规避"雷区"）
+  3. `references/citation_style_guide.md` → 参考文献格式规范（真实性+格式要求）
+  4. `agents/[文体]_reviewer.md` → 评审诊断模式（提前规避"雷区"）
 - 按文体模板完成全文
+- ⚠️ **参考文献铁律**：每一条参考文献必须真实可查，格式必须规范。**绝不编造**。不确定的文献标注`⚠️ 待核实`。
+
+**步骤2.5：参考文献验证关卡**（初稿完成后立即执行，不可跳过）
+- 运行 `scripts/check_references.py <文件> --type [类型]`
+- 用 web_search 验证参考文献真实性（按SKILL.md §4.1步骤6.5的文体差异化比例：SCI/CN≥50%，BK/RPT≥30%，PAT/STD=100%）
+- 🔴项清零后方可进入评审——**发现编造文献则整篇打回重写**
 - 保存为 `draft_v01.md`
 - `git commit -m "[draft] 文档编号 v01"` + `git push`
 
