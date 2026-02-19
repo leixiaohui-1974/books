@@ -61,33 +61,69 @@
       "title": "水力学模型封装与接口标准",
       "title_en": "Hydraulic Model Encapsulation and Interface Standards",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "review_scores": {},
-      "issues": [],
+      "status": "completed",
+      "word_count": 11300,
+      "review_passed": true,
+      "review_scores": {
+        "A_accuracy": 9,
+        "B_completeness": 9,
+        "C_pedagogy": 9
+      },
+      "issues": [
+        "[DONE] Saint-Venant模型封装五接口标准化",
+        "[DONE] Preissmann/MOC/FVM三类数值方法封装",
+        "[DONE] IDZ/Muskingum/数据驱动三类ROM集成",
+        "[DONE] 多模型编排与切换策略",
+        "[DONE] OPC-UA/MQTT数据接口标准",
+        "[DONE] EKF/EnKF/4D-Var参数同化方法",
+        "[DONE] 4个例题、8道习题、6篇拓展阅读"
+      ],
       "key_content": "Saint-Venant模型封装; 降阶模型(ROM)集成; 多模型耦合与切换; SCADA数据接口; 模型参数同化与在线校正"
     },
     "ch04": {
       "title": "MIL：模型在环测试",
       "title_en": "MIL: Model-in-the-Loop Testing",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "review_scores": {},
-      "issues": [],
+      "status": "completed",
+      "word_count": 10447,
+      "review_passed": true,
+      "review_scores": {
+        "A_accuracy": 9,
+        "B_completeness": 9,
+        "C_pedagogy": 9
+      },
+      "issues": [
+        "[DONE] MIL架构四组件与五阶段流程",
+        "[DONE] 控制算法四类MIL验证（阶跃/跟踪/扰动/耦合）",
+        "[DONE] OAT与全局敏感性分析（Sobol/Morris）",
+        "[DONE] 蒙特卡洛场景扫描与LHS采样",
+        "[DONE] 加速仿真与批量测试框架",
+        "[DONE] MIL报告规范与缺陷分级",
+        "[DONE] 4例题/5表/8习题"
+      ],
       "key_content": "MIL架构与流程; 控制算法MIL验证; 参数敏感性分析; 蒙特卡洛场景扫描; 加速仿真与批量测试; MIL报告规范"
     },
     "ch05": {
       "title": "SIL：软件在环测试",
       "title_en": "SIL: Software-in-the-Loop Testing",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "review_scores": {},
-      "issues": [],
+      "status": "completed",
+      "word_count": 7409,
+      "review_passed": true,
+      "review_scores": {
+        "A_accuracy": 9,
+        "B_completeness": 9,
+        "C_pedagogy": 9
+      },
+      "issues": [
+        "[DONE] SIL架构与代码鸿沟分析",
+        "[DONE] 嵌入式软件栈五层验证重点",
+        "[DONE] OPC-UA/MQTT接口契约测试",
+        "[DONE] 时序一致性验证（插桩法）",
+        "[DONE] 异常注入测试与安全降级L0-L3",
+        "[DONE] 回归测试CI流程与背靠背测试",
+        "[DONE] 4例题/4表/8习题"
+      ],
       "key_content": "SIL架构与流程; 嵌入式软件栈验证; 接口契约测试; 时序一致性验证; OPC-UA/MQTT协议测试; 异常注入测试; 对应PF6-3/4"
     },
     "ch06": {
@@ -146,5 +182,5 @@
       "key_content": "全书回顾; 形式化验证前沿; 数字孪生驱动的持续验证; 水利V&V标准化展望; 与CHS体系其他著作衔接"
     }
   },
-  "overall_progress": "20%"
+  "overall_progress": "50%"
 }
