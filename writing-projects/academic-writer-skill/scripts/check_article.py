@@ -399,6 +399,55 @@ def generate_stats(content):
         '预计阅读时间': f'{read_time}分钟',
     }
 
+
+def check_title_length(content):
+    """检查标题长度"""
+    issues = []
+    lines = content.split('\n')
+    for line in lines:
+        if line.startswith('# ') and not line.startswith('## '):
+            title = line[2:].strip()
+            # 去除标点和空格计算字数
+            pure_title = re.sub(r'[\s\u3000]', '', title)
+            char_count = len(pure_title)
+            if char_count > 22:
+                issues.append({
+                    'level': 'WARNING', 'category': '标题长度',
+                    'message': f'主标题过长({char_count}字): "{title}"',
+                    'suggestion': '标题建议15字以内(最多22字)，精简表达'
+                })
+            elif char_count < 6:
+                issues.append({
+                    'level': 'CHECK', 'category': '标题长度',
+                    'message': f'主标题偏短({char_count}字): "{title}"',
+                    'suggestion': '标题过短可能缺乏信息量'
+                })
+    return issues
+
+def check_section_separators(content):
+    """检查节间分隔线"""
+    issues = []
+    lines = content.split('\n')
+    h2_lines = [(i, line) for i, line in enumerate(lines) if line.startswith('## ')]
+    
+    for idx, (line_num, _) in enumerate(h2_lines):
+        if idx == 0:
+            continue  # 第一个节标题不需要前置分隔线
+        # 检查前面几行是否有 ---
+        has_separator = False
+        for check_line in range(max(0, line_num - 3), line_num):
+            if lines[check_line].strip() == '---':
+                has_separator = True
+                break
+        if not has_separator:
+            issues.append({
+                'level': 'WARNING', 'category': '节分隔线',
+                'line': line_num + 1,
+                'message': f'节标题"{lines[line_num].strip()}"前缺少---分隔线',
+                'suggestion': '节与节之间用 --- 分隔，手机端显示效果更佳'
+            })
+    return issues
+
 def run_all_checks(filepath):
     """执行全部检查"""
     content = load_article(filepath)
@@ -416,6 +465,8 @@ def run_all_checks(filepath):
     all_issues.extend(check_opening(content))
     all_issues.extend(check_ending(content))
     all_issues.extend(check_word_frequency(content))
+    all_issues.extend(check_title_length(content))
+    all_issues.extend(check_section_separators(content))
     
     stats = generate_stats(content)
     
@@ -428,7 +479,7 @@ def run_all_checks(filepath):
         print(f"   {k}: {v}")
     
     if not all_issues:
-        print(f"\n✅ 所有{11}项检查全部通过！文章可以发布。\n")
+        print(f"\n✅ 所有{14}项检查全部通过！文章可以发布。\n")
         return True
     
     # 按级别分组
@@ -475,10 +526,11 @@ def run_all_checks(filepath):
     return len(severe) == 0
 
 if __name__ == '__main__':
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 2 or sys.argv[1] in ('-h', '--help'):
         print("用法: python3 check_article.py <文章文件路径>")
         print("示例: python3 check_article.py article.md")
-        sys.exit(1)
+        print("\n公众号文章质量自动检查（14项），配合SKILL.md §7.5使用")
+        sys.exit(0)
     
     filepath = sys.argv[1]
     passed = run_all_checks(filepath)

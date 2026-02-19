@@ -29,7 +29,7 @@ writing-projects/
 │   │   ├── cn_reviewer.md             # 中文核心期刊三角色评审
 │   │   ├── patent_reviewer.md         # 发明专利三角色评审
 │   │   ├── book_reviewer.md           # 书稿/教材四角色评审
-│   │   ├── standard_report_reviewer.md # 技术报告评审
+│   │   ├── rpt_reviewer.md            # 技术报告双角色评审
 │   │   ├── std_cn_reviewer.md         # 国内标准三角色评审(GB/T 1.1)
 │   │   ├── std_int_reviewer.md        # 国际标准三角色评审(ISO/IEC Directives)
 │   │   ├── wechat_reviewer.md         # 微信公众号文章三角色评审
@@ -79,6 +79,8 @@ node create_ppt.js
 
 ## 版本记录
 
+- v3.2 (2026-02-19): 基础设施建设——评分锚点标准+项目配置模板+5脚本自动检查体系+跨文档一致性检查
+- v3.1 (2026-02-19): 深度评审修复——补齐全部输出格式/新建RPT agent/修复33项一致性问题
 - v3.0 (2026-02-19): 拆分STD为STD-CN+STD-INT，新增PPT文体+风格指南，九大文体体系
 - v2.0 (2026-02-19): 整合公众号文章(WX)为第七文体
 - v1.0 (2026-02-19): 初始版本，6文体写审改闭环 + GitHub自动持久化

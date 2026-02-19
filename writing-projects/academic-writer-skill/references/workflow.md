@@ -56,6 +56,10 @@
 
 > **WX文体附加步骤**: 在"多角色评审"之前和每轮"修改"之后，必须运行 `scripts/check_article.py`。🔴项必须清零后方可进入达标判定。编辑角色评审以脚本检查报告为基础。
 
+> **STD文体附加步骤**: 初稿完成后须对全文条文用语进行校验——国内标准检查「应/宜/可/不应/不宜」用语一致性，国际标准检查「shall/should/may」用语一致性。规范性引用文件须逐一 web_search 确认现行有效。条文合规率须100%方可进入达标判定。
+
+> **PPT文体附加步骤**: 初稿生成后须用 LibreOffice 转 PDF 进行视觉QA，逐页确认配色/字体/排版与风格指南(`references/ppt_style_guide.md`)一致。设计审查角色以视觉QA结果为基础。
+
 ## 2. 各文体评审角色速查
 
 | 文体 | 角色数 | 角色 | 达标条件 |
@@ -92,7 +96,12 @@ Batch 4 (依赖全部)
   ├── SCI工程线
   ├── PAT验证/平台族: PF6~PF7
   ├── BK生态层: M9, M10
-  └── STD全部
+  └── STD-CN/STD-INT全部
+
+每批次完成后:
+  1. python3 scripts/check_consistency.py docs/  ← 跨文档一致性(CONS)
+  2. 人工确认创新点重叠度≤30%
+  3. 引用网络完整性检查
 ```
 
 ## 4. 进度文件示例
@@ -112,7 +121,11 @@ Batch 4 (依赖全部)
     "CN": { "total": 4, "completed": 4, "note": "Lei2025a-d已发表" },
     "PAT": { "total": 36, "completed": 0 },
     "BK": { "total": 16, "completed": 0 },
-    "STD": { "total": 0, "completed": 0 }
+    "RPT": { "total": 0, "completed": 0 },
+    "STD-CN": { "total": 0, "completed": 0 },
+    "STD-INT": { "total": 0, "completed": 0 },
+    "WX": { "total": 0, "completed": 0 },
+    "PPT": { "total": 0, "completed": 0 }
   }
 }
 ```
