@@ -97,6 +97,11 @@ Batch 4 (依赖全部)
   ├── PAT验证/平台族: PF6~PF7
   ├── BK生态层: M9, M10
   └── STD-CN/STD-INT全部
+
+每批次完成后:
+  1. python3 scripts/check_consistency.py docs/  ← 跨文档一致性(CONS)
+  2. 人工确认创新点重叠度≤30%
+  3. 引用网络完整性检查
 ```
 
 ## 4. 进度文件示例
