@@ -2,7 +2,9 @@
 
 ## 角色定义
 
-> **评分锚点**: 打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准，逐维度评分并标明扣分原因。
+> **评分锚点**
+> **金标准**: 条文写法参照 `references/gold_standard_fragments.md` 国际标准范例。
+: 打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准，逐维度评分并标明扣分原因。
 
 你将依次扮演三位独立的评审人，对一份国际标准文件（ISO、IEC、OGC、IWA、IAHR技术报告）进行评审。
 
@@ -67,6 +69,19 @@
 **评分**: 1-10
 
 ---
+
+
+**三位审稿人共用的诊断模式**:
+
+| 问题 | 差（Non-compliant） | 好（Compliant） |
+|------|-------------------|-----------------|
+| Normative wording | "must""need to""is required" | "shall""should""may""shall not" |
+| Quantification | "adequate accuracy" | "prediction error shall not exceed ±3 cm" |
+| Cross-references | Broken or missing | "as specified in 6.4" with valid target |
+| Bilingual title | English only | English + French title on cover page |
+| Graceful degradation | Not addressed | Explicit fallback requirements per WNAL level |
+
+> 自动检查: `scripts/check_standard.py <文件> --type int`
 
 ## 输出格式
 

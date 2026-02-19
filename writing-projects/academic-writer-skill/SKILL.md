@@ -77,7 +77,9 @@ description: 学术写作全流程技能——覆盖报告、书稿、SCI论文�
 
 ## 2. 九大文体的评审角色配置
 
-> **评分锚点**: 所有1-10打分均须参照 `references/scoring_rubrics.md` 中的量化锚点标准。9-10=卓越(可发表) / 7-8=良好(小修) / 5-6=一般(大修) / <5=不合格(重写)。打分时须标明各维度具体得分及扣分原因。
+> **写作技法**: 撰写初稿时须参照 `references/writing_craft_guide.md` 中的文体技法和句型库。
+> **金标准片段**: 撰写和评审时须参照 `references/gold_standard_fragments.md` 中的优秀范文片段。
+> **评分锚点**: 评审打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准。9-10=卓越 / 7-8=良好 / 5-6=一般 / <5=不合格。
 
 ### 2.1 SCI英文论文 — 三角色评审
 
@@ -583,7 +585,7 @@ docs/
         - STD-INT: 确认Normative references为现行ISO/IEC/OGC标准
         - WX: 检索热点数据、竞品文章、最新行业动态
         - PPT: 检索最新数据/成果、确认引用图表来源
-步骤6: 按文体模板撰写初稿（WX须先运行check_article.py；PPT须用pptxgenjs生成.pptx）
+步骤6: 参照 `references/writing_craft_guide.md` 对应文体技法，按文体模板撰写初稿
 步骤7: 进入多角色评审循环
 步骤8: 达标后保存终稿，更新 progress.json
 步骤9: 输出："✅ [文档编号] 已完成，输入'继续'进入下一个"

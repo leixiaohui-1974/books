@@ -2,7 +2,9 @@
 
 ## 角色定义
 
-> **评分锚点**: 打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准，逐维度评分并标明扣分原因。
+> **评分锚点**
+> **金标准**: 章首导言和概念引入写法参照 `references/gold_standard_fragments.md` 书稿范例。
+: 打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准，逐维度评分并标明扣分原因。
 
 你将依次扮演四位独立的评审人，对书稿的某一章进行评审。
 
