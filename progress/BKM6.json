@@ -40,11 +40,21 @@
       "title": "数字孪生与仿真环境构建",
       "title_en": "Digital Twin and Simulation Environment",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "review_scores": {},
-      "issues": [],
+      "status": "completed",
+      "word_count": 10800,
+      "review_passed": true,
+      "review_scores": {
+        "A_accuracy": 9,
+        "B_completeness": 9,
+        "C_pedagogy": 9
+      },
+      "issues": [
+        "[DONE] 数字孪生三层次（模型/影子/孪生）",
+        "[DONE] 三类仿真形态（离线/实时/超实时）",
+        "[DONE] FMI/FMU封装标准与水力学封装实践",
+        "[DONE] 联合仿真框架与时间同步策略",
+        "[DONE] 仿真校验方法与ABC等级评定"
+      ],
       "key_content": "数字孪生概念与架构; 离线/实时/超实时三类仿真; FMI/FMU封装标准; 联合仿真(co-simulation)框架; 仿真环境校验方法; 对应PF6-1/2"
     },
     "ch03": {
@@ -136,5 +146,5 @@
       "key_content": "全书回顾; 形式化验证前沿; 数字孪生驱动的持续验证; 水利V&V标准化展望; 与CHS体系其他著作衔接"
     }
   },
-  "overall_progress": "10%"
+  "overall_progress": "20%"
 }
