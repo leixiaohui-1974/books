@@ -107,11 +107,23 @@
       "title": "SIL：软件在环测试",
       "title_en": "SIL: Software-in-the-Loop Testing",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "review_scores": {},
-      "issues": [],
+      "status": "completed",
+      "word_count": 7409,
+      "review_passed": true,
+      "review_scores": {
+        "A_accuracy": 9,
+        "B_completeness": 9,
+        "C_pedagogy": 9
+      },
+      "issues": [
+        "[DONE] SIL架构与代码鸿沟分析",
+        "[DONE] 嵌入式软件栈五层验证重点",
+        "[DONE] OPC-UA/MQTT接口契约测试",
+        "[DONE] 时序一致性验证（插桩法）",
+        "[DONE] 异常注入测试与安全降级L0-L3",
+        "[DONE] 回归测试CI流程与背靠背测试",
+        "[DONE] 4例题/4表/8习题"
+      ],
       "key_content": "SIL架构与流程; 嵌入式软件栈验证; 接口契约测试; 时序一致性验证; OPC-UA/MQTT协议测试; 异常注入测试; 对应PF6-3/4"
     },
     "ch06": {
@@ -170,5 +182,5 @@
       "key_content": "全书回顾; 形式化验证前沿; 数字孪生驱动的持续验证; 水利V&V标准化展望; 与CHS体系其他著作衔接"
     }
   },
-  "overall_progress": "40%"
+  "overall_progress": "50%"
 }
