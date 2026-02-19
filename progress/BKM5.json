@@ -138,10 +138,20 @@
     "ch08": {
       "title": "认知智能与物理AI融合",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "issues": []
+      "status": "completed",
+      "word_count": 18000,
+      "review_passed": true,
+      "review_scores": {
+        "A": 8,
+        "B": 9,
+        "C": 9
+      },
+      "last_updated": "2026-02-19",
+      "issues": [
+        "[DONE] 已完成PINN/ROM/数字孪生、双引擎融合、协同推理、安全保障、案例全框架",
+        "[DONE] 已完成四角色评审(A:8/B:9/C:9)并执行修改",
+        "[TODO] 字数18000/25000，可扩充PINN数值算例和工程实测对比数据"
+      ]
     },
     "ch09": {
       "title": "工程案例：瀚铎水网大模型实践",
@@ -160,5 +170,5 @@
       "issues": []
     }
   },
-  "overall_progress": "70%"
+  "overall_progress": "80%"
 }
