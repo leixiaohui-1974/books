@@ -156,10 +156,21 @@
     "ch09": {
       "title": "工程案例：瀚铎水网大模型实践",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "issues": []
+      "status": "completed",
+      "word_count": 27000,
+      "review_passed": true,
+      "issues": [
+        "[DONE] 完成五层架构设计、知识体系构建、模型选型训练(CPT/SFT/DPO)全流程",
+        "[DONE] 完成RAG三路混合检索、认知引擎集成、双引擎融合实践",
+        "[DONE] 完成测试评估、部署运维、经验总结",
+        "[DONE] HydroEval-500评估数据、场景测试结果、UAT统计完整"
+      ],
+      "review_scores": {
+        "A": 8,
+        "B": 9,
+        "C": 9
+      },
+      "last_updated": "2026-02-19"
     },
     "ch10": {
       "title": "总结与展望",
@@ -170,5 +181,5 @@
       "issues": []
     }
   },
-  "overall_progress": "80%"
+  "overall_progress": "90%"
 }
