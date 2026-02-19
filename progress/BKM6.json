@@ -130,10 +130,14 @@
       "title": "HIL：硬件在环测试",
       "title_en": "HIL: Hardware-in-the-Loop Testing",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "review_scores": {},
+      "status": "completed",
+      "word_count": 7092,
+      "review_passed": true,
+      "review_scores": {
+        "A_accuracy": 9,
+        "B_completeness": 9,
+        "C_pedagogy": 9
+      },
       "issues": [],
       "key_content": "HIL架构与流程; 实时仿真器(RT-LAB/dSPACE类比); SCADA闭环测试; 执行器响应验证; 通信链路测试; 安全联锁验证; 对应PF6-5"
     },
@@ -182,5 +186,5 @@
       "key_content": "全书回顾; 形式化验证前沿; 数字孪生驱动的持续验证; 水利V&V标准化展望; 与CHS体系其他著作衔接"
     }
   },
-  "overall_progress": "50%"
+  "overall_progress": "60%"
 }
