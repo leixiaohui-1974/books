@@ -91,7 +91,7 @@ def run_ppt_check(filepath, duration=None):
     return result.returncode == 0
 
 def run_general_check(filepath, doc_type):
-    """通用检查 (SCI/CN/PAT/BK/RPT)"""
+    """通用检查 (SCI/CN/PAT/BK/RPT) — 含参考文献检查"""
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -100,6 +100,20 @@ def run_general_check(filepath, doc_type):
         return False
     
     issues = []
+    
+    # 0. 参考文献检查（最高优先级）
+    ref_script = SCRIPT_DIR / 'check_references.py'
+    if ref_script.exists():
+        print(f"\n{'─'*40}")
+        print(f"📚 参考文献专项检查")
+        print(f"{'─'*40}")
+        ref_result = subprocess.run(
+            [sys.executable, str(ref_script), filepath, '--type', doc_type],
+            capture_output=False
+        )
+        if ref_result.returncode != 0:
+            issues.append(('SEVERE', '参考文献', '参考文献检查未通过（详见上方报告）'))
+        print(f"{'─'*40}\n")
     
     # 1. 公式编号检查
     equations = re.findall(r'\$\$.*?\$\$|\\\[.*?\\\]', content, re.DOTALL)
