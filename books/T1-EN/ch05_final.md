@@ -11,13 +11,13 @@ v1 2026-02-16: First draft
 >
 > Case studies matter not because they prove perfection, but because they reveal whether architecture and verification frameworks survive real operational constraints.
 
-## 5.1 Case-study objective and evaluation lens
+## Case-study objective and evaluation lens
 
 Following Chapter 4, this chapter examines how CHS principles perform in engineering contexts. The objective is not to claim universal optimality, but to show reproducible reasoning from ODD definition to deployment decisions.
 
 The evaluation lens includes safety compliance, control stability, coordination quality, and governance traceability.
 
-## 5.2 Case A: Jiaodong Water Transfer (open-channel HDC)
+## Case A: Jiaodong Water Transfer (open-channel HDC)
 
 Jiaodong Water Transfer is a long-distance open-channel transfer system with strong delay and multi-node coupling. Its main control challenge is not local regulation alone, but coordinated behavior across distributed gates and pumping constraints.
 
@@ -41,7 +41,7 @@ Jiaodong Water Transfer is a long-distance open-channel transfer system with str
 
 Quantitative values are intentionally withheld until project data authorization is granted.
 
-## 5.3 Case B: Shaoping Hydropower (generation-flood integrated control)
+## Case B: Shaoping Hydropower (generation-flood integrated control)
 
 Shaoping belongs to a cascade operation context where generation and flood management must be coordinated under strict safety constraints. The key challenge is multi-objective operation with high consequence during extreme inflow periods.
 
@@ -65,7 +65,7 @@ Shaoping belongs to a cascade operation context where generation and flood manag
 
 Quantitative values are intentionally withheld until project data authorization is granted.
 
-## 5.4 Cross-case comparison
+## Cross-case comparison
 
 [Table 5-1: Cross-case CHS deployment comparison]
 | Dimension | Jiaodong Water Transfer | Shaoping Hydropower |
@@ -76,7 +76,7 @@ Quantitative values are intentionally withheld until project data authorization 
 | Verification stress point | Communication + timing variation | Extreme inflow and emergency fallback |
 | Governance focus | Routine takeover traceability | Critical-action accountability |
 
-## 5.5 Cross-case go/no-go checklist before scale-up
+## Cross-case go/no-go checklist before scale-up
 
 | Gate | Go condition |
 |---|---|
@@ -86,7 +86,7 @@ Quantitative values are intentionally withheld until project data authorization 
 | Governance gate | Takeover drills and audit chain pass repeat checks |
 | Interface gate | Cross-system contracts are versioned and stable |
 
-## 5.6 Transferable lessons
+## Transferable lessons
 
 Across both cases, five transferable lessons emerge:
 
@@ -98,7 +98,7 @@ Across both cases, five transferable lessons emerge:
 
 These lessons are benchmark-portable because they rely on structural conditions rather than location-specific parameter values.
 
-## 5.7 Typical pitfalls in case deployment
+## Typical pitfalls in case deployment
 
 Common pitfalls observed across projects include:
 
@@ -107,6 +107,6 @@ Common pitfalls observed across projects include:
 - weak interface governance across vendors,
 - weak drill discipline for takeover and fallback.
 
-## 5.8 Chapter summary and bridge to Chapter 6
+## Chapter summary and bridge to Chapter 6
 
 The two cases demonstrate that CHS is practical when theory, architecture, verification, and governance are implemented as one system. The final chapter (Chapter 6) turns from implementation evidence to future agenda: open research problems, community standards, and long-term talent and platform co-evolution.

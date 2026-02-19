@@ -11,11 +11,11 @@ v1 2026-02-16: First draft
 >
 > In critical water infrastructure, autonomy without verification is not innovation; it is unmanaged risk. Trust must be engineered through reproducible evidence.
 
-## 4.1 Why verification is the architecture’s proof of trust
+## Why verification is the architecture’s proof of trust
 
 Chapter 3 defined how autonomous water networks should be built. This chapter addresses how those designs are proven safe and reliable before and during deployment. The core proposition is simple: autonomy claims are valid only if they are backed by traceable evidence under defined Operational Design Domain (ODD) conditions.
 
-## 4.2 SIM-SIL-HIL as the staged evidence pipeline
+## SIM-SIL-HIL as the staged evidence pipeline
 
 CHS adopts a staged verification chain:
 
@@ -30,7 +30,7 @@ Each stage has different failure signatures and release criteria. Skipping stage
 {Size: full page}
 {Color scheme: blue theme}
 
-## 4.3 ODD-based test design
+## ODD-based test design
 
 Verification is not “test everything”; it is “test what matters in declared ODD.” A practical ODD-based design includes:
 
@@ -41,7 +41,7 @@ Verification is not “test everything”; it is “test what matters in declare
 
 This approach aligns test scope with autonomy claims and avoids false confidence.
 
-## 4.4 Runtime monitoring and safety enforcement
+## Runtime monitoring and safety enforcement
 
 Pre-deployment verification is necessary but not sufficient. Runtime monitoring complements—rather than replaces—pre-deployment verification by continuously evaluating:
 
@@ -53,7 +53,7 @@ Pre-deployment verification is necessary but not sufficient. Runtime monitoring 
 
 When violations are detected, systems should execute a fixed mitigation order: constrain action first, degrade mode second, and trigger accountable human takeover third.
 
-## 4.5 Coverage metrics and acceptance criteria
+## Coverage metrics and acceptance criteria
 
 CHS verification recommends multi-axis coverage rather than single test counts:
 
@@ -70,7 +70,7 @@ CHS verification recommends multi-axis coverage rather than single test counts:
 | Real-time behavior | Timing and fallback performance within limits | pass/fix |
 | Governance readiness | Takeover drills and audit trails reproducible | pass/fix |
 
-## 4.6 Pre-release checklist (minimum deployment gate)
+## Pre-release checklist (minimum deployment gate)
 
 | Gate | Minimum condition |
 |---|---|
@@ -80,11 +80,11 @@ CHS verification recommends multi-axis coverage rather than single test counts:
 | Safety gate | ODD and Safety Envelope triggers are enforceable |
 | Governance gate | Takeover roles and audit chain pass drill validation |
 
-## 4.7 Regression testing and controlled evolution
+## Regression testing and controlled evolution
 
 Any model, policy, or software update must trigger regression tests across the preserved scenario baseline. Controlled evolution requires versioned artifacts, reproducible test environments, change impact mapping, and rollback paths. This discipline supports reproducibility across organizations and sites.
 
-## 4.8 Common verification anti-patterns
+## Common verification anti-patterns
 
 Frequent failures include:
 
@@ -95,6 +95,6 @@ Frequent failures include:
 
 These anti-patterns create invisible risk accumulation.
 
-## 4.9 Chapter summary and bridge to Chapter 5
+## Chapter summary and bridge to Chapter 5
 
 This chapter established the verification and validation framework for autonomous water networks: SIM-SIL-HIL pipeline, ODD-based test design, runtime monitoring, coverage metrics, and regression discipline. With trust evidence defined, Chapter 5 turns to case studies and shows how this framework performs in Jiaodong Water Transfer and Shaoping Hydropower contexts.

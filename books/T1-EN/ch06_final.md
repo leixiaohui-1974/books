@@ -11,11 +11,11 @@ v1 2026-02-16: First draft
 >
 > The next decade of water autonomy will be defined less by isolated algorithm breakthroughs and more by whether the community can standardize evidence, interfaces, and accountability at scale.
 
-## 6.1 From case evidence to long-term agenda
+## From case evidence to long-term agenda
 
 Chapter 5 showed that CHS can work in real operational settings when architecture, verification, and governance are integrated. This final chapter addresses the next question: what must the research and engineering community do so these gains become systematic rather than project-specific?
 
-## 6.2 Priority research questions
+## Priority research questions
 
 Five research clusters deserve sustained attention:
 
@@ -27,7 +27,7 @@ Five research clusters deserve sustained attention:
 
 These clusters are tightly coupled and should not be treated as independent tracks.
 
-## 6.3 Standardization agenda for global interoperability
+## Standardization agenda for global interoperability
 
 CHS progress depends on shared standards in three layers:
 
@@ -42,7 +42,7 @@ Without this tri-layer standardization, cross-project learning remains fragmente
 {Size: half page}
 {Color scheme: blue theme}
 
-## 6.4 Community building and institutional roles
+## Community building and institutional roles
 
 A scalable CHS ecosystem needs coordinated roles:
 
@@ -53,7 +53,7 @@ A scalable CHS ecosystem needs coordinated roles:
 
 A recurring joint mechanism (benchmark challenges, shared test suites, inter-lab replication) is essential.
 
-## 6.5 Institutional action checklist (2026–2030 window)
+## Institutional action checklist (2026–2030 window)
 
 | Institution type | Minimum action |
 |---|---|
@@ -62,7 +62,7 @@ A recurring joint mechanism (benchmark challenges, shared test suites, inter-lab
 | Universities/research labs | publish replicable benchmarks and cross-site validation protocols |
 | Professional bodies | curate shared terminology, test suites, and reporting templates |
 
-## 6.6 Talent and curriculum co-evolution
+## Talent and curriculum co-evolution
 
 Technical capability without organizational capability is fragile. CHS talent development should co-evolve across:
 
@@ -73,7 +73,7 @@ Technical capability without organizational capability is fragile. CHS talent de
 
 This reinforces the CHS premise that autonomy is both a technical and institutional capability.
 
-## 6.7 Open implementation challenges
+## Open implementation challenges
 
 Even with mature concepts, deployment at scale still faces constraints:
 
@@ -84,7 +84,7 @@ Even with mature concepts, deployment at scale still faces constraints:
 
 [TODO: 需补充跨区域实施成本与周期统计]
 
-## 6.8 Ten-year outlook (2026–2035)
+## Ten-year outlook (2026–2035)
 
 A realistic trajectory can be framed in three phases:
 
@@ -103,6 +103,6 @@ The practical success metric is not model complexity alone, but measurable gains
 | Governance | higher completeness of takeover/audit records |
 | Replicability | shorter time-to-deploy in new sites |
 
-## 6.9 Final remarks
+## Final remarks
 
 CHS is not a single method. It is an operational discipline that unifies physics, control, intelligence, verification, and governance. The strategic opportunity ahead is clear: if the global water community can align on shared evidence and interoperable architecture, autonomy can evolve from isolated demonstration to dependable infrastructure capability.
