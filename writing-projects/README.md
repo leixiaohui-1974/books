@@ -29,7 +29,7 @@ writing-projects/
 │   │   ├── cn_reviewer.md             # 中文核心期刊三角色评审
 │   │   ├── patent_reviewer.md         # 发明专利三角色评审
 │   │   ├── book_reviewer.md           # 书稿/教材四角色评审
-│   │   ├── standard_report_reviewer.md # 技术报告评审
+│   │   ├── rpt_reviewer.md            # 技术报告双角色评审
 │   │   ├── std_cn_reviewer.md         # 国内标准三角色评审(GB/T 1.1)
 │   │   ├── std_int_reviewer.md        # 国际标准三角色评审(ISO/IEC Directives)
 │   │   ├── wechat_reviewer.md         # 微信公众号文章三角色评审
