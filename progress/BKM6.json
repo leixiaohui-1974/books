@@ -1,0 +1,140 @@
+{
+  "book_id": "M6",
+  "book_title": "水网控制在环验证",
+  "book_title_en": "In-the-Loop Verification of Water Network Control",
+  "total_chapters": 10,
+  "publisher_cn": "中国水利水电出版社",
+  "publisher_en": "IAHR Book Series",
+  "target_pages": 250,
+  "target_words": 220000,
+  "corresponding_papers": [
+    "P5a",
+    "P5b"
+  ],
+  "corresponding_patents": [
+    "PF6"
+  ],
+  "chapters": {
+    "ch01": {
+      "title": "绪论：为什么需要在环验证",
+      "title_en": "Introduction: Why In-the-Loop Verification",
+      "target_words": 20000,
+      "status": "completed",
+      "word_count": 12100,
+      "review_passed": true,
+      "review_scores": {
+        "A_accuracy": 9,
+        "B_completeness": 9,
+        "C_pedagogy": 9
+      },
+      "issues": [
+        "[DONE] V&V概念体系、V模型、功能安全标准类比",
+        "[DONE] MIL/SIL/HIL三级框架概览与对比表",
+        "[DONE] CHS八原理定位、WNAL等级对应、安全包络关联",
+        "[DONE] 国际发展脉络与中国现状对比",
+        "[DONE] 例题：PI控制器MIL/SIL差异分析"
+      ],
+      "key_content": "V&V概念体系; 水利控制系统特殊性; 功能安全标准(IEC 61508/ISO 26262)类比; 在环验证在CHS体系中的定位; MIL/SIL/HIL概览"
+    },
+    "ch02": {
+      "title": "数字孪生与仿真环境构建",
+      "title_en": "Digital Twin and Simulation Environment",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "review_scores": {},
+      "issues": [],
+      "key_content": "数字孪生概念与架构; 离线/实时/超实时三类仿真; FMI/FMU封装标准; 联合仿真(co-simulation)框架; 仿真环境校验方法; 对应PF6-1/2"
+    },
+    "ch03": {
+      "title": "水力学模型封装与接口标准",
+      "title_en": "Hydraulic Model Encapsulation and Interface Standards",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "review_scores": {},
+      "issues": [],
+      "key_content": "Saint-Venant模型封装; 降阶模型(ROM)集成; 多模型耦合与切换; SCADA数据接口; 模型参数同化与在线校正"
+    },
+    "ch04": {
+      "title": "MIL：模型在环测试",
+      "title_en": "MIL: Model-in-the-Loop Testing",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "review_scores": {},
+      "issues": [],
+      "key_content": "MIL架构与流程; 控制算法MIL验证; 参数敏感性分析; 蒙特卡洛场景扫描; 加速仿真与批量测试; MIL报告规范"
+    },
+    "ch05": {
+      "title": "SIL：软件在环测试",
+      "title_en": "SIL: Software-in-the-Loop Testing",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "review_scores": {},
+      "issues": [],
+      "key_content": "SIL架构与流程; 嵌入式软件栈验证; 接口契约测试; 时序一致性验证; OPC-UA/MQTT协议测试; 异常注入测试; 对应PF6-3/4"
+    },
+    "ch06": {
+      "title": "HIL：硬件在环测试",
+      "title_en": "HIL: Hardware-in-the-Loop Testing",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "review_scores": {},
+      "issues": [],
+      "key_content": "HIL架构与流程; 实时仿真器(RT-LAB/dSPACE类比); SCADA闭环测试; 执行器响应验证; 通信链路测试; 安全联锁验证; 对应PF6-5"
+    },
+    "ch07": {
+      "title": "测试用例设计与场景矩阵",
+      "title_en": "Test Case Design and Scenario Matrix",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "review_scores": {},
+      "issues": [],
+      "key_content": "ODD驱动的场景设计; 四维场景矩阵(水文/设备/通信/组织); 用例分级(P0/P1/P2); 边界值与极端工况; 自动化测试框架; 测试数据管理"
+    },
+    "ch08": {
+      "title": "覆盖度度量与质量门禁",
+      "title_en": "Coverage Metrics and Quality Gates",
+      "target_words": 20000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "review_scores": {},
+      "issues": [],
+      "key_content": "场景覆盖率; 风险覆盖率; ODD子域覆盖; 缺陷分级与回归机制; 版本发布门禁; 运行时监控与持续验证"
+    },
+    "ch09": {
+      "title": "工程案例：胶东调水在环验证实践",
+      "title_en": "Case Study: Jiaodong Water Transfer In-the-Loop Verification",
+      "target_words": 25000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "review_scores": {},
+      "issues": [],
+      "key_content": "胶东调水MIL/SIL/HIL全流程; 仿真平台搭建; 测试用例库; 缺陷发现与修复; 验证报告; 上线许可评审"
+    },
+    "ch10": {
+      "title": "总结与展望",
+      "title_en": "Summary and Outlook",
+      "target_words": 15000,
+      "status": "pending",
+      "word_count": 0,
+      "review_passed": false,
+      "review_scores": {},
+      "issues": [],
+      "key_content": "全书回顾; 形式化验证前沿; 数字孪生驱动的持续验证; 水利V&V标准化展望; 与CHS体系其他著作衔接"
+    }
+  },
+  "overall_progress": "10%"
+}
