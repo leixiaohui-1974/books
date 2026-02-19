@@ -226,6 +226,10 @@ git push
 - STD-INT：确认Normative references为现行ISO/IEC/OGC标准
 
 **步骤2：撰写初稿**
+- 撰写前**必读**（按顺序，不可跳过）：
+  1. `references/writing_craft_guide.md` → 该文体的写作技法和句型库
+  2. `references/gold_standard_fragments.md` → 该文体的优秀范文片段（设定质量基线）
+  3. `agents/[文体]_reviewer.md` → 评审诊断模式（提前规避"雷区"）
 - 按文体模板完成全文
 - 保存为 `draft_v01.md`
 - `git commit -m "[draft] 文档编号 v01"` + `git push`
