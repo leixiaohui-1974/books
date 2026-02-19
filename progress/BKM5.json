@@ -7,8 +7,13 @@
   "publisher_en": "CRC Press",
   "target_pages": 280,
   "target_words": 250000,
-  "corresponding_papers": ["P4b", "P4c"],
-  "corresponding_patents": ["PF5"],
+  "corresponding_papers": [
+    "P4b",
+    "P4c"
+  ],
+  "corresponding_patents": [
+    "PF5"
+  ],
   "chapters": {
     "ch01": {
       "title": "绪论：水利认知智能的缘起与定位",
@@ -16,7 +21,11 @@
       "status": "completed",
       "word_count": 20500,
       "review_passed": true,
-      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9
+      },
       "last_updated": "2026-02-18",
       "issues": []
     },
@@ -26,7 +35,11 @@
       "status": "completed",
       "word_count": 25200,
       "review_passed": true,
-      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9
+      },
       "last_updated": "2026-02-18",
       "issues": []
     },
@@ -36,17 +49,35 @@
       "status": "completed",
       "word_count": 25800,
       "review_passed": true,
-      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9
+      },
       "last_updated": "2026-02-18",
       "issues": []
     },
     "ch04": {
       "title": "水利大语言模型架构与训练",
       "target_words": 30000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "issues": []
+      "status": "completed",
+      "word_count": 19200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 8,
+        "B": 9,
+        "C": 8
+      },
+      "last_updated": "2026-02-19",
+      "issues": [
+        "[DONE] 已完成Transformer架构、基座选型、CPT、SFT、DPO、评估框架与部署架构全章节框架",
+        "[DONE] 已完成四角色评审(A:8/B:9/C:8)并执行🟡级修改",
+        "[DONE] 已补充KV-Cache数值算例、MoE架构说明、Tokenizer完整分析示例",
+        "[DONE] 已补充训练成本估算与完整时间线",
+        "[DONE] 已补充训练监控指标与诊断方法",
+        "[TODO] 字数19200/30000，需在后续迭代中扩充HydroEval详细示例和瀚铎大模型具体评估数据",
+        "[TODO] 瀚铎水网大模型选型结果与评估数据待补充"
+      ]
     },
     "ch05": {
       "title": "检索增强生成（RAG）技术与水利应用",
@@ -97,5 +128,5 @@
       "issues": []
     }
   },
-  "overall_progress": "30%"
+  "overall_progress": "40%"
 }
