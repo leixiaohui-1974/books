@@ -84,11 +84,23 @@
       "title": "MIL：模型在环测试",
       "title_en": "MIL: Model-in-the-Loop Testing",
       "target_words": 25000,
-      "status": "pending",
-      "word_count": 0,
-      "review_passed": false,
-      "review_scores": {},
-      "issues": [],
+      "status": "completed",
+      "word_count": 10447,
+      "review_passed": true,
+      "review_scores": {
+        "A_accuracy": 9,
+        "B_completeness": 9,
+        "C_pedagogy": 9
+      },
+      "issues": [
+        "[DONE] MIL架构四组件与五阶段流程",
+        "[DONE] 控制算法四类MIL验证（阶跃/跟踪/扰动/耦合）",
+        "[DONE] OAT与全局敏感性分析（Sobol/Morris）",
+        "[DONE] 蒙特卡洛场景扫描与LHS采样",
+        "[DONE] 加速仿真与批量测试框架",
+        "[DONE] MIL报告规范与缺陷分级",
+        "[DONE] 4例题/5表/8习题"
+      ],
       "key_content": "MIL架构与流程; 控制算法MIL验证; 参数敏感性分析; 蒙特卡洛场景扫描; 加速仿真与批量测试; MIL报告规范"
     },
     "ch05": {
@@ -158,5 +170,5 @@
       "key_content": "全书回顾; 形式化验证前沿; 数字孪生驱动的持续验证; 水利V&V标准化展望; 与CHS体系其他著作衔接"
     }
   },
-  "overall_progress": "30%"
+  "overall_progress": "40%"
 }
