@@ -138,15 +138,23 @@ A nested concentric loop diagram showing three feedback loops for autonomous wat
 **文件名**: fig_4_1_wnal_staircase.png
 
 **提示词**:
-A staircase/step diagram showing six levels of water network autonomy (WNAL L0-L5). White background, blue gradient from light to dark ascending left to right. Six steps: L0 "手动运行 Manual" (lightest) → L1 "规则自动化 Rule-based" → L2 "条件自动化 Conditional Automation" → L3 "条件自主 Conditional Autonomy" (highlighted with a star) → L4 "高度自主 High Autonomy" → L5 "完全自主 Full Autonomy" (darkest, marked as "理论目标 Theoretical Target"). Each step has three labels below: machine capability, human role, ODD scope. L3 step has a callout box "降级与接管机制". L4 has callout "自诊断与灰度发布". Ascending arrow on the right. Clean infographic staircase, academic textbook quality.
+A staircase diagram showing six ascending levels of water network autonomy. White background. Six steps rising left to right: L0 (gray) "手动运行 Manual", L1 (pale blue) "规则自动化 Rule-Based", L2 (light blue) "条件自动化 Conditional Automation", L3 (blue) "条件自主 Conditional Autonomy", L4 (dark blue) "高度自主 High Autonomy", L5 (gold dashed outline) "完全自主 Full Autonomy (Theoretical)". On each step face, three keyword labels: "机器能力 Machine Capability", "人工角色 Human Role", "ODD范围 ODD Scope". A prominent red dashed line between L2 and L3 labeled "责任移交分水岭 Responsibility Transition Watershed". Inside L3 step: "四态机+安全包络". L5 step has dashed border to indicate unreachable. Left vertical axis: "自主能力↑ Autonomy". Bottom horizontal axis: "技术+治理成熟度→ Tech + Governance Maturity". Clean academic staircase diagram, flat design, Chinese and English bilingual labels.
 
 ---
 
-### 图4-2: 等级跃迁四类门槛图
+### 图4-2: WNAL等级跃迁四重门槛
 **文件名**: fig_4_2_level_transition_gates.png
 
 **提示词**:
-A diagram showing four mandatory gates for WNAL level transition. White background, blue scheme. Central arrow from "Lk" to "Lk+1" passing through four vertical gate barriers. Gate 1 (技术门槛 Technical): model, control, monitoring, computing. Gate 2 (验证门槛 Verification): MIL/SIL/HIL pass, scenario coverage. Gate 3 (治理门槛 Governance): responsibility matrix, takeover mechanism, audit chain. Gate 4 (运行门槛 Operational): sustained performance metrics. All four gates must be passed (AND logic). A "reject" path below loops back to Lk. Clean gate/barrier diagram, academic style, Chinese labels.
+A diagram showing four mandatory gates for WNAL level transition. White background, blue scheme. Central thick arrow from "Lk" on left to "Lk+1" on right, passing through four vertical gate barriers evenly spaced. Gate 1 (blue) "技术门槛 Technical": labels inside "模型精度/控制能力/传感器覆盖/算力保障". Gate 2 (green) "验证门槛 Verification": labels "MIL通过/SIL通过/HIL通过/场景覆盖≥95%". Gate 3 (orange) "治理门槛 Governance": labels "责任矩阵/接管SOP/审计链/合规性". Gate 4 (red) "运行门槛 Operational": labels "连续达标/无安全事件/KPI持续满足". Above all four gates: "AND (全部通过)" in bold. Below the arrow: a dashed return loop from Lk+1 back to Lk labeled "任一门槛不满足→退回或降级". Clean gate/barrier diagram, academic textbook style, Chinese labels with clear legibility.
+
+---
+
+### 图4-3: 八原理与WNAL等级映射图
+**文件名**: fig_4_3_principles_wnal_mapping.png
+
+**提示词**:
+A matrix mapping diagram showing the relationship between CHS Eight Principles (vertical axis) and WNAL levels (horizontal axis). White background. Left column lists eight principles vertically: P1 传递函数化 through P8 自主演进, grouped into layers (基础/架构/验证/智能/演进). Top row shows L0 through L5 horizontally. Colored blocks fill the intersection cells to show which principles are required for which levels: P1/P2 cover L1-L5 (light blue fill); P3/P4 cover L3-L5 (medium blue fill); P5 covers L3-L5 (green fill with label "L3准入强制"); P6/P7 cover L4-L5 (orange fill); P8 covers L4-L5 (light red fill with label "受P4约束"). A bold vertical line at L2-L3 boundary labeled "最小原理集: 1+2+3+4+5". Clean matrix heat-map style, academic textbook quality, Chinese labels.
 
 ---
 
@@ -237,9 +245,9 @@ A concept map showing the relationships between all core CHS concepts as a summa
 | Ch1 | 5 | 1-1, 1-2, 1-3, 1-4, 1-5 |
 | Ch2 | 4 | 2-1, 2-2, 2-3, 2-4 |
 | Ch3 | 6 | 3-1, 3-2, 3-3, 3-4, 3-5, 3-6 |
-| Ch4 | 2 | 4-1, 4-2 |
+| Ch4 | 3 | 4-1, 4-2, 4-3 |
 | Ch5 | 2 | 5-1, 5-2 |
 | Ch6 | 3 | 6-1, 6-2, 6-3 |
 | Ch7 | 2 | 7-1, 7-2 |
 | Ch8 | 2 | 8-1, 8-2 |
-| **合计** | **26** | |
+| **合计** | **27** | |
