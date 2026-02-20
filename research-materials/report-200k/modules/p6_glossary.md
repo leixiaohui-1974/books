@@ -15,15 +15,15 @@
 | 8 | Hando Model (瀚铎水网大模型) | 瀚铎水网大模型 | 基于大语言模型技术构建的水网领域专用认知AI系统 |
 | 9 | HIL (Hardware-in-the-Loop) | 硬件在环测试 | 将真实控制器硬件接入仿真环境进行集成测试 |
 | 10 | HydroOS | 水网操作系统 | 水网领域的通用软件平台，提供数据/模型/控制/智能/验证五大核心服务 |
-| 11 | IDZ (Integrator Delay Zero) | 积分-延迟-零点模型 | 渠池传递函数的三参数简化模型，兼顾精度与实时性 |
+| 11 | IDZ (Integrator Delay Zero) | 积分-延迟-零点模型 | 渠池传递函数（transfer function，描述系统输入-输出关系的数学模型，如闸门开度变化到下游水位响应之间的关系）的三参数简化模型，兼顾精度与实时性 |
 | 12 | MAS (Multi-Agent System) | 多智能体系统 | 多个自主智能体通过交互协作完成复杂任务的系统架构 |
 | 13 | MIL (Model-in-the-Loop) | 模型在环测试 | 在纯软件仿真环境中验证控制算法的正确性 |
-| 14 | MPC (Model Predictive Control) | 模型预测控制 | 基于系统模型预测未来状态、在线优化控制输入的闭环控制方法 |
+| 14 | MPC (Model Predictive Control) | 模型预测控制 | 基于系统模型预测未来状态、在线优化控制输入的闭环（closed-loop，控制系统通过传感器实时获取输出反馈、自动调整控制动作的运行方式——与人工凭经验调度的开环（open-loop，控制系统不利用输出反馈、仅按预设规则执行的方式，如按固定调度图操作闸门）方式相对）控制方法 |
 | 15 | MRC (Minimal Risk Condition) | 最小风险状态 | 系统在超出ODD或检测到故障时应自动进入的安全状态 |
 | 16 | ODD (Operational Design Domain) | 运行设计域 | 自主系统正常工作的环境和工况条件边界 |
 | 17 | PIL (Plant-in-the-Loop) | 实体在环测试 | 在真实工程环境中以"影子模式"或受控模式验证控制系统 |
 | 18 | Safety Envelope | 安全包络 | 多维状态约束的在线监测和保护机制，确保系统状态不超出安全域 |
-| 19 | Saint-Venant Equations | 圣维南方程组 | 描述明渠非恒定流的基本偏微分方程组（连续性+动量守恒） |
+| 19 | Saint-Venant Equations | 圣维南方程（Saint-Venant equations，描述明渠水流运动的基本方程，由连续性方程和动量方程组成）组 | 描述明渠非恒定流的基本偏微分方程组（连续性+动量守恒） |
 | 20 | SCADA | 数据采集与监控系统 | Supervisory Control And Data Acquisition的缩写，工业过程监控的标准系统 |
 | 21 | SIL (Software-in-the-Loop) | 软件在环测试 | 在真实软件栈上验证控制算法的运行时序和异常处理 |
 | 22 | SNWDP | 南水北调工程 | South-to-North Water Diversion Project，中国最大的跨流域调水工程 |
