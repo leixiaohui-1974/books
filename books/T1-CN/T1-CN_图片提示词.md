@@ -158,21 +158,171 @@ A matrix mapping diagram showing the relationship between CHS Eight Principles (
 
 ---
 
-## 第五章 核心技术架构概览
+## 第五章 核心技术架构：HydroOS
 
 ### 图5-1: HydroOS三层架构图
-**文件名**: fig_5_1_hydroos_architecture.png
+**文件名**: fig_5_1_hydroos_three_layer_architecture.png
 
 **提示词**:
-A layered architecture diagram for HydroOS water network operating system. White background, blue color scheme. Three main horizontal layers stacked bottom to top: Bottom layer (dark blue) "设备抽象层 Device Abstraction Layer" - icons for gates, pumps, sensors, SCADA. Middle layer (medium blue) "物理AI引擎 Physical AI Engine" - icons for hydrodynamic model, MPC optimizer, safety envelope, state estimator. Top layer (light blue) "认知AI引擎 Cognitive AI Engine" - icons for knowledge graph, LLM interpreter, multi-agent system, review engine. Left side: upward arrow labeled "数据上行 Data Upflow" from SCADA. Right side: downward arrow labeled "指令下行 Command Downflow". Above the three layers: "人机协同与治理审计 Human-Machine Collaboration & Governance Audit" module. Between middle and top layers: "策略门禁+四态机 Strategy Gate + State Machine" marker. Clean layered architecture diagram, academic textbook style.
+A professional layered architecture diagram for the HydroOS water network operating system. White background, blue color scheme with clear layer separation.
+
+Three main horizontal layers stacked bottom to top, each a wide rounded rectangle with distinct color:
+
+**Bottom layer** (darkest blue, #003366): "设备抽象层 DAL — Device Abstraction Layer". Inside the layer, five small flat icons in a row: (1) a sluice gate icon labeled "闸门 Gate", (2) a pump icon labeled "泵站 Pump", (3) a water level sensor icon labeled "水位计 Level Sensor", (4) a water quality probe icon labeled "水质站 WQ Station", (5) a generic PLC/RTU icon labeled "PLC/RTU". Below these icons, a thin sub-bar labeled "UDSM统一设备语义模型 + 协议适配器(Modbus/OPC UA/IEC 61850)". Right-side annotation: "毫秒—秒级 | 边缘保护+断连自治".
+
+**Middle layer** (medium blue, #0055A4): "物理AI引擎 PAI — Physical AI Engine". Inside, four module boxes in a row: (1) "水力模型 Hydro Model" with a small wave equation icon, (2) "状态估计 State Estimator" with a Kalman filter icon, (3) "MPC优化器 MPC Optimizer" with a rolling horizon icon, (4) "安全包络 Safety Envelope" with a red-yellow-green zone mini icon. Right-side annotation: "秒—分钟级 | 机理驱动+约束优化".
+
+**Top layer** (light blue, #4499CC): "认知AI引擎 CAI — Cognitive AI Engine". Inside, four module boxes: (1) "知识图谱 Knowledge Graph" with a network/node icon, (2) "因果诊断 Causal Diagnosis" with a magnifying glass icon, (3) "策略解释 Strategy Explainer" with a speech bubble icon, (4) "协同编排 Orchestrator" with a conductor baton icon. Right-side annotation: "分钟—小时级 | 语义理解+人机协同".
+
+Between middle and top layers: a horizontal red bar spanning the full width labeled "策略门禁 + 四态机 + 审计链 | Policy Gate + State Machine + Audit Trail".
+
+Left side: a thick upward arrow (green) labeled "数据上行 Data Upflow (感知链)".
+Right side: a thick downward arrow (orange) labeled "指令下行 Command Downflow (执行链)".
+
+Above the top layer: a horizontal bar with a human silhouette icon, labeled "调度员 / 管理层 Operator / Management".
+
+Three small callout badges at the very bottom: "断连可活 Fail-Safe", "安全内生 Safety by Design", "可解释 Explainable".
+
+Clean layered architecture diagram. Flat design, no 3D effects. Academic textbook quality. All text in both Chinese and English. High resolution, minimum 2400×1600px.
 
 ---
 
-### 图5-2: SCADA+MAS融合流程图
-**文件名**: fig_5_2_scada_mas_fusion.png
+### 图5-2: 策略门禁四项检查流程图
+**文件名**: fig_5_2_policy_gatekeeper_flowchart.png
 
 **提示词**:
-A horizontal flow diagram showing the SCADA+MAS fusion process. White background, blue scheme. Five steps left to right connected by arrows: Step 1 "SCADA上报状态" (sensor icons) → Step 2 "物理AI生成候选策略" (model icon with multiple options) → Step 3 "MAS多角色协商" (multiple agent icons discussing) → Step 4 "认知AI生成可执行指令" (LLM icon producing commands) → Step 5 "执行并回写日志" (actuator + log icons). A feedback loop from Step 5 back to Step 1. Above the flow: "人工监督层" with a human icon observing the process. Clean process flow diagram, academic textbook style, Chinese labels.
+A vertical flowchart showing the four-stage policy gatekeeper check process in HydroOS. White background, blue and red scheme.
+
+Top entry point: a rounded rectangle "控制策略输入 Strategy Input" with three incoming arrows labeled "PAI自动策略", "CAI协同建议", "人工手动指令".
+
+Four sequential diamond-shaped decision nodes, connected by downward arrows, each with a PASS path (right, green arrow) continuing down and a FAIL path (left, red arrow) leading to a rejection box:
+
+**Diamond 1** (blue): "检查一: 安全包络合规 Safety Envelope Compliance" — annotation: "PAI快速预测<1s, 轨迹不入红区". FAIL box: "拒绝 + 附原因 + 建议修正方向".
+
+**Diamond 2** (blue): "检查二: 操作约束合规 Operational Constraint Compliance" — annotation: "闸门限速≤3%/min, 泵站冷却间隔≥15min". FAIL box: "拒绝 + 标注违反的约束".
+
+**Diamond 3** (blue): "检查三: 权限合规 Authorization Check" — annotation: "当前WNAL等级+人机SOP判定". FAIL box: "拒绝 + 提示需要更高权限审批".
+
+**Diamond 4** (blue): "检查四: 一致性检查 Consistency Check" — annotation: "与同期策略无物理矛盾, 安全>保障>效率". FAIL box: "拒绝 + 标注冲突策略".
+
+All four PASS arrows converge to a green rounded rectangle at bottom: "策略放行 → DAL执行 Strategy Approved → Execute". A small audit log icon attached: "审计记录 Audit Log".
+
+Right margin: a statistics callout box — "工程统计: 拦截率≈3.2%, 其中操作约束70%, 安全包络25%, 权限5%".
+
+Clean flowchart, flat design, academic textbook quality. Chinese and English labels. High resolution.
+
+---
+
+### 图5-3: HydroOS四态机状态转换图
+**文件名**: fig_5_3_four_state_machine.png
+
+**提示词**:
+A state transition diagram showing four operating modes of the HydroOS system. White background with colored state nodes.
+
+Four large rounded rectangle state nodes arranged in a diamond/square layout:
+
+**Top-left** (green fill, #22AA44): "正常态 Normal" — subtitle: "最优策略 | CAI全功能 | 标准日志". This is the default/initial state (marked with a small black dot entry arrow).
+
+**Top-right** (yellow fill, #DDAA00): "降级态 Degraded" — subtitle: "保守策略 | CAI聚焦故障 | 增强日志".
+
+**Bottom-right** (red fill, #CC2222, white text): "应急态 Emergency" — subtitle: "预定义序列 | CAI应急编排 | 全量记录".
+
+**Bottom-left** (gray fill, #888888, white text): "检修态 Maintenance" — subtitle: "隔离+局部控制 | 维护辅助 | 检修日志".
+
+Directed arrows between states with trigger conditions:
+
+- Normal → Degraded: "设备故障/通信部分中断 (自动触发)"
+- Degraded → Normal: "故障排除 + 状态稳定 (自动+确认)"
+- Normal → Emergency: "红区触发/重大故障 (自动)"
+- Degraded → Emergency: "状态恶化/红区 (自动)"
+- Emergency → Normal: "全部变量回绿区 + 人工确认"
+- Emergency → Degraded: "主要风险解除, 仍有次要故障"
+- Normal → Maintenance: "人工显式触发"
+- Maintenance → Normal: "在环验证通过 + 人工确认"
+
+Each arrow has a small label on it with the trigger condition. Arrows use curved paths to avoid crossing.
+
+A small legend box in the corner: "实线=自动触发, 虚线=需人工确认".
+
+Clean state diagram, UML-style but simplified. Flat design, academic textbook quality. Chinese labels with English subtitles. High resolution.
+
+---
+
+### 图5-4: SCADA+MAS+HydroOS融合架构图
+**文件名**: fig_5_4_scada_mas_fusion_architecture.png
+
+**提示词**:
+A three-tier overlay architecture diagram showing how HydroOS integrates with existing SCADA systems. White background, blue scheme with clear layer delineation.
+
+Three horizontal tiers, drawn as wide rounded rectangles stacked vertically with visible overlap/connection:
+
+**Bottom tier** (gray background, representing legacy infrastructure): "既有SCADA层 Existing SCADA Layer (保留)". Inside: a row of icons — RTU, PLC, communication network (radio tower), SCADA server, HMI screen. A prominent label: "40年工程投资 保护既有资产". A thin blue interface bar at the top edge of this tier labeled "OPC UA适配层 OPC UA Gateway" with bidirectional arrows.
+
+**Middle tier** (medium blue background): "HydroOS智能决策层 HydroOS Intelligent Layer (新增)". Inside left half: "DAL 设备抽象" with UDSM icon + "PAI 物理AI" with MPC/model icons. Inside right half: four small agent icons arranged in a 2×2 grid — "设备智能体 Device Agent (×数百)", "区域智能体 Zone Agent (×5-15)", "协调智能体 Coordinator (×1-3)", "治理智能体 Governance (×1)". A label at the center: "MAS多智能体框架". Connection arrows between DAL/PAI and the agent grid.
+
+**Top tier** (light blue background): "认知增强与治理层 Cognitive & Governance Layer (新增)". Inside: "CAI 认知AI引擎" icon, "策略门禁+四态机+审计链" bar, and "Web交互界面" icon showing a dashboard. A human silhouette labeled "调度员 Operator".
+
+Key annotations on the right side:
+- Arrow from bottom tier to middle: "实时数据 (3000+测点/秒)"
+- Arrow from middle to bottom: "控制指令 (经门禁验证)"
+- A dashed red "回退通道" arrow from middle tier back to bottom: "HydroOS故障 → 回退纯SCADA+人工模式"
+
+Bottom callout: three advantage badges — "低侵入性 Low Intrusion", "渐进式升级 Incremental", "投资保护 Investment Protection".
+
+Clean layered overlay diagram. Flat design, academic textbook quality. Chinese and English bilingual labels. High resolution, minimum 2400×1600px.
+
+---
+
+### 图5-5: HydroOS分级部署路径与WNAL等级对应图
+**文件名**: fig_5_5_staged_deployment_wnal.png
+
+**提示词**:
+A horizontal staged deployment roadmap diagram aligned with WNAL autonomy levels. White background, blue gradient scheme.
+
+Three main stages arranged left to right as ascending step blocks (staircase style), with a timeline arrow at the bottom:
+
+**Stage 1** (lightest blue block): "阶段一 Phase 1: L1→L2" — timeline "6—12个月". Content inside: "DAL + PAI核心 + 策略门禁 + 审计日志". Below the block, key metrics in a mini table: "人工干预: 基线(100%) → 人工确认全部指令" and "主要目标: 帮人看得更清楚". A small human icon actively operating controls.
+
+**Stage 2** (medium blue block, taller): "阶段二 Phase 2: L2→L3" — timeline "12—24个月". Content: "MPC自动控制 + 完整四态机 + CAI基础(诊断+解释)". Key metrics: "人工干预降低60-70%, 响应30-60s". A red dashed line at the boundary between Stage 1 and 2 labeled "关键跃迁: 责任移交 Critical Transition". Human icon now in supervisory position above.
+
+**Stage 3** (darkest blue block, tallest): "阶段三 Phase 3: L3→L4" — timeline "24—36个月". Content: "CAI全功能 + MAS + 灰度发布 + 自主演进". Key metrics: "人工干预降低>90%, 响应<30s". Human icon far above, setting policy only.
+
+Below the three stages, a horizontal bar showing cumulative investment: "SCADA投资15-25% → +20-30% → +15-25%".
+
+Right side: a vertical bar showing corresponding WNAL levels L1 through L4, with arrows connecting each stage to its target level.
+
+A callout at the top: "每阶段升级须通过WNAL准入评估 (第四章)" with a gate icon.
+
+Clean staged roadmap diagram. Flat design, academic textbook style. Chinese and English labels. High resolution.
+
+---
+
+### 图5-6: PAI-CAI协作工作流（水位异常事件处置全过程）
+**文件名**: fig_5_6_pai_cai_collaboration_workflow.png
+
+**提示词**:
+A horizontal four-phase workflow diagram showing PAI-CAI collaboration during a water level anomaly event. White background, blue scheme with phase-colored sections.
+
+A horizontal swimlane diagram with three lanes (rows) and four phase columns:
+
+**Three swimlanes** (top to bottom):
+- Top lane (light blue): "CAI 认知AI引擎"
+- Middle lane (medium blue): "PAI 物理AI引擎"
+- Bottom lane (dark blue): "DAL 设备抽象层"
+
+**Four phase columns** (left to right), each with a colored header band:
+
+**Phase 1** (green header): "感知与检测 Detect | 14:00-14:02". In DAL lane: "数据质控: 多源交叉验证 → 确认非传感器故障". In PAI lane: "状态估计: 水位4.25m, 上升0.5cm/min → 预测25min后入黄区". Arrow from PAI upward to CAI: "趋势预警信号".
+
+**Phase 2** (yellow header): "诊断与解释 Diagnose | 14:02-14:03". In CAI lane (main activity): three sequential action boxes — "(1) 知识图谱查询: 上游闸门13:55调整30%→45%" → "(2) 水力模型验证: 流量+18%, 传播7min, 时间吻合" → "(3) 下游检查: B泵站2号机停机, 出流-12%". Output: "根因报告: 上游增流+下游减排, 置信度92%". Arrow from CAI downward to PAI: "诊断结果+边界条件更新".
+
+**Phase 3** (orange header): "策略生成 Optimize | 14:03-14:04". In PAI lane: "MPC重新求解 → 方案: ①2号闸32% ②启B泵3号 ③4号闸28%". Below PAI, a red gate icon: "策略门禁四项检查 → 全部通过 ✓". Arrow down to DAL: "验证后指令".
+
+**Phase 4** (blue header): "执行与反馈 Execute | 14:04-14:30". In DAL lane: "指令翻译 → PLC下发 → 执行确认". In PAI lane: "持续监控: 14:15峰值4.38m → 14:30回落至4.20m ✓". In CAI lane: "生成事件总结报告 → 推送调度员 → 建议联动预警规则". A small audit log icon spanning all lanes at the right edge: "审计日志完整记录".
+
+A timeline bar at the very bottom: markers at 14:00, 14:02, 14:03, 14:04, 14:15, 14:30. Total handling: "全流程约30分钟 (人工模式需60-90分钟)".
+
+Clean swimlane workflow diagram. Flat design, academic textbook quality. Chinese labels with English phase names. High resolution, minimum 2800×1600px.
 
 ---
 
@@ -246,8 +396,8 @@ A concept map showing the relationships between all core CHS concepts as a summa
 | Ch2 | 4 | 2-1, 2-2, 2-3, 2-4 |
 | Ch3 | 6 | 3-1, 3-2, 3-3, 3-4, 3-5, 3-6 |
 | Ch4 | 3 | 4-1, 4-2, 4-3 |
-| Ch5 | 2 | 5-1, 5-2 |
+| Ch5 | 6 | 5-1, 5-2, 5-3, 5-4, 5-5, 5-6 |
 | Ch6 | 3 | 6-1, 6-2, 6-3 |
 | Ch7 | 2 | 7-1, 7-2 |
 | Ch8 | 2 | 8-1, 8-2 |
-| **合计** | **27** | |
+| **合计** | **31** | |
