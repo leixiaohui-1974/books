@@ -54,15 +54,15 @@ A book structure roadmap diagram showing 8 chapters in a logical flow. White bac
 **文件名**: fig_2_1_system_block_diagram.png
 
 **提示词**:
-A control system block diagram for water systems. White background, blue color scheme. Central block labeled "水系统 f(·)" (Water System). Input arrows: u_k "控制输入" (gate opening, pump frequency) from left; d_k "外部扰动" (rainfall, demand) from top; θ_k "慢变参数" (roughness, degradation) from bottom-left. Output arrow: y_k "可测输出" (water level, flow) to right, with v_k "测量噪声" added. State x_k shown inside the block. Feedback loop from output back to controller block on the left. Clean signal flow diagram style, standard control engineering notation, academic textbook quality.
+A control system block diagram for water systems. White background, blue color scheme. Central large rounded rectangle labeled "水利系统 f(·)" with state x_k shown inside. Four input arrows: (1) from left, u_k labeled "控制输入：闸门开度/泵站频率" in blue; (2) from top, d_k labeled "外部扰动：降雨/取水变化" in orange; (3) from bottom-left as dashed arrow, θ_k labeled "慢变参数：糙率/设备效率" in gray. One output arrow to the right: y_k labeled "可测输出：水位/流量观测", with a small circle at output adding v_k "测量噪声". A feedback loop from output goes down and left to a second rounded rectangle labeled "控制器 Controller", then back to the input u_k. Standard control engineering block diagram notation. Clean flat academic style, no decorative elements. All labels in Chinese with mathematical symbols.
 
 ---
 
-### 图2-2: 三类约束层次图
-**文件名**: fig_2_2_three_constraint_layers.png
+### 图2-2: 可控模型族的三层体系
+**文件名**: fig_2_2_model_hierarchy_pyramid.png
 
 **提示词**:
-A concentric circles diagram showing three layers of constraints in water system control. White background, blue color scheme. Innermost circle (light blue): "物理约束 Physical" - water level limits, flow velocity bounds, capacity bounds. Middle ring (medium blue): "操作约束 Operational" - minimum start-stop intervals, maintenance windows, ramp rate limits. Outermost ring (dark blue): "治理约束 Governance" - ecological flow red lines, supply agreements, authority boundaries. Arrows pointing inward showing "all three must be modeled together". Chinese and English labels. Clean academic diagram, flat design.
+A pyramid diagram showing three tiers of water system models. White background, blue gradient scheme. Viewed from front, three horizontal layers stacked vertically. Bottom layer (largest, dark blue): "高保真PDE模型 High-Fidelity PDE" with annotation "离线仿真 / 数字孪生, 维度 ~10³". Middle layer (medium, blue): "降阶传递函数模型 Reduced-Order TF (IDZ)" with annotation "在线MPC控制, 维度 ~10¹". Top layer (smallest, light blue): "数据增强模型 Data-Enhanced" with annotation "参数校正 / 软测量". Left side: downward arrow labeled "降阶方法 Model Reduction" connecting bottom to middle. Right side: downward arrow labeled "数据同化 Data Assimilation" connecting top to middle. Far left vertical annotation: "物理保真度↑" pointing down. Far right vertical annotation: "在线计算效率↑" pointing up. Clean pyramid/tiered diagram, academic textbook style, flat design, Chinese and English bilingual labels.
 
 ---
 
@@ -70,7 +70,7 @@ A concentric circles diagram showing three layers of constraints in water system
 **文件名**: fig_2_3_multi_timescale_control_hierarchy.png
 
 **提示词**:
-A vertical hierarchy diagram showing four control layers with their time scales. White background, blue gradient. Top layer (lightest): "规划层 Planning" - "日/周级 Days/Weeks" - water resource allocation. Second layer: "协调层 Coordination" - "小时级 Hours" - cross-zone flow distribution. Third layer: "调节层 Regulation" - "分钟级 Minutes" - local section stability. Bottom layer (darkest): "执行层 Execution" - "秒级 Seconds" - device closed-loop control. Bidirectional arrows between layers. Time scale bar on the right side. Clock icons showing different time scales. Clean hierarchical diagram, academic textbook style.
+A four-layer horizontal band diagram showing multi-timescale hierarchical control for water systems. White background, blue gradient from light (top) to dark (bottom). Four horizontal bands stacked vertically: Top band (lightest blue) "规划层 Planning" — "日/周级" — right side: "优化调度 / 随机规划"; Second band (light blue) "协调层 Coordination" — "小时级" — right side: "集中/分布式MPC"; Third band (medium blue) "调节层 Regulation" — "分钟级" — right side: "PI/PID + 前馈"; Bottom band (dark blue) "执行层 Execution" — "秒级" — right side: "PID + 联锁保护". Between each pair of bands: upward arrow labeled "状态报告↑" and downward arrow labeled "目标约束↓". Left side: vertical time axis from "秒 Seconds" at bottom to "周 Weeks" at top. Far right column shows a concrete engineering mapping example: "PLC" (execution), "管理处控制系统" (regulation), "调度中心MPC" (coordination), "水资源调度系统" (planning). Clean layered diagram, academic textbook quality, Chinese labels.
 
 ---
 
@@ -78,7 +78,7 @@ A vertical hierarchy diagram showing four control layers with their time scales.
 **文件名**: fig_2_4_four_state_machine.png
 
 **提示词**:
-A state machine diagram with four states and transitions. White background. Four rounded rectangles arranged in a diamond/square pattern: "正常态 Normal" (green), "受限态 Restricted" (yellow), "降级态 Degraded" (orange), "接管态 Takeover" (red). Arrows between states showing transitions with trigger conditions labeled: "预测可信度下降" (Normal→Restricted), "黄区/红区边界" (Restricted→Degraded), "重大故障/越界" (Degraded→Takeover), and recovery paths back. Each state box contains 2-3 key actions. Clean state diagram style, colored states with Chinese labels, academic textbook quality.
+A state machine diagram with four states and bidirectional transitions. White background. Four large rounded rectangles arranged in a horizontal row (or slight arc): leftmost "正常态 Normal" (green fill), second "受限态 Restricted" (yellow fill), third "降级态 Degraded" (orange fill), rightmost "接管态 Takeover" (red fill). Forward transition arrows (solid, above): Normal→Restricted labeled "预测可信度下降 / 通信质量变差"; Restricted→Degraded labeled "关键状态逼近黄区 / 多传感器离线"; Degraded→Takeover labeled "红区触及 / 执行器故障 / 人工主动接管". Recovery arrows (dashed, below): Takeover→Degraded→Restricted→Normal, each labeled with recovery conditions. Inside each state box, two lines: top line = control strategy (性能优化 / 保守策略 / 固定流量带 / 人工控制); bottom line = human-machine role (自动 / 监督 / 请求接管 / 人工主导). Clean state diagram, colored states, academic textbook quality, Chinese labels with clear legibility.
 
 ---
 
