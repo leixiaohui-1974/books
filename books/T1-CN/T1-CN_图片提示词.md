@@ -88,23 +88,47 @@ A state machine diagram with four states and transitions. White background. Four
 **文件名**: fig_3_1_eight_principles_dependency.png
 
 **提示词**:
-A horizontal flow diagram showing dependencies between CHS eight principles in five stages. White background, blue color scheme. Left to right: Stage 1 "建模层 Modeling" (Principle 1 Transfer Function + Principle 2 Controllability/Observability) → Stage 2 "架构层 Architecture" (Principle 3 Hierarchical Distributed + Principle 4 Safety Envelope) → Stage 3 "验证层 Verification" (Principle 5 In-the-Loop) → Stage 4 "协同智能层 Collaborative Intelligence" (Principle 6 Cognitive + Principle 7 Human-Machine) → Stage 5 "演进层 Evolution" (Principle 8 Autonomous Evolution). Forward arrows between stages. A feedback arrow from Principle 4 back to Principle 8 labeled "安全约束回边" (safety constraint feedback). Each principle in a rounded box with number and name. Clean dependency graph, academic style.
+A horizontal dependency flow diagram of CHS eight principles organized in five layers. White background, blue color scheme. Five groups left to right, each in a rounded-corner card: Layer 1 "建模基础层" (dark blue) contains P1 "传递函数化" and P2 "可控可观性", side by side. Layer 2 "架构组织层" (blue) contains P3 "分层分布式" and P4 "安全包络", side by side. Layer 3 "验证保障层" (medium blue) contains P5 "在环验证" alone. Layer 4 "协同智能层" (light blue) contains P6 "认知增强" and P7 "人机共融", side by side. Layer 5 "演进能力层" (lightest blue) contains P8 "自主演进" alone. Thick forward arrows connect each layer to the next. A curved red feedback arrow from P4 (Safety Envelope) arcs back to P8 (Autonomous Evolution), labeled "安全约束回边 Safety Constraint Feedback". Each principle box has its number circled. Clean dependency graph, flat design, academic textbook style, Chinese and English labels.
 
 ---
 
-### 图3-2: 安全包络红黄绿三区示意图
+### 图3-2: 安全包络红黄绿三区示意图（配合§3.5）
 **文件名**: fig_3_2_safety_envelope_zones.png
 
 **提示词**:
-A diagram showing safety envelope concept with three zones for water level control. White background. A vertical axis labeled "水位 Water Level" with a time series curve. Three horizontal bands: Green zone (center, green-tinted) labeled "绿区：性能优先运行" - normal operating range; Yellow zone (above and below green, yellow-tinted) labeled "黄区：保守策略，收缩控制域" - caution range; Red zone (outermost, red-tinted) labeled "红区：强制保护，接管" - emergency range. The water level curve oscillates mostly in green zone, briefly touching yellow zone. Upper and lower limit lines clearly marked. Clean technical diagram with Chinese labels, suitable for academic textbook.
+A technical diagram illustrating the safety envelope three-zone concept for water level control. White background. Left portion: a vertical axis labeled "水位 h (m)" with a realistic-looking time-series curve plotted against time axis "t (h)". Three horizontal bands around a target water level line: Green zone (center, light green tint) labeled "绿区 Green: 性能优先" with note "优化算法自由度最大"; Yellow zone (above and below green, light yellow tint) labeled "黄区 Yellow: 保守策略" with note "收缩控制域, 降低目标"; Red zone (outermost, light red tint) labeled "红区 Red: 强制保护" with note "确定性指令, 不经优化". The curve oscillates mostly in the green zone, briefly dips into yellow zone once, showing the system self-correcting back to green. Right portion: a small flowchart showing zone transition logic — "进入黄区 → 切换保守策略 → 恢复绿区" and "进入红区 → 触发联锁保护 → 通知调度员". Red and yellow threshold lines clearly marked with values like "h_max", "h_warn_upper". Clean technical diagram, academic textbook style.
 
 ---
 
-### 图3-3: MIL-SIL-HIL在环验证管线图
-**文件名**: fig_3_3_mil_sil_hil_pipeline.png
+### 图3-3: CHS四层分布式控制架构图（配合§3.4）
+**文件名**: fig_3_3_four_layer_distributed_architecture.png
 
 **提示词**:
-A three-stage verification pipeline diagram. White background, blue color scheme. Three stages left to right, each in a large rounded rectangle: Stage 1 "MIL 模型在环" - contains icons of mathematical model + control logic, labeled "检验逻辑正确性"; Stage 2 "SIL 软件在环" - contains icons of code + numerical simulation, labeled "检验实现一致性"; Stage 3 "HIL 硬件在环" - contains icons of hardware + real-time interface, labeled "检验时序与接口可靠性". Arrows between stages with gate/checkpoint symbols labeled "门禁 Gate". Final arrow to "上线运行 Go-Live". A reject path loops back from each gate. Clean pipeline diagram, academic textbook style, Chinese and English bilingual.
+A vertical hierarchy diagram showing the CHS four-layer distributed control architecture. White background, blue gradient color scheme. Four layers stacked bottom to top: Bottom layer (darkest blue) "执行层 L0 Execution" with small icons for individual gates, pumps, valves — right-side label "秒级 | 设备闭环+安全联锁". Second layer (dark blue) "区域层 L1 Regional" with an icon for a canal section controller — label "分钟级 | 局部MPC+约束协调". Third layer (medium blue) "全局层 L2 Global" with an icon for a coordinator — label "小时级 | 跨区域分配+冲突消解". Top layer (light blue) "治理层 L3 Governance" with an icon for human decision-maker — label "日/政策级 | 策略审批+审计闭环". Bidirectional arrows between adjacent layers. Right-side column lists three coordination mechanisms with small connector icons: "① 目标分解与约束传递", "② 信息共享与一致性协议", "③ 冲突裁决与优先级规则". Clean hierarchical diagram, flat design, academic textbook style.
+
+---
+
+### 图3-4: 在环验证深度与WNAL等级对应图（配合§3.6）
+**文件名**: fig_3_4_verification_wnal_matrix.png
+
+**提示词**:
+A matrix diagram mapping verification stages to WNAL autonomy levels. White background, blue scheme. Horizontal axis (6 columns): WNAL levels L0 through L5, with column width increasing slightly left to right. Vertical axis (3 rows): MIL (模型在环), SIL (软件在环), HIL (硬件在环). Cell fills: L0-L1 columns all light gray with dash mark "—"; L2 column has light blue MIL cell "基本工况", light blue SIL cell "推荐", gray HIL "—"; L3 column all solid blue "必须" with notes "全工况+异常" for MIL, "必须" for SIL, "关键回路" for HIL; L4 column deep blue with "极端+对抗" for MIL, "必须" for SIL/HIL with "全部回路"; L5 column deepest blue with "生成式测试" for MIL, "形式化验证" for SIL, "长期耐久" for HIL. A bold dashed red vertical line between L2 and L3 columns labeled "关键门槛". Clean matrix/heatmap style, academic textbook quality.
+
+---
+
+### 图3-5: 人机关系三种模式与WNAL等级对应图（配合§3.8）
+**文件名**: fig_3_5_human_machine_modes.png
+
+**提示词**:
+A three-panel comparison diagram showing three human-machine collaboration modes. White background, blue scheme. Panel 1 (left, labeled "HitL 人在回路中 | L0-L1"): a human stick figure centered inside a circular control loop, making all decisions, machine icons (gate, pump) as passive tools below. Panel 2 (center, labeled "HotL 人在回路上 | L2-L3"): a machine/computer icon centered in the control loop executing decisions autonomously, human figure positioned above the loop on a "监督 Supervisory" platform, with a downward "接管 Override" arrow. Panel 3 (right, labeled "HootL 人在回路外 | L4-L5"): fully autonomous machine loop running independently, human figure far above setting "策略 Policy" via a thin connection line. Below all three panels: a horizontal gradient arrow labeled "自主程度递增 →". Three badge icons at bottom: "🔍 可追踪 Traceable", "🔄 可接管 Overridable", "📋 优先级规则 Priority Rules". Clean comparison diagram, flat design, academic textbook style.
+
+---
+
+### 图3-6: 自主演进三重闭环示意图（配合§3.9）
+**文件名**: fig_3_6_triple_loop_evolution.png
+
+**提示词**:
+A nested concentric loop diagram showing three feedback loops for autonomous water network evolution. White background, blue scheme. Three concentric rounded rectangles (not circles): Innermost (lightest blue, smallest) "数据闭环 Data Loop" with four nodes along the loop: "采集 Collect → 清洗 Clean → 标注 Label → 回灌 Feed-back". Middle loop (medium blue) "模型闭环 Model Loop" with three nodes: "离线训练 Offline Train → 灰度验证 Shadow Test → 在线监控 Online Monitor". Outermost loop (darkest blue, largest) "策略闭环 Strategy Loop" with three nodes: "版本管理 Version Ctrl → 回滚机制 Rollback → 效果评估 Evaluation". A thick constraint bracket on the right side from outside, colored red, labeled "安全包络约束 Safety Envelope Constraint" with an inward-pointing arrow, indicating the envelope constrains all three loops. Bottom row shows three principle badges: "可回滚 Rollback-able", "可解释 Explainable", "可审计 Auditable". Clean nested loop diagram, flat design, academic textbook quality.
 
 ---
 
@@ -212,10 +236,10 @@ A concept map showing the relationships between all core CHS concepts as a summa
 |----|------|----------|
 | Ch1 | 5 | 1-1, 1-2, 1-3, 1-4, 1-5 |
 | Ch2 | 4 | 2-1, 2-2, 2-3, 2-4 |
-| Ch3 | 3 | 3-1, 3-2, 3-3 |
+| Ch3 | 6 | 3-1, 3-2, 3-3, 3-4, 3-5, 3-6 |
 | Ch4 | 2 | 4-1, 4-2 |
 | Ch5 | 2 | 5-1, 5-2 |
 | Ch6 | 3 | 6-1, 6-2, 6-3 |
 | Ch7 | 2 | 7-1, 7-2 |
 | Ch8 | 2 | 8-1, 8-2 |
-| **合计** | **23** | |
+| **合计** | **26** | |
