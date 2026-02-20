@@ -191,25 +191,25 @@ Clean layered architecture diagram. Flat design, no 3D effects. Academic textboo
 **文件名**: fig_5_2_policy_gatekeeper_flowchart.png
 
 **提示词**:
-A vertical flowchart showing the four-stage policy gatekeeper check process in HydroOS. White background, blue and red scheme.
+A vertical flowchart showing the four-stage policy gatekeeper check process in HydroOS. White background, blue (#0055A4) and red (#CC2222) color scheme. Overall layout approximately 1800×2400px portrait orientation.
 
-Top entry point: a rounded rectangle "控制策略输入 Strategy Input" with three incoming arrows labeled "PAI自动策略", "CAI协同建议", "人工手动指令".
+Top entry point: a rounded rectangle (fill #E8F0FE, border #0055A4, 2px) "控制策略输入 Strategy Input" with three incoming arrows from above, each a different color: left arrow (blue) labeled "PAI-MPC自动策略", center arrow (teal) labeled "CAI协同编排建议", right arrow (gray) labeled "人工手动指令". These three arrows merge into one downward arrow entering the first check.
 
-Four sequential diamond-shaped decision nodes, connected by downward arrows, each with a PASS path (right, green arrow) continuing down and a FAIL path (left, red arrow) leading to a rejection box:
+Four sequential diamond-shaped decision nodes (each diamond fill #F0F6FF, border #0055A4), connected by downward green (#22AA44) arrows on the PASS path, and leftward red (#CC2222) arrows on the FAIL path leading to rejection boxes (fill #FFF0F0, border #CC2222):
 
-**Diamond 1** (blue): "检查一: 安全包络合规 Safety Envelope Compliance" — annotation: "PAI快速预测<1s, 轨迹不入红区". FAIL box: "拒绝 + 附原因 + 建议修正方向".
+**Diamond 1**: "检查一: 安全包络合规 Safety Envelope". Right-side annotation box (light yellow callout): "调用PAI快速预测模块(计算<1秒), 模拟策略执行后未来1-6小时系统状态轨迹; 任一时刻进入红区→拒绝". FAIL box: "拒绝: 附拒绝原因(哪个变量/何时越界) + 建议修正方向".
 
-**Diamond 2** (blue): "检查二: 操作约束合规 Operational Constraint Compliance" — annotation: "闸门限速≤3%/min, 泵站冷却间隔≥15min". FAIL box: "拒绝 + 标注违反的约束".
+**Diamond 2**: "检查二: 操作约束合规 Operational Constraints". Annotation: "闸门调整速度≤2%-5%开度/min; 泵站启停间隔≥15-30min冷却时间; 硬限制, 不可违反". FAIL box: "拒绝: 标注具体违反的约束参数及当前值".
 
-**Diamond 3** (blue): "检查三: 权限合规 Authorization Check" — annotation: "当前WNAL等级+人机SOP判定". FAIL box: "拒绝 + 提示需要更高权限审批".
+**Diamond 3**: "检查三: 权限合规 Authorization". Annotation: "HotL模式下常规调整可自主执行; 跨区域大幅调整需调度主任批准; 根据当前WNAL等级+人机协同SOP(原理七)判定". FAIL box: "拒绝: 提示所需审批级别+推送审批请求".
 
-**Diamond 4** (blue): "检查四: 一致性检查 Consistency Check" — annotation: "与同期策略无物理矛盾, 安全>保障>效率". FAIL box: "拒绝 + 标注冲突策略".
+**Diamond 4**: "检查四: 一致性检查 Consistency". Annotation: "检测当前策略与正在执行策略的物理矛盾; 如'增大1号闸'与'降低下游水位'冲突; 优先级裁决规则: 安全>保障>效率". FAIL box: "拒绝: 标注冲突策略ID及矛盾点".
 
-All four PASS arrows converge to a green rounded rectangle at bottom: "策略放行 → DAL执行 Strategy Approved → Execute". A small audit log icon attached: "审计记录 Audit Log".
+All four PASS arrows converge to a wide green (#22AA44) rounded rectangle at bottom: "四项检查全部通过 → 策略放行 → DAL执行 All Passed → Approved → Execute", with a checkmark icon. A small chain-link icon to the right: "写入审计链 Audit Trail".
 
-Right margin: a statistics callout box — "工程统计: 拦截率≈3.2%, 其中操作约束70%, 安全包络25%, 权限5%".
+Right margin: a bordered statistics callout box (fill #FFFFF0): "胶东调水试运行统计 | 拦截率≈3.2% | 操作约束违规 70% | 安全包络触及 25% | 权限不足 5% | 每次拦截=避免一次潜在风险".
 
-Clean flowchart, flat design, academic textbook quality. Chinese and English labels. High resolution.
+Clean flowchart, flat design, no 3D effects. Academic textbook quality. Chinese and English bilingual labels. High resolution, minimum 2400×2800px.
 
 ---
 
