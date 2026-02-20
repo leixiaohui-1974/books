@@ -605,7 +605,15 @@ Clean mind-map/hub-spoke diagram. Academic textbook quality. Chinese+English lab
 **文件名**: fig_8_1_ten_year_roadmap_industry.png
 
 **提示词**:
-A comprehensive roadmap diagram showing the water industry evolution from SCADA to autonomous operation ecosystem, 2026-2035. White background, blue gradient. Three phases: Phase I (2026-2028) "标准化与试点 Standardization & Pilot" - milestones: unified terminology, WNAL classification standard, demonstration projects. Phase II (2029-2031) "规模化与认证 Scale-up & Certification" - milestones: cross-basin deployment, industry certification, replicable templates. Phase III (2032-2035) "生态化与国际协同 Ecosystem & Global" - milestones: platform interoperability, standard mutual recognition, talent mobility. Three parallel tracks at bottom: "技术 Technology", "组织 Organization", "治理 Governance", each with specific milestones per phase. Full-page width diagram, clean academic infographic style, Chinese labels.
+A comprehensive roadmap diagram showing the water industry evolution from SCADA to autonomous operation ecosystem, 2026-2035. White background, landscape orientation (2800×1600px). Three phases along horizontal timeline:
+
+**Phase I (2026-2028, fill #E3F2FD)**: "标准化与试点 Standardization & Pilot" — milestones: 统一术语/分级/测试口径, 首批产学研联合体, ODD标准+审计导则, 可复制样板.
+
+**Phase II (2029-2031, fill #FFF3E0)**: "规模化与认证 Scale-up & Certification" — milestones: 跨流域部署+标准模型库, 认证体系+继续教育, WNAL准入制度, 30-50个常规工程.
+
+**Phase III (2032-2035, fill #E8F5E9)**: "生态化与国际协同 Ecosystem & Global" — milestones: 平台互联+标准互认, 国际人才流动, 跨境水系统治理, 自主运行产业生态.
+
+Three parallel swim lanes: "技术 Technology", "组织 Organization", "治理 Governance", each with specific milestones per phase. Clean Gantt-chart-like timeline. Academic textbook quality. Chinese+English labels. Minimum 2800×1600px.
 
 ---
 
@@ -613,7 +621,69 @@ A comprehensive roadmap diagram showing the water industry evolution from SCADA 
 **文件名**: fig_8_2_chs_concept_map.png
 
 **提示词**:
-A concept map showing the relationships between all core CHS concepts as a summary for the entire book. White background, blue scheme. Central node: "CHS 水系统控制论". Connected major nodes: "八原理 8 Principles" (with 8 sub-nodes), "WNAL L0-L5" (with level progression), "HydroOS" (with three layers), "SCADA+MAS" (fusion architecture), "ODD" (operational design domain), "Safety Envelope" (三区). Relationship arrows labeled with connections: "理论框架 provides theory", "实现载体 implemented by", "分级评价 evaluated by", "安全保障 ensured by". Clean mind-map/concept-map style, academic textbook quality, not too crowded, clear hierarchy.
+A concept relationship map showing connections between all core CHS concepts as a whole-book summary. White background, landscape orientation (2800×2000px).
+
+Central hub: "CHS 水系统控制论 Cybernetics of Hydro Systems" in a large rounded rectangle.
+
+Six major concept clusters connected to the hub:
+
+1. (top-left, fill #E3F2FD): "八大原理 8 Principles" — Chapter 3. Sub-nodes: P1可控可观, P2层级协同, P3安全包络, P4在环验证, P5审计可追溯, P6人机共治, P7学习演进, P8持续迭代.
+
+2. (top-right, fill #FFF3E0): "WNAL L0-L5" — Chapter 4. Staircase showing L0→L5 progression with ODD expanding at each level.
+
+3. (middle-left, fill #E8F5E9): "HydroOS 三层架构" — Chapter 5. Three stacked layers: DAL数据保障, PAI物理AI, CAI认知AI. Plus governance box: 策略门禁+四态机+审计链.
+
+4. (middle-right, fill #F3E5F5): "工程实践" — Chapter 6. Three icons: 胶东调水(L3), 沙坪水电站(L2), 南水北调中线(L1→L2).
+
+5. (bottom-left, fill #FFECB3): "人才培养" — Chapter 7. Four pillars: A水工, B控制, C软件, D治理.
+
+6. (bottom-right, fill #F8BBD0): "产业生态" — Chapter 8. Arrow from 标准化 → 规模化 → 生态化.
+
+Relationship arrows between clusters labeled: "理论指导→", "架构实现→", "实践验证→", "人才保障→", "产业支撑→". Clean mind-map style. Academic textbook quality. Chinese+English labels. Minimum 2800×2000px.
+
+---
+
+### 图8-3: 三条底线与CHS安全保障体系
+**文件名**: fig_8_3_three_baselines_safety.png
+
+**提示词**:
+A layered defense diagram showing the three baselines of CHS implementation. White background, portrait orientation (1800×2000px).
+
+Three concentric defense layers (outside→inside):
+
+**Outermost layer (fill #FFEBEE, border red)**: "工程底线 Engineering Baseline" — labels: "先可控可观再高级智能", "先灰度验证再规模推广", "MIL→SIL→HIL不可跳过". Icons: sensors, actuators, communication links.
+
+**Middle layer (fill #FFF8E1, border orange)**: "治理底线 Governance Baseline" — labels: "人机职责清晰", "接管规则透明", "审计链完整", "责任跟着决策权走". Icons: 四态机 state diagram, audit log.
+
+**Innermost layer (fill #E8F5E9, border green)**: "安全底线 Safety Baseline" — labels: "安全包络先于性能最优", "红区边界不可覆盖", "四态机自动降级". Icons: safety envelope 三区, emergency stop.
+
+Center core: "可信自主运行 Trustworthy Autonomous Operation".
+
+Bottom annotation: "三条底线缺一不可——安全是基础，治理是框架，工程是保障".
+
+Clean concentric defense diagram. Academic textbook quality. Chinese+English labels. Minimum 1800×2000px.
+
+---
+
+### 图8-4: 未来十年关键问题地图
+**文件名**: fig_8_4_future_questions_map.png
+
+**提示词**:
+A research question roadmap for CHS over 2026-2035. White background, landscape orientation (2400×1600px).
+
+Horizontal timeline: 2026 to 2035. Seven question blocks (Q1-Q7) positioned along the timeline at their expected breakthrough periods:
+
+**Q1 (2026-2030, fill #E3F2FD)**: "多源不确定性实时决策". 
+**Q2 (2026-2028, fill #FFF3E0)**: "在环测试基准库".
+**Q3 (2028-2032, fill #F3E5F5)**: "L4/L5人机责任边界".
+**Q4 (2027-2031, fill #E8F5E9)**: "模型可迁移+策略可解释".
+**Q5 (2027-2030, fill #FFECB3)**: "中小型工程普惠".
+**Q6 (2030-2035, fill #F8BBD0)**: "水-能-食纽带跨系统ODD".
+**Q7 (2028-2033, fill #E0F7FA)**: "CAI从解释到预见".
+
+Dependency arrows: Q1→Q3, Q1→Q7, Q2→Q5, Q4↔Q6. Each block shows related chapters.
+
+Clean research roadmap. Academic textbook quality. Chinese+English labels. Minimum 2400×1600px.
 
 ---
 
@@ -628,5 +698,5 @@ A concept map showing the relationships between all core CHS concepts as a summa
 | Ch5 | 6 | 5-1, 5-2, 5-3, 5-4, 5-5, 5-6 |
 | Ch6 | 7 | 6-1, 6-2, 6-3, 6-4, 6-5, 6-6, 6-7 |
 | Ch7 | 5 | 7-1, 7-2, 7-3, 7-4, 7-5 |
-| Ch8 | 2 | 8-1, 8-2 |
-| **合计** | **38** | |
+| Ch8 | 4 | 8-1, 8-2, 8-3, 8-4 |
+| **合计** | **40** | |
