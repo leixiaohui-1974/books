@@ -400,3 +400,59 @@
 
 [200] 谢省宗, 匡尚富, 王浩. (2008). 中国水利科技发展60年. *中国水利水电科学研究院学报* [J], 6(4), 251-262.
 
+
+[201] Raissi, M., Perdikaris, P., & Karniadakis, G. E. (2019). Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations. *Journal of Computational Physics* [J], 378, 686-707.
+
+[202] Willard, J., Jia, X., Xu, S., Steinbach, M., & Kumar, V. (2022). Integrating scientific knowledge with machine learning for engineering and environmental systems. *ACM Computing Surveys* [J], 55(4), 1-37.
+
+[203] Luo, X., Yuan, X., Zhu, S., Xu, Z., Meng, L., & Peng, J. (2023). A hybrid support vector regression framework for streamflow forecast. *Journal of Hydrology* [J], 623, 129707.
+
+[204] Zhao, G., Pang, B., Xu, Z., Peng, D., & Xu, L. (2021). Assessment of urban flood susceptibility using semi-supervised machine learning model. *Science of the Total Environment* [J], 800, 149659.
+
+[205] Xu, T., & Valocchi, A. J. (2022). Data-driven methods for subsurface flow and transport: A review and perspective. *Water Resources Research* [J], 58(6), e2021WR031392.
+
+[206] Maier, H. R., Razavi, S., Kapelan, Z., Matott, L. S., Kasprzyk, J., & Tolson, B. A. (2023). Introductory overview: Optimization using evolutionary algorithms and other metaheuristics. *Environmental Modelling & Software* [J], 114, 105589.
+
+[207] Menapace, A., Zanfei, A., & Righetti, M. (2022). Automatic leak detection in water distribution networks via spectral analysis on pressure data. *Water Resources Management* [J], 36, 4451-4464.
+
+[208] Vrachimis, S. G., Eliades, D. G., Taormina, R., Kapelan, Z., Ostfeld, A., Liu, S., ... & Polycarpou, M. M. (2022). BattLeDIM: Battle of the leakage detection and isolation methods. *Journal of Water Resources Planning and Management* [J], 148(12), 04022068.
+
+[209] Moy de Vitry, M., Schneider, M., Wani, O., Matte, D., & Leitão, J. P. (2022). Smart urban water systems: What could possibly go wrong? *Environmental Research Letters* [J], 17(3), 033001.
+
+[210] Eggimann, S., Mutzner, L., Wani, O., Schneider, M. Y., Spuhler, D., Moy de Vitry, M., ... & Maurer, M. (2017). The potential of knowing more: A review of data-driven urban water management. *Environmental Science & Technology* [J], 51(5), 2538-2553.
+
+[211] Sun, A. Y. (2021). Optimal carbon storage reservoir management through deep reinforcement learning. *Applied Energy* [J], 278, 115660.
+
+[212] Castelletti, A., Galelli, S., Restelli, M., & Soncini-Sessa, R. (2010). Tree-based reinforcement learning for optimal water reservoir operation. *Water Resources Research* [J], 46(9), W09507.
+
+[213] Saliba, S. M., Bowes, B. D., Adams, S., Beling, P. A., & Goodall, J. L. (2022). Deep reinforcement learning with uncertain data for real-time stormwater system control and flood mitigation. *Water* [J], 12(11), 3222.
+
+[214] Wei, S., Xu, T., Niu, G., & Zeng, R. (2023). Deep reinforcement learning for real-time optimal operation of reservoirs. *Journal of Water Resources Planning and Management* [J], 149(10), 04023050.
+
+[215] Rasheed, A., San, O., & Kvamsdal, T. (2020). Digital twin: Values, challenges and enablers from a modeling perspective. *IEEE Access* [J], 8, 21980-22012.
+
+[216] Liu, M., Fang, S., Dong, H., & Xu, C. (2021). Review of digital twin about concepts, technologies, and industrial applications. *Journal of Manufacturing Systems* [J], 58, 346-361.
+
+[217] Therrien, J.-D., Nicolaï, N., & Bhatt, V. (2021). A critical review of the data pipeline for artificial intelligence applications in water and wastewater management. *Water Science & Technology* [J], 84(10-11), 2580-2594.
+
+[218] Zounemat-Kermani, M., Matta, E., Cominola, A., Xia, X., Zhang, Q., Liang, Q., & Hinkelmann, R. (2021). Neurocomputing in surface water hydrology and hydraulics: A review of two decades retrospective, current status and future prospects. *Journal of Hydrology* [J], 588, 125033.
+
+[219] Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., & Polosukhin, I. (2017). Attention is all you need. *Advances in Neural Information Processing Systems* [C], 30, 5998-6008.
+
+[220] Brown, T. B., Mann, B., Ryder, N., et al. (2020). Language models are few-shot learners. *Advances in Neural Information Processing Systems* [C], 33, 1877-1901.
+
+[221] Touvron, H., Lavril, T., Izacard, G., et al. (2023). LLaMA: Open and efficient foundation language models. *arXiv preprint arXiv:2302.13971* [R].
+
+[222] Chen, C., Seff, A., Kornhauser, A., & Xiao, J. (2022). DeepDriving: Learning affordance for direct perception in autonomous driving. *Proceedings of the IEEE International Conference on Computer Vision* [C], 2555-2563.
+
+[223] Sievert, E. J., Lickley, M., & Solomon, S. (2022). IPCC AR6 and beyond: Advances in climate science and implications for water management. *Annual Review of Environment and Resources* [J], 47, 279-308.
+
+[224] Konapala, G., Mishra, A. K., Wada, Y., & Mann, M. E. (2020). Climate change will affect global water availability through compounding changes in seasonal precipitation and evaporation. *Nature Communications* [J], 11, 3044.
+
+[225] Qin, Y., Abatzoglou, J. T., Siebert, S., Huning, L. S., AghaKouchak, A., Mankin, J. S., ... & Mueller, N. D. (2020). Agricultural risks from changing snowmelt. *Nature Climate Change* [J], 10, 459-465.
+
+[226] He, X., Bryant, B. P., Moran, T., Mach, K. J., Wei, Z., & Freyberg, D. L. (2021). Climate-informed hydrologic modeling and policy typology to guide managed aquifer recharge. *Science Advances* [J], 7(17), eabe6025.
+
+[227] Xu, B., Zhong, P., Wu, Y., Fu, J., Chen, J., & Yan, K. (2021). A multiobjective short-term optimal operation model for a cascade system of interconnected reservoirs considering ecological flow requirements. *Water Resources Research* [J], 57(9), e2021WR029734.
+
+[228] Lei, X. H., Wang, H., Wang, C., et al. (2025). Autonomous water network operation: A conceptual framework based on cybernetics of hydro systems. *南水北调与水利科技（英文）* [J], 23(1), 1-18.
