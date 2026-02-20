@@ -345,27 +345,141 @@ Clean swimlane workflow diagram. Flat design, no 3D effects, no shadows. Academi
 
 ## 第六章 关键工程实践
 
-### 图6-1: 工程实践闭环模板图
-**文件名**: fig_6_1_practice_loop_template.png
+### 图6-1: 胶东调水三级控制架构图
+**文件名**: fig_6_1_jiaodong_three_level_control.png
 
 **提示词**:
-A circular/closed-loop diagram showing the engineering practice template. White background, blue scheme. Six stages in a circle: "场景目标 Scenario Goals" → "ODD定义 ODD Definition" → "控制策略 Control Strategy" → "在环验证 In-Loop Verification" → "上线运行 Go-Live Operation" → "复盘改进 Review & Improve" → back to "场景目标". Center of circle: "CHS工程实践闭环". Two callout boxes pointing to interfaces: one to "Ch4 WNAL分级" and another to "Ch5 HydroOS架构". Clean circular flow diagram, academic textbook quality, Chinese labels.
+A layered control architecture diagram for the Jiaodong Water Transfer Project. White background, portrait orientation (1800×2400px). Three horizontal layers stacked vertically with clear boundaries:
+
+**Top layer (L2, fill #E8F0FE, border #0055A4)**: "协调优化层 Coordination Layer — MPC" — central box labeled "模型预测控制器 MPC Controller" with inputs: "全线水力模型 Hydraulic Model", "SCADA实时数据", "安全约束集 Constraint Set". Output arrows going down to L1 labeled "优化控制指令 Optimal Commands". Key parameters in annotation box: "控制周期15min | 预测时域60min | 状态50维 | 约束200-500个".
+
+**Middle layer (L1, fill #F0F8E0, border #4CAF50)**: "局部控制层 Local Control — PID" — three parallel boxes representing canal segments, each with "PID水位控制器" and "本段闸门/泵站" icons. Dashed lines showing "独立运行能力 Independent Operation" label.
+
+**Bottom layer (L0, fill #FFF3E0, border #FF9800)**: "现场保护层 Field Protection — PLC Hardwired" — boxes for "闸门超限锁定", "泵站低水位停机", "电气过载保护". Label: "响应＜ms | 不依赖通信".
+
+Left side vertical arrow: "控制精度提升 ↑" (bottom to top). Right side vertical arrow: "安全可靠性 ↑" (top to bottom). Annotation: "核心设计原则: 断连可活——任何上层失效, 下层独立维持安全运行".
+
+Clean layered architecture diagram. Flat design, no 3D. Academic textbook quality. Chinese+English labels. Minimum 1800×2400px.
 
 ---
 
-### 图6-2: 胶东调水工程示意图
-**文件名**: fig_6_2_jiaodong_water_transfer.png
+### 图6-2: 胶东调水WNAL等级跃迁路径
+**文件名**: fig_6_2_jiaodong_wnal_progression.png
 
 **提示词**:
-A simplified schematic map of the Jiaodong Water Transfer Project in Shandong Province, China. White background with light gray landmass outline. A long canal line (blue) running from west to east across the Shandong Peninsula, with key nodes marked: source intake (Yellow River), cascaded pumping stations (triangle icons, emphasizing the cascade pump-canal topology), control gates (rectangle icons), branch offtakes, and terminal reservoir. Key locations labeled in Chinese: 引黄济青, 胶东调水干线, 主要泵站与控制节点. MPC (Model Predictive Control) signals shown as dashed feedback loops at pumping stations. Total length annotation "~500km". Clean engineering schematic style, not a realistic map but a simplified topology diagram showing the cascade pump-open canal system structure, academic textbook quality.
+A timeline-based progression diagram showing the WNAL level advancement of the Jiaodong Water Transfer Project. White background, landscape orientation (2400×1400px).
+
+Horizontal timeline from left to right spanning 2016—2025+. Four ascending staircase blocks representing WNAL levels:
+
+**Block 1 (L0→L1, ~2016-2018, fill #E0E0E0)**: "传统运行" — "SCADA监控 + 人工调度". Milestone marker: "全线SCADA建成".
+
+**Block 2 (MIL/SIL/HIL, 2018-2020, fill #FFF9C4)**: "MPC研发与验证" — three verification icons stacked: MIL ✓, SIL ✓ (发现浮点截断), HIL ✓ (发现通信延迟). Label: "三级验证完整闭环".
+
+**Block 3 (L2, 2020-2022, fill #C8E6C9)**: "条件辅助 — MPC建议+人工确认". Key metric: "水位偏差 ±15cm→±5cm". ODD annotation: "设计流量±10%".
+
+**Block 4 (L3, 2022-2024+, fill #BBDEFB)**: "条件自主 — MPC自主+人工监督". Key metric: "水位偏差 ±3cm". ODD annotation: "设计流量±30%, 含常见扰动".
+
+Between each block, upward transition arrows labeled with prerequisites: "技术前提: 12个月运行数据", "验证前提: SIL/HIL覆盖率≥98%", "管理前提: 四态机+审计链就绪".
+
+Clean staircase timeline diagram. Academic textbook quality. Chinese+English labels. Minimum 2400×1400px.
 
 ---
 
-### 图6-3: 沙坪水电站梯级调度示意图
-**文件名**: fig_6_3_shaping_cascade_control.png
+### 图6-3: 沙坪水电站PAI-CAI协作决策流程
+**文件名**: fig_6_3_shaping_pai_cai_workflow.png
 
 **提示词**:
-A simplified cascade hydropower station diagram showing the Pubu-Shenxigou-Zhentou-Shaping cascade system. White background, blue scheme. Four stations arranged along a river (top to bottom or left to right): "蒲布 Pubu" → "深溪沟 Shenxigou" → "镇头 Zhentou" → "沙坪 Shaping". Each station has a dam icon with turbine and spillway symbols. Arrows showing water flow direction. Control signals shown as dashed lines connecting all stations to a central "一键调 One-Click Dispatch" control hub. Three constraint labels: "发电 Generation", "泄洪 Flood Discharge", "生态 Ecology" shown as competing objectives. Clean engineering schematic, academic textbook quality.
+A workflow diagram showing the PAI-CAI collaborative decision process at Shaping Hydropower Station. White background, portrait orientation (1800×2200px).
+
+Four-step vertical workflow with two parallel swim lanes: left lane "PAI 物理AI引擎" (fill #E3F2FD), right lane "CAI 认知AI引擎" (fill #FFF3E0).
+
+**Step 1 — 情境感知 Situation Awareness** (CAI lane): CAI aggregates four input sources shown as feed-in arrows: "SCADA实时数据", "水情预报(3-6h)", "上级调度令", "机组检修计划". Output: "结构化态势报告".
+
+**Step 2 — 方案生成 Option Generation** (spanning both lanes): CAI calls PAI for computation. PAI box: "调洪演算 + 机组特性曲线 → 帕累托前沿". Three output option cards: "方案A: 保守安全型", "方案B: 均衡型", "方案C: 经济优先型". Each card has mini-metrics: risk level, generation loss, flood margin.
+
+**Step 3 — 决策解释 Decision Explanation** (CAI lane): CAI generates natural language explanation bubble: "方案A: 泄洪闸2→4孔, 下游+800m³/s(低于安全阈值), 发电损失8.5万kWh, 防洪库容+1200万m³".
+
+**Step 4 — 执行跟踪 Execution Tracking** (spanning both lanes): Human operator icon selects plan → CAI coordinates PAI+DAL execution → monitoring loop with "偏差预警 Deviation Alert" feedback arrow back to Step 1.
+
+Clean vertical workflow diagram. Flat design. Academic textbook quality. Chinese+English labels. Minimum 1800×2200px.
+
+---
+
+### 图6-4: 胶东调水与沙坪水电站技术方案对比
+**文件名**: fig_6_4_jiaodong_vs_shaping_comparison.png
+
+**提示词**:
+A side-by-side comparison diagram of two engineering cases. White background, landscape orientation (2400×1600px).
+
+Two vertical panels divided by a center line:
+
+**Left panel — 胶东调水 Jiaodong Water Transfer** (header fill #BBDEFB): Icon: long canal with gates. "控制目标: 单一 (水位控制)". "核心技术: MPC". "人机模式: L3 系统自主+人工监督". "模型特点: IDZ降阶, 确定性强". "关键挑战: 长时滞, 多耦合, 冰期".
+
+**Right panel — 沙坪水电站 Shaping Hydropower** (header fill #FFF3E0): Icon: dam with turbines. "控制目标: 多目标冲突 (发电/泄洪/生态)". "核心技术: PAI+CAI协作". "人机模式: L2 系统建议+人工决策". "模型特点: 多目标优化, 不确定性大". "关键挑战: 目标冲突, 来水不确定, 梯级耦合".
+
+**Center shared box** (fill #F5F5F5): "共享CHS机制: 安全包络 | 四态机 | 策略门禁 | MIL/SIL/HIL | 审计链".
+
+Bottom annotation: "CHS框架适应性: 控制策略因场景而异, 安全治理机制保持统一".
+
+Clean comparison diagram. Academic textbook quality. Chinese+English labels. Minimum 2400×1600px.
+
+---
+
+### 图6-5: 中外典型案例WNAL等级对照
+**文件名**: fig_6_5_global_wnal_comparison.png
+
+**提示词**:
+A horizontal bar chart comparing WNAL levels across six engineering cases. White background, landscape orientation (2400×1400px).
+
+Vertical axis (left): six project names: "胶东调水 Jiaodong", "沙坪水电站 Shaping", "南水北调中线 SNWTP", "CAP (美国)", "Canal de Provence (法国)", "MWRA Boston (美国)".
+
+Horizontal axis: WNAL levels L0 through L4 with colored zones: L0 (gray #E0E0E0), L1 (#FFF9C4), L2 (#C8E6C9), L3 (#BBDEFB), L4 (#E1BEE7).
+
+Each project has a progress bar: solid fill = achieved level, hatched fill = target level. Jiaodong: solid to L3. Shaping: solid to L2, hatched to L3. SNWTP: solid to L1, hatched to L2. CAP: solid to L2, note "水权法规限制 Legal constraint". Canal de Provence: solid to L2. MWRA: solid to L1-L2.
+
+Right annotation column: key limitation per project.
+
+Clean academic comparison chart. Chinese+English labels. Minimum 2400×1400px.
+
+---
+
+### 图6-6: 三类典型失败模式与CHS防线对应关系
+**文件名**: fig_6_6_failure_modes_vs_chs_defenses.png
+
+**提示词**:
+A mapping diagram showing three failure modes matched to CHS framework defenses. White background, portrait orientation (1800×2000px).
+
+Left column — "失败模式 Failure Modes" (fill #FFEBEE, border #D32F2F): three red-bordered boxes: "ODD缺失 — 无定义区域事故", "验证不足 — 现场意外", "运维缺失 — 效果衰减".
+
+Right column — "CHS防线 CHS Defenses" (fill #E8F5E9, border #388E3C): three green-bordered boxes: "ODD显式定义 + WNAL等级评估 (Ch4)", "MIL/SIL/HIL三级验证 (Ch3原理五)", "审计链 + 模型校正长效机制 (Ch5)".
+
+Red-to-green horizontal arrows connecting each pair with labels: "防线一", "防线二", "防线三".
+
+Bottom box (fill #FFF8E1, border #F57F17): "深层根源: 技术决策与工程管理脱节 → CHS对策: WNAL分级 + 四态机 + 审计链 = 制度性弥合工具".
+
+Clean mapping diagram. Flat design. Academic textbook quality. Chinese+English labels. Minimum 1800×2000px.
+
+---
+
+### 图6-7: 水利工程智能化四阶段实施路线图
+**文件名**: fig_6_7_four_stage_implementation_roadmap.png
+
+**提示词**:
+A four-stage implementation roadmap for water engineering intelligent transformation. White background, landscape orientation (2800×1600px).
+
+Four horizontal blocks as ascending steps connected by forward arrows:
+
+**Stage 1 (1-3个月, fill #E3F2FD)**: "基础评估 Foundation Assessment" — items: "可控可观核验", "传感器/执行器评估", "SCADA数据质量审计". Deliverable: "可控可观核验报告". Warning: "⚠ 重算法轻硬件".
+
+**Stage 2 (3-6个月, fill #FFF3E0)**: "安全底线 Safety Baseline" — items: "MRC设计", "四态机降级机制", "审计链+SOP". Deliverable: "安全运行规程". Warning: "⚠ 规程停在纸面".
+
+**Stage 3 (6-12个月, fill #E8F5E9)**: "控制建设 Control Capability" — items: "控制器设计", "MIL→SIL→HIL验证", "灰度上线". Deliverable: "通过验证的控制系统". Warning: "⚠ 跳过HIL".
+
+**Stage 4 (持续, fill #F3E5F5)**: "运维演进 O&M Evolution" — items: "模型校正", "ODD扩展", "WNAL跃迁", "属地化建设". Deliverable: "年度评估报告". Warning: "⚠ 维护未属地化".
+
+Top banner: "核心原则: 先安全后性能 | 先局部后全局 | 先验证后上线". Bottom timeline bar: months 0→3→6→12→ongoing.
+
+Clean roadmap/staircase diagram. Flat design. Academic textbook quality. Chinese+English labels. Minimum 2800×1600px.
 
 ---
 
@@ -414,7 +528,7 @@ A concept map showing the relationships between all core CHS concepts as a summa
 | Ch3 | 6 | 3-1, 3-2, 3-3, 3-4, 3-5, 3-6 |
 | Ch4 | 3 | 4-1, 4-2, 4-3 |
 | Ch5 | 6 | 5-1, 5-2, 5-3, 5-4, 5-5, 5-6 |
-| Ch6 | 3 | 6-1, 6-2, 6-3 |
+| Ch6 | 7 | 6-1, 6-2, 6-3, 6-4, 6-5, 6-6, 6-7 |
 | Ch7 | 2 | 7-1, 7-2 |
 | Ch8 | 2 | 8-1, 8-2 |
-| **合计** | **31** | |
+| **合计** | **35** | |
