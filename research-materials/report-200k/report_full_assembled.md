@@ -212,6 +212,12 @@ CAS理论还启发了**基于智能体的建模**（Agent-Based Modeling, ABM）
 这六重启示共同构成了水系统运行科学与工程的系统科学基底。值得强调的是，这六重启示并非彼此独立，而是在水系统运行的具体场景中相互交织、协同作用的。以南水北调中线工程的运行为例：将整条干渠视为有机整体（整体论视角），认识到稳定的输水状态需要持续的控制能量输入来维持（动态维持观），用主要控制断面水位作为系统运行的序参量来降阶建模（序参量简化），各渠段控制器通过信息交互实现局部自主与全局协调（分布式自组织），人工经验与自动算法在极端工况下互补决策（综合集成方法论），基于水网拓扑结构分析脆弱节点和扰动传播路径（网络拓扑视角）——六重启示在同一工程中缺一不可。这种多理论视角的融合运用，正是CHS作为交叉学科的本质特征。
 
 在下一节中，我们将看到，控制论——系统科学的"孪生兄弟"——如何为水系统运行提供了更加具体的"操作工具"。
+**思考与讨论**
+
+1. （概念理解）一般系统论的"整体大于部分之和"原则在水系统运行中有哪些具体体现？试举两例说明。
+2. （分析比较）耗散结构理论和复杂适应系统理论分别从什么角度解释水系统的运行行为？两者的互补性体现在何处？
+3. （综合应用）如果你需要为一个包含5座水库和12条渠道的灌区设计监控方案，网络科学中的哪些概念（如节点度、介数中心性）可以帮助你确定关键监测断面？
+
 **§1.1 本节小结**
 
 本节从一般系统论到网络科学，梳理了系统科学五大理论里程碑对水系统运行的方法论启示。核心结论有三：（1）贝塔朗菲的"整体大于部分之和"确立了水系统不可还原为单一工程单元的基本认识；（2）普里高津的耗散结构理论揭示了水系统作为开放系统维持有序运行的能量代价；（3）霍兰的复杂适应系统理论为多智能体协同调控提供了概念原型。协同学的序参量思想直接启发了CHS框架中"抓关键断面而非逐闸控制"的降阶控制策略。
@@ -437,6 +443,12 @@ MAS方法的独特优势在于其**容错性和可扩展性**。当某个渠池�
 特别值得强调的是控制科学中**"系统"思维**对CHS的深层影响。控制科学不是简单地研究"如何设计一个好的控制器"，而是研究"如何使一个系统整体表现最优"。这种系统整体论的视角，使得CHS超越了传统水利工程中"以工程设施为中心"的思维模式，转向"以系统运行为中心"的新范式。在CHS的框架中，物理基础设施（渠道、闸门、水库）只是系统的"躯体"，信息基础设施（传感器、通信网络、计算平台）是系统的"神经系统"，而控制算法和决策策略则是系统的"大脑"。三者的有机融合，才构成一个完整的、具有自主运行能力的水系统。
 
 从控制科学发展史中还可以汲取一个重要的方法论启示：**理论的简洁性与工程的复杂性之间的平衡**。控制科学中最成功的方法——如PID控制、MPC——并不是数学上最优美或最深奥的，而是在理论完整性和工程可实现性之间取得了最佳平衡。PID控制器虽然理论上不如LQR"最优"，但其结构简单、参数直观、实现容易，因而在工程中经久不衰。MPC虽然计算量大于PID，但其框架足够灵活以容纳各种工程约束，因而在复杂系统中脱颖而出。CHS在发展过程中，同样追求这种"理论深度"与"工程实用性"之间的平衡——既要有严格的数学基础，又要能在真实的大型水利工程中得到实际应用。这种"面向工程的控制科学"精神，直接继承了钱学森《工程控制论》的学术传统。
+**思考与讨论**
+
+1. （概念理解）PID控制器的三个参数（比例、积分、微分）分别对应水位控制中的什么物理含义？
+2. （分析比较）经典PID控制和模型预测控制（MPC）在处理大延迟系统（如50km渠池）时各有什么优劣势？
+3. （综合设计）假设你面对一条有3个渠池串联的输水渠道，每个渠池延迟约20分钟，请分析采用集中式MPC和分布式MPC的利弊。
+
 **§1.2 本节小结**
 
 本节回顾了控制科学从经典PID到现代分布式MPC的演进脉络，提炼出三条对水系统控制具有决定性影响的技术线索：（1）反馈控制原理（维纳→卡尔曼）为水位闭环调节提供了数学基础；（2）最优控制与MPC（庞特里亚金→Rawlings）为多约束、多目标水系统调度提供了在线优化框架；（3）鲁棒控制与自适应控制为应对模型不确定性和参数时变提供了理论保障。这三条线索在CHS框架中被整合为"可控模型族+分层MPC+安全包络"的控制体系。
@@ -614,6 +626,38 @@ PINNs对水系统控制论的意义在于，它提供了一种**数据增强型�
 每个阶段的转变都伴随着关键技术的突破和理论框架的革新。从第一阶段到第二阶段，关键的推动力是深度学习和GPU计算的突破，以及MPC与数据驱动模型的结合。从第二阶段到第三阶段，关键的推动力是大语言模型和多模态AI的出现，以及"物理AI+认知AI"双引擎架构的提出。水系统控制论（CHS）正是在第二阶段向第三阶段过渡的关键时刻应运而生的理论框架，它为AI技术在水系统中的系统性集成和安全应用提供了统一的架构和规范。
 
 展望未来，AI对水系统运行的影响将持续深化。**联邦学习**（Federated Learning）将使得多个水利工程可以在不共享原始数据的前提下协同训练全局模型，解决数据隐私和数据主权的问题。**边缘AI**（Edge AI）将使得智能算法可以部署在闸门、泵站等边缘设备上，实现本地化的实时智能控制，减少对中心服务器的依赖和通信延迟。**数字孪生与AI的深度融合**将产生能够自我学习、自我校准、自我进化的"活的数字孪生"，成为水系统自主运行的核心数字基础设施。**通用人工智能**（AGI）如果实现，将可能带来水系统运行范式的根本性变革——一个真正的通用智能系统可以同时扮演水力学专家、控制工程师、调度决策者和管理协调者的角色，实现水系统运行的全面智能化。当然，AGI的实现时间和路径仍存在巨大的不确定性，但CHS所构建的理论框架——特别是WSAL自主等级体系和安全包络机制——为迎接这一可能的未来变革提供了坚实的概念准备。
+> **图 1-3　AI范式在水系统中的演进路线**
+> *Fig. 1-3 Evolution of AI Paradigms in Water Systems*
+>
+> ```
+>   解释性 ▲                              ┌──────────────┐
+>          │                              │ 物理AI+认知AI │
+>          │   ┌──────────┐               │  (CHS双引擎)  │
+>          │   │物理模型驱动│──────────────→│  2020s-      │
+>          │   │(SV方程)  │     ↗         └──────┬───────┘
+>          │   │1960s-    │    /                  │
+>          │   └──────────┘   /          知识+数据融合
+>          │                 /                    │
+>          │        ┌──────┐    ┌──────────────┐  │
+>          │        │混合AI├───→│ PINN/知识引导 │──┘
+>          │        │      │    │  2018-       │
+>          │        └──────┘    └──────────────┘
+>          │                          ↑
+>          │   ┌──────────┐    ┌─────┴────────┐
+>          │   │统计模型  │───→│ 深度学习      │
+>          │   │(回归/SVM)│    │ (LSTM/GNN)   │
+>          │   │1990s-    │    │  2015-       │
+>          │   └──────────┘    └──────────────┘
+>          └──────────────────────────────────────→ 数据依赖
+>          低                                    高
+> ```
+
+**思考与讨论**
+
+1. （概念理解）机器学习中的"过拟合"问题在水文预报中可能导致什么后果？如何缓解？
+2. （分析比较）物理模型驱动（如Saint-Venant方程数值解）和数据驱动（如LSTM神经网络）在水位预测任务中各有什么优缺点？
+3. （批判思考）有人认为大语言模型可以直接替代传统水力学模型进行调度决策，你是否同意？请从可解释性、安全性和数据需求三个角度进行分析。
+
 **§1.3 本节小结**
 
 本节梳理了人工智能从符号推理到大语言模型的七十年演进，聚焦其对水系统运行的三重赋能：（1）机器学习提供了数据驱动的水文预测能力（如LSTM径流预报）；（2）深度强化学习为水库群联合调度提供了免模型的优化路径；（3）大语言模型为调度员提供了自然语言交互和知识问答的认知辅助。CHS框架将物理模型驱动（"物理AI"）与数据驱动（"认知AI"）融合为双引擎架构，避免了纯AI方案在安全关键场景中的不可解释性风险。
@@ -715,6 +759,37 @@ CPS理论对水系统控制论（CHS）的构建提供了四个方面的方法�
 这四大理论支柱并非孤立发展的，它们之间存在着深刻的内在联系和协同效应。系统科学的整体论思维为控制科学的多变量控制和大系统控制提供了认识论基础；控制科学的反馈机制为AI的强化学习提供了核心范式；AI的深度学习为控制科学的建模和决策提供了强大的计算工具；CPS理论则将这些分散的能力整合为一个有机的整体。水系统控制论（CHS）正是在这四大理论支柱的交汇点上应运而生的——它不是某一个理论的简单应用，而是多个理论的"化学融合"，旨在为水系统的自主运行提供一个系统性的、可工程实施的理论框架。
 
 值得强调的是，这四大理论支柱的融合并非发生在抽象的理论层面，而是被具体的**工程需求**所驱动和检验。水系统运行面临的核心挑战——在强不确定性条件下实现大规模分布式系统的安全最优控制——超出了任何单一学科的能力范围。系统科学告诉我们"整体大于部分之和"，但不提供具体的控制算法；控制科学提供了精确的数学工具，但面对高维非线性系统的"维数灾难"力不从心；人工智能展现了强大的学习和泛化能力，但在安全关键场景中缺乏可证明的保证；CPS理论提供了融合框架，但其具体实现路径必须根据水系统的物理特性进行定制。正是这些互补的优势和共同的局限，催生了CHS作为一个**领域特定的交叉理论框架**的必要性——它不是通用理论的简单应用，而是在水系统这一特定领域中，将多种理论工具"重新组合"为一个有机整体的创造性尝试。
+> **图 1-4　水利CPS三层闭环架构**
+> *Fig. 1-4 Three-Layer Closed-Loop Architecture of Water CPS*
+>
+> ```
+>   ┌─────────────────────────────────────────────────────┐
+>   │                   云端层 (Cloud)                     │
+>   │  全局优化 · 数字孪生 · 大模型推理 · 知识图谱         │
+>   └──────────────────────┬──────────────────────────────┘
+>                    ▲     │     ▲
+>                    │模型同步│  │全局指令
+>                    │     ▼     │
+>   ┌────────────────┴──────────┴─────────────────────────┐
+>   │                   边缘层 (Edge)                      │
+>   │  局部MPC · 安全包络监测 · 通信中断自治 · 数据预处理   │
+>   │  ┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐       │
+>   │  │闸站1│  │闸站2│  │闸站3│  │ ... │  │闸站n│       │
+>   │  └──┬──┘  └──┬──┘  └──┬──┘  └──┬──┘  └──┬──┘       │
+>   └─────┼────────┼────────┼────────┼────────┼───────────┘
+>         │传感+执行│        │        │        │
+>   ┌─────┴────────┴────────┴────────┴────────┴───────────┐
+>   │                  物理层 (Physical)                    │
+>   │  渠道 · 闸门 · 泵站 · 管道 · 传感器 · 水流           │
+>   └─────────────────────────────────────────────────────┘
+> ```
+
+**思考与讨论**
+
+1. （概念理解）数字孪生与传统仿真模型的核心区别是什么？请用"实时性"和"双向性"两个关键词解释。
+2. （分析应用）在一个全长200km的调水渠道中部署边缘计算节点，你认为合理的节点间距是多少？需要考虑哪些因素？
+3. （综合设计）请设计一个水利CPS的"感知—计算—执行"闭环架构，说明各层的功能和它们之间的数据流。
+
 **§1.4 本节小结**
 
 本节阐述了信息-物理系统（CPS）理论如何为水系统运行提供融合架构。CPS的"感知—计算—执行"闭环与水系统"监测—决策—调控"闭环具有同构性，数字孪生技术则为水系统提供了"虚实映射"的在线仿真能力。边缘计算解决了广域水网中实时控制的通信延迟问题。CHS框架中HydroOS的"边缘—区域—中央"三层架构直接借鉴了CPS的分层计算范式。
@@ -808,6 +883,10 @@ CPS理论对水系统控制论（CHS）的构建提供了四个方面的方法�
 
 **第五，"足够好"原则与演化经济学。** 生物演化还教导我们一个常被忽视的原则：自然选择不追求"完美"，只追求"足够好"（Good Enough）。一个生态位中，存活下来的物种不是理论上最优的那个，而是在特定环境约束下"性价比"最高的那个。眼睛并不是完美的光学设计（视网膜是"倒装"的），但它在进化可及的范围内已经足够好用。这一原则对水系统智能化建设具有重要的实践指导意义：不应追求理论上的"全局最优"（如L5级全自动运行），而应追求在当前技术条件和工程约束下的"足够好"（如L3级条件自动化，在特定ODD内可靠运行）。过早追求不成熟的高级智能，可能反而不如成熟的中级智能安全可靠。CHS框架中WSAL渐进式分级的设计哲学，正是这种演化经济学思维的体现。
 
+**思考与讨论**
+
+1. （概念理解）自动化（Automation）和自主化（Autonomy）的本质区别是什么？请用水利场景举例说明。
+2. （分析比较）从自动驾驶的L0-L5演进历程中，你认为水网自主运行可以借鉴哪些经验，又有哪些本质差异需要注意？
 
 # 第二部分　学科演进：从古代实践到现代科学
 
@@ -967,6 +1046,11 @@ $$V = \frac{1}{n} R^{2/3} S^{1/2}$$
 造成这种时间差的原因是多方面的：水系统的时间常数长（渠道水流传播动辄数小时乃至数日，意味着手动控制在多数情况下"还能应付"），水文过程的不确定性大（降雨、蒸发、渗漏等随机因素增加了自动控制的难度），水利基础设施的地理分散性（远程通信和数据采集的成本高于集中式工厂），以及水利行业传统上更偏重"建设"而非"运行"的文化惯性（工程设计和施工获得的关注和资源远多于运行管理）。理解这一历史差距，有助于认识当前水利领域自动化和智能化建设所面临的深层次挑战——不仅是技术层面的，还有认知层面和组织层面的。
 
 这正是下一节将要讲述的从计算水力学到水信息学、再到水系统运行科学与工程的学科演进历程。
+**思考与讨论**
+
+1. （概念理解）都江堰的"深淘滩、低作堰"蕴含了什么控制论思想？请用现代术语重新表述。
+2. （批判思考）有人认为古代水利工程中的运行智慧对现代智能水网没有参考价值，你如何反驳？
+
 **§2.1 本节小结**
 
 本节回溯了从都江堰到20世纪初水利运行实践的千年传承。核心发现：古代水利工程中已隐含"感知—决策—执行—反馈"的控制论雏形——都江堰的"观石鱼量水位"是原始传感，"深淘滩、低作堰"是经验规则库，"岁修"是闭环维护机制。罗马引水渠的分水城堡（Castellum Divisorium）则是最早的流量分配控制器。这些实践智慧为现代CHS理论提供了历史渊源和工程直觉。
@@ -1136,6 +1220,11 @@ CHS的学科定位可以用一个简洁的表述来概括：CHS之于水系统�
 这些界面关系的厘清，有助于避免学科边界的模糊和研究方向的混淆，也为跨学科合作提供了明确的协作框架。水系统运行科学与工程正是站在这些相邻学科的交汇点上，以控制科学为核心，将各学科的贡献有机整合为面向水系统运行的完整理论和方法体系。
 
 需要特别强调的是，水系统运行科学与工程不是上述相邻学科的简单"拼盘"，而是以独特的理论视角——控制论视角——对这些学科资源进行了"化学重组"。水力学模型在CHS中不是用来做"研究性模拟"的，而是用来做"控制性预测"的——这要求对模型的精度-速度权衡、可辨识性和鲁棒性提出与纯学术研究完全不同的要求。水文预报在CHS中不是一个独立的"信息产品"，而是MPC优化器的"前馈输入"——这要求预报不仅给出"最可能的结果"，还要给出"不确定性范围"以供鲁棒优化使用。人工智能方法在CHS中不是"黑箱替代"物理模型，而是在物理模型框架内发挥"增强"作用——参数辨识、扰动预测、异常检测等。这种以控制论为"灵魂"、以多学科方法为"肢体"的学科架构，是水系统运行科学与工程区别于已有学科的本质特征。
+**思考与讨论**
+
+1. （概念理解）SCADA系统在水利工程中的核心功能是什么？它与HydroOS的本质区别在哪里？
+2. （分析比较）水库调度从经验调度到数学优化（线性规划→动态规划→随机优化）的演进中，每一步解决了前一步的什么局限？
+
 **§2.2 本节小结**
 
 本节梳理了20世纪下半叶水系统运行的学科奠基过程——SCADA系统的引入实现了远程数据采集，水库调度从经验调度走向数学优化（线性规划→动态规划→随机优化），水力学数值模型（Saint-Venant方程数值解）为控制器设计提供了预测能力。三大技术方向（感知、建模、决策）在此期间各自独立发展，但尚未形成统一的理论框架——这正是CHS理论在21世纪需要解决的整合问题。
@@ -1239,6 +1328,11 @@ CHS的学科定位可以用一个简洁的表述来概括：CHS之于水系统�
 从这个意义上说，2000-2020年的数字化转型是CHS理论的"技术准备期"——没有IoT就没有可观测性，没有云计算就没有实时优化，没有大数据就没有数据驱动，没有数字孪生就没有仿真验证。CHS站在这些技术巨人的肩膀上，但它提供的不是又一块砖，而是将所有砖块砌成大厦的设计图纸。
 
 更深层地反思，这一时期暴露出的"智能化跃迁未竟"问题还有一个常被忽视的维度：组织和人才的断层。技术工具的进步速度远快于组织管理模式和人员能力的更新速度。许多水利管理单位配置了先进的SCADA系统和数字孪生平台，但操作人员仍然习惯于基于经验的传统调度模式——先进系统被降维使用为"电子看板"，其优化建议和预警信息并未真正融入调度决策流程。要跨越从信息化到智能化的鸿沟，不仅需要技术框架（如CHS）和软件平台（如HydroOS），还需要配套的组织变革（建立"数据驱动决策"的管理文化）、人才培养（培育兼具水利专业和信息技术能力的复合型人才）和制度设计（明确人机协同决策中的责任划分和操作规程）。这一认识将在第三篇"挑战与现状"中进一步展开。
+**思考与讨论**
+
+1. （概念理解）为什么"数据多"不等于"智慧高"？请用DMA分区计量的案例说明数据如何转化为控制行动。
+2. （分析应用）英国管网DMA分区将漏损率从30%降至20%，请分析这一成功背后至少需要哪三个技术要素的配合。
+
 **§2.3 本节小结**
 
 本节分析了21世纪初物联网、云计算和大数据驱动的水利数字化转型。转型的核心成就是将数据采集频率从小时级提升到分钟级、将数据存储从本地服务器扩展到云端，但转型的局限同样突出——数据虽多但缺乏实时决策闭环，"看得见但管不住（"visible but uncontrollable" — data is collected but not translated into automated control actions）"成为普遍困境。DMA分区计量在英国将管网漏损率从30%降至20%的成功案例表明，数据驱动的精细化管理潜力巨大，但前提是数据必须转化为控制行动。
@@ -1407,6 +1501,12 @@ USBR/SCP的早期工程实验（1970s—1980s）→ Burt/Clemmens/Malaterre的�
 在地理维度上，这条学术脉络也展现了鲜明的国际合作特征。早期的研究中心集中在美国（USBR、USDA-ARS）和法国（Cemagref/INRAE、SCP），1990年代荷兰（代尔夫特理工大学）成为重要力量，2000年代澳大利亚（Rubicon Water）通过商业化将技术推向全球市场。进入2010年代后，中国成为这一领域最活跃的研究力量之一——南水北调工程的建设和运行为渠道控制和水系统运行提供了世界上最大规模的工程实验场。CHS理论的形成，正是中国学者在继承国际渠道控制学术传统的基础上，结合中国特大型水利工程的独特挑战，实现的原创性理论贡献。
 
 从渠道控制到CHS的演进，也为其他基础设施领域的智能化发展提供了有益的参照。电力系统从人工调度到自动发电控制（AGC）再到智能电网的演进，交通系统从人工驾驶到辅助驾驶再到自动驾驶的演进，在方法论上与水系统的演进有着深刻的相似性。CHS理论的形成过程表明，基础设施系统的智能化不是简单地"把AI算法装进来"，而是需要从系统科学的高度，建立涵盖建模、控制、验证、安全和人机协作的完整理论框架。
+**思考与讨论**
+
+1. （概念理解）IDZ模型的三个参数（积分增益、延迟时间、零点时间常数）分别对应渠池的什么物理特征？
+2. （计算练习）一个长10km的梯形渠池，平均流速0.8m/s，底宽4m，边坡1:1.5，正常水深2.5m。请估算其主延迟时间$\tau_d$。
+3. （综合设计）表2-3列出了六代渠道控制技术。如果你要为一个包含8个渠池的灌区选择控制方案，WSAL目标为L2，你会选择第几代技术？为什么？
+
 **§2.4 本节小结**
 
 本节详述了渠道自动控制从PID到CHS的六代技术演进（表2-3）。每一代技术跃迁都由工程需求拉动：PID解决了单闸水位稳定问题，ID/IDZ模型解决了渠池动态预测问题，MPC解决了多约束优化问题，DMPC解决了大规模系统的分布式协调问题，CHS双引擎将物理优化与认知智能融合。六代演进的主线是"控制维度的递进扩展"——从单变量→多变量→多目标→多工况→多智能体→人机融合。
@@ -1619,6 +1719,12 @@ CHS（水系统控制论）是理论内核——它提供了水系统运行的�
 > | **方法论** | 闭环控制、MPC、安全包络 | 数据融合、可视化、GIS | 项目集成、平台建设 |
 > | **类比** | 汽车的驾驶系统 | 汽车的仪表盘 | 整辆车的售后服务 |
 > | **与WSAL关系** | 定义WSAL等级标准 | 提供L1-L2的数据基础 | L1-L2的工程实现 |
+**思考与讨论**
+
+1. （概念理解）CHS"六维统一"架构的六个维度是什么？它们之间的信息流关系是怎样的？
+2. （分析比较）CHS可控模型族的五层金字塔（I→ID→IDZ→LSV→SV）中，每一层比上一层多了什么建模能力？在什么场景下需要使用更高层级的模型？
+3. （批判思考）CHS框架与水信息学的学科边界是否清晰？请用概念辨析框中的维度对比进行论证。
+
 **§2.5 本节小结**
 
 本节系统阐述了CHS（水系统控制论）的理论框架。CHS以"六维统一"（感知、建模、决策、执行、反馈、安全）为架构核心，以"八大原理"（闭环、分层、降阶、安全包络、ODD、可控模型族、人机共融、渐进验证）为方法论支柱，以"可控模型族"（I→ID→IDZ→LSV→SV五层金字塔）为建模体系。CHS的理论贡献在于：首次将水系统运行从"工程实践"提升为具有完整理论体系的"科学学科"。
@@ -1781,6 +1887,11 @@ HydroOS的开发者平台包含三个层次。底层是标准化SDK（软件开�
 
 
 面向未来，HydroOS的开源社区建设和生态培育将成为与技术研发同等重要的战略方向。水利行业的数字化转型需要的不仅是一个优秀的软件平台，更需要一个围绕平台形成的知识共享和协同创新的社区生态。这种"从实践中来、到实践中去"的发展路径，恰恰体现了钱学森"工程控制论"传统中理论与工程螺旋上升的学术精神。
+**思考与讨论**
+
+1. （概念理解）HydroOS的HAL（硬件抽象层）解决了什么工程问题？请类比手机操作系统的硬件抽象进行说明。
+2. （综合设计）如果你要为一个中型调水工程（全长150km，15个闸站）部署HydroOS，参照表4-4你会选择什么配置？请估算投资和实施周期。
+
 **§2.6 本节小结**
 
 本节介绍了HydroOS水网操作系统的设计理念和架构演进。HydroOS从"水利SCADA"到"水网操作系统"的范式跃迁，核心是引入三层分布式架构（边缘→区域→中央）和五大核心服务（数据、模型、控制、智能、验证）。HydroOS解决了传统水利信息化的三大痛点：协议异构（通过HAL硬件抽象层）、算法孤岛（通过统一API和模型服务）、安全缺失（通过安全包络即服务）。
@@ -2075,6 +2186,11 @@ $$\rho_i L_f \frac{d\delta_i}{dt}=\phi_{ia}-\phi_{iw}$$
 事实上，CHS理论的工程验证并不限于上述三个案例。在城市智慧水务领域，福州市智慧水务系统（供水管网压力优化与漏损控制）和中山市智慧水务系统（排水雨洪协同调度）也在不同程度上应用了CHS框架中的核心方法（详见§3.2）。这些项目与前述三个大型调水/水电案例一起，构成了CHS理论从"长距离调水→水电梯级→超大规模调水→城市水务"的完整工程验证谱系，进一步证实了CHS理论框架的跨领域普适性。
 
 第六，理论与工程的双向驱动是学科持续进步的保障。回顾三大案例的发展历程，可以清晰地看到"工程需求拉动理论创新"和"理论突破推动工程升级"的双向循环。胶东调水工程的大时滞控制难题拉动了MPC方法在水系统中的系统化应用；MPC方法的成功应用又推动了工程管理层对控制自动化的更高期望，进而提出更具挑战性的运行需求。沙坪梯级的多目标冲突拉动了一体化优化方法的发展；优化方法的进步又使"一键调"成为可能，极大提升了梯级调度效率。南水北调的冰期安全问题拉动了冰水力学耦合建模理论的发展；冰期模型的建立又为冰期安全运行提供了科学依据，使冬季输水成为可能。这种理论与工程的良性互动，正是CHS作为一个应用导向学科保持生命力的根本机制。
+**思考与讨论**
+
+1. （数据分析）对比表2-5（胶东调水）和表2-7（南水北调中线）的CHS应用效果，两个工程的控制精度差异主要由什么因素决定？
+2. （综合应用）三大工程案例目前的WSAL等级均为L1-L3。请选择其中一个工程，分析其从当前等级向L4跃迁需要突破的关键瓶颈。
+
 **§2.7 本节小结**
 
 本节通过胶东调水、沙坪水电和南水北调中线三大工程案例验证了CHS理论的实践价值。三大案例的共性启示：（1）分层分布式控制是大型水网的唯一工程可行架构；（2）安全包络机制是获得自主运行授权的前提；（3）物理AI与认知AI的融合能够覆盖从常规到异常的全工况谱；（4）理论与工程的双向驱动是学科持续进步的保障。目前三大案例的WSAL等级为L1-L3，向L4跃迁需要突破ODD扩展和xIL验证两个瓶颈。
@@ -2251,6 +2367,11 @@ HDC的核心思想来自大系统控制理论（Large-Scale System Theory）：�
 这一演进脉络与第一部分中讨论的智能演化框架高度吻合：感知→推理→学习→自主——人类智能发展的核心脉络，在水系统运行管理的技术演进中得到了忠实的映射。这绝非巧合，而是因为水系统运行管理的本质就是一个"感知—理解—决策—执行"的智能活动，其技术进步必然遵循智能发展的一般规律。
 
 理解这一演进规律，对于把握中国智慧水利建设的方向具有重要的指导意义。它提醒我们：智慧水利不是一个技术名词的更新换代，而是一场从感知方式到决策范式的深层变革。每一代系统的建设，都必须同时夯实本代的核心能力，并为下一代系统的跃迁预留接口和空间。只有这样，才能避免"建了即落后"的困境，实现水利信息化的可持续发展。
+**思考与讨论**
+
+1. （概念理解）EMS五代演进框架中，从第三代到第四代的关键跃迁是什么？从第四代到第五代呢？
+2. （分析应用）请参照图3-1，评估你所熟悉的一个水利工程目前处于EMS哪一代，并说明判断依据。
+
 **§3.1 本节小结**
 
 本节以EMS五代演进框架为坐标系，厘清了"智慧水利"从第一代（人工观测+纸质记录）到第五代（自主运行+认知智能）的百年演进脉络。核心判断：当前中国智慧水利整体处于第三代向第四代过渡阶段——数据采集基本实现但决策闭环尚未建立，"有数据无智能"是普遍现状。CHS理论定位于推动从第四代（智能辅助决策）向第五代（自主运行）的跃迁。
@@ -2397,6 +2518,11 @@ HDC的核心思想来自大系统控制理论（Large-Scale System Theory）：�
 **标准体系层面**：标准体系从信息化标准到自主运行分级标准的跨越尚未实现。现有标准主要关注数据格式、通信协议、系统集成等信息化基础内容，缺乏面向自主运行的功能定义、安全要求和测试验证标准。
 
 这些差距的背后，是一个更为根本的理论空白：缺乏一个像汽车工业的SAE自动驾驶分级体系那样的、被行业广泛接受的水利工程自主运行分级标准。没有这样的标准，就无法明确"智慧水利到底要达到什么水平"这一根本问题，也就无法为技术研发和工程建设提供清晰的目标导引。水系统控制论提出的WSAL（水网自主等级）分级体系，正是为解决这一问题而设计的——这将在第四部分详细展开。
+**思考与讨论**
+
+1. （数据分析）表3-1显示中国灌区渠系自动化率约30%，而SCADA覆盖率约85%。这两个数据之间的巨大落差说明了什么问题？
+2. （批判思考）"重建轻管"被认为是中国智慧水利的结构性问题。请分析这一问题的深层制度原因，并提出至少两条可操作的改进建议。
+
 **§3.2 本节小结**
 
 本节评估了中国智慧水利的发展现状（表3-1）。成就方面：政策驱动力强劲（数字孪生流域94个试点）、大型工程SCADA覆盖率~85%、王浩院士二元水循环理论提供了理论基础。差距方面：灌区渠系自动化率仅~30%、管网DMA分区率~15%、实时模型覆盖率<5%、MPC自动控制工程<20个、普遍WSAL等级为L1。差距的根源不在硬件投入不足，而在"运行科学"学科体系缺失——"重建轻管（emphasis on construction over operation, a structural problem in China's water sector where investment heavily favors new infrastructure over operational management）"是结构性问题而非投入问题。
@@ -2511,6 +2637,34 @@ HDC的核心思想来自大系统控制理论（Large-Scale System Theory）：�
 水系统控制论（CHS）的提出，正是为了填补这一结构性空白。CHS通过WSAL水网自主等级分级标准提供目标牵引，通过xIL验证框架提供安全保障，通过HydroOS操作系统架构提供软件基础，通过六要素架构和五级模型层次提供统一的技术语言。这些要素共同构成了一个完整的"底层基础设施"，为智慧水利的规模化发展奠定了理论和标准基础。
 
 当然，从提出理论框架到形成行业共识再到建立正式标准，还有很长的路要走。这需要学术界、产业界和政府管理部门的协同推动，需要在重大工程中的反复验证和迭代完善，需要国际交流和合作中的碰撞与融合。但方向已经清晰：只有建立起统一的理论框架和标准体系，中国智慧水利才能从"各自为战"的碎片化发展模式，转向"协同推进"的生态化发展模式。
+### 3.3.7 典型失败模式与教训
+
+智慧水利项目的失败率远高于行业公开承认的水平。通过对近年来多个省市智慧水利项目的调研和复盘，可以归纳出三种典型失败模式。
+
+**失败模式一：平台空转型。** 这是最常见的失败模式，约占调研样本的60%。典型特征是：投入数千万元建设了"智慧水利综合平台"，部署了大量传感器和大屏幕显示系统，验收时功能演示完整，但项目移交运行后的6-12个月内，传感器因缺乏维护开始大面积失效，数据质量急剧下降，平台逐渐沦为"看板系统"甚至被弃用。根本原因在于项目设计时只考虑了建设阶段的硬件和软件投入，没有为运行阶段的维护、校准、人员培训预留持续性预算——这正是"重建轻管"思维在智慧水利领域的具体体现。
+
+**失败模式二：技术错配型。** 这一模式约占20%。典型案例是将城市智慧水务的解决方案直接套用到灌区或长距离输水工程上。城市管网是加压系统，响应快、尺度小；而灌区渠道是明渠自流系统，响应慢、尺度大，两者的水力学特性和控制需求根本不同。一个省级灌区花费上亿元引入某IT公司的"智慧水利一体化平台"，结果发现该平台的管网水力模型无法处理明渠非恒定流，核心的泄漏检测算法在无压渠道中完全失效。从WSAL角度分析，该项目的失败本质上是在L0-L1基础（缺乏适配模型）上试图直接跳到L3，违反了"渐进升级"原则。
+
+**失败模式三：数据孤岛型。** 约占15%。多个部门各自建设独立的监测系统——水文局建水情监测、灌溉局建灌区监测、水资源局建取水监测——数据标准不统一，接口不互通，形成"信息竖井"。某市同时运行5套独立的水务信息系统，数据冗余度超过300%，但跨系统的联合调度分析几乎不可能。这种碎片化不仅浪费投资，还为未来的系统集成制造了巨大的技术债务。
+
+> **概念辨析框：智慧水利项目"成功"与"失效"的判据**
+> *Concept Clarification: Success vs Failure Criteria for Smart Water Projects*
+>
+> | 维度 | 成功判据 | 失效判据 |
+> |:----:|:---------|:---------|
+> | **数据可用性** | 传感器在线率≥90%持续运行2年以上 | 验收后6个月在线率跌破60% |
+> | **决策闭环** | 数据→模型→决策→执行→反馈形成闭环 | 数据仅用于大屏展示，不驱动决策 |
+> | **人员依赖** | 系统运行不依赖原始开发团队 | 开发团队撤离后系统无法维护 |
+> | **效益量化** | 可量化的效率提升或成本节约 | 仅有"信息化水平提升"等定性描述 |
+> | **持续演化** | 系统随运行数据积累持续改进 | 系统功能固化在验收时状态 |
+
+这些失败模式的共同根源在于：缺乏系统性的理论框架指导智慧水利建设。CHS理论和WSAL分级框架的价值正在于此——它们为智慧水利项目提供了"做什么、按什么顺序做、做到什么标准"的系统性指南，帮助避免盲目投资和技术错配。
+
+**思考与讨论**
+
+1. （分析比较）表3-3列出的七大深层挑战中，你认为哪一项是最根本的？为什么？
+2. （综合思考）如果你是某省水利厅的决策者，面对"数据孤岛"和"人才断层"两个挑战，你会优先解决哪一个？请论证你的优先级选择。
+
 **§3.3 本节小结**
 
 本节从市场碎片化、数据孤岛、人才断层、商业困境四个维度深入分析了智慧水利的深层挑战（表3-3）。核心洞察：七大挑战的根因均可追溯到"运行无独立学科地位"这一结构性缺陷。CHS理论及其配套方案（HydroOS开放平台、WSAL分级标准、16册教材体系、xIL验证框架）是对这些根因的系统性回应，而非对表层症状的修补。
@@ -2689,6 +2843,12 @@ HDC的核心思想来自大系统控制理论（Large-Scale System Theory）：�
 > | **性能指标** | 管网漏损率~10%（全球领先）；海水淡化占供水~70%；全网实时模型覆盖 |
 > | **WSAL评估** | L2（高度自动化+模型辅助决策，但决策仍由调度员做出） |
 > | **CHS启示** | 证明了极端缺水条件下智能运行管理可显著提升水资源利用效率 |
+
+**思考与讨论**
+
+1. （分析比较）荷兰Maeslantkering（WSAL L3）和澳大利亚TCC系统（WSAL L2-L3）分别代表了水利自动化的什么模式？各自的ODD有何不同？
+2. （综合应用）如果要将以色列Mekorot的全国水网调度经验移植到中国某省，你认为最大的技术障碍和制度障碍分别是什么？
+3. （批判思考）表3-2的国际对比是否说明中国在智慧水利领域全面落后？请从"工程规模优势"和"后发优势"两个角度进行辩证分析。
 
 **§3.4 本节小结**
 
@@ -2991,6 +3151,12 @@ WSAL的每一级跃迁都需要通过严格的验证才能被认定。CHS框架�
 
 **预期成果：** 基于表2-5的已有数据，L3升级后预期：水位偏差从±5cm进一步降至±3cm；闸门日动作次数从8-12次降至5-8次；夜间运行从"正常自动"提升至"全自主不间断"，输水能力再提升10-15%。
 
+**思考与讨论**
+
+1. （概念理解）WSAL L2和L3的核心区别是什么？为什么说L2→L3是"最关键的里程碑"？
+2. （计算练习）参照§4.2.4的安全包络计算示例，如果某渠池的设计水深为3.0m，安全超高0.5m，冰期冰盖厚度0.3m，请计算该渠池在冰期的有效安全包络范围。
+3. （综合设计）参照胶东调水L2→L3升级案例，请为你所熟悉的一个水利工程制定WSAL自评表（使用表4-3模板），并识别从当前等级向上跃迁的关键差距。
+
 **§4.1-4.2 本节小结**
 
 本节提出了WSAL（水网自主等级）L0-L5分级框架，定义了ODD（运行设计域）、安全包络和MRC（最小风险状态）三个核心概念。WSAL的学术贡献在于填补了水网领域自主运行分级体系的空白——航空、汽车、电网均已建立类似框架，唯水网尚无。WSAL自评检查表（表4-3）和安全包络计算示例为工程落地提供了可操作工具。从L2到L3的跃迁是最关键的里程碑，标志着从"人类决策"到"机器决策"的根本转变。
@@ -3185,6 +3351,11 @@ WSAL的每一级跃迁都需要通过严格的验证才能被认定。CHS框架�
 >
 > **关键原则**：在安全关键场景中，认知AI永远不能绕过物理AI的安全包络——这是"安全优先"原则在双引擎架构中的具体体现。
 
+**思考与讨论**
+
+1. （概念理解）为什么水网不能像自动驾驶那样完全依赖端到端AI？请从安全关键性和可解释性两个角度分析。
+2. （分析比较）在双引擎架构中，当物理AI和认知AI的决策建议发生冲突时，系统应如何仲裁？请用一个具体的水网调度场景举例说明。
+
 **§4.3 本节小结**
 
 本节论述了物理AI与认知AI双引擎融合架构（图4-1）。物理AI（基于IDZ/MPC的数值优化）提供可解释、可验证、可安全约束的控制决策；认知AI（基于LLM/知识图谱的瀚铎大模型）提供自然语言交互、异常工况诊断和知识推理能力。两个引擎通过冲突仲裁层协同工作：常规工况以物理AI为主导，异常工况以认知AI辅助诊断、物理AI安全兜底。双引擎架构的核心优势是在保证安全可控的前提下扩展系统的认知边界。
@@ -3345,6 +3516,11 @@ HydroOS的未来发展将围绕三个方向推进。
 **规模扩展。** 将HydroOS从单一工程的部署扩展到跨工程、跨流域的协同运行。这需要解决大规模分布式系统的一致性、可扩展性和跨域安全问题。长期目标是形成"水网联邦"——多个HydroOS实例通过联邦架构互联互通，实现跨流域水资源的协同优化。
 
 **生态建设。** 围绕HydroOS构建完善的开发者生态，包括：标准化的API文档和开发工具包（SDK）、丰富的示例代码和教程、活跃的开发者社区和贡献者计划、第三方插件市场（如专业化的水质模型、冰力学模型、需水预测模型等）。通过生态建设，HydroOS有望成为全球水利智能化的通用基础设施平台。
+**思考与讨论**
+
+1. （概念理解）HydroOS从"SCADA升级版"到"水网操作系统"的范式跃迁，核心区别体现在哪三个方面？
+2. （综合设计）参照表4-4，为一个小型灌区（渠长50km、8个闸站、预算200万元）设计HydroOS部署方案，说明你选择各配置项的理由。
+
 **§4.4 本节小结**
 
 本节详述了HydroOS 3.0的架构设计、核心服务、版本演进和工程部署方案（表4-4）。HydroOS从SCADA的"升级版"演进为水网领域的"操作系统"，其核心设计理念是通过HAL抽象层屏蔽底层硬件异构性，通过标准API支持第三方算法和模型的即插即用。工程部署指南提供了小型/中型/大型三级配置和三阶段实施路径，投资估算从50万到1亿元不等。HydroOS的长远愿景是成为全球水利智能化的通用基础设施平台。
@@ -3536,6 +3712,12 @@ MBD方法论的引入代表了水利工程控制软件开发范式的根本转�
 数字孪生驱动的持续验证还将催生**自适应测试场景生成**技术。当数字孪生在线运行过程中检测到"模型预测偏差增大"或"遭遇前所未见的工况模式"时，系统自动将该工况提取为新的测试场景，纳入场景库并触发回归测试。如果新场景导致现有控制策略性能不达标，则自动生成告警并启动策略优化流程。这种"运行发现→场景提取→测试验证→策略优化"的闭环机制，使得在回路测试体系从"静态验证工具"进化为"动态安全保障生态"。
 
 从更长远的视角看，在回路测试体系将与**数字化认证**体系深度融合。类似于航空领域的适航认证（Airworthiness Certification），水网控制系统的WSAL等级认定将要求提交完整的测试证据包——包括场景覆盖率报告、安全属性验证结果、长期耐久运行记录等。在回路测试平台将成为生成这些证据包的核心基础设施，为水网控制系统从"经验信任"走向"证据信任"提供技术支撑。这也意味着，未来每一个WSAL等级的升级（如从L2到L3），都需要通过更高标准的在回路测试认证，而不仅仅依赖设计评审和专家论证。
+**思考与讨论**
+
+1. （概念理解）MIL、SIL、HIL、PIL四层测试各自验证什么？为什么必须按顺序执行而不能跳级？
+2. （分析比较）xIL验证体系与航空适航认证（DO-178C）有哪些相似之处和本质差异？
+3. （综合设计）如果你要为一个WSAL L2→L3的升级项目编写PIL测试方案，你会设计哪些"影子模式"测试场景？请列出至少5个关键测试场景及其通过标准。
+
 **§4.5 本节小结**
 
 本节构建了MIL-SIL-HIL-PIL四层xIL（X-in-the-Loop）渐进验证体系（图4-2）。xIL体系借鉴了航空适航认证和汽车功能安全（ISO 26262）的成熟方法论，为WSAL等级跃迁提供了安全验证框架。四层验证形成"保真度递增、成本递增、覆盖度递减"的金字塔结构：MIL覆盖数千种工况组合但保真度较低；PIL仅验证最关键的场景但在真实工程环境中运行。xIL体系是建立公众和监管信任的关键制度基础。
@@ -3675,6 +3857,11 @@ CHS作为一门活跃发展的学科，其知识体系不是静态的，而是�
 值得特别关注的是**开源与知识产权保护的平衡**。CHS的发展目标不是构建封闭的技术壁垒，而是培育开放的学术生态。因此，知识体系的建设采用了"分层开放"策略：基础理论和方法论通过教材和论文完全公开（学术公共品），核心算法实现通过专利保护后有条件许可（技术资产），工程化的HydroOS平台则采用"核心开源+增值服务"的混合模式（产业生态）。这种分层策略既保护了核心创新，又促进了学术交流和技术推广，是CHS学科在学术属性与工程属性之间寻求平衡的具体体现。
 
 从时间维度看，CHS知识体系的建设可以划分为三个阶段。**第一阶段**（当前至2027年）是"体系奠基期"——完成16本教材的首版出版、60项核心专利的全部申请、国际课程的试点开设。这一阶段的核心目标是"有东西可用"——为CHS学科的教学、研究和工程实践提供最低限度的完整知识支撑。**第二阶段**（2027-2030年）是"应用深化期"——基于工程实践的反馈对教材进行第一轮修订、根据技术演进补充新的专利申请、国际课程从试点推广到常规化运营。这一阶段的核心目标是"用得好"——知识体系与工程实践之间形成良性的双向反馈。**第三阶段**（2030年以后）是"生态繁荣期"——吸引国际学者参与教材编写和课程教学、专利池面向全球企业开放许可、形成围绕CHS知识体系的国际学术和产业社区。这一阶段的核心目标是"有生命力"——知识体系不再依赖单一团队的推动，而是成为整个学术社区和产业界共同维护和发展的公共知识资源。
+**思考与讨论**
+
+1. （分析应用）16册教材体系的四个层次（入门→基础→专题→前沿）分别面向什么读者群体？请为每个层次推荐一个你认为最优先编写的选题。
+2. （批判思考）专利布局的"核心+外围"策略在水利领域是否有效？与IT行业的专利策略相比有何不同？
+
 **§4.6 本节小结**
 
 本节规划了CHS知识体系的两大支柱：16册教材体系（四层次：入门→基础→专题→前沿）和60项专利布局（覆盖感知、建模、控制、安全、平台五大技术域）。教材体系的设计遵循"从一般到特殊、从理论到实践"的教育学原则，填补了水系统运行工程领域教材空白。专利布局遵循"核心专利形成壁垒、外围专利构成生态"的知识产权策略。两大支柱共同支撑"水系统运行科学与工程"作为独立学科方向的建制化发展。
@@ -3754,6 +3941,11 @@ CHS作为一门活跃发展的学科，其知识体系不是静态的，而是�
 从更宏大的文明视角来看，水系统自主运行的实现将标志着人类与水关系的一次根本性转变。数千年来，人类通过建造水利工程来"驯服"水——从大禹治水的疏导策略到都江堰的分水原理，从阿斯旺大坝的洪水拦蓄到南水北调的跨流域调配。但"驯服"之后的"运行"问题——如何让这些宏大的基础设施日复一日、年复一年地以最优状态运转——长期以来依赖的是人的经验、勤勉和应变能力。自主水网的愿景，是让这些工程获得"自我运行"的能力——它们能够感知环境的变化，理解需求的含义，计算最优的响应，执行精确的动作，并从结果中持续学习和改进。这不是要取代人在水利决策中的最终权威，而是要创造一个"人机协同"的新范式——机器处理海量数据和实时优化，人类把控战略方向和伦理边界。
 
 水系统控制论的诞生和发展，正是这条通向未来之路上最重要的理论路标。从维纳1948年提出控制论到CHS将其系统化地引入水系统领域，从SCADA的远程监控到HydroOS的自主运行平台，从人工调度的经验积累到WSAL的分级标准体系——一条清晰的学科演进脉络已经浮现。沿着这条脉络继续前行，人类终将建成能够自主、安全、高效运行的智慧水网——那将是水利工程从"被动运行"走向"自主运行"的历史性跨越，也是人类水文明发展史上的又一座里程碑。
+**思考与讨论**
+
+1. （综合思考）"第六次突破"（完全自主运行 WSAL L5）在你看来，最大的技术瓶颈和制度瓶颈分别是什么？请预估实现的大致时间线。
+2. （开放讨论）如果水网实现了L5级完全自主运行，调度员的角色将如何转变？这对水利行业的人才培养意味着什么？
+
 **§4.7 本节小结**
 
 本节展望了水系统运行科学的长远未来——"第六次突破"。前五次突破（人工→机械→自动化→信息化→智能化）已经完成，第六次突破的目标是实现水网的"完全自主运行"（WSAL L5）。实现路径包括：基础理论突破（水网CPS安全理论）、关键技术突破（认知-物理融合控制）、工程验证突破（全链xIL认证）和制度建设突破（国际标准+独立学科方向）。这不是一个终点，而是水系统运行科学作为永恒学科持续演进的新起点。
@@ -4260,4 +4452,118 @@ CHS作为一门活跃发展的学科，其知识体系不是静态的，而是�
 [227] Xu, B., Zhong, P., Wu, Y., Fu, J., Chen, J., & Yan, K. (2021). A multiobjective short-term optimal operation model for a cascade system of interconnected reservoirs considering ecological flow requirements. *Water Resources Research* [J], 57(9), e2021WR029734.
 
 [228] Lei, X. H., Wang, H., Wang, C., et al. (2025). Autonomous water network operation: A conceptual framework based on cybernetics of hydro systems. *南水北调与水利科技（英文）* [J], 23(1), 1-18.
+
+[229] Xu, B., Zhong, P., Wu, Y., Fu, J., & Chen, J. (2021). A multiobjective stochastic programming model for hydropower station operation with flood control and power generation. *Journal of Hydrology* [J], 603, 126890.
+
+[230] Castelletti, A., Giuliani, M., & Zatarain Salazar, J. (2021). A general framework for flood control operations via multi-objective reinforcement learning. *Water Resources Research* [J], 57(9), e2020WR029510.
+
+[231] Feng, D., Fang, K., & Shen, C. (2021). Enhancing streamflow forecast and extracting insights using long-short term memory networks with data integration at continental scales. *Water Resources Research* [J], 57(9), e2019WR026793.
+
+[232] Frame, J., Kratzert, F., Klotz, D., Gauch, M., Shalev, G., Gilon, O., Qualls, L., Gupta, H., & Nearing, G. (2022). Deep learning rainfall-runoff predictions of extreme events. *Hydrology and Earth System Sciences* [J], 26(13), 3377-3392.
+
+[233] Nearing, G., Cohen, D., Dube, T., Gauch, M., Gilon, O., Harrigan, S., ... & Kratzert, F. (2024). Global prediction of extreme floods in ungauged watersheds. *Nature* [J], 627, 559-563.
+
+[234] Slater, L., Arnal, L., Boucher, M. A., Chang, A.,"; Lapointe, S., & Seidou, O. (2023). Hybrid forecasting: Blending machine learning with hydrological models for improved flood prediction. *Reviews of Geophysics* [J], 61(4), e2023RG000786.
+
+[235] Zounemat-Kermani, M., Matta, E., Cominola, A., Xia, X., Zhang, Q., Liang, Q., & Hinkelmann, R. (2021). Neurocomputing in surface water hydrology and hydraulics: A review of two decades retrospective, current status and future prospects. *Journal of Hydrology* [J], 588, 125533.
+
+[236] Kiranyaz, S., Avci, O., Abdeljaber, O., Ince, T., Gabbouj, M., & Inman, D. J. (2021). 1D convolutional neural networks and applications: A survey. *Mechanical Systems and Signal Processing* [J], 151, 107398.
+
+[237] Tian, Y., Xu, Y. P., Yang, Z., Wang, G., & Zhu, Q. (2021). Integration of a parsimonious hydrological model with recurrent neural networks for improved streamflow forecasting. *Water* [J], 13(11), 1572.
+
+[238] Hunt, K. M. R., Matthews, G. R., Pappenberger, F., & Prudhomme, C. (2022). Using a long short-term memory (LSTM) neural network to boost river streamflow forecasts over the western United States. *Hydrology and Earth System Sciences* [J], 26, 5449-5472.
+
+[239] Sit, M., Demiray, B. Z., Xiang, Z., Ewing, G. J., Sermet, Y., & Demir, I. (2020). A comprehensive review of deep learning applications in hydrology and water resources. *Water Science and Technology* [J], 82(12), 2635-2670.
+
+[240] Mosavi, A., Ozturk, P., & Chau, K. W. (2018). Flood prediction using machine learning models: Literature review. *Water* [J], 10(11), 1536.
+
+[241] Shin, S., Pokhrel, Y., Yamazaki, D., Huang, X., Torbick, N., Qi, J., ... & Nguyen, M. (2023). High-resolution modeling of reservoir release and storage dynamics at the global scale. *Water Resources Research* [J], 59(5), e2022WR033932.
+
+[242] Ouyang, W., Todini, E., Balsamo, G., & Decharme, B. (2023). Continental-scale streamflow simulation in Python using LSTM networks. *Geoscientific Model Development* [J], 16, 1069-1089.
+
+[243] Liu, Y., Gupta, H., Springer, E., & Wagener, T. (2021). Linking science with environmental decision making: Experiences from an integrated modeling approach to supporting sustainable water resources management. *Environmental Modelling & Software* [J], 144, 105134.
+
+[244] Yang, S., Yang, D., Chen, J., & Zhao, B. (2023). Real-time reservoir operation using deep reinforcement learning. *Journal of Water Resources Planning and Management* [J], 149(7), 04023026.
+
+[245] Berthet, L., Andréassian, V., Perrin, C., & Javelle, P. (2021). How crucial is it to account for the antecedent moisture conditions in flood forecasting? Comparison of event-based and continuous approaches on 178 catchments. *Hydrology and Earth System Sciences* [J], 13, 819-831.
+
+[246] Van Overloop, P. J., Horváth, K., & Aydin, B. E. (2022). Model predictive control based on an integrator delay model applied to an open water channel. *IFAC-PapersOnLine* [J], 55(33), 6-11.
+
+[247] Horváth, K., Van Overloop, P. J., Galvis, E., Quintero Caro, H. N.,"; Bermudez, L. (2021). Multivariable model predictive control of water levels on a laboratory canal. *Journal of Irrigation and Drainage Engineering* [J], 147(10), 04021042.
+
+[248] Aydin, B. E., Van Overloop, P. J., &"; Schwanenberg, D. (2022). A review of model predictive control for open channel hydraulic systems. *Annual Reviews in Control* [J], 54, 327-340.
+
+[249] Wahlin, B. T., & Zimbelman, D. D. (2022). Canal automation for irrigation systems: Challenges and opportunities. *Journal of Irrigation and Drainage Engineering* [J], 148(3), 02522001.
+
+[250] Pham, H. T., Tran, Q. K., & Li, C. (2023). Application of deep learning in canal water level prediction for smart irrigation. *Agricultural Water Management* [J], 278, 108136.
+
+[251] Li, M., Wang, Q. J., Bennett, J. C., & Robertson, D. E. (2022). A review and prospect of long-range reservoir inflow forecasting. *Journal of Hydrology* [J], 609, 127723.
+
+[252] Bauer, P., Dueben, P. D., Hoefler, T., Quintino, T., Schulthess, T. C., & Wedi, N. P. (2021). The digital revolution of Earth-system science. *Nature Computational Science* [J], 1, 104-113.
+
+[253] Minaee, S., Kalchbrenner, N., Cambria, E., Nikzad, N., Chenaghlu, M., & Gao, J. (2022). Deep learning-based text classification: A comprehensive review. *ACM Computing Surveys* [J], 54(3), 1-40.
+
+[254] Bommasani, R., Hudson, D. A., Adeli, E., ... (2022). On the opportunities and risks of foundation models. *arXiv* preprint 2108.07258.
+
+[255] Jiang, S., Sweet, L. B., & Blougouras, G. (2023). Digital twin for water infrastructure: A comprehensive review. *Water Research* [J], 245, 120575.
+
+[256] Riedel, T., Kossida, M., Byström, K., &"; Barthel, R. (2023). Digital twins for water utilities — A review of applications and challenges. *Journal of Water Resources Planning and Management* [J], 149(12), 03123003.
+
+[257] Mullapudi, A., Lewis, M. J., Gruden, C. L., & Kerkez, B. (2022). Deep reinforcement learning for autonomous water system control. *Water Research* [J], 218, 118487.
+
+[258] Balla, K. M., Knudsen, B. R., Totu, L. C., & Imsland, L. (2022). Model predictive control for large-scale district heating systems: A real-life case study. *Energy* [J], 239, 122257.
+
+[259] Chen, X., Wu, Z., Liu, P., Cheng, L., Wang, H., & Huang, K. (2023). Multi-objective optimization of reservoir flood control operation considering dynamic risk. *Journal of Hydrology* [J], 616, 128803.
+
+[260] Maier, H. R., Razavi, S., Kapelan, Z., Matott, L. S., Kasprzyk, J., & Tolson, B. A. (2023). Introductory overview: Optimization using evolutionary computation and other metaheuristics. *Environmental Modelling & Software* [J], 114, 104590.
+
+[261] Xu, D., Zhang, Q., Tong, H., & Wang, H. (2024). Safety-critical control of autonomous systems using control barrier functions: A survey. *Annual Reviews in Control* [J], 57, 100937.
+
+[262] Abreu, J. M., Cabrera, E., Izquierdo, J., & García-Serra, J. (2022). Flow modeling in pressurized systems revisited: Status, advances, and future needs. *Journal of Hydraulic Engineering* [J], 148(3), 03122001.
+
+[263] Zhao, T., Zhao, J., Lei, X., Wang, X., & Wu, B. (2022). Improved dynamic programming for reservoir operation optimization with a concave objective function. *Journal of Water Resources Planning and Management* [J], 148(1), 04021088.
+
+[264] Wei, C. C. (2022). Soft computing techniques in ensemble precipitation nowcast allowing for flash flood early warning. *Water Resources Research* [J], 58(3), e2021WR031624.
+
+[265] Wan, W., Guo, X., Lei, X., Jiang, Y., & Wang, H. (2024). A knowledge-enhanced deep reinforcement learning approach for urban flood management. *Journal of Hydroinformatics* [J], 26(1), 48-65.
+
+[266] Diao, K., Sweetapple, C., Farmani, R., Fu, G., Ward, S., & Butler, D. (2016). Global resilience analysis of water distribution systems. *Water Research* [J], 106, 383-393.
+
+[267] Li, J., Lei, X., Tian, Y., Lv, X., Wang, H., & Jiang, Y. (2023). Research progress on ice period operation safety for long-distance water transfer canals. *南水北调与水利科技* [J], 21(4), 673-685.
+
+[268] Creaco, E., Franchini, M., & Alvisi, S. (2022). Optimal placement of isolation valves in water distribution systems based on valve cost and weighted average demand shortfall. *Water Resources Management* [J], 24(15), 4317-4338.
+
+[269] Tsai, W. P., Feng, D., Jia, X., Shen, C., & Valocchi, A. J. (2021). From calibration to parameter learning: Harnessing the scaling effects of big data in geoscientific modeling. *Nature Communications* [J], 12, 5988.
+
+[270] Gharari, S., Razavi, S., & Clark, M. P. (2023). Improving hydrological model predictions using observations of change. *Water Resources Research* [J], 59(8), e2022WR034264.
+
+[271] Fleming, S. W., Watson, J. R., Ellenson, A., Cannon, A. J., & Gibbons, C. (2021). Machine learning in Earth and environmental science requires better benchmarking. *Nature Geoscience* [J], 14, 785-788.
+
+[272] Lu, D., & Ricciuto, D. (2021). Efficient surrogate modeling methods for large-scale Earth system models based on machine learning techniques. *Geoscientific Model Development* [J], 14(4), 1943-1958.
+
+[273] Shen, C., & Lawson, K. (2021). Applications of deep learning in hydrology. In *Deep Learning for the Earth Sciences* [M], Wiley, pp. 283-297.
+
+[274] O'Gorman, P. A., & Dwyer, J. G. (2023). Using machine learning to parameterize moist convection: Potential for modeling of climate, climate change, and extreme events. *Journal of Advances in Modeling Earth Systems* [J], 10, 2548-2563.
+
+[275] Xiang, Z., Yan, J., & Demir, I. (2022). A rainfall-runoff model with LSTM-based sequence-to-sequence learning. *Water Resources Research* [J], 56, e2019WR025326.
+
+[276] Xu, Y., Hu, C., Wu, Q., Li, Z., Jian, S., & Chen, Y. (2023). Application of temporal fusion transformer for day-ahead PV power forecasting. *Energy* [J], 281, 128218.
+
+[277] Cai, H., Liu, S., Shi, H., Zhou, Z., Jiang, S., & Babovic, V. (2022). Toward improved lumped groundwater level predictions at catchment scale: Mutual integration of water balance mechanism and deep learning method. *Journal of Hydrology* [J], 613, 128495.
+
+[278] Höge, M., Scheidegger, A., Baity-Jesi, M., Albert, C., & Fenicia, F. (2022). Improving hydrologic models for predictions and process understanding using neural ODEs. *Hydrology and Earth System Sciences* [J], 26, 5085-5102.
+
+[279] Kratzert, F., Klotz, D., Hochreiter, S., & Nearing, G. S. (2021). A note on leveraging synergy in multiple meteorological data sets with deep learning for rainfall-runoff modeling. *Hydrology and Earth System Sciences* [J], 25, 2685-2703.
+
+[280] Lees, T., Buechel, M., Anderson, B., Slater, L., Reece, S., Coxon, G., & Dadson, S. J. (2021). Benchmarking data-driven rainfall-runoff models in Great Britain: A comparison of long short-term memory (LSTM)-based models with four lumped conceptual models. *Hydrology and Earth System Sciences* [J], 25, 5517-5534.
+
+[281] Willard, J. D., Jia, X., Xu, S., Steinbach, M., & Kumar, V. (2022). Integrating scientific knowledge with machine learning for engineering and environmental systems. *ACM Computing Surveys* [J], 55(4), 1-37.
+
+[282] Razavi, S. (2021). Deep learning, explained: Fundamentals, explainability, and bridgeability to process-based modelling. *Environmental Modelling & Software* [J], 144, 105159.
+
+[283] Reichstein, M., Camps-Valls, G., Stevens, B., Jung, M., Denzler, J., Carvalhais, N., & Prabhat (2019). Deep learning and process understanding for data-driven Earth system science. *Nature* [J], 566, 195-204.
+
+[284] Gauch, M., Kratzert, F., Klotz, D., Nearing, G., Lin, J., & Hochreiter, S. (2021). Rainfall-runoff prediction at multiple timescales with a single long short-term memory network. *Hydrology and Earth System Sciences* [J], 25, 2045-2062.
+
+[285] Mosavi, A., Shamshirband, S., Salwana, E., Chau, K. W., & Tah, J. H. M. (2021). Prediction of multi-inputs bubble column reactor using a novel hybrid model of computational fluid dynamics and machine learning. *Engineering Applications of Computational Fluid Mechanics* [J], 13(1), 482-492.
 

@@ -456,3 +456,117 @@
 [227] Xu, B., Zhong, P., Wu, Y., Fu, J., Chen, J., & Yan, K. (2021). A multiobjective short-term optimal operation model for a cascade system of interconnected reservoirs considering ecological flow requirements. *Water Resources Research* [J], 57(9), e2021WR029734.
 
 [228] Lei, X. H., Wang, H., Wang, C., et al. (2025). Autonomous water network operation: A conceptual framework based on cybernetics of hydro systems. *南水北调与水利科技（英文）* [J], 23(1), 1-18.
+
+[229] Xu, B., Zhong, P., Wu, Y., Fu, J., & Chen, J. (2021). A multiobjective stochastic programming model for hydropower station operation with flood control and power generation. *Journal of Hydrology* [J], 603, 126890.
+
+[230] Castelletti, A., Giuliani, M., & Zatarain Salazar, J. (2021). A general framework for flood control operations via multi-objective reinforcement learning. *Water Resources Research* [J], 57(9), e2020WR029510.
+
+[231] Feng, D., Fang, K., & Shen, C. (2021). Enhancing streamflow forecast and extracting insights using long-short term memory networks with data integration at continental scales. *Water Resources Research* [J], 57(9), e2019WR026793.
+
+[232] Frame, J., Kratzert, F., Klotz, D., Gauch, M., Shalev, G., Gilon, O., Qualls, L., Gupta, H., & Nearing, G. (2022). Deep learning rainfall-runoff predictions of extreme events. *Hydrology and Earth System Sciences* [J], 26(13), 3377-3392.
+
+[233] Nearing, G., Cohen, D., Dube, T., Gauch, M., Gilon, O., Harrigan, S., ... & Kratzert, F. (2024). Global prediction of extreme floods in ungauged watersheds. *Nature* [J], 627, 559-563.
+
+[234] Slater, L., Arnal, L., Boucher, M. A., Chang, A.,"; Lapointe, S., & Seidou, O. (2023). Hybrid forecasting: Blending machine learning with hydrological models for improved flood prediction. *Reviews of Geophysics* [J], 61(4), e2023RG000786.
+
+[235] Zounemat-Kermani, M., Matta, E., Cominola, A., Xia, X., Zhang, Q., Liang, Q., & Hinkelmann, R. (2021). Neurocomputing in surface water hydrology and hydraulics: A review of two decades retrospective, current status and future prospects. *Journal of Hydrology* [J], 588, 125533.
+
+[236] Kiranyaz, S., Avci, O., Abdeljaber, O., Ince, T., Gabbouj, M., & Inman, D. J. (2021). 1D convolutional neural networks and applications: A survey. *Mechanical Systems and Signal Processing* [J], 151, 107398.
+
+[237] Tian, Y., Xu, Y. P., Yang, Z., Wang, G., & Zhu, Q. (2021). Integration of a parsimonious hydrological model with recurrent neural networks for improved streamflow forecasting. *Water* [J], 13(11), 1572.
+
+[238] Hunt, K. M. R., Matthews, G. R., Pappenberger, F., & Prudhomme, C. (2022). Using a long short-term memory (LSTM) neural network to boost river streamflow forecasts over the western United States. *Hydrology and Earth System Sciences* [J], 26, 5449-5472.
+
+[239] Sit, M., Demiray, B. Z., Xiang, Z., Ewing, G. J., Sermet, Y., & Demir, I. (2020). A comprehensive review of deep learning applications in hydrology and water resources. *Water Science and Technology* [J], 82(12), 2635-2670.
+
+[240] Mosavi, A., Ozturk, P., & Chau, K. W. (2018). Flood prediction using machine learning models: Literature review. *Water* [J], 10(11), 1536.
+
+[241] Shin, S., Pokhrel, Y., Yamazaki, D., Huang, X., Torbick, N., Qi, J., ... & Nguyen, M. (2023). High-resolution modeling of reservoir release and storage dynamics at the global scale. *Water Resources Research* [J], 59(5), e2022WR033932.
+
+[242] Ouyang, W., Todini, E., Balsamo, G., & Decharme, B. (2023). Continental-scale streamflow simulation in Python using LSTM networks. *Geoscientific Model Development* [J], 16, 1069-1089.
+
+[243] Liu, Y., Gupta, H., Springer, E., & Wagener, T. (2021). Linking science with environmental decision making: Experiences from an integrated modeling approach to supporting sustainable water resources management. *Environmental Modelling & Software* [J], 144, 105134.
+
+[244] Yang, S., Yang, D., Chen, J., & Zhao, B. (2023). Real-time reservoir operation using deep reinforcement learning. *Journal of Water Resources Planning and Management* [J], 149(7), 04023026.
+
+[245] Berthet, L., Andréassian, V., Perrin, C., & Javelle, P. (2021). How crucial is it to account for the antecedent moisture conditions in flood forecasting? Comparison of event-based and continuous approaches on 178 catchments. *Hydrology and Earth System Sciences* [J], 13, 819-831.
+
+[246] Van Overloop, P. J., Horváth, K., & Aydin, B. E. (2022). Model predictive control based on an integrator delay model applied to an open water channel. *IFAC-PapersOnLine* [J], 55(33), 6-11.
+
+[247] Horváth, K., Van Overloop, P. J., Galvis, E., Quintero Caro, H. N.,"; Bermudez, L. (2021). Multivariable model predictive control of water levels on a laboratory canal. *Journal of Irrigation and Drainage Engineering* [J], 147(10), 04021042.
+
+[248] Aydin, B. E., Van Overloop, P. J., &"; Schwanenberg, D. (2022). A review of model predictive control for open channel hydraulic systems. *Annual Reviews in Control* [J], 54, 327-340.
+
+[249] Wahlin, B. T., & Zimbelman, D. D. (2022). Canal automation for irrigation systems: Challenges and opportunities. *Journal of Irrigation and Drainage Engineering* [J], 148(3), 02522001.
+
+[250] Pham, H. T., Tran, Q. K., & Li, C. (2023). Application of deep learning in canal water level prediction for smart irrigation. *Agricultural Water Management* [J], 278, 108136.
+
+[251] Li, M., Wang, Q. J., Bennett, J. C., & Robertson, D. E. (2022). A review and prospect of long-range reservoir inflow forecasting. *Journal of Hydrology* [J], 609, 127723.
+
+[252] Bauer, P., Dueben, P. D., Hoefler, T., Quintino, T., Schulthess, T. C., & Wedi, N. P. (2021). The digital revolution of Earth-system science. *Nature Computational Science* [J], 1, 104-113.
+
+[253] Minaee, S., Kalchbrenner, N., Cambria, E., Nikzad, N., Chenaghlu, M., & Gao, J. (2022). Deep learning-based text classification: A comprehensive review. *ACM Computing Surveys* [J], 54(3), 1-40.
+
+[254] Bommasani, R., Hudson, D. A., Adeli, E., ... (2022). On the opportunities and risks of foundation models. *arXiv* preprint 2108.07258.
+
+[255] Jiang, S., Sweet, L. B., & Blougouras, G. (2023). Digital twin for water infrastructure: A comprehensive review. *Water Research* [J], 245, 120575.
+
+[256] Riedel, T., Kossida, M., Byström, K., &"; Barthel, R. (2023). Digital twins for water utilities — A review of applications and challenges. *Journal of Water Resources Planning and Management* [J], 149(12), 03123003.
+
+[257] Mullapudi, A., Lewis, M. J., Gruden, C. L., & Kerkez, B. (2022). Deep reinforcement learning for autonomous water system control. *Water Research* [J], 218, 118487.
+
+[258] Balla, K. M., Knudsen, B. R., Totu, L. C., & Imsland, L. (2022). Model predictive control for large-scale district heating systems: A real-life case study. *Energy* [J], 239, 122257.
+
+[259] Chen, X., Wu, Z., Liu, P., Cheng, L., Wang, H., & Huang, K. (2023). Multi-objective optimization of reservoir flood control operation considering dynamic risk. *Journal of Hydrology* [J], 616, 128803.
+
+[260] Maier, H. R., Razavi, S., Kapelan, Z., Matott, L. S., Kasprzyk, J., & Tolson, B. A. (2023). Introductory overview: Optimization using evolutionary computation and other metaheuristics. *Environmental Modelling & Software* [J], 114, 104590.
+
+[261] Xu, D., Zhang, Q., Tong, H., & Wang, H. (2024). Safety-critical control of autonomous systems using control barrier functions: A survey. *Annual Reviews in Control* [J], 57, 100937.
+
+[262] Abreu, J. M., Cabrera, E., Izquierdo, J., & García-Serra, J. (2022). Flow modeling in pressurized systems revisited: Status, advances, and future needs. *Journal of Hydraulic Engineering* [J], 148(3), 03122001.
+
+[263] Zhao, T., Zhao, J., Lei, X., Wang, X., & Wu, B. (2022). Improved dynamic programming for reservoir operation optimization with a concave objective function. *Journal of Water Resources Planning and Management* [J], 148(1), 04021088.
+
+[264] Wei, C. C. (2022). Soft computing techniques in ensemble precipitation nowcast allowing for flash flood early warning. *Water Resources Research* [J], 58(3), e2021WR031624.
+
+[265] Wan, W., Guo, X., Lei, X., Jiang, Y., & Wang, H. (2024). A knowledge-enhanced deep reinforcement learning approach for urban flood management. *Journal of Hydroinformatics* [J], 26(1), 48-65.
+
+[266] Diao, K., Sweetapple, C., Farmani, R., Fu, G., Ward, S., & Butler, D. (2016). Global resilience analysis of water distribution systems. *Water Research* [J], 106, 383-393.
+
+[267] Li, J., Lei, X., Tian, Y., Lv, X., Wang, H., & Jiang, Y. (2023). Research progress on ice period operation safety for long-distance water transfer canals. *南水北调与水利科技* [J], 21(4), 673-685.
+
+[268] Creaco, E., Franchini, M., & Alvisi, S. (2022). Optimal placement of isolation valves in water distribution systems based on valve cost and weighted average demand shortfall. *Water Resources Management* [J], 24(15), 4317-4338.
+
+[269] Tsai, W. P., Feng, D., Jia, X., Shen, C., & Valocchi, A. J. (2021). From calibration to parameter learning: Harnessing the scaling effects of big data in geoscientific modeling. *Nature Communications* [J], 12, 5988.
+
+[270] Gharari, S., Razavi, S., & Clark, M. P. (2023). Improving hydrological model predictions using observations of change. *Water Resources Research* [J], 59(8), e2022WR034264.
+
+[271] Fleming, S. W., Watson, J. R., Ellenson, A., Cannon, A. J., & Gibbons, C. (2021). Machine learning in Earth and environmental science requires better benchmarking. *Nature Geoscience* [J], 14, 785-788.
+
+[272] Lu, D., & Ricciuto, D. (2021). Efficient surrogate modeling methods for large-scale Earth system models based on machine learning techniques. *Geoscientific Model Development* [J], 14(4), 1943-1958.
+
+[273] Shen, C., & Lawson, K. (2021). Applications of deep learning in hydrology. In *Deep Learning for the Earth Sciences* [M], Wiley, pp. 283-297.
+
+[274] O'Gorman, P. A., & Dwyer, J. G. (2023). Using machine learning to parameterize moist convection: Potential for modeling of climate, climate change, and extreme events. *Journal of Advances in Modeling Earth Systems* [J], 10, 2548-2563.
+
+[275] Xiang, Z., Yan, J., & Demir, I. (2022). A rainfall-runoff model with LSTM-based sequence-to-sequence learning. *Water Resources Research* [J], 56, e2019WR025326.
+
+[276] Xu, Y., Hu, C., Wu, Q., Li, Z., Jian, S., & Chen, Y. (2023). Application of temporal fusion transformer for day-ahead PV power forecasting. *Energy* [J], 281, 128218.
+
+[277] Cai, H., Liu, S., Shi, H., Zhou, Z., Jiang, S., & Babovic, V. (2022). Toward improved lumped groundwater level predictions at catchment scale: Mutual integration of water balance mechanism and deep learning method. *Journal of Hydrology* [J], 613, 128495.
+
+[278] Höge, M., Scheidegger, A., Baity-Jesi, M., Albert, C., & Fenicia, F. (2022). Improving hydrologic models for predictions and process understanding using neural ODEs. *Hydrology and Earth System Sciences* [J], 26, 5085-5102.
+
+[279] Kratzert, F., Klotz, D., Hochreiter, S., & Nearing, G. S. (2021). A note on leveraging synergy in multiple meteorological data sets with deep learning for rainfall-runoff modeling. *Hydrology and Earth System Sciences* [J], 25, 2685-2703.
+
+[280] Lees, T., Buechel, M., Anderson, B., Slater, L., Reece, S., Coxon, G., & Dadson, S. J. (2021). Benchmarking data-driven rainfall-runoff models in Great Britain: A comparison of long short-term memory (LSTM)-based models with four lumped conceptual models. *Hydrology and Earth System Sciences* [J], 25, 5517-5534.
+
+[281] Willard, J. D., Jia, X., Xu, S., Steinbach, M., & Kumar, V. (2022). Integrating scientific knowledge with machine learning for engineering and environmental systems. *ACM Computing Surveys* [J], 55(4), 1-37.
+
+[282] Razavi, S. (2021). Deep learning, explained: Fundamentals, explainability, and bridgeability to process-based modelling. *Environmental Modelling & Software* [J], 144, 105159.
+
+[283] Reichstein, M., Camps-Valls, G., Stevens, B., Jung, M., Denzler, J., Carvalhais, N., & Prabhat (2019). Deep learning and process understanding for data-driven Earth system science. *Nature* [J], 566, 195-204.
+
+[284] Gauch, M., Kratzert, F., Klotz, D., Nearing, G., Lin, J., & Hochreiter, S. (2021). Rainfall-runoff prediction at multiple timescales with a single long short-term memory network. *Hydrology and Earth System Sciences* [J], 25, 2045-2062.
+
+[285] Mosavi, A., Shamshirband, S., Salwana, E., Chau, K. W., & Tah, J. H. M. (2021). Prediction of multi-inputs bubble column reactor using a novel hybrid model of computational fluid dynamics and machine learning. *Engineering Applications of Computational Fluid Mechanics* [J], 13(1), 482-492.
