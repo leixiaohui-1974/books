@@ -92,19 +92,19 @@ A horizontal dependency flow diagram of CHS eight principles organized in five l
 
 ---
 
-### 图3-2: 安全包络红黄绿三区示意图（配合§3.5）
-**文件名**: fig_3_2_safety_envelope_zones.png
-
-**提示词**:
-A technical diagram illustrating the safety envelope three-zone concept for water level control. White background. Left portion: a vertical axis labeled "水位 h (m)" with a realistic-looking time-series curve plotted against time axis "t (h)". Three horizontal bands around a target water level line: Green zone (center, light green tint) labeled "绿区 Green: 性能优先" with note "优化算法自由度最大"; Yellow zone (above and below green, light yellow tint) labeled "黄区 Yellow: 保守策略" with note "收缩控制域, 降低目标"; Red zone (outermost, light red tint) labeled "红区 Red: 强制保护" with note "确定性指令, 不经优化". The curve oscillates mostly in the green zone, briefly dips into yellow zone once, showing the system self-correcting back to green. Right portion: a small flowchart showing zone transition logic — "进入黄区 → 切换保守策略 → 恢复绿区" and "进入红区 → 触发联锁保护 → 通知调度员". Red and yellow threshold lines clearly marked with values like "h_max", "h_warn_upper". Clean technical diagram, academic textbook style.
-
----
-
-### 图3-3: CHS四层分布式控制架构图（配合§3.4）
-**文件名**: fig_3_3_four_layer_distributed_architecture.png
+### 图3-2: CHS四层分布式控制架构图（配合§3.4）
+**文件名**: fig_3_2_four_layer_distributed_architecture.png
 
 **提示词**:
 A vertical hierarchy diagram showing the CHS four-layer distributed control architecture. White background, blue gradient color scheme. Four layers stacked bottom to top: Bottom layer (darkest blue) "执行层 L0 Execution" with small icons for individual gates, pumps, valves — right-side label "秒级 | 设备闭环+安全联锁". Second layer (dark blue) "区域层 L1 Regional" with an icon for a canal section controller — label "分钟级 | 局部MPC+约束协调". Third layer (medium blue) "全局层 L2 Global" with an icon for a coordinator — label "小时级 | 跨区域分配+冲突消解". Top layer (light blue) "治理层 L3 Governance" with an icon for human decision-maker — label "日/政策级 | 策略审批+审计闭环". Bidirectional arrows between adjacent layers. Right-side column lists three coordination mechanisms with small connector icons: "① 目标分解与约束传递", "② 信息共享与一致性协议", "③ 冲突裁决与优先级规则". Clean hierarchical diagram, flat design, academic textbook style.
+
+---
+
+### 图3-3: 安全包络红黄绿三区示意图（配合§3.5）
+**文件名**: fig_3_3_safety_envelope_zones.png
+
+**提示词**:
+A technical diagram illustrating the safety envelope three-zone concept for water level control. White background. Left portion: a vertical axis labeled "水位 h (m)" with a realistic-looking time-series curve plotted against time axis "t (h)". Three horizontal bands around a target water level line: Green zone (center, light green tint) labeled "绿区 Green: 性能优先" with note "优化算法自由度最大"; Yellow zone (above and below green, light yellow tint) labeled "黄区 Yellow: 保守策略" with note "收缩控制域, 降低目标"; Red zone (outermost, light red tint) labeled "红区 Red: 强制保护" with note "确定性指令, 不经优化". The curve oscillates mostly in the green zone, briefly dips into yellow zone once, showing the system self-correcting back to green. Right portion: a small flowchart showing zone transition logic — "进入黄区 → 切换保守策略 → 恢复绿区" and "进入红区 → 触发联锁保护 → 通知调度员". Red and yellow threshold lines clearly marked with values like "h_max", "h_warn_upper". Clean technical diagram, academic textbook style.
 
 ---
 
