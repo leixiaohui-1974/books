@@ -217,34 +217,34 @@ Clean flowchart, flat design, no 3D effects. Academic textbook quality. Chinese 
 **文件名**: fig_5_3_four_state_machine.png
 
 **提示词**:
-A state transition diagram showing four operating modes of the HydroOS system. White background with colored state nodes.
+A state transition diagram showing four operating modes of the HydroOS system. White background with colored state nodes. Overall layout approximately 2400×1800px landscape orientation.
 
-Four large rounded rectangle state nodes arranged in a diamond/square layout:
+Four large rounded rectangle state nodes (each approximately 400×250px) arranged in a 2×2 grid with generous spacing:
 
-**Top-left** (green fill, #22AA44): "正常态 Normal" — subtitle: "最优策略 | CAI全功能 | 标准日志". This is the default/initial state (marked with a small black dot entry arrow).
+**Top-left** (green fill #22AA44, white text): "正常态 Normal" — three subtitle lines: "所有变量绿区 | 最优策略运行", "CAI全功能服务", "日志级别: 标准". This is the default/initial state (marked with a small filled black circle and arrow at the top-left corner of this node).
 
-**Top-right** (yellow fill, #DDAA00): "降级态 Degraded" — subtitle: "保守策略 | CAI聚焦故障 | 增强日志".
+**Top-right** (amber fill #DDAA00, dark text): "降级态 Degraded" — subtitles: "部分设备故障或通信中断", "保守策略 + 增大安全裕度 + 禁用故障回路", "CAI聚焦故障诊断 | 日志级别: 增强".
 
-**Bottom-right** (red fill, #CC2222, white text): "应急态 Emergency" — subtitle: "预定义序列 | CAI应急编排 | 全量记录".
+**Bottom-right** (red fill #CC2222, white text): "应急态 Emergency" — subtitles: "关键变量进入红区 / 重大设备故障(如主泵全停)", "预定义应急响应序列", "CAI应急编排+强制通知调度员 | 全量日志记录".
 
-**Bottom-left** (gray fill, #888888, white text): "检修态 Maintenance" — subtitle: "隔离+局部控制 | 维护辅助 | 检修日志".
+**Bottom-left** (gray fill #888888, white text): "检修态 Maintenance" — subtitles: "人工显式触发进入", "被检修设备从控制回路隔离 + 局部策略调整", "恢复上线需简化在环验证(≥MIL) | 检修日志".
 
-Directed arrows between states with trigger conditions:
+Directed transition arrows between states, using curved Bezier paths to avoid crossing. Each arrow has a colored shaft matching the target state and a descriptive label:
 
-- Normal → Degraded: "设备故障/通信部分中断 (自动触发)"
-- Degraded → Normal: "故障排除 + 状态稳定 (自动+确认)"
-- Normal → Emergency: "红区触发/重大故障 (自动)"
-- Degraded → Emergency: "状态恶化/红区 (自动)"
-- Emergency → Normal: "全部变量回绿区 + 人工确认"
-- Emergency → Degraded: "主要风险解除, 仍有次要故障"
-- Normal → Maintenance: "人工显式触发"
-- Maintenance → Normal: "在环验证通过 + 人工确认"
+- Normal → Degraded: amber arrow, label "异常检测自动触发: 部分设备故障/通信中断, 非核心功能受损" (solid line).
+- Degraded → Normal: green dashed arrow, label "故障排除 + 状态连续稳定(如30min无新异常)".
+- Normal → Emergency: red thick arrow, label "红区触发(自动) / 重大设备故障(自动)" (solid line, thicker than others).
+- Degraded → Emergency: red arrow, label "状态持续恶化 / 变量进入红区 (自动升级)".
+- Emergency → Degraded: amber dashed arrow, label "主要风险解除, 仍有次要故障未清".
+- Emergency → Normal: green dotted arrow (longer path, arcing around), label "全部变量回绿区 + 人工确认 (罕见直接跳转)".
+- Normal → Maintenance: gray arrow, label "调度员显式操作'进入检修'" (solid line).
+- Maintenance → Normal: green dashed arrow, label "在环验证通过(≥MIL) + 人工确认上线".
 
-Each arrow has a small label on it with the trigger condition. Arrows use curved paths to avoid crossing.
+**Center of the 2×2 grid**: a small shield icon (#003366) with text "核心原则: 预定义所有模式+转换规则, 避免紧急时临场判断".
 
-A small legend box in the corner: "实线=自动触发, 虚线=需人工确认".
+**Bottom legend bar**: "━ 实线 = 自动触发(无需人工确认) | ┅ 虚线 = 需人工确认 | 箭头颜色 = 目标状态色".
 
-Clean state diagram, UML-style but simplified. Flat design, academic textbook quality. Chinese labels with English subtitles. High resolution.
+Clean state machine diagram, UML-inspired but simplified. Flat design, no 3D effects, no shadows. Academic textbook quality. Chinese labels with English subtitles. High resolution, minimum 2400×1800px.
 
 ---
 
@@ -252,24 +252,26 @@ Clean state diagram, UML-style but simplified. Flat design, academic textbook qu
 **文件名**: fig_5_4_scada_mas_fusion_architecture.png
 
 **提示词**:
-A three-tier overlay architecture diagram showing how HydroOS integrates with existing SCADA systems. White background, blue scheme with clear layer delineation.
+A three-tier overlay architecture diagram showing how HydroOS integrates with existing SCADA systems. White background, blue scheme with clear layer delineation. Overall layout approximately 2800×1800px landscape orientation.
 
 Three horizontal tiers, drawn as wide rounded rectangles stacked vertically with visible overlap/connection:
 
-**Bottom tier** (gray background, representing legacy infrastructure): "既有SCADA层 Existing SCADA Layer (保留)". Inside: a row of icons — RTU, PLC, communication network (radio tower), SCADA server, HMI screen. A prominent label: "40年工程投资 保护既有资产". A thin blue interface bar at the top edge of this tier labeled "OPC UA适配层 OPC UA Gateway" with bidirectional arrows.
+**Bottom tier** (gray background #E8E8E8, border #999999, representing legacy infrastructure): "既有SCADA层 Existing SCADA Layer (保留 Retained)". Inside: a row of five flat icons with labels — (1) RTU icon labeled "远程终端 RTU ×50-200", (2) PLC icon labeled "可编程控制器 PLC ×30-100", (3) radio tower icon labeled "通信网络 (串口/以太网/光纤)", (4) server rack icon labeled "SCADA服务器+数据库", (5) monitor screen icon labeled "HMI操作界面". A prominent italic label at top-right corner: "40年工程投资完整保留 — 硬件/网络/数据/团队". At the top edge of this tier: a narrow orange (#FF8800) interface bar labeled "OPC UA适配层 OPC UA Gateway" with bidirectional blue arrows pointing up. Inside this bar, three small tags: "语义映射: tag平面模型→UDSM对象模型", "吞吐: 3000条/秒@1-2Mbps", "延迟: +50-200ms". This is the key integration point, visually highlighted with a glowing border.
 
-**Middle tier** (medium blue background): "HydroOS智能决策层 HydroOS Intelligent Layer (新增)". Inside left half: "DAL 设备抽象" with UDSM icon + "PAI 物理AI" with MPC/model icons. Inside right half: four small agent icons arranged in a 2×2 grid — "设备智能体 Device Agent (×数百)", "区域智能体 Zone Agent (×5-15)", "协调智能体 Coordinator (×1-3)", "治理智能体 Governance (×1)". A label at the center: "MAS多智能体框架". Connection arrows between DAL/PAI and the agent grid.
+**Middle tier** (medium blue background #D4E8FC, border #0055A4): "HydroOS核心层 HydroOS Core (新增 New)". Inside, split into two sub-blocks side by side:
 
-**Top tier** (light blue background): "认知增强与治理层 Cognitive & Governance Layer (新增)". Inside: "CAI 认知AI引擎" icon, "策略门禁+四态机+审计链" bar, and "Web交互界面" icon showing a dashboard. A human silhouette labeled "调度员 Operator".
+Left sub-block (fill #E0EEFF): "DAL 设备抽象层" with three mini-icons: UDSM semantic model icon, protocol adapter stack (Modbus/IEC 61850), edge protection shield. Right sub-block (fill #E0EEFF): "PAI 物理AI引擎" with four mini-icons: hydro model (wave), state estimator (EKF), MPC controller (horizon graph), safety envelope (three-zone). Below both sub-blocks, a wide dashed box (fill #F0F8FF): "MAS多智能体框架 Multi-Agent System" containing four agent types in a 2×2 grid — "设备智能体 Device Agent (×数百, 请求-应答模式)", "区域智能体 Zone Agent (×5-15, 协商-合同模式)", "协调智能体 Coordinator (×1-3, 事件广播模式)", "治理智能体 Governance (×1, 规则裁决)". Connection arrows between DAL/PAI and the agent grid.
 
-Key annotations on the right side:
-- Arrow from bottom tier to middle: "实时数据 (3000+测点/秒)"
-- Arrow from middle to bottom: "控制指令 (经门禁验证)"
-- A dashed red "回退通道" arrow from middle tier back to bottom: "HydroOS故障 → 回退纯SCADA+人工模式"
+**Top tier** (light blue background #EEF6FF, border #4499CC): "认知增强与治理层 Cognitive & Governance Layer (新增 New)". Inside left: "CAI 认知AI引擎" icon cluster (knowledge graph + 瀚铎LLM + causal diagnosis). Inside center: a red (#CC3333) horizontal bar "策略门禁+四态机+审计链 Runtime Governance". Inside right: "Web增强界面 Enhanced Web UI" showing a dashboard mockup with natural-language chat panel. A human silhouette icon (#003366) to the far right labeled "调度员 Dispatcher" with two arrows: one to the top tier Web UI (labeled "增强界面 New"), one directly down to the bottom tier HMI (labeled "传统界面 Legacy").
 
-Bottom callout: three advantage badges — "低侵入性 Low Intrusion", "渐进式升级 Incremental", "投资保护 Investment Protection".
+Key flow annotations on the sides:
+- Left side, upward thick blue (#0055A4) arrow from bottom to middle: "实时数据上行: 3000+测点, 1s周期".
+- Right side, downward thick orange (#FF6600) arrow from middle to bottom: "控制指令下行: 经门禁四项检查验证".
+- A dashed red (#CC2222) "回退通道 Fallback" arrow arcing from middle tier back to bottom tier, with label: "HydroOS任何层故障 → 立即回退纯SCADA+人工模式, 零停机切换".
 
-Clean layered overlay diagram. Flat design, academic textbook quality. Chinese and English bilingual labels. High resolution, minimum 2400×1600px.
+Bottom callout strip: three advantage badges in rounded pills — "🔒 低侵入性: 不改SCADA核心架构", "📈 渐进式: 先试点一个区段再推广", "💰 投资保护: 新增仅软件+服务器+网关".
+
+Clean layered overlay diagram. Flat design, no 3D effects, no shadows. Academic textbook quality. Chinese and English bilingual labels. High resolution, minimum 2800×1800px.
 
 ---
 
@@ -277,23 +279,23 @@ Clean layered overlay diagram. Flat design, academic textbook quality. Chinese a
 **文件名**: fig_5_5_staged_deployment_wnal.png
 
 **提示词**:
-A horizontal staged deployment roadmap diagram aligned with WNAL autonomy levels. White background, blue gradient scheme.
+A horizontal staged deployment roadmap diagram aligned with WNAL autonomy levels. White background, blue gradient (#B8D4F0 → #0055A4 → #003366) scheme. Overall layout approximately 2800×1600px landscape orientation.
 
 Three main stages arranged left to right as ascending step blocks (staircase style), with a timeline arrow at the bottom:
 
-**Stage 1** (lightest blue block): "阶段一 Phase 1: L1→L2" — timeline "6—12个月". Content inside: "DAL + PAI核心 + 策略门禁 + 审计日志". Below the block, key metrics in a mini table: "人工干预: 基线(100%) → 人工确认全部指令" and "主要目标: 帮人看得更清楚". A small human icon actively operating controls.
+**Stage 1** (lightest blue #B8D4F0, border #6699CC): "阶段一 Phase 1: L1→L2" — top banner "典型周期 6—12个月". Content inside the step face, listed with checkmark icons: "✓ DAL设备注册+UDSM建模", "✓ PAI核心(降阶模型+状态估计+基础MPC)", "✓ 策略门禁(四项检查)", "✓ 审计日志(基础)". Below the block, three metric badges in rounded pills: "人工干预: 基线100%(全部需人工确认)" (gray pill), "平均响应: 10-15min(人工模式)" (gray pill), "新增投资: SCADA投资的15-25%" (blue pill). A human figure icon prominently inside the control loop, labeled "人=执行者 Human-in-the-Loop | 机=辅助决策".
 
-**Stage 2** (medium blue block, taller): "阶段二 Phase 2: L2→L3" — timeline "12—24个月". Content: "MPC自动控制 + 完整四态机 + CAI基础(诊断+解释)". Key metrics: "人工干预降低60-70%, 响应30-60s". A red dashed line at the boundary between Stage 1 and 2 labeled "关键跃迁: 责任移交 Critical Transition". Human icon now in supervisory position above.
+**Stage 2** (medium blue #4488BB, border #0055A4, taller step): "阶段二 Phase 2: L2→L3" — top banner "典型周期 12—24个月". Content additions (with "+" prefix): "+ MPC自动控制(常规工况自主执行)", "+ 完整四态机(四状态+全部转换规则)", "+ CAI基础功能(因果诊断+策略解释)". Metric badges: "人工干预: 降低60%-70%" (green pill), "平均响应: 30-60s(半自动)" (green pill), "累计新增: +20-30%" (blue pill). A bold red (#CC2222) dashed vertical line at the left boundary of this stage, with a prominent label: "⚠ 关键跃迁: 责任移交分水岭 — 在环验证从'推荐'升为'强制' — 从此系统承担实质性自主决策权". Human figure moves to supervisory position above the loop, labeled "人=监督者 Human-on-the-Loop | 机=执行者".
 
-**Stage 3** (darkest blue block, tallest): "阶段三 Phase 3: L3→L4" — timeline "24—36个月". Content: "CAI全功能 + MAS + 灰度发布 + 自主演进". Key metrics: "人工干预降低>90%, 响应<30s". Human icon far above, setting policy only.
+**Stage 3** (darkest blue #003366, white text, tallest step): "阶段三 Phase 3: L3→L4" — top banner "典型周期 24—36个月". Content additions: "+ CAI全功能(协同编排+知识图谱完整部署)", "+ MAS智能体框架(四类Agent协同)", "+ 灰度发布机制 + 自主演进三重闭环(数据/模型/策略)". Metric badges: "人工干预: 降低>90%" (bright green pill), "平均响应: <30s(全自动)" (bright green pill), "累计新增: +15-25%" (blue pill). Human figure far above, connected by thin policy line, labeled "人=策略制定者 Human-out-of-the-Loop | 机=自主运行".
 
-Below the three stages, a horizontal bar showing cumulative investment: "SCADA投资15-25% → +20-30% → +15-25%".
+**Bottom horizontal arrow** (spanning all three stages): left label "技术+治理成熟度 →" with small milestones "模型标定完成", "SIL/HIL验证通过", "连续达标运行".
 
-Right side: a vertical bar showing corresponding WNAL levels L1 through L4, with arrows connecting each stage to its target level.
+**Bottom row** below the stages: a table strip showing three night-operation metrics: "夜间控制能力: L1→L2 严重退化 | L2→L3 不退化 | L3→L4 不退化" — highlighting that autonomous operation eliminates the human fatigue bottleneck.
 
-A callout at the top: "每阶段升级须通过WNAL准入评估 (第四章)" with a gate icon.
+**Top right callout box** (fill #FFFFF0, red border): "每阶段升级须通过WNAL等级准入评估(第四章): 技术门槛+验证门槛+治理门槛+运行门槛 四重门槛全部满足" with a gate icon.
 
-Clean staged roadmap diagram. Flat design, academic textbook style. Chinese and English labels. High resolution.
+Clean staircase/timeline diagram. Flat design, no 3D effects. Academic textbook quality. Chinese and English bilingual labels. High resolution, minimum 2800×1600px.
 
 ---
 
@@ -301,28 +303,43 @@ Clean staged roadmap diagram. Flat design, academic textbook style. Chinese and 
 **文件名**: fig_5_6_pai_cai_collaboration_workflow.png
 
 **提示词**:
-A horizontal four-phase workflow diagram showing PAI-CAI collaboration during a water level anomaly event. White background, blue scheme with phase-colored sections.
+A horizontal four-phase swimlane workflow diagram showing PAI-CAI collaboration during a water level anomaly event. White background, blue scheme with phase-colored sections. Overall layout approximately 3000×1800px landscape orientation.
 
-A horizontal swimlane diagram with three lanes (rows) and four phase columns:
+**Three horizontal swimlanes** (rows), each with a left-side label column (width ~120px) and colored background:
 
-**Three swimlanes** (top to bottom):
-- Top lane (light blue): "CAI 认知AI引擎"
-- Middle lane (medium blue): "PAI 物理AI引擎"
-- Bottom lane (dark blue): "DAL 设备抽象层"
+- Top lane (light blue fill #EEF6FF, border #4499CC): "CAI 认知AI引擎" with a brain/network icon.
+- Middle lane (medium blue fill #D4E8FC, border #0055A4): "PAI 物理AI引擎" with a wave/equation icon.
+- Bottom lane (dark blue fill #B8D4F0, border #003366): "DAL 设备抽象层" with a device/sensor icon.
 
-**Four phase columns** (left to right), each with a colored header band:
+**Four phase columns** (left to right), each with a colored header band spanning all three lanes:
 
-**Phase 1** (green header): "感知与检测 Detect | 14:00-14:02". In DAL lane: "数据质控: 多源交叉验证 → 确认非传感器故障". In PAI lane: "状态估计: 水位4.25m, 上升0.5cm/min → 预测25min后入黄区". Arrow from PAI upward to CAI: "趋势预警信号".
+**Phase 1** (green header #22AA44, text white): "阶段一: 感知与检测 Sensing & Detection | 14:00—14:02 (2min)".
+- DAL lane: rounded box "数据质控 Data QC" with annotation "L3多源交叉验证: 超声波传感器≈雷达传感器读数一致 → 确认水位上升为真实工况, 非传感器故障". Arrow up to PAI.
+- PAI lane: rounded box "状态估计 State Estimation" with annotation "当前水位4.25m | 上升速率0.5cm/min | EKF融合后精度±2cm | 按趋势预测: 25min后进入黄区(4.38m)". Output: thick upward arrow to CAI labeled "趋势预警信号 + MPC预测轨迹".
+- CAI lane: small waiting icon (clock) — CAI尚未激活.
 
-**Phase 2** (yellow header): "诊断与解释 Diagnose | 14:02-14:03". In CAI lane (main activity): three sequential action boxes — "(1) 知识图谱查询: 上游闸门13:55调整30%→45%" → "(2) 水力模型验证: 流量+18%, 传播7min, 时间吻合" → "(3) 下游检查: B泵站2号机停机, 出流-12%". Output: "根因报告: 上游增流+下游减排, 置信度92%". Arrow from CAI downward to PAI: "诊断结果+边界条件更新".
+**Phase 2** (amber header #DDAA00, text dark): "阶段二: 诊断与解释 Diagnosis & Explanation | 14:02—14:03 (1min)".
+- CAI lane (primary activity, large box): three sequential steps connected by small arrows: "(1) 知识图谱查询 KG Query" annotation "发现: 上游2号闸门13:55开度调整30%→45%" → "(2) 调用PAI水力模型验证" annotation "计算: 闸门调整→流量增幅18%, 水波传播至3号渠池需7min, 与观测14:02上升起始时间吻合" → "(3) 下游状态检查" annotation "发现: B泵站2号机组14:02自动停机(轴承温度报警), 出流减少12%". Final output box (amber fill): "综合诊断: '上游增流+下游减排'双重叠加 → 根因确认, 置信度92%". Arrow down to PAI: "诊断结果 + 更新的边界条件".
+- PAI lane: dashed box "模型被调用(验证)" — CAI调用PAI水力模型进行因果验证.
+- DAL lane: dashed box "持续数据采集" — 背景运行.
 
-**Phase 3** (orange header): "策略生成 Optimize | 14:03-14:04". In PAI lane: "MPC重新求解 → 方案: ①2号闸32% ②启B泵3号 ③4号闸28%". Below PAI, a red gate icon: "策略门禁四项检查 → 全部通过 ✓". Arrow down to DAL: "验证后指令".
+**Phase 3** (orange header #FF8800, text white): "阶段三: 策略生成与安全检查 Strategy Generation & Safety Check | 14:03—14:04 (1min)".
+- PAI lane (primary activity): rounded box "MPC重新求解 Re-optimize" with annotation "更新边界: 上游入流+18%, 下游出流-12%. 输出控制方案: ① 2号闸门开度45%→32%(限速2%/min) ② 启动B泵站3号备用机组 ③ 4号闸门20%→28%分流". Arrow down to a red (#CC2222) checkpoint barrier icon spanning PAI-DAL boundary: "策略门禁 Policy Gate" with four green checkmarks in a row: "安全包络✓ 操作约束✓ 权限✓ 一致性✓ → 放行". Arrow from gate to DAL: "验证后控制指令".
+- CAI lane: small box "等待门禁结果".
+- DAL lane: small box "准备接收指令".
 
-**Phase 4** (blue header): "执行与反馈 Execute | 14:04-14:30". In DAL lane: "指令翻译 → PLC下发 → 执行确认". In PAI lane: "持续监控: 14:15峰值4.38m → 14:30回落至4.20m ✓". In CAI lane: "生成事件总结报告 → 推送调度员 → 建议联动预警规则". A small audit log icon spanning all lanes at the right edge: "审计日志完整记录".
+**Phase 4** (blue header #0055A4, text white): "阶段四: 执行与反馈 Execution & Feedback | 14:04—14:30 (26min)".
+- DAL lane: rounded box "指令执行 Command Execution" with annotation "指令翻译: UDSM→PLC本地协议格式 → 下发执行 → 返回执行确认ACK". Arrow up to PAI.
+- PAI lane: rounded box "效果监控 Performance Monitoring" with a small embedded curve chart showing water level: peak at 14:15 (4.38m) then declining to 4.20m at 14:30. Annotation: "14:15达峰值4.38m → 持续回落 → 14:30回到4.20m进入稳态 ✓ 事件解除". Arrow up to CAI.
+- CAI lane: rounded box "事件总结 Event Summary" with annotation "生成处置报告推送调度员: 时间线 + 根因分析 + 处置措施 + 效果评估 + 优化建议(设置2号闸门大幅调整时的联动预警规则)".
 
-A timeline bar at the very bottom: markers at 14:00, 14:02, 14:03, 14:04, 14:15, 14:30. Total handling: "全流程约30分钟 (人工模式需60-90分钟)".
+**Right edge** (spanning all four phases): a vertical dark strip labeled "审计链 Audit Trail" with a chain-link icon (#003366), note: "全过程完整记录: 每个阶段的输入/输出/时间戳/决策依据".
 
-Clean swimlane workflow diagram. Flat design, academic textbook quality. Chinese labels with English phase names. High resolution, minimum 2800×1600px.
+**Timeline bar** at very bottom: a horizontal axis with labeled time markers at 14:00, 14:02, 14:03, 14:04, 14:15, 14:30, connected by a gradient line from green (start) to blue (end).
+
+**Bottom summary strip** (fill #F8F8F0, border #CCCCCC): "全流程30分钟 (传统人工模式: 10-15min仅完成诊断协调, 30-60min完成恢复) | 核心优势: 数据可信(DAL) + 控制精确(PAI) + 决策可解释(CAI)".
+
+Clean swimlane workflow diagram. Flat design, no 3D effects, no shadows. Academic textbook quality. Chinese labels with English phase names. High resolution, minimum 3000×1800px.
 
 ---
 
