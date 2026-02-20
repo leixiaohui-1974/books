@@ -489,7 +489,17 @@ Clean roadmap/staircase diagram. Flat design. Academic textbook quality. Chinese
 **文件名**: fig_7_1_ten_year_roadmap_talent.png
 
 **提示词**:
-A timeline roadmap diagram for CHS talent and discipline development from 2026 to 2035. White background, blue gradient. Three phases along a horizontal timeline: Phase I (2026-2028, light blue) "先导与试点 Pilot", Phase II (2029-2031, medium blue) "规模化与认证 Scale & Certification", Phase III (2032-2035, dark blue) "生态化与国际协同 Ecosystem & Global Collaboration". Four horizontal swim lanes below the timeline: "课程 Curriculum", "平台 Platform", "标准化 Standards", "产业协同 Industry". Milestone markers in each lane at each phase. Clean Gantt-chart-like timeline, academic textbook quality, Chinese labels.
+A timeline roadmap diagram for CHS talent and discipline development from 2026 to 2035. White background, landscape orientation (2800×1600px). Three phases along a horizontal timeline:
+
+**Phase I (2026-2028, fill #E3F2FD)**: "先导与试点 Pilot" — milestones: "核心教材出版", "首个教学沙盘", "术语词典v1.0", "首个产学研实验室". 
+
+**Phase II (2029-2031, fill #FFF3E0)**: "规模化与认证 Scale & Certification" — milestones: "10-15所高校开课", "认证体系建立", "区域数字孪生平台", "继续教育500人".
+
+**Phase III (2032-2035, fill #E8F5E9)**: "生态化与国际协同 Ecosystem & Global" — milestones: "ISO/IAHR标准", "学科工具箱输出", "WNAL L3+工程30-50个", "正循环形成".
+
+Four horizontal swim lanes below the timeline: "课程 Curriculum", "平台 Platform", "标准化 Standards", "产业协同 Industry". Each lane has milestone markers per phase.
+
+Clean Gantt-chart-like timeline. Academic textbook quality. Chinese+English labels. Minimum 2800×1600px.
 
 ---
 
@@ -497,7 +507,95 @@ A timeline roadmap diagram for CHS talent and discipline development from 2026 t
 **文件名**: fig_7_2_four_pillar_curriculum.png
 
 **提示词**:
-A structural diagram showing the four-pillar curriculum system for CHS education. White background, blue scheme. Four pillars (vertical columns) standing on a common base: Pillar A "水系统建模与控制 Modeling & Control" (courses: hydrodynamics, system identification, MPC); Pillar B "智能算法与认知增强 AI & Cognition" (courses: ML, RL, PINN, cognitive AI); Pillar C "系统工程与软件平台 System Engineering" (courses: SCADA+MAS, microservices, in-loop testing); Pillar D "运行治理与行业规范 Governance & Standards" (courses: risk management, cybersecurity, regulation). A roof/beam across all four pillars labeled "CHS复合型人才 CHS Compound Talent". Base labeled "工程实践平台 Engineering Practice Platform". Clean architectural pillar diagram, academic style.
+A structural diagram showing the four-pillar curriculum system for CHS education. White background, portrait orientation (1800×2200px).
+
+Four pillars (vertical columns) standing on a common base, supporting a roof beam:
+
+**Pillar A (fill #E3F2FD)**: "水系统建模与控制 Modeling & Control" — courses stacked: "A1 水动力学建模", "A2 系统辨识与参数估计", "A3 状态估计与故障诊断".
+
+**Pillar B (fill #FFF3E0)**: "智能算法与认知增强 AI & Cognition" — courses: "B1 约束优化与MPC", "B2 ML与物理信息融合", "B3 认知AI与人机协作".
+
+**Pillar C (fill #E8F5E9)**: "系统工程与软件平台 System Engineering" — courses: "C1 SCADA+MAS融合架构", "C2 实时数据工程", "C3 在环测试工程".
+
+**Pillar D (fill #F3E5F5)**: "运行治理与行业规范 Governance & Standards" — courses: "D1 运行风险管理", "D2 网络安全与韧性", "D3 标准合规与审计".
+
+**Roof beam**: "X1 跨支柱综合设计 Integrated Capstone Design" spanning all four pillars.
+
+**Base**: "工程实践平台 Engineering Practice Platform (教学沙盘 + 数字孪生 + 现场试点)".
+
+Left side annotation: "512学时/32学分 (硕士全套)". Right side: "176学时/11学分 (本科入门)".
+
+Clean architectural pillar diagram. Academic textbook quality. Chinese+English labels. Minimum 1800×2200px.
+
+---
+
+### 图7-3: 三级实践平台递进关系图
+**文件名**: fig_7_3_three_tier_practice_platform.png
+
+**提示词**:
+A progressive three-tier practice platform diagram. White background, landscape orientation (2400×1400px).
+
+Three platforms arranged left-to-right with ascending arrows showing progression:
+
+**Tier 1 (left, fill #E3F2FD)**: "教学沙盘 Teaching Sandbox" — icon: small physical canal model. Key features: "小型实物 5-10m", "分钟级实验", "风险极低", "投资30-50万". Target: "本科/入门". Core value: "建立直觉".
+
+**Tier 2 (center, fill #FFF3E0)**: "数字孪生平台 Digital Twin" — icon: computer screen with simulation. Key features: "全尺度仿真", "实时或加速", "零风险", "投资100-300万". Target: "硕士/高级培训". Core value: "工程级验证".
+
+**Tier 3 (right, fill #E8F5E9)**: "现场试点 Field Pilot" — icon: real canal/dam. Key features: "真实工程", "实时", "中等风险(有安全保障)", "依托现有工程". Target: "博士/工程师". Core value: "体会模型-现实差距".
+
+Between tiers: forward arrows labeled "能力递进 Capability Progression". Below each tier: MIL/SIL/HIL correspondence indicators.
+
+Bottom annotation: "三级贯通后: 直觉→验证→真实经验 的完整实训闭环".
+
+Clean progressive diagram. Academic textbook quality. Chinese+English labels. Minimum 2400×1400px.
+
+---
+
+### 图7-4: 90天启动计划甘特图
+**文件名**: fig_7_4_90_day_launch_plan.png
+
+**提示词**:
+A Gantt chart showing the 90-day CHS capability launch plan. White background, landscape orientation (2400×1200px).
+
+Horizontal timeline: Day 1 to Day 90, divided into three phases:
+
+**Phase 1 (Day 1-30, fill #E3F2FD)**: "统一语言 Align Language" — 3 task bars: "CHS核心概念学习", "责任人明确", "跨岗位周例会建立". Milestone diamond: "✓ 每人能2句话描述WNAL/ODD".
+
+**Phase 2 (Day 31-60, fill #FFF3E0)**: "打通流程 Build Process" — 3 task bars: "2个异常场景联调", "策略变更→验证→发布流程", "岗位能力矩阵v1.0". Milestone: "✓ 完整异常处置闭环演练".
+
+**Phase 3 (Day 61-90, fill #E8F5E9)**: "形成闭环 Close Loop" — 3 task bars: "全流程在环演练", "复盘报告+整改清单", "指标纳入季度考核". Milestone: "✓ 诚实复盘报告发布".
+
+Bottom: "下一个90天计划 Next 90-Day Plan →" arrow pointing right.
+
+Clean Gantt chart. Academic textbook quality. Chinese+English labels. Minimum 2400×1200px.
+
+---
+
+### 图7-5: CHS学科建设全景图
+**文件名**: fig_7_5_chs_discipline_panorama.png
+
+**提示词**:
+A panoramic overview diagram of CHS discipline construction. White background, landscape orientation (2800×1800px).
+
+Central hub: "CHS学科建设 Discipline Building" in a large circle.
+
+Six satellite nodes connected to the hub by thick lines:
+
+1. (top-left, fill #E3F2FD): "四类能力 4 Competencies" — sub-items: A水工机理, B控制优化, C智能软件, D治理安全.
+
+2. (top-right, fill #FFF3E0): "四支柱课程 4-Pillar Curriculum" — sub-items: 12门核心课+1综合设计.
+
+3. (middle-left, fill #E8F5E9): "三层路径 3-Tier Pathway" — sub-items: 本科认知, 硕士方法, 继续教育岗位升级.
+
+4. (middle-right, fill #F3E5F5): "三级平台 3-Level Platform" — sub-items: 教学沙盘, 数字孪生, 现场试点.
+
+5. (bottom-left, fill #FFECB3): "三共同体 3 Communities" — sub-items: 学术, 教材, 产业.
+
+6. (bottom-right, fill #F8BBD0): "十年路线图 10-Year Roadmap" — sub-items: 先导→规模化→生态化.
+
+Outer ring annotation: "目标: 可复制的人才标准 + 课程体系 + 实践平台 + 评价机制".
+
+Clean mind-map/hub-spoke diagram. Academic textbook quality. Chinese+English labels. Minimum 2800×1800px.
 
 ---
 
@@ -529,6 +627,6 @@ A concept map showing the relationships between all core CHS concepts as a summa
 | Ch4 | 3 | 4-1, 4-2, 4-3 |
 | Ch5 | 6 | 5-1, 5-2, 5-3, 5-4, 5-5, 5-6 |
 | Ch6 | 7 | 6-1, 6-2, 6-3, 6-4, 6-5, 6-6, 6-7 |
-| Ch7 | 2 | 7-1, 7-2 |
+| Ch7 | 5 | 7-1, 7-2, 7-3, 7-4, 7-5 |
 | Ch8 | 2 | 8-1, 8-2 |
-| **合计** | **35** | |
+| **合计** | **38** | |
