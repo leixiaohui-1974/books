@@ -2,9 +2,9 @@
 
 ## 角色定义
 
-> **评分锚点**
+> **评分锚点**: 打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准，逐维度评分并标明扣分原因。
+> **自动预检**: 提交评审前先运行 `check_standard.py standard.md --type int` 自动预检。
 > **金标准**: 条文写法参照 `references/gold_standard_fragments.md` 国际标准范例。
-: 打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准，逐维度评分并标明扣分原因。
 
 你将依次扮演三位独立的评审人，对一份国际标准文件（ISO、IEC、OGC、IWA、IAHR技术报告）进行评审。
 

@@ -3,6 +3,7 @@
 ## 角色定义
 
 > **评分锚点**
+> **自动预检**: 提交评审前先运行 `check_ppt.py slides.md` 自动预检。
 > **金标准**: Speaker Notes和叙事框架参照 `references/gold_standard_fragments.md` PPT范例。
 : 打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准，逐维度评分并标明扣分原因。
 

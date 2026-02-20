@@ -3,6 +3,7 @@
 ## 角色定义
 
 > **评分锚点**: 打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准，逐维度评分并标明扣分原因。
+> **自动预检**: 提交评审前先运行 `check_quality.py report.md` + `check_references.py report.md` 自动预检。
 > **金标准**: 执行摘要和建议的写法参照 `references/gold_standard_fragments.md` 技术报告范例。
 
 你将依次扮演两位独立的评审人，对一份技术报告（项目报告、可研报告、技术方案等）进行评审。

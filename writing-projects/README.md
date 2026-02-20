@@ -38,6 +38,7 @@ writing-projects/
 │   │   ├── workflow.md                # 工作流程参考（含九文体速查表）
 │   │   └── ppt_style_guide.md         # PPT风格指南（配色/字体/排版/素材）
 │   └── scripts/
+│       ├── run_checks.py              # 统一质量检查调度器（自动识别文体+运行所有检查）
 │       ├── check_article.py           # 公众号文章自动质量检查（12项）
 │       └── check_readability.py       # BK专著可读性自动检查（8项）
 ```
@@ -71,6 +72,11 @@ claude
 ## 特殊工具
 
 ```bash
+# 统一质量检查调度器（推荐，自动运行所有适用检查）
+python3 scripts/run_checks.py document.md --type sci    # SCI论文
+python3 scripts/run_checks.py document.md --type bk     # BK专著
+python3 scripts/run_checks.py document.md               # 自动检测类型
+
 # 公众号文章自动质量检查
 python3 scripts/check_article.py article.md
 
@@ -83,6 +89,7 @@ node create_ppt.js
 
 ## 版本记录
 
+- v3.6 (2026-02-20): **统一调度器+批量策略**——run_checks.py统一质量调度(9文体自动识别+按序运行)+§12批量写作增强(CHS论文矩阵+依赖图+批量预检)+STD reviewer格式修复+实战项目配置示例
 - v3.5 (2026-02-20): **可读性引擎**——§5长文档L1-L4四级策略+BK四角色评审升级(国际读者常驻)+可读性专项检查(段落/术语/速览框)+check_readability.py脚本+WNAL→WSAL术语修正
 - v3.4 (2026-02-19): 参考文献体系——引用格式规范+自动检查脚本+真实性验证+一票否决规则
 - v3.3 (2026-02-19): 写作质量引擎——写作技法指南+金标准范文片段+Agent诊断模式增强

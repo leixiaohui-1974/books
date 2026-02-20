@@ -235,9 +235,17 @@ git push
 - 按文体模板完成全文
 - ⚠️ **参考文献铁律**：每一条参考文献必须真实可查，格式必须规范。**绝不编造**。不确定的文献标注`⚠️ 待核实`。
 
-**步骤2.5：参考文献验证关卡**（初稿完成后立即执行，不可跳过）
-- 运行 `scripts/check_references.py <文件> --type [类型]`
-- 用 web_search 验证参考文献真实性（按SKILL.md §4.1步骤6.5的文体差异化比例：SCI/CN≥50%，BK/RPT≥30%，PAT/STD=100%）
+**步骤2.5：自动预检关卡**（初稿完成后立即执行，不可跳过）
+- **推荐**：`run_checks.py <文件> --type [文体]`（自动运行所有适用检查）
+- 也可手动运行文体专属脚本：
+  - SCI/CN: `check_paper.py <文件> --type sci|cn`
+  - PAT: `check_patent.py <文件>`
+  - BK: `check_readability.py <文件>`
+  - WX: `check_article.py <文件>`
+  - PPT: `check_ppt.py <文件>`
+  - STD: `check_standard.py <文件>`
+- 运行通用脚本: `check_references.py <文件> --type [类型]`
+- 用 web_search 验证参考文献真实性（SCI/CN≥50%，BK/RPT≥30%，PAT/STD=100%）
 - 🔴项清零后方可进入评审——**发现编造文献则整篇打回重写**
 - 保存为 `draft_v01.md`
 - `git commit -m "[draft] 文档编号 v01"` + `git push`

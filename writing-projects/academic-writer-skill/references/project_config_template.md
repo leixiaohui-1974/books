@@ -206,3 +206,61 @@ documents:
 ```
 
 其余字段均可在讨论模式中由Claude与用户共同确定。
+
+---
+
+## 快速配置示例（实战场景）
+
+### BK专著最小配置
+
+```yaml
+documents:
+  - id: "BK-T1"
+    type: "BK"
+    title: "水系统控制论导论"
+    subtitle: "Introduction to Cybernetics of Hydro Systems"
+    language: "zh-CN"       # 双语标题，中文正文
+    structure:
+      parts: 4              # 第一部分:理论 第二部分:技术 第三部分:实践 第四部分:展望
+      format: "modules"     # 模块化写作（§5 L3/L4级别）
+    quality:
+      readability_check: true
+      min_score: 8.0
+      reviewer_roles: ["教师", "专家", "工程师", "国际读者"]
+    references:
+      min_total: 200
+      recent_5yr_pct: 35
+      english_pct: 50
+      self_cite_max_pct: 15
+```
+
+### SCI+CN+PAT批量配置
+
+```yaml
+project:
+  name: "CHS-DMPC方法论"
+  batch_strategy: "sequential"  # Batch1→2→3
+
+documents:
+  - id: "SCI-P2a"
+    type: "SCI"
+    title: "Distributed MPC for Open-Channel Networks"
+    target_journal: "Water Resources Research"
+    batch: 1
+    innovation: ["DMPC框架", "分布式一致性证明"]
+
+  - id: "CN-C2"
+    type: "CN"
+    title: "基于DMPC的渠系水位协调控制"
+    target_journal: "水利学报"
+    batch: 2
+    depends_on: ["SCI-P2a"]
+    innovation: ["中文工程化表述", "国内灌区适配"]
+
+  - id: "PAT-PF2"
+    type: "PAT"
+    title: "一种分布式模型预测控制的明渠调控方法"
+    batch: 2
+    depends_on: ["SCI-P2a"]
+    innovation: ["控制参数在线整定", "通信中断应急切换"]
+```

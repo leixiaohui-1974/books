@@ -3,6 +3,7 @@
 ## 角色定义
 
 > **评分锚点**
+> **自动预检**: 提交评审前先运行 `check_article.py article.md` 自动预检（12项）。
 > **金标准**: 开头、节奏和语言风格参照 `references/gold_standard_fragments.md` 公众号范例。
 : 打分时须参照 `references/scoring_rubrics.md` 中的量化锚点标准，逐维度评分并标明扣分原因。
 

@@ -627,7 +627,7 @@ docs/
 步骤9: 输出："✅ [文档编号] 已完成，输入'继续'进入下一个"
 ```
 
-> **自动质量检查**：统一调度器 `scripts/check_quality.py <文件> [--type 类型]` 可自动检测文档类型并分发至对应检查脚本。
+> **统一质量调度器**：`scripts/run_checks.py <文件> --type [类型]` 自动按顺序运行所有适用检查（通用质量→参考文献→文体专属），🔴=0方可进入评审。
 > 
 > **文体特殊步骤**：
 > - **WX**: 步骤6后运行 `scripts/check_article.py`（14项检查），🔴项清零后方可评审。
@@ -1273,13 +1273,47 @@ Batch 3: 实验验证文档（依赖Batch 1+2）
 Batch 4: 工程应用文档（依赖Batch 1+2+3）
 ```
 
-### 12.2 全局审计
+### 12.2 依赖图示例（CHS论文矩阵）
+
+以25篇论文的水系统控制论学术矩阵为例：
+
+```
+     Batch 1 (基础理论)          Batch 2 (方法论)         Batch 3 (验证)          Batch 4 (应用)
+     ──────────────────     ──────────────────      ──────────────────     ──────────────────
+     SCI-P1a: IDZ建模         SCI-P2a: DMPC框架       SCI-P3a: 中线验证      BK-ch05: 案例章节
+         ↓                      ↓                      ↓                     ↓
+     SCI-P1b: 参数辨识         SCI-P2b: MAS架构        SCI-P3b: 胶东验证      RPT-01: 项目报告
+         ↓                      ↓                      ↓                     ↓
+     CN-C1: 综述论文           PAT-PF2: 控制专利       SCI-P3c: 对比实验      STD-CN: 行业标准
+```
+
+**批次间规则**：
+- Batch N+1的文档可引用Batch N的已完成文档
+- 同批次内文档的创新点重叠度 ≤ 30%
+- 跨批次的术语定义必须一致（运行 `check_consistency.py`）
+
+### 12.3 批量预检协议
+
+```bash
+# 单文档检查
+python3 scripts/run_checks.py paper.md --type sci
+
+# 批次完成后跨文档检查
+python3 scripts/check_consistency.py ./batch1_outputs/
+
+# 全局审计（所有批次完成后）
+for f in outputs/*.md; do python3 scripts/run_checks.py "$f"; done
+python3 scripts/check_consistency.py ./outputs/
+```
+
+### 12.4 全局审计清单
 
 每个批次完成后执行：
-1. 跨文档一致性检查（§6）
+1. 跨文档一致性检查（§7 CONS-01~10）
 2. 创新点重叠度检查（不同文档创新点不应超过30%重叠）
-3. 引用网络完整性检查
-4. 术语一致性检查（§5）
+3. 引用网络完整性检查（A引用B → B必须已完成或标记为"待发表"）
+4. 自引率汇总（全矩阵自引率应在合理范围内）
+5. 术语一致性检查（§6 术语表全量匹配）
 
 ---
 

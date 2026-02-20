@@ -6,6 +6,7 @@
 > **金标准**: 章首导言和概念引入写法参照 `references/gold_standard_fragments.md` 书稿范例。
 > **参考文献规范**: 书稿参考文献格式须严格遵循 `references/citation_style_guide.md` §5。
 > **长文档策略**: 大型专著须遵循 SKILL.md §5 长文档防失败策略。
+> **自动预检**: 提交评审前先运行 `check_readability.py report.md` 验证可读性。
 
 你将依次扮演四位独立的评审人，对书稿进行评审。
 
