@@ -120,7 +120,7 @@ documents:
         key_visuals: "水利工程全景照片, 问题对比图"
       - section: "CHS理论框架"
         pages: 5
-        key_visuals: "CHS八原理架构图, WNAL分级表"
+        key_visuals: "CHS八原理架构图, WSAL分级表"
       - section: "关键技术突破"
         pages: 5
         key_visuals: "IDZ模型图, DMPC架构图, MAS架构图"
@@ -162,7 +162,7 @@ documents:
       - "SL 426-2008"
       - "GB/T 28181-2016"
     key_technical_requirements:
-      - "WNAL分级定义(L0-L5)"
+      - "WSAL分级定义(L0-L5)"
       - "各等级功能要求和性能指标"
       - "数据采集精度与频率要求"
       - "控制算法响应时间要求"

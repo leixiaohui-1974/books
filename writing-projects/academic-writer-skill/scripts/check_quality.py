@@ -158,7 +158,7 @@ def run_general_check(filepath, doc_type):
     chs_terms = {
         'CHS': ['Cybernetics of Hydro Systems', '水系统控制论'],
         'HydroOS': ['Hydraulic Network Operating System', '水网操作系统'],
-        'WNAL': ['Water Network Autonomy Level', '水网自主运行等级'],
+        'WSAL': ['Water-network Self-driving Autonomy Level', '水网自主运行等级'],
         'ODD': ['Operational Design Domain', '运行设计域'],
         'IDZ': ['Integrator Delay Zero', '积分延迟零'],
     }

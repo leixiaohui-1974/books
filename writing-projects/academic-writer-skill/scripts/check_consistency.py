@@ -24,9 +24,9 @@ CONS_RULES = {
         'extract_pattern': r'((?:八|8|eight)\s*(?:原理|principles|大原理).*?(?:\n\n|\Z))',
     },
     'CONS-02': {
-        'name': 'WNAL(L0-L5)定义',
-        'keywords': ['WNAL', 'L0', 'L1', 'L2', 'L3', 'L4', 'L5', '自主运行等级', 'autonomy level'],
-        'extract_pattern': r'((?:WNAL|水网自主运行等级|Water Network Autonomy Level).*?(?:L5|Level\s*5).*?(?:\n\n|\Z))',
+        'name': 'WSAL(L0-L5)定义',
+        'keywords': ['WSAL', 'L0', 'L1', 'L2', 'L3', 'L4', 'L5', '自主运行等级', 'autonomy level'],
+        'extract_pattern': r'((?:WSAL|水网自主运行等级|Water-network Self-driving Autonomy Level).*?(?:L5|Level\s*5).*?(?:\n\n|\Z))',
     },
     'CONS-03': {
         'name': 'Saint-Venant方程离散化表述',
@@ -65,7 +65,7 @@ CONS_RULES = {
     },
     'CONS-10': {
         'name': '§5.1术语表中英对照',
-        'keywords': ['CHS', 'HydroOS', 'WNAL', 'IDZ', 'DMPC', 'MAS'],
+        'keywords': ['CHS', 'HydroOS', 'WSAL', 'IDZ', 'DMPC', 'MAS'],
         'check_type': 'terminology',  # 特殊处理：检查术语全称是否一致
     },
 }
@@ -74,7 +74,7 @@ CONS_RULES = {
 STANDARD_TERMS = {
     'CHS': 'Cybernetics of Hydro Systems',
     'HydroOS': 'Hydraulic Network Operating System',
-    'WNAL': 'Water Network Autonomy Level',
+    'WSAL': 'Water-network Self-driving Autonomy Level',
     'ODD': 'Operational Design Domain',
     'IDZ': 'Integrator Delay Zero',
     'DMPC': 'Distributed Model Predictive Control',

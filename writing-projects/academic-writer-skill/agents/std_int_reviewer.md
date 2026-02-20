@@ -27,7 +27,7 @@
 10. 文件阶段标识是否正确？（WD/CD/DIS/FDIS/IS）
 
 **对标检查**:
-- 与SAE J3016（自动驾驶分级）的类比是否准确？WNAL分级的独立性是否充分论证？
+- 与SAE J3016（自动驾驶分级）的类比是否准确？WSAL分级的独立性是否充分论证？
 - 与IEC 62443（工业网络安全）的引用是否恰当？安全域划分是否一致？
 - 与ISO 21448（SOTIF）的借鉴是否合理？水网场景与汽车场景的差异是否说明？
 
@@ -62,7 +62,7 @@
 2. 互操作性要求（FMI/DDS/OPC UA协议栈）是否在工业界有广泛实现？
 3. 测试验证要求（SIL/HIL）的成本-收益比是否合理？
 4. 与现有工业标准（IEC 61131-3 PLC编程、IEC 61850通信）的兼容性如何？
-5. 标准中的创新概念（如WNAL分级、Water-CIM、MBD范式）是否有足够的产业共识？
+5. 标准中的创新概念（如WSAL分级、Water-CIM、MBD范式）是否有足够的产业共识？
 6. 知识产权（IPR）声明是否完整？是否存在可能的专利纠纷？
 7. 实施时间表是否现实？过渡期安排是否合理？
 
@@ -79,7 +79,7 @@
 | Quantification | "adequate accuracy" | "prediction error shall not exceed ±3 cm" |
 | Cross-references | Broken or missing | "as specified in 6.4" with valid target |
 | Bilingual title | English only | English + French title on cover page |
-| Graceful degradation | Not addressed | Explicit fallback requirements per WNAL level |
+| Graceful degradation | Not addressed | Explicit fallback requirements per WSAL level |
 
 > 自动检查: `scripts/check_standard.py <文件> --type int`
 

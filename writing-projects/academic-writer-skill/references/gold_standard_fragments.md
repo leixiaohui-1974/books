@@ -207,10 +207,10 @@ control models.
 5.1.1 水网智能调控系统应具备数据采集、状态监测、预测预警、优化调度和
 自主控制五项基本功能。
 
-5.1.2 系统应根据水网自主运行等级（WNAL，见3.1）的要求，分级配置功能
+5.1.2 系统应根据水网自主运行等级（WSAL，见3.1）的要求，分级配置功能
 模块。各等级的功能要求见表1。
 
-表1 各WNAL等级功能配置要求
+表1 各WSAL等级功能配置要求
 ┌────────┬──────┬──────┬──────┬──────┬──────┐
 │ 功能模块 │ L1   │ L2   │ L3   │ L4   │ L5   │
 ├────────┼──────┼──────┼──────┼──────┼──────┤
@@ -230,7 +230,7 @@ control models.
   b) 流量量测误差不应大于量测值的±5%；
   c) 闸门开度量测误差不应大于±0.5 cm。
 
-5.2.2 数据采集周期宜根据WNAL等级确定：
+5.2.2 数据采集周期宜根据WSAL等级确定：
   a) L1至L2等级，采集周期不宜大于15 min；
   b) L3至L4等级，采集周期不宜大于5 min；
   c) L5等级，采集周期不宜大于1 min。
@@ -253,17 +253,17 @@ control models.
 6.1 General
 
 6.1.1 The water network intelligent control system shall implement the
-control functions corresponding to its designated WNAL level as specified
+control functions corresponding to its designated WSAL level as specified
 in Table 2.
 
 6.1.2 The control system should support graceful degradation: if a
-component failure reduces the achievable WNAL level, the system shall
+component failure reduces the achievable WSAL level, the system shall
 automatically fall back to the next lower level and shall notify the
 operator within 30 s.
 
 6.2 Model predictive control
 
-6.2.1 Where WNAL Level 3 or higher is required, the control system shall
+6.2.1 Where WSAL Level 3 or higher is required, the control system shall
 implement a model predictive control (MPC) algorithm with the following
 minimum capabilities:
   a) prediction horizon of not less than 3 times the dominant transport
@@ -361,6 +361,54 @@ ChatGPT已经能写论文、改代码、做PPT。
 - "质变"判断升华了技术数据的意义
 - 过渡句自然引出下一页，听众不会断流
 - 标注时间帮助控制节奏
+
+
+---
+
+## 书稿/教材 — 概念速览框范例（v04新增）
+
+```
+> ---
+> **📖 给水利工程师的速览：什么是"控制"？**
+>
+> 在传统水利工程中，调度员根据经验和调度图手动调节闸门——这是"开环控制"。
+> 如果给闸门装上水位传感器，让控制器自动根据实际水位与目标水位的偏差来调节
+> 闸门开度，这就是"闭环控制"（也叫反馈控制）。控制科学研究的核心问题就是：
+> 如何设计这个"控制器"，使水位又快又准地到达目标值，同时不产生剧烈振荡？
+> 从最简单的PID（比例-积分-微分）控制器到最先进的MPC（模型预测控制），
+> 本质上都是在回答这个问题。
+> ---
+```
+
+**为什么这段好**：
+- 从水利工程师的日常操作（手动调闸门）切入，零门槛
+- "开环→闭环"的过渡用一个传感器就讲清了
+- "又快又准＋不振荡"三个词概括了控制论的核心难题
+- PID→MPC的升级路线暗示本章内容递进
+- 全文198字，严格控制在200字以内
+- 不使用任何公式或专业符号
+
+---
+
+## 书稿/教材 — 术语降落伞标注范例（v04新增）
+
+```
+鲁棒（robust，指系统在参数变化或外部干扰下仍能保持稳定性能的能力，
+类似于水利工程中的"抗干扰性"）
+
+传递函数（transfer function，描述系统输入-输出关系的数学模型，
+如闸门开度变化到下游水位响应之间的关系）
+
+过拟合（overfitting，模型过度学习了训练数据中的噪声和细节，
+导致对新数据的预测能力反而下降——类似于根据历史水文资料拟合的
+经验公式在异常年份严重失准）
+```
+
+**为什么这种标注好**：
+- 三层信息：英文原词 + 一句话定义 + 水利类比
+- 水利类比让跨学科术语"落地"到读者已知领域
+- 每个标注≤60字，不打断阅读流
+- 仅在首次出现时标注，后续直接使用术语
 
 ---
 
