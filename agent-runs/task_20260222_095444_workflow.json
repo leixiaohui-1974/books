@@ -1,0 +1,62 @@
+{
+  "id": "task_20260222_095444",
+  "name": "Workflow for: 生成5篇水系统控制论科普文章...",
+  "description": "生成5篇水系统控制论科普文章",
+  "status": "pending",
+  "created_at": "2026-02-22T09:54:44.232326",
+  "nodes": {
+    "task_20260222_095444_subtask_1": {
+      "id": "task_20260222_095444_subtask_1",
+      "name": "文献调研",
+      "description": "文献调研 for: 生成5篇水系统控制论科普文章...",
+      "dependencies": [],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_095444_subtask_2": {
+      "id": "task_20260222_095444_subtask_2",
+      "name": "大纲设计",
+      "description": "大纲设计 for: 生成5篇水系统控制论科普文章...",
+      "dependencies": [
+        "task_20260222_095444_subtask_1"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_095444_subtask_3": {
+      "id": "task_20260222_095444_subtask_3",
+      "name": "内容撰写",
+      "description": "内容撰写 for: 生成5篇水系统控制论科普文章...",
+      "dependencies": [
+        "task_20260222_095444_subtask_2"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_095444_subtask_4": {
+      "id": "task_20260222_095444_subtask_4",
+      "name": "质量检查",
+      "description": "质量检查 for: 生成5篇水系统控制论科普文章...",
+      "dependencies": [
+        "task_20260222_095444_subtask_3"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_095444_subtask_5": {
+      "id": "task_20260222_095444_subtask_5",
+      "name": "格式整理",
+      "description": "格式整理 for: 生成5篇水系统控制论科普文章...",
+      "dependencies": [
+        "task_20260222_095444_subtask_4"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    }
+  }
+}
