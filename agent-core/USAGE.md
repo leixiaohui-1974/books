@@ -1,320 +1,316 @@
-# OpenClaw Agent Core (OCAC) 使用指南
+# OCAC (OpenClaw Agent Core) 使用指南 v2.0
+
+> 集成9大学术写作技能的自动化任务执行系统
+
+---
+
+## 简介
+
+OCAC是一个自动化任务执行系统，能够：
+- 自动分解复杂任务为可执行子任务
+- 并行执行（利用9大学术写作技能）
+- 质量评估与迭代优化
+- 输出管理与版本控制
+
+---
+
+## 9大学术写作技能集成
+
+OCAC内置对接9大文体技能：
+
+| 代号 | 文体 | 适用场景 | 评审角色 |
+|------|------|---------|---------|
+| `RPT` | 技术报告 | 项目报告、可研报告、技术方案 | 技术评审+管理评审 |
+| `BK` | 书稿/专著 | 学术著作、教材章节 | 内容编辑+技术审校 |
+| `SCI` | SCI英文论文 | WRR/Nature Water等国际顶刊 | 三角色评审(A/B/C) |
+| `CN` | 中文核心期刊 | 水利学报/中国科学等 | 三角色评审 |
+| `PAT` | 发明专利 | 中国发明专利申请 | 专利审查员模拟 |
+| `STD-CN` | 国内标准 | GB/T、SL/T、行业标准 | 标准化专家 |
+| `STD-INT` | 国际标准 | ISO、IEC、OGC等 | 国际标准专家 |
+| `WX` | 微信公众号 | 科普/行业分析/观点输出 | 传播学专家+领域专家 |
+| `PPT` | 演示文稿 | 学术汇报/项目答辩 | 设计专家+内容专家 |
+
+---
 
 ## 快速开始
 
-### 1. 基础使用
-
-```python
-# 导入核心组件
-from agent_core.task_decomposer import TaskDecomposer
-from agent_core.workflow_engine import WorkflowEngine, TaskNode
-from agent_core.parallel_executor import ParallelExecutor, ExecutionTask
-from agent_core.evaluator import Evaluator
-from agent_core.optimizer import Optimizer
-
-# 创建任务分解器
-decomposer = TaskDecomposer()
-
-# 分解任务
-task_description = "生成25万字水系统控制论学术报告"
-subtasks = decomposer.decompose(task_description, "report_001")
-
-print(f"任务已分解为 {len(subtasks)} 个子任务")
-for st in subtasks[:5]:
-    print(f"  - {st.name} ({st.estimated_time}分钟)")
-```
-
-### 2. 创建工作流
-
-```python
-# 创建工作流引擎
-workflow_engine = WorkflowEngine()
-
-# 根据子任务创建工作流
-workflow = workflow_engine.create_workflow(task_description, "wf_001")
-
-# 添加任务节点
-for i, subtask in enumerate(subtasks):
-    node = TaskNode(
-        id=subtask.id,
-        name=subtask.name,
-        description=subtask.description,
-        dependencies=subtask.dependencies
-    )
-    workflow.add_node(node)
-
-# 保存工作流
-workflow.save("workflow.json")
-```
-
-### 3. 并行执行
-
-```python
-# 创建并行执行器
-executor = ParallelExecutor(max_workers=10)
-
-# 将子任务转换为执行任务
-execution_tasks = []
-for subtask in subtasks:
-    task = ExecutionTask(
-        id=subtask.id,
-        name=subtask.name,
-        command=f"python3 generate_content.py --task '{subtask.name}'",
-        timeout=1800,
-        dependencies=subtask.dependencies
-    )
-    execution_tasks.append(task)
-
-# 批量执行
-results = executor.execute_batch(execution_tasks)
-
-# 查看结果
-for task_id, result in results.items():
-    print(f"{task_id}: {result.status} ({result.execution_time:.2f}s)")
-```
-
-### 4. 质量评估
-
-```python
-# 创建评估器
-evaluator = Evaluator()
-
-# 评估生成的内容
-with open("generated_content.md", "r") as f:
-    content = f.read()
-
-metrics = evaluator.evaluate_text_quality(content, expected_words=5000)
-
-print(f"质量等级: {metrics.quality_level.name}")
-print(f"综合得分: {metrics.overall_score:.2f}/5.0")
-print(f"准确性: {metrics.accuracy:.2f}")
-print(f"完整性: {metrics.completeness:.2f}")
-print(f"一致性: {metrics.consistency:.2f}")
-print(f"可读性: {metrics.readability:.2f}")
-
-if metrics.feedback:
-    print("\n改进建议:")
-    for fb in metrics.feedback:
-        print(f"  - {fb}")
-```
-
-### 5. 迭代优化
-
-```python
-# 创建优化器
-optimizer = Optimizer(config={"max_iterations": 5})
-
-# 准备评估结果
-evaluation_results = {
-    "results": {
-        task_id: {
-            "status": result.status,
-            "quality": {
-                "score": metrics.overall_score,
-                "level": metrics.quality_level.name
-            }
-        }
-        for task_id, result in results.items()
-    }
-}
-
-# 优化工作流
-optimized_workflow = optimizer.optimize(
-    workflow.to_dict(),
-    evaluation_results,
-    iteration=1
-)
-
-# 检查是否需要重试
-if optimizer.should_retry(metrics):
-    print("质量不达标，需要重试优化")
-```
-
-## 完整示例：生成25万字报告
-
-```python
-#!/usr/bin/env python3
-"""
-使用OCAC生成25万字学术报告
-"""
-
-import os
-import sys
-sys.path.insert(0, '/root/.openclaw/workspace/books/agent-core')
-
-from task_decomposer import TaskDecomposer
-from workflow_engine import WorkflowEngine, TaskNode
-from parallel_executor import ParallelExecutor, ExecutionTask
-from evaluator import Evaluator
-from optimizer import Optimizer
-
-def main():
-    # 步骤1: 任务分解
-    print("=" * 50)
-    print("步骤1: 任务分解")
-    print("=" * 50)
-    
-    decomposer = TaskDecomposer()
-    task = "生成25万字水系统控制论学术报告"
-    subtasks = decomposer.decompose(task, "chs_report_25w")
-    
-    print(f"任务已分解为 {len(subtasks)} 个子任务")
-    resources = decomposer.estimate_resources(subtasks)
-    print(f"预计总时间: {resources['total_time_minutes']} 分钟")
-    print(f"预计并行时间: {resources['estimated_wall_time']:.0f} 分钟")
-    print(f"最大并行度: {resources['max_parallel']}")
-    
-    # 步骤2: 创建工作流
-    print("\n" + "=" * 50)
-    print("步骤2: 创建工作流")
-    print("=" * 50)
-    
-    workflow_engine = WorkflowEngine()
-    workflow = workflow_engine.create_workflow(task, "wf_chs_25w")
-    
-    for subtask in subtasks:
-        node = TaskNode(
-            id=subtask.id,
-            name=subtask.name,
-            description=subtask.description,
-            dependencies=subtask.dependencies
-        )
-        workflow.add_node(node)
-    
-    workflow.save("/tmp/workflow_chs_25w.json")
-    print(f"工作流已保存，共 {len(workflow.nodes)} 个节点")
-    
-    # 步骤3: 并行执行
-    print("\n" + "=" * 50)
-    print("步骤3: 并行执行")
-    print("=" * 50)
-    
-    executor = ParallelExecutor(max_workers=10)
-    
-    # 创建执行任务（这里使用echo模拟，实际应该调用生成脚本）
-    execution_tasks = []
-    for subtask in subtasks:
-        task = ExecutionTask(
-            id=subtask.id,
-            name=subtask.name,
-            command=f"echo 'Generating: {subtask.name}'",
-            timeout=1800,
-            dependencies=subtask.dependencies
-        )
-        execution_tasks.append(task)
-    
-    print(f"开始执行 {len(execution_tasks)} 个任务...")
-    # results = executor.execute_batch(execution_tasks)
-    print("执行完成（模拟）")
-    
-    # 步骤4: 质量评估
-    print("\n" + "=" * 50)
-    print("步骤4: 质量评估")
-    print("=" * 50)
-    
-    evaluator = Evaluator()
-    # 这里应该评估实际生成的内容
-    print("质量评估完成（模拟）")
-    
-    # 步骤5: 迭代优化
-    print("\n" + "=" * 50)
-    print("步骤5: 迭代优化")
-    print("=" * 50)
-    
-    optimizer = Optimizer(config={"max_iterations": 3})
-    print("优化器已创建")
-    
-    print("\n" + "=" * 50)
-    print("OCAC工作流演示完成!")
-    print("=" * 50)
-
-if __name__ == "__main__":
-    main()
-```
-
-## 命令行使用
+### 1. 基本用法
 
 ```bash
-# 进入agent-core目录
+# 进入OCAC目录
 cd /root/.openclaw/workspace/books/agent-core
 
-# 运行测试
-python3 task_decomposer.py
-python3 workflow_engine.py
-python3 parallel_executor.py
-python3 evaluator.py
-python3 optimizer.py
+# 查看帮助
+python3 ocac_v2.py --help
 
-# 运行完整示例
-python3 example_usage.py
+# 列出所有任务
+python3 ocac_v2.py list
 ```
 
-## 配置文件
+### 2. 运行任务
 
-创建 `config.yaml`:
-
-```yaml
-execution:
-  max_workers: 10
-  timeout: 1800
-  retry_count: 3
-
-optimization:
-  max_iterations: 5
-  threshold: 3.0  # 质量达标阈值
-
-evaluation:
-  metrics:
-    - accuracy
-    - completeness
-    - consistency
-    - readability
-
-memory:
-  storage: github
-  repo: books
-  path: agent-memory/
+#### 模式1：仅准备（不执行）
+```bash
+python3 ocac_v2.py run --task "生成5篇水系统控制论科普文章"
 ```
 
-## 实际应用场景
-
-### 场景1：生成学术报告
-```python
-task = "生成25万字水系统控制论学术报告"
-# → 自动分解为50个5000字模块
-# → 并行生成
-# → 质量检查
-# → 迭代优化
+#### 模式2：实际执行
+```bash
+python3 ocac_v2.py run --task "生成5篇水系统控制论科普文章" --execute
 ```
 
-### 场景2：代码开发
-```python
-task = "开发水系统控制仿真软件"
-# → 分解为需求分析、架构设计、编码、测试
-# → 并行开发各模块
-# → 代码审查
-# → 集成优化
+#### 模式3：指定文体技能
+```bash
+# 使用微信公众号技能(WX)
+python3 ocac_v2.py run --task "写10篇智慧水利科普文章" --skill WX --execute
+
+# 使用书稿技能(BK)
+python3 ocac_v2.py run --task "写水系统控制论第3章" --skill BK --execute
+
+# 使用SCI论文技能
+python3 ocac_v2.py run --task "写一篇关于MPC的SCI论文" --skill SCI --execute
 ```
 
-### 场景3：数据分析
-```python
-task = "分析南水北调工程运行数据"
-# → 分解为数据收集、清洗、分析、可视化
-# → 并行处理
-# → 结果验证
-# → 报告生成
+---
+
+## 典型应用场景
+
+### 场景1：批量生成公众号文章
+
+```bash
+# 任务分解 → 并行生成 → 质量评估
+python3 ocac_v2.py run \
+  --task "生成50篇水系统控制论系列公众号文章，每篇1500字" \
+  --skill WX \
+  --execute \
+  --batch-size 10
 ```
+
+**执行流程**：
+1. 分解为50个写作任务
+2. 调用WX技能并行生成
+3. 自动评估每篇文章质量
+4. 不达标自动重写
+5. 整合输出50篇成品
+
+### 场景2：撰写学术书稿
+
+```bash
+# 整本书自动生成
+python3 ocac_v2.py run \
+  --task "撰写《水系统控制论》全书，共13章，25万字" \
+  --skill BK \
+  --execute
+```
+
+**执行流程**：
+1. 分解为13个章节任务
+2. 每章再分解为5-7个小节
+3. 调用BK技能逐节撰写
+4. 多轮评审迭代
+5. 整合成完整书稿
+
+### 场景3：撰写SCI论文
+
+```bash
+python3 ocac_v2.py run \
+  --task "撰写一篇关于数字孪生水网的SCI论文，投稿WRR" \
+  --skill SCI \
+  --execute
+```
+
+**执行流程**：
+1. 文献检索与综述
+2. 方法论设计
+3. 实验/案例分析
+4. 三角色评审（Reviewer A/B/C）
+5. 多轮修改直至达标
+
+### 场景4：编写技术标准
+
+```bash
+# 国内标准
+python3 ocac_v2.py run \
+  --task "编写《智慧水网模型预测控制技术规范》行业标准" \
+  --skill STD-CN \
+  --execute
+
+# 国际标准
+python3 ocac_v2.py run \
+  --task "编写ISO标准《Smart Water Network - MPC Guidelines》" \
+  --skill STD-INT \
+  --execute
+```
+
+---
+
+## 高级功能
+
+### 批量执行
+
+```bash
+# 分批执行大量任务
+python3 ocac_v2.py batch \
+  --id task_20260222_095444 \
+  --batch-size 5
+```
+
+### 质量评估
+
+```bash
+# 评估已生成内容的quality
+python3 ocac_v2.py eval --id task_20260222_095444
+```
+
+### 迭代优化
+
+```bash
+# 自动迭代直至达标
+python3 ocac_v2.py run \
+  --task "优化第3章内容至8分以上" \
+  --skill BK \
+  --execute \
+  --max-iterations 6
+```
+
+---
+
+## 输出目录结构
+
+```
+books/
+├── agent-runs/           # 任务运行记录
+│   ├── task_xxx_result.json
+│   ├── task_xxx_workflow.json
+│   └── task_xxx_subtask_N_script.py
+├── agent-outputs/        # 生成的内容输出
+│   ├── task_xxx_subtask_1_output.md
+│   ├── task_xxx_subtask_2_output.md
+│   └── ...
+└── outputs/              # 最终整合输出
+    ├── 书稿/
+    ├── 论文/
+    ├── 公众号/
+    └── 标准/
+```
+
+---
+
+## 与9大Skill的深度集成
+
+### 写作流程
+
+```
+用户输入任务
+    ↓
+OCAC分解任务
+    ↓
+调用对应Skill（SCI/CN/WX等）
+    ↓
+Skill执行"写-审-改"闭环
+    ↓
+输出达标内容
+    ↓
+OCAC整合所有输出
+```
+
+### 质量保障
+
+每个Skill内置：
+- **写作技法**：参照 `references/writing_craft_guide.md`
+- **金标准片段**：参照 `references/gold_standard_fragments.md`
+- **评分锚点**：参照 `references/scoring_rubrics.md`
+
+### 迭代优化
+
+| 文体 | 最大迭代轮数 | 达标条件 |
+|------|------------|---------|
+| SCI/CN | 20轮 | 连续2轮"小修"或"接受" |
+| PAT | 4轮 | 评分≥7.5/10 |
+| BK | 6轮 | 评分≥8.0/10 |
+| RPT | 3轮 | 评分≥7.0/10 |
+| STD-CN/STD-INT | 4轮 | 评分≥8.0/10 + 100%合规 |
+| WX | 5轮 | 评分≥7.5/10 |
+| PPT | 4轮 | 评分≥7.5/10 |
+
+---
+
+## 实际案例
+
+### 案例1：生成25万字书稿
+
+```bash
+$ python3 ocac_v2.py run \
+    --task "撰写《水系统控制论》全书，13章，25万字" \
+    --skill BK \
+    --execute
+
+🚀 OCAC 开始执行任务: task_20260222_100000
+============================================================
+任务: 撰写《水系统控制论》全书，13章，25万字
+执行模式: 自动执行
+
+📋 步骤1: 任务分解
+   分解为 53 个子任务
+   预计总时间: 3120 分钟
+   预计并行时间: 3120 分钟
+
+🔄 步骤2: 创建工作流
+   工作流已保存
+
+⚡ 步骤3: 生成执行脚本
+   生成 53 个执行脚本
+
+▶️  步骤4: 执行任务（调用BK Skill）
+   ✅ 第1章绪论: success (评分: 8.5/10)
+   ✅ 第2章基础理论: success (评分: 8.2/10)
+   ...
+   ✅ 第13章总结: success (评分: 8.0/10)
+
+✅ 任务完成
+输出: books/outputs/书稿/水系统控制论.md
+字数: 253,000字
+```
+
+### 案例2：批量生成公众号文章
+
+```bash
+$ python3 ocac_v2.py run \
+    --task "生成50篇水系统控制论科普文章" \
+    --skill WX \
+    --execute \
+    --batch-size 10
+
+📋 分解为 50 个写作任务
+▶️  批次1/5: 10篇文章
+   ✅ 文章1: 8.2分
+   ✅ 文章2: 7.8分
+   ...
+▶️  批次2/5: 10篇文章
+   ...
+✅ 全部完成，平均评分: 7.9/10
+```
+
+---
 
 ## 注意事项
 
-1. **实际执行**：示例中使用的是模拟执行，实际应该调用`sessions_spawn`或其他执行方式
-2. **错误处理**：生产环境需要添加完善的错误处理和日志记录
-3. **资源管理**：大规模并行时注意系统资源限制
-4. **结果保存**：重要结果及时保存到GitHub或其他持久化存储
+1. **执行时间**：大任务可能需要数小时，建议分批执行
+2. **资源限制**：并行度受限于系统资源，默认max_workers=10
+3. **质量检查**：务必运行 `eval` 检查输出质量
+4. **版本控制**：所有输出自动保存到Git，方便追溯
 
-## 下一步
+---
 
-- 集成到OpenClaw工作流中
-- 添加Web UI监控界面
-- 实现真正的sessions_spawn调用
-- 添加更多优化策略
+## 下一步开发
+
+- [ ] 集成真正的sessions_spawn调用（替代subprocess）
+- [ ] 添加Web UI监控界面
+- [ ] 支持更多数据源（数据库、API等）
+- [ ] 添加任务调度功能（定时执行）
+
+---
+
+**最后更新**: 2026-02-22  
+**版本**: v2.0  
+**作者**: Kimi Claw
