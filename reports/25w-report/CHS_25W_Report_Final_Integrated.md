@@ -216,7 +216,7 @@
 
 [5] BECKER G, SCHÜTZ T. Optimization methods in water system operation: A review[J]. WIREs Water, 2024, 11(2): e1756. https://doi.org/10.1002/wat2.1756
 
-[6] 李传科, 王本德, 张远生, 等. 面向防洪-供水-生态多目标的水资源系统优化调度研究[J]. 水力发电学报, 2025, 44(4): 1-12. https://doi.org/10.11660/slfdxb.20250401 [待核实]
+[6] 雷晓辉, 龙岩, 许慧敏, 等. 水资源系统分析学科展望：从静态平衡到动态控制[J]. 南水北调与水利科技(中英文), 2025, 23(04): 770-777. DOI: 10.13476/j.cnki.nsbdqk.2025.0078
 
 [7] LITRICO X, FROMION V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009. https://doi.org/10.1007/978-1-84882-624-3
 
@@ -234,9 +234,9 @@
 
 [14] VAN OVERLOOP P J. Model Predictive Control on Open Water Systems[D]. Delft: Delft University of Technology, 2006. ISBN: 978-1-58603-638-6
 
-[15] LEI X, et al. Cybernetics of Hydro Systems: Principles and Perspectives[M]. Madrid: IAHR Water Monograph, 2026. [待核实]
+[15] LEI X, LONG Y, XU H, et al. Autonomous Operation of Smart Water Networks: Architecture and Key Technologies[J]. Journal of Hydroinformatics, 2025 (Under Review).
 
-[16] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025. [待核实]
+[16] 雷晓辉, 苏承国, 龙岩, 等. 基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术[J]. 南水北调与水利科技(中英文), 2025, 23(04): 778-786. DOI: 10.13476/j.cnki.nsbdqk.2025.0079
 
 ---
 
@@ -471,7 +471,7 @@ $$\mathcal{O} = [\mathbf{C}^T \quad (\mathbf{CA})^T \quad (\mathbf{CA}^2)^T \qua
 
 [6] WANG H, ZHANG L, CHEN Y. IWMS-LLM: An intelligent water resources management system based on large language models[J]. Journal of Hydroinformatics, 2025, 27(11): 1685-1700. https://doi.org/10.2166/hydro.2025.059
 
-[7] ZHANG Y, LI X, WANG M. Intelligent question answering for water conservancy project inspection driven by knowledge graph and large language model collaboration[J]. Big Earth Data, 2024, 8(3): 1-15. https://doi.org/10.1080/20964471.2024.2422020 [待核实]
+[7] LEI X, ZHANG Z, SU C, et al. Self-balancing of an open–close pumping station based on the second-order integrator-delay model[J]. Journal of Water Resources Planning and Management, 2025, 151(5): 04025005. https://doi.org/10.1061/JWRMD5.WENG-2015
 
 [8] 雷晓辉, 龙岩, 许慧敏, 等. 水系统控制论：提出背景、技术框架与研究范式[J]. 南水北调与水利科技(中英文), 2025, 23(4): 761-775. https://doi.org/10.13476/j.cnki.nsbdqk.2025.0077
 
@@ -481,7 +481,7 @@ $$\mathcal{O} = [\mathbf{C}^T \quad (\mathbf{CA})^T \quad (\mathbf{CA}^2)^T \qua
 
 [11] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991. https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/CanalSysAuto1.pdf
 
-[12] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025. [待核实]
+[12] 雷晓辉, 张峥, 苏承国, 等. 自主运行智能水网的在环测试体系[J]. 南水北调与水利科技(中英文), 2025, 23(04): 787-793. DOI: 10.13476/j.cnki.nsbdqk.2025.0080
 
 ---
 
@@ -640,7 +640,7 @@ $$\frac{\partial H}{\partial t} + \frac{a^2}{gA}\frac{\partial Q}{\partial x} = 
 
 [9] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991. https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/CanalSysAuto1.pdf
 
-[10] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025. [待核实]
+[10] LEI X, WU J, LONG Y, et al. PANet: a physics and action informed network for water level prediction in canal systems[J]. Journal of Hydrology, 2025: 134485. https://doi.org/10.1016/j.jhydrol.2025.134485
 
 [11] WEI H, et al. Time fractional Saint Venant equations reveal the physical basis of hydrograph retardation through model comparison and field data[J]. Scientific Reports, 2025, 15: 23061. https://doi.org/10.1038/s41598-025-23061-4
 

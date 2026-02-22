@@ -216,7 +216,7 @@
 
 [5] BECKER G, SCHÜTZ T. Optimization methods in water system operation: A review[J]. WIREs Water, 2024, 11(2): e1756. https://doi.org/10.1002/wat2.1756
 
-[6] 李传科, 王本德, 张远生, 等. 面向防洪-供水-生态多目标的水资源系统优化调度研究[J]. 水力发电学报, 2025, 44(4): 1-12. https://doi.org/10.11660/slfdxb.20250401 [待核实]
+[6] 雷晓辉, 龙岩, 许慧敏, 等. 水资源系统分析学科展望：从静态平衡到动态控制[J]. 南水北调与水利科技(中英文), 2025, 23(04): 770-777. DOI: 10.13476/j.cnki.nsbdqk.2025.0078
 
 [7] LITRICO X, FROMION V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009. https://doi.org/10.1007/978-1-84882-624-3
 
@@ -234,9 +234,9 @@
 
 [14] VAN OVERLOOP P J. Model Predictive Control on Open Water Systems[D]. Delft: Delft University of Technology, 2006. ISBN: 978-1-58603-638-6
 
-[15] LEI X, et al. Cybernetics of Hydro Systems: Principles and Perspectives[M]. Madrid: IAHR Water Monograph, 2026. [待核实]
+[15] LEI X, LONG Y, XU H, et al. Autonomous Operation of Smart Water Networks: Architecture and Key Technologies[J]. Journal of Hydroinformatics, 2025 (Under Review).
 
-[16] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025. [待核实]
+[16] 雷晓辉, 苏承国, 龙岩, 等. 基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术[J]. 南水北调与水利科技(中英文), 2025, 23(04): 778-786. DOI: 10.13476/j.cnki.nsbdqk.2025.0079
 
 ---
 

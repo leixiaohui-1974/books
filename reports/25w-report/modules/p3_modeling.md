@@ -151,7 +151,7 @@ $$\frac{\partial H}{\partial t} + \frac{a^2}{gA}\frac{\partial Q}{\partial x} = 
 
 [9] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991. https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/CanalSysAuto1.pdf
 
-[10] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025. [待核实]
+[10] LEI X, WU J, LONG Y, et al. PANet: a physics and action informed network for water level prediction in canal systems[J]. Journal of Hydrology, 2025: 134485. https://doi.org/10.1016/j.jhydrol.2025.134485
 
 [11] WEI H, et al. Time fractional Saint Venant equations reveal the physical basis of hydrograph retardation through model comparison and field data[J]. Scientific Reports, 2025, 15: 23061. https://doi.org/10.1038/s41598-025-23061-4
 

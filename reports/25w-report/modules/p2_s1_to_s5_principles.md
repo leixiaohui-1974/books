@@ -227,7 +227,7 @@ $$\mathcal{O} = [\mathbf{C}^T \quad (\mathbf{CA})^T \quad (\mathbf{CA}^2)^T \qua
 
 [6] WANG H, ZHANG L, CHEN Y. IWMS-LLM: An intelligent water resources management system based on large language models[J]. Journal of Hydroinformatics, 2025, 27(11): 1685-1700. https://doi.org/10.2166/hydro.2025.059
 
-[7] ZHANG Y, LI X, WANG M. Intelligent question answering for water conservancy project inspection driven by knowledge graph and large language model collaboration[J]. Big Earth Data, 2024, 8(3): 1-15. https://doi.org/10.1080/20964471.2024.2422020 [待核实]
+[7] LEI X, ZHANG Z, SU C, et al. Self-balancing of an open–close pumping station based on the second-order integrator-delay model[J]. Journal of Water Resources Planning and Management, 2025, 151(5): 04025005. https://doi.org/10.1061/JWRMD5.WENG-2015
 
 [8] 雷晓辉, 龙岩, 许慧敏, 等. 水系统控制论：提出背景、技术框架与研究范式[J]. 南水北调与水利科技(中英文), 2025, 23(4): 761-775. https://doi.org/10.13476/j.cnki.nsbdqk.2025.0077
 
@@ -237,7 +237,7 @@ $$\mathcal{O} = [\mathbf{C}^T \quad (\mathbf{CA})^T \quad (\mathbf{CA}^2)^T \qua
 
 [11] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991. https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/CanalSysAuto1.pdf
 
-[12] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025. [待核实]
+[12] 雷晓辉, 张峥, 苏承国, 等. 自主运行智能水网的在环测试体系[J]. 南水北调与水利科技(中英文), 2025, 23(04): 787-793. DOI: 10.13476/j.cnki.nsbdqk.2025.0080
 
 ---
 
