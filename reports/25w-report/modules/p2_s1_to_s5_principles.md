@@ -215,18 +215,29 @@ $$\mathcal{O} = [\mathbf{C}^T \quad (\mathbf{CA})^T \quad (\mathbf{CA}^2)^T \qua
 
 ## 参考文献
 
-[1] CHOW V T. Open-channel hydraulics[M]. New York: McGraw-Hill, 1959.
-[2] KALMAN R E. Contributions to the theory of optimal control[J]. Boletin de la Sociedad Matematica Mexicana, 1960, 5(2): 102-119.
-[3] LITRICO X, FROMION V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009.
-[4] KROGH B H, WONG-TOI H. Computing polyhedral approximations to flow pipes for dynamic systems[C]//Proceedings of the 37th IEEE Conference on Decision and Control. Tampa: IEEE, 1998: 2089-2094.
-[5] VAN OVERLOOP P J. Model Predictive Control on Open Water Systems[D]. Delft: Delft University of Technology, 2006.
-[6] WANG H, ZHANG L, CHEN Y. IWMS-LLM: An intelligent water resources management system based on large language models[J]. Journal of Hydroinformatics, 2025, 27(11): 1685-1700.
-[7] ZHANG Y, LI X, WANG M. Intelligent question answering for water conservancy project inspection driven by knowledge graph and large language model collaboration[J]. Big Earth Data, 2024, 8(3): 1-15.
-[8] 雷晓辉, 等. 水系统控制论：理论背景与研究范式[J]. 南水北调与水利科技, 2025, 23(1): 1-15.
-[9] SCHUURMANS J. Control of Water Levels in Open Channels[D]. Delft: Delft University of Technology, 1997.
-[10] MALATERRE P O. PILOTE: Linear quadratic optimal controller for irrigation canals[J]. Journal of Irrigation and Drainage Engineering, 1998, 124(4): 187-194.
-[11] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991.
-[12] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025.
+[1] CHOW V T. Open-channel hydraulics[M]. New York: McGraw-Hill, 1959. ISBN: 978-0070107764
+
+[2] KALMAN R E. Contributions to the theory of optimal control[J]. Boletin de la Sociedad Matematica Mexicana, 1960, 5(2): 102-119. https://liberzon.csl.illinois.edu/teaching/kalman_paper.pdf
+
+[3] LITRICO X, FROMION V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009. https://doi.org/10.1007/978-1-84882-624-3
+
+[4] KROGH B H, WONG-TOI H. Computing polyhedral approximations to flow pipes for dynamic systems[C]//Proceedings of the 37th IEEE Conference on Decision and Control. Tampa: IEEE, 1998: 2089-2094. https://doi.org/10.1109/CDC.1998.758642
+
+[5] VAN OVERLOOP P J. Model Predictive Control on Open Water Systems[D]. Delft: Delft University of Technology, 2006. ISBN: 978-1-58603-638-6
+
+[6] WANG H, ZHANG L, CHEN Y. IWMS-LLM: An intelligent water resources management system based on large language models[J]. Journal of Hydroinformatics, 2025, 27(11): 1685-1700. https://doi.org/10.2166/hydro.2025.059
+
+[7] ZHANG Y, LI X, WANG M. Intelligent question answering for water conservancy project inspection driven by knowledge graph and large language model collaboration[J]. Big Earth Data, 2024, 8(3): 1-15. https://doi.org/10.1080/20964471.2024.2422020 [待核实]
+
+[8] 雷晓辉, 龙岩, 许慧敏, 等. 水系统控制论：提出背景、技术框架与研究范式[J]. 南水北调与水利科技(中英文), 2025, 23(4): 761-775. https://doi.org/10.13476/j.cnki.nsbdqk.2025.0077
+
+[9] SCHUURMANS J. Control of Water Levels in Open Channels[D]. Delft: Delft University of Technology, 1997. https://www.researchgate.net/publication/27343588_Control_of_Water_Levels_in_Open-Channels
+
+[10] MALATERRE P O. PILOTE: Linear quadratic optimal controller for irrigation canals[J]. Journal of Irrigation and Drainage Engineering, 1998, 124(4): 187-194. https://doi.org/10.1061/(ASCE)0733-9437(1998)124:4(187)
+
+[11] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991. https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/CanalSysAuto1.pdf
+
+[12] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025. [待核实]
 
 ---
 

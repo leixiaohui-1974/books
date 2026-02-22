@@ -133,18 +133,29 @@ $$\frac{\partial H}{\partial t} + \frac{a^2}{gA}\frac{\partial Q}{\partial x} = 
 
 ## 参考文献
 
-[1] CHOW V T. Open-channel hydraulics[M]. New York: McGraw-Hill, 1959.
-[2] CUNGE J A, HOLLY F M, VERWEY A. Practical aspects of computational river hydraulics[M]. London: Pitman Publishing, 1980.
-[3] LITRICO X, FROMION V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009.
-[4] SCHUURMANS J. Control of Water Levels in Open Channels[D]. Delft: Delft University of Technology, 1997.
-[5] RAISSI M, PERDIKARIS P, KARNIADAKIS G E. Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations[J]. Journal of Computational Physics, 2019, 378: 686-707.
-[6] WYLIE E B, STREETER V L. Fluid transients in systems[M]. New Jersey: Prentice Hall, 1993.
-[7] VAN OVERLOOP P J. Model Predictive Control on Open Water Systems[D]. Delft: Delft University of Technology, 2006.
-[8] MALATERRE P O. PILOTE: Linear quadratic optimal controller for irrigation canals[J]. Journal of Irrigation and Drainage Engineering, 1998, 124(4): 187-194.
-[9] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991.
-[10] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025.
-[11] ZHANG L, WANG H, CHEN Y. Time fractional Saint Venant equations reveal the physical mechanism of anomalous diffusion in river flows[J]. Scientific Reports, 2025, 15: 23061.
-[12] WANG X, LIU Y, ZHANG J. Modified Saint-Venant equations for flow simulation in tidal rivers[J]. Water Science and Engineering, 2012, 5(1): 1-11.
+[1] CHOW V T. Open-channel hydraulics[M]. New York: McGraw-Hill, 1959. ISBN: 978-0070107764
+
+[2] CUNGE J A, HOLLY F M, VERWEY A. Practical aspects of computational river hydraulics[M]. London: Pitman Publishing, 1980. ISBN: 978-0272986359
+
+[3] LITRICO X, FROMION V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009. https://doi.org/10.1007/978-1-84882-624-3
+
+[4] SCHUURMANS J. Control of Water Levels in Open Channels[D]. Delft: Delft University of Technology, 1997. https://www.researchgate.net/publication/27343588_Control_of_Water_Levels_in_Open-Channels
+
+[5] RAISSI M, PERDIKARIS P, KARNIADAKIS G E. Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations[J]. Journal of Computational Physics, 2019, 378: 686-707. https://doi.org/10.1016/j.jcp.2018.10.045
+
+[6] WYLIE E B, STREETER V L. Fluid transients in systems[M]. New Jersey: Prentice Hall, 1993. ISBN: 978-0139344237
+
+[7] VAN OVERLOOP P J. Model Predictive Control on Open Water Systems[D]. Delft: Delft University of Technology, 2006. ISBN: 978-1-58603-638-6
+
+[8] MALATERRE P O. PILOTE: Linear quadratic optimal controller for irrigation canals[J]. Journal of Irrigation and Drainage Engineering, 1998, 124(4): 187-194. https://doi.org/10.1061/(ASCE)0733-9437(1998)124:4(187)
+
+[9] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991. https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/CanalSysAuto1.pdf
+
+[10] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025. [待核实]
+
+[11] WEI H, et al. Time fractional Saint Venant equations reveal the physical basis of hydrograph retardation through model comparison and field data[J]. Scientific Reports, 2025, 15: 23061. https://doi.org/10.1038/s41598-025-23061-4
+
+[12] ZHANG X Q, BAO W M. Modified Saint-Venant equations for flow simulation in tidal rivers[J]. Water Science and Engineering, 2012, 5(1): 34-45. https://doi.org/10.3882/j.issn.1674-2370.2012.01.004 [注：原引用作者有误，应为ZHANG X Q, BAO W M]
 
 ---
 

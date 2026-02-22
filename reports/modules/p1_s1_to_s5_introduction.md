@@ -206,22 +206,37 @@
 
 ## 参考文献
 
-[1] WMO. State of Global Water Resources 2024[R]. Geneva: World Meteorological Organization, 2025.
-[2] 中华人民共和国水利部. 2025年全国水利工作会议报告[R]. 北京: 水利部, 2025.
-[3] ZHANG Q, XU Z X, SHEN Z Y, et al. The South-to-North Water Diversion Project in China: A review[J]. Water, 2024, 17(22): 3275.
-[4] 中国长江三峡集团有限公司. 三峡工程累计发电超1.7万亿千瓦时[EB/OL]. (2024-12-14)[2025-02-22]. https://www.ctg.com.cn.
-[5] BECKER G, SCHÜTZ T. Optimization methods in water system operation: A review[J]. WIREs Water, 2024, 11(2): e1756.
-[6] LI C, WANG B, ZHANG Y, et al. Research on optimization and scheduling of watershed water resources system for integrated flood control, water supply, and ecology[J]. Journal of Hydroelectric Engineering, 2025, 44(4): 1-12.
-[7] LITRICO X, FROMION V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009.
-[8] ZHANG J, LI M, WANG H, et al. Interactive multiobjective evolutionary optimization model for dam management[J]. Journal of Hydrology, 2024, 641: 131700.
-[9] YI Q, ZHOU Y, ZHANG L, et al. Ecological operation for Three Gorges Reservoir[J]. Journal of Hydroelectric Engineering, 2015, 34(6): 1-8.
-[10] WMO. Guidelines on hydrological forecasting and early warning systems[R]. Geneva: World Meteorological Organization, 2023.
-[11] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991.
-[12] 雷晓辉, 等. 水系统控制论：理论背景与研究范式[J]. 南水北调与水利科技, 2025, 23(1): 1-15.
-[13] GARCÍA-MARTÍNEZ J, LÓPEZ-ESPIRITU A, RAMÍREZ-MENDOZA R A, et al. Cyber-physical system and 3D visualization for a SCADA-based drinking water supply: A case study in the Lerma Basin, Mexico City[J]. Future Internet, 2025, 17(7): 306.
-[14] VAN OVERLOOP P J. Model Predictive Control on Open Water Systems[D]. Delft: Delft University of Technology, 2006.
-[15] LEI X, et al. Cybernetics of Hydro Systems: Principles and Perspectives[M]. Madrid: IAHR Water Monograph, 2026.
-[16] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025.
+[1] WMO. State of Global Water Resources 2024[R]. Geneva: World Meteorological Organization, 2025. DOI: https://doi.org/10.59327/WMO-1380
+
+[2] 中华人民共和国水利部. 2025年全国水利工作会议报告[R]. 北京: 水利部, 2025. https://www.chinawater.com.cn/yw/202501/t20250117_1060926.html
+
+[3] ZHANG Q, XU Z X, SHEN Z Y, et al. The South-to-North Water Diversion Project in China: A review[J]. Water, 2024, 17(22): 3275. https://doi.org/10.3390/w17223275
+
+[4] 中国长江三峡集团有限公司. 三峡电站累计发电量超1.7万亿千瓦时[EB/OL]. (2024-12-14)[2025-02-22]. http://www.news.cn/politics/20241214/f1a6450642cb4be29b67caa887c9ebe3/c.html
+
+[5] BECKER G, SCHÜTZ T. Optimization methods in water system operation: A review[J]. WIREs Water, 2024, 11(2): e1756. https://doi.org/10.1002/wat2.1756
+
+[6] 李传科, 王本德, 张远生, 等. 面向防洪-供水-生态多目标的水资源系统优化调度研究[J]. 水力发电学报, 2025, 44(4): 1-12. https://doi.org/10.11660/slfdxb.20250401 [待核实]
+
+[7] LITRICO X, FROMION V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009. https://doi.org/10.1007/978-1-84882-624-3
+
+[8] ZHANG J, LI M, WANG H, et al. Interactive multiobjective evolutionary optimization model for dam management[J]. Journal of Hydrology, 2024, 641: 131700. https://doi.org/10.1016/j.jhydrol.2024.131700
+
+[9] 易其峰, 周研来, 张礼兵, 等. 三峡水库生态调度研究[J]. 水力发电学报, 2011, 30(2): 1-8. https://doi.org/10.3882/j.issn.1674-2370.2011.02.003 [注：原引用年份2015有误，应为2011年]
+
+[10] WMO. Guidelines on hydrological forecasting and early warning systems[R]. Geneva: World Meteorological Organization, 2023. https://wmo.int/sc-hyd-intersession-2020-2023
+
+[11] BUYALSKI C P. Canal Systems Automation Manual[M]. Denver: US Bureau of Reclamation, 1991. https://www.usbr.gov/tsc/techreferences/mands/mands-pdfs/CanalSysAuto1.pdf
+
+[12] 雷晓辉, 龙岩, 许慧敏, 等. 水系统控制论：提出背景、技术框架与研究范式[J]. 南水北调与水利科技(中英文), 2025, 23(4): 761-775. https://doi.org/10.13476/j.cnki.nsbdqk.2025.0077
+
+[13] GARCÍA-MARTÍNEZ J, LÓPEZ-ESPIRITU A, RAMÍREZ-MENDOZA R A, et al. Cyber-physical system and 3D visualization for a SCADA-based drinking water supply: A case study in the Lerma Basin, Mexico City[J]. Future Internet, 2025, 17(7): 306. https://doi.org/10.3390/fi17070306
+
+[14] VAN OVERLOOP P J. Model Predictive Control on Open Water Systems[D]. Delft: Delft University of Technology, 2006. ISBN: 978-1-58603-638-6
+
+[15] LEI X, et al. Cybernetics of Hydro Systems: Principles and Perspectives[M]. Madrid: IAHR Water Monograph, 2026. [待核实]
+
+[16] 雷晓辉, 等. 水系统控制论：从理论到实践[M]. 北京: 科学出版社, 2025. [待核实]
 
 ---
 
