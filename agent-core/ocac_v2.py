@@ -19,6 +19,7 @@ from workflow_engine import WorkflowEngine, Workflow, TaskNode
 from parallel_executor import ParallelExecutor, ExecutionTask
 from evaluator import Evaluator, EvaluationMetrics
 from optimizer import Optimizer
+from sessions_spawn_client import SessionsSpawnClient, call_openclaw_sessions_spawn
 
 class OCAC:
     """OpenClaw Agent Core - 真正能执行的Agent系统"""
@@ -34,6 +35,7 @@ class OCAC:
         os.makedirs(self.work_dir, exist_ok=True)
         os.makedirs(self.output_dir, exist_ok=True)
         self.auto_execute = auto_execute  # 是否自动执行
+        self.spawn_client = SessionsSpawnClient()
         
     def run(self, task_description: str, task_id: Optional[str] = None, 
             agent_id: str = "kimi-coding/k2p5", execute: bool = False) -> Dict[str, Any]:
@@ -194,36 +196,45 @@ if __name__ == "__main__":
 
 任务描述: {subtask.description}
 
-请执行脚本: {script_path}
+父任务: {subtask.description}
 
-要求:
-1. 读取脚本内容
-2. 执行脚本完成任务
-3. 返回执行结果和输出
+请完成以下工作：
+1. 理解任务要求
+2. 生成高质量的内容
+3. 确保内容符合学术写作规范
+4. 输出完整的执行结果
+
+要求：
+- 内容要专业、准确
+- 格式要规范
+- 字数要符合要求
 """
         
-        # 调用sessions_spawn（模拟）
-        # 实际应该调用: sessions_spawn(task=task_prompt, agent_id=agent_id)
-        # 这里先用subprocess模拟
-        try:
-            result = subprocess.run(
-                ['python3', script_path],
-                capture_output=True,
-                text=True,
-                timeout=300
-            )
-            return {
-                "subtask_id": subtask.id,
-                "status": "success" if result.returncode == 0 else "failed",
-                "stdout": result.stdout[:500],
-                "stderr": result.stderr[:500] if result.stderr else None
-            }
-        except Exception as e:
-            return {
-                "subtask_id": subtask.id,
-                "status": "error",
-                "error": str(e)
-            }
+        print(f"     调用sessions_spawn: {subtask.name}")
+        
+        # 调用真正的sessions_spawn
+        result = self.spawn_client.spawn(
+            task=task_prompt,
+            agent_id=agent_id,
+            label=subtask.id
+        )
+        
+        # 保存输出
+        output_path = f"{self.output_dir}/{subtask.id}_output.md"
+        with open(output_path, 'w') as f:
+            f.write(f"# {subtask.name}\n\n")
+            f.write(f"## 任务描述\n{subtask.description}\n\n")
+            f.write(f"## 执行结果\n\n")
+            f.write(result.get('output', '无输出'))
+            f.write(f"\n\n## 执行状态\n{result.get('status', 'unknown')}\n")
+            f.write(f"\n## 执行时间\n{datetime.now().isoformat()}\n")
+        
+        return {
+            "subtask_id": subtask.id,
+            "status": result.get('status', 'error'),
+            "output_path": output_path,
+            "agent": result.get('agent', agent_id)
+        }
     
     def execute_batch(self, task_id: str, batch_size: int = 5) -> List[Dict]:
         """批量执行任务"""
