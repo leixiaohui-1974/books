@@ -1,0 +1,51 @@
+{
+  "project": "水系统控制论：理论、技术与实践（25万字版）",
+  "fix_batch": 1,
+  "fix_date": "2026-02-22",
+  "modules_fixed": [
+    {
+      "file": "p1_s1_to_s5_introduction.md",
+      "original_refs": 6,
+      "fixed_refs": 16,
+      "added_refs": 10,
+      "changes": [
+        "使用<ama-doc>标签包裹全部内容",
+        "补充参考文献至16条（新增10条）",
+        "统一引用格式为GB/T 7714-2015标准",
+        "检查数学公式编号连续性（无需修改）",
+        "确保术语一致性"
+      ]
+    },
+    {
+      "file": "p2_s1_to_s5_principles.md",
+      "original_refs": 4,
+      "fixed_refs": 12,
+      "added_refs": 8,
+      "changes": [
+        "使用<ama-doc>标签包裹全部内容",
+        "补充参考文献至12条（新增8条）",
+        "统一引用格式为GB/T 7714-2015标准",
+        "添加数学公式编号(2.1)-(2.10)",
+        "确保术语一致性"
+      ]
+    },
+    {
+      "file": "p3_modeling.md",
+      "original_refs": 0,
+      "fixed_refs": 12,
+      "added_refs": 12,
+      "changes": [
+        "使用<ama-doc>标签包裹全部内容",
+        "补充参考文献至12条（新增12条）",
+        "统一引用格式为GB/T 7714-2015标准",
+        "添加数学公式编号(3.1)-(3.10)",
+        "确保术语一致性"
+      ]
+    }
+  ],
+  "summary": {
+    "total_modules_fixed": 3,
+    "total_refs_added": 30,
+    "status": "COMPLETED"
+  }
+}
