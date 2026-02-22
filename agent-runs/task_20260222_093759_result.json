@@ -1,0 +1,8 @@
+{
+  "task_id": "task_20260222_093759",
+  "task_description": "生成25万字水系统控制论学术报告",
+  "subtask_count": 53,
+  "workflow_path": "/root/.openclaw/workspace/books/agent-runs/task_20260222_093759_workflow.json",
+  "status": "prepared",
+  "note": "任务已准备，等待实际执行"
+}

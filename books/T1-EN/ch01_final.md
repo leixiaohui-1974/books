@@ -11,13 +11,13 @@ v1 2026-02-16: First draft
 >
 > Water infrastructure is no longer limited by hardware capacity alone. In many regions, the primary bottleneck is operational intelligence: how fast operators can interpret uncertainty, coordinate actions, and keep the system inside safe boundaries.
 
-## 1.1 A global shift from operation by experience to operation by cybernetics
+## A global shift from operation by experience to operation by cybernetics
 
 In 2023, a large inter-basin transfer corridor in North China experienced a compound event: intense rainfall in one section, maintenance outage in another, and communication jitter in a control segment. The physical assets remained available, but dispatching quality degraded quickly because human teams faced too many coupled decisions at once. Similar patterns have been reported globally in irrigation canals, urban water networks, and hydropower cascades. The lesson is consistent: infrastructure scale is increasing faster than human-only operational capacity.
 
 Cybernetics of Hydro Systems (CHS) is proposed as a system-level response to this gap. CHS does not replace hydraulic engineering; it upgrades operational logic by integrating modeling, control, intelligence, and governance in one coherent framework.
 
-## 1.2 Why traditional operation paradigms are reaching their limits
+## Why traditional operation paradigms are reaching their limits
 
 Three structural pressures are reshaping water operations worldwide:
 
@@ -27,7 +27,7 @@ Three structural pressures are reshaping water operations worldwide:
 
 Under these pressures, manual dispatching and siloed automation are often not enough. Systems need to be observable, controllable, and auditable under uncertainty.
 
-## 1.3 Positioning CHS in the international landscape
+## Positioning CHS in the international landscape
 
 CHS is not presented as an isolated concept. It builds on core cybernetics and control traditions (Wiener, Qian, modern hydrosystem control) while adding water-specific operational structure:
 
@@ -44,7 +44,7 @@ This positioning makes CHS interoperable with mainstream control and AI communit
 {Size: full page}
 {Color scheme: blue theme}
 
-## 1.4 Core terminology used throughout this monograph
+## Core terminology used throughout this monograph
 
 To avoid ambiguity, this chapter establishes the shared terms used in later chapters:
 
@@ -56,7 +56,7 @@ To avoid ambiguity, this chapter establishes the shared terms used in later chap
 
 These terms are treated as technical standards, not interchangeable labels.
 
-## 1.5 Minimum readiness checklist (before autonomy scaling)
+## Minimum readiness checklist (before autonomy scaling)
 
 | Item | Minimum requirement | Why it matters |
 |---|---|---|
@@ -66,7 +66,7 @@ These terms are treated as technical standards, not interchangeable labels.
 | Safety Envelope | Red/amber/green zones and lockout logic are defined | Keeps optimization under hard safety constraints |
 | Human takeover | Roles, triggers, and audit trail are implemented | Ensures accountability during abnormal events |
 
-## 1.6 What this book will and will not do
+## What this book will and will not do
 
 This book is designed as an international monograph for researchers and advanced practitioners. It will:
 
@@ -77,7 +77,7 @@ This book is designed as an international monograph for researchers and advanced
 
 It will not attempt to provide region-specific operational manuals or site-specific parameter catalogs. Those belong to project-level documentation.
 
-## 1.7 Chapter map and reading guidance
+## Chapter map and reading guidance
 
 The rest of the book follows a logic from foundations to implementation:
 
@@ -94,6 +94,6 @@ Readers from hydraulics may focus first on Chapters 2 and 5; readers from AI/con
 {Size: half page}
 {Color scheme: grayscale}
 
-## 1.8 Chapter summary and bridge to Chapter 2
+## Chapter summary and bridge to Chapter 2
 
 The control challenge in water systems is fundamentally a systems challenge: high coupling, high uncertainty, and high consequence under real-time constraints. CHS is introduced as a unifying discipline to bridge hydraulic physics, control intelligence, and operational governance. With this framing in place, Chapter 2 formalizes the theoretical foundations and introduces the Eight Principles that support scalable and trustworthy autonomy.

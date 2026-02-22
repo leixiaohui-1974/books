@@ -1,0 +1,639 @@
+{
+  "id": "task_20260222_093759",
+  "name": "Workflow for: 生成25万字水系统控制论学术报告...",
+  "description": "生成25万字水系统控制论学术报告",
+  "status": "pending",
+  "created_at": "2026-02-22T09:37:59.917529",
+  "nodes": {
+    "task_20260222_093759_plan": {
+      "id": "task_20260222_093759_plan",
+      "name": "报告规划",
+      "description": "设计250000字报告的整体架构和章节安排",
+      "dependencies": [],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_1": {
+      "id": "task_20260222_093759_module_1",
+      "name": "模块1撰写",
+      "description": "撰写第1个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_2": {
+      "id": "task_20260222_093759_module_2",
+      "name": "模块2撰写",
+      "description": "撰写第2个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_3": {
+      "id": "task_20260222_093759_module_3",
+      "name": "模块3撰写",
+      "description": "撰写第3个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_4": {
+      "id": "task_20260222_093759_module_4",
+      "name": "模块4撰写",
+      "description": "撰写第4个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_5": {
+      "id": "task_20260222_093759_module_5",
+      "name": "模块5撰写",
+      "description": "撰写第5个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_6": {
+      "id": "task_20260222_093759_module_6",
+      "name": "模块6撰写",
+      "description": "撰写第6个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_7": {
+      "id": "task_20260222_093759_module_7",
+      "name": "模块7撰写",
+      "description": "撰写第7个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_8": {
+      "id": "task_20260222_093759_module_8",
+      "name": "模块8撰写",
+      "description": "撰写第8个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_9": {
+      "id": "task_20260222_093759_module_9",
+      "name": "模块9撰写",
+      "description": "撰写第9个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_10": {
+      "id": "task_20260222_093759_module_10",
+      "name": "模块10撰写",
+      "description": "撰写第10个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_11": {
+      "id": "task_20260222_093759_module_11",
+      "name": "模块11撰写",
+      "description": "撰写第11个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_12": {
+      "id": "task_20260222_093759_module_12",
+      "name": "模块12撰写",
+      "description": "撰写第12个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_13": {
+      "id": "task_20260222_093759_module_13",
+      "name": "模块13撰写",
+      "description": "撰写第13个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_14": {
+      "id": "task_20260222_093759_module_14",
+      "name": "模块14撰写",
+      "description": "撰写第14个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_15": {
+      "id": "task_20260222_093759_module_15",
+      "name": "模块15撰写",
+      "description": "撰写第15个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_16": {
+      "id": "task_20260222_093759_module_16",
+      "name": "模块16撰写",
+      "description": "撰写第16个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_17": {
+      "id": "task_20260222_093759_module_17",
+      "name": "模块17撰写",
+      "description": "撰写第17个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_18": {
+      "id": "task_20260222_093759_module_18",
+      "name": "模块18撰写",
+      "description": "撰写第18个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_19": {
+      "id": "task_20260222_093759_module_19",
+      "name": "模块19撰写",
+      "description": "撰写第19个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_20": {
+      "id": "task_20260222_093759_module_20",
+      "name": "模块20撰写",
+      "description": "撰写第20个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_21": {
+      "id": "task_20260222_093759_module_21",
+      "name": "模块21撰写",
+      "description": "撰写第21个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_22": {
+      "id": "task_20260222_093759_module_22",
+      "name": "模块22撰写",
+      "description": "撰写第22个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_23": {
+      "id": "task_20260222_093759_module_23",
+      "name": "模块23撰写",
+      "description": "撰写第23个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_24": {
+      "id": "task_20260222_093759_module_24",
+      "name": "模块24撰写",
+      "description": "撰写第24个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_25": {
+      "id": "task_20260222_093759_module_25",
+      "name": "模块25撰写",
+      "description": "撰写第25个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_26": {
+      "id": "task_20260222_093759_module_26",
+      "name": "模块26撰写",
+      "description": "撰写第26个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_27": {
+      "id": "task_20260222_093759_module_27",
+      "name": "模块27撰写",
+      "description": "撰写第27个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_28": {
+      "id": "task_20260222_093759_module_28",
+      "name": "模块28撰写",
+      "description": "撰写第28个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_29": {
+      "id": "task_20260222_093759_module_29",
+      "name": "模块29撰写",
+      "description": "撰写第29个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_30": {
+      "id": "task_20260222_093759_module_30",
+      "name": "模块30撰写",
+      "description": "撰写第30个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_31": {
+      "id": "task_20260222_093759_module_31",
+      "name": "模块31撰写",
+      "description": "撰写第31个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_32": {
+      "id": "task_20260222_093759_module_32",
+      "name": "模块32撰写",
+      "description": "撰写第32个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_33": {
+      "id": "task_20260222_093759_module_33",
+      "name": "模块33撰写",
+      "description": "撰写第33个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_34": {
+      "id": "task_20260222_093759_module_34",
+      "name": "模块34撰写",
+      "description": "撰写第34个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_35": {
+      "id": "task_20260222_093759_module_35",
+      "name": "模块35撰写",
+      "description": "撰写第35个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_36": {
+      "id": "task_20260222_093759_module_36",
+      "name": "模块36撰写",
+      "description": "撰写第36个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_37": {
+      "id": "task_20260222_093759_module_37",
+      "name": "模块37撰写",
+      "description": "撰写第37个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_38": {
+      "id": "task_20260222_093759_module_38",
+      "name": "模块38撰写",
+      "description": "撰写第38个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_39": {
+      "id": "task_20260222_093759_module_39",
+      "name": "模块39撰写",
+      "description": "撰写第39个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_40": {
+      "id": "task_20260222_093759_module_40",
+      "name": "模块40撰写",
+      "description": "撰写第40个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_41": {
+      "id": "task_20260222_093759_module_41",
+      "name": "模块41撰写",
+      "description": "撰写第41个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_42": {
+      "id": "task_20260222_093759_module_42",
+      "name": "模块42撰写",
+      "description": "撰写第42个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_43": {
+      "id": "task_20260222_093759_module_43",
+      "name": "模块43撰写",
+      "description": "撰写第43个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_44": {
+      "id": "task_20260222_093759_module_44",
+      "name": "模块44撰写",
+      "description": "撰写第44个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_45": {
+      "id": "task_20260222_093759_module_45",
+      "name": "模块45撰写",
+      "description": "撰写第45个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_46": {
+      "id": "task_20260222_093759_module_46",
+      "name": "模块46撰写",
+      "description": "撰写第46个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_47": {
+      "id": "task_20260222_093759_module_47",
+      "name": "模块47撰写",
+      "description": "撰写第47个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_48": {
+      "id": "task_20260222_093759_module_48",
+      "name": "模块48撰写",
+      "description": "撰写第48个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_49": {
+      "id": "task_20260222_093759_module_49",
+      "name": "模块49撰写",
+      "description": "撰写第49个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_module_50": {
+      "id": "task_20260222_093759_module_50",
+      "name": "模块50撰写",
+      "description": "撰写第50个模块（5000字）",
+      "dependencies": [
+        "task_20260222_093759_plan"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_integrate": {
+      "id": "task_20260222_093759_integrate",
+      "name": "报告整合",
+      "description": "整合所有50个模块为完整报告",
+      "dependencies": [
+        "task_20260222_093759_module_1",
+        "task_20260222_093759_module_2",
+        "task_20260222_093759_module_3",
+        "task_20260222_093759_module_4",
+        "task_20260222_093759_module_5",
+        "task_20260222_093759_module_6",
+        "task_20260222_093759_module_7",
+        "task_20260222_093759_module_8",
+        "task_20260222_093759_module_9",
+        "task_20260222_093759_module_10",
+        "task_20260222_093759_module_11",
+        "task_20260222_093759_module_12",
+        "task_20260222_093759_module_13",
+        "task_20260222_093759_module_14",
+        "task_20260222_093759_module_15",
+        "task_20260222_093759_module_16",
+        "task_20260222_093759_module_17",
+        "task_20260222_093759_module_18",
+        "task_20260222_093759_module_19",
+        "task_20260222_093759_module_20",
+        "task_20260222_093759_module_21",
+        "task_20260222_093759_module_22",
+        "task_20260222_093759_module_23",
+        "task_20260222_093759_module_24",
+        "task_20260222_093759_module_25",
+        "task_20260222_093759_module_26",
+        "task_20260222_093759_module_27",
+        "task_20260222_093759_module_28",
+        "task_20260222_093759_module_29",
+        "task_20260222_093759_module_30",
+        "task_20260222_093759_module_31",
+        "task_20260222_093759_module_32",
+        "task_20260222_093759_module_33",
+        "task_20260222_093759_module_34",
+        "task_20260222_093759_module_35",
+        "task_20260222_093759_module_36",
+        "task_20260222_093759_module_37",
+        "task_20260222_093759_module_38",
+        "task_20260222_093759_module_39",
+        "task_20260222_093759_module_40",
+        "task_20260222_093759_module_41",
+        "task_20260222_093759_module_42",
+        "task_20260222_093759_module_43",
+        "task_20260222_093759_module_44",
+        "task_20260222_093759_module_45",
+        "task_20260222_093759_module_46",
+        "task_20260222_093759_module_47",
+        "task_20260222_093759_module_48",
+        "task_20260222_093759_module_49",
+        "task_20260222_093759_module_50"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    },
+    "task_20260222_093759_review": {
+      "id": "task_20260222_093759_review",
+      "name": "质量检查",
+      "description": "检查报告质量、引用准确性、格式规范性",
+      "dependencies": [
+        "task_20260222_093759_integrate"
+      ],
+      "status": "pending",
+      "retry_count": 0,
+      "max_retries": 3
+    }
+  }
+}

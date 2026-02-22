@@ -11,11 +11,11 @@ v1 2026-02-16: First draft
 >
 > The Eight Principles of CHS are not independent slogans. They form a dependency structure: observability and controllability make safe optimization possible; safe optimization makes scalable autonomy governable.
 
-## 2.1 From Chapter 1 framing to formal foundations
+## From Chapter 1 framing to formal foundations
 
 Chapter 1 established why water systems require a shift from experience-driven operation to cybernetic operation. This chapter formalizes that shift. The objective is to provide a compact but rigorous theoretical baseline that can support architecture design (Chapter 3), verification (Chapter 4), and engineering deployment (Chapter 5).
 
-## 2.2 Governing equations and control-oriented abstraction
+## Governing equations and control-oriented abstraction
 
 Hydraulic systems are grounded in conservation laws. For open-channel flow, a control-oriented starting point is the Saint-Venant form:
 
@@ -29,7 +29,7 @@ $$
 
 Around an operating point, these dynamics can be linearized and mapped to a transfer-function or state-space representation. The engineering value is not mathematical elegance alone; it is the ability to design constraints-aware control and verification workflows.
 
-## 2.3 The Eight Principles of CHS
+## The Eight Principles of CHS
 
 ### Principle 1 — Transfer-function formulation
 A common dynamic language is required to connect hydraulic physics with control design.
@@ -67,7 +67,7 @@ Model and policy updates must be staged, validated, and rollback-ready.
 | 7 | Shared accountability | Define takeover and approval paths |
 | 8 | Lifecycle governance | Versioning, regression tests, rollback |
 
-## 2.4 Controllability and observability in hydraulic context
+## Controllability and observability in hydraulic context
 
 For the linearized model
 $$
@@ -83,7 +83,7 @@ $$
 
 In practice, CHS recommends a pragmatic interpretation: if critical risk variables cannot be observed in operational time and cannot be corrected through available actuators, autonomy claims should be down-scoped.
 
-## 2.5 Safety Envelope and ODD coupling
+## Safety Envelope and ODD coupling
 
 Operational Design Domain (ODD) defines where autonomous functions are intended to run. Safety Envelope defines the safe space inside that domain. Their coupling can be expressed as:
 
@@ -98,7 +98,7 @@ When predicted trajectories exit \(\mathcal{X}_{safe}\), systems should trigger 
 {Size: half page}
 {Color scheme: blue theme}
 
-## 2.6 Minimum deployment gates (before autonomy scale-up)
+## Minimum deployment gates (before autonomy scale-up)
 
 | Gate | Minimum criterion | Release decision |
 |---|---|---|
@@ -107,10 +107,10 @@ When predicted trajectories exit \(\mathcal{X}_{safe}\), systems should trigger 
 | Verification gate | SIM-SIL-HIL critical scenarios are covered and reproducible | Pass/fix |
 | Governance gate | Human takeover roles, triggers, and logs are enforceable | Pass/fix |
 
-## 2.7 Why CHS is distinct from “AI-only” approaches
+## Why CHS is distinct from “AI-only” approaches
 
 AI-only operation often fails at deployment boundaries because it under-specifies hard constraints, responsibility, and lifecycle governance. CHS explicitly couples physical feasibility, control structure, safety boundary, verification pipeline, and governance accountability. In this sense, CHS is an integration logic for critical infrastructure, not a replacement for hydraulic or control theory.
 
-## 2.8 Chapter summary and bridge to Chapter 3
+## Chapter summary and bridge to Chapter 3
 
 This chapter formalized the theoretical backbone of CHS through governing equations, control-oriented abstraction, the Eight Principles, and ODD–Safety Envelope coupling. These foundations are transferable across regions because they are defined at the level of structure and constraints, not local policy details. The next step is architecture: Chapter 3 translates this foundation into implementable system design, including WNAL L0-L5, HydroOS three-tier structure, and SCADA+MAS Fusion Architecture.

@@ -1,0 +1,208 @@
+{
+  "book_id": "M10",
+  "book_title": "水网智能控制实验",
+  "total_chapters": 10,
+  "chapters": {
+    "ch01": {
+      "status": "completed",
+      "word_count": 3400,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成实验总论章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] ch02已补充参数敏感性实验记录模板",
+        "[DONE] ch02已增加模型版本可追溯字段",
+        "[DONE] ch02已补充异常回退后的复位检查清单"
+      ]
+    },
+    "ch02": {
+      "status": "completed",
+      "word_count": 3200,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成参数敏感性与版本追踪实验章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch01提出的参数敏感性模板",
+        "[DONE] 已补齐ch01提出的版本可追溯字段",
+        "[DONE] 已补齐ch01提出的回退后复位检查清单",
+        "[DONE] ch03已补充控制策略对比评价矩阵与切换失败应急清单"
+      ]
+    },
+    "ch03": {
+      "status": "completed",
+      "word_count": 3300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成控制策略对比与切换应急实验章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch02提出的控制策略对比评价矩阵",
+        "[DONE] 已补齐ch02提出的统计显著性字段",
+        "[DONE] 已补齐ch02提出的切换失败应急清单",
+        "[DONE] ch04已补充在环联调分工表与时延扰动工况字段"
+      ]
+    },
+    "ch04": {
+      "status": "completed",
+      "word_count": 3400,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成在环联调与时延扰动实验章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch03提出的在环联调分工表",
+        "[DONE] 已补齐ch03提出的时延扰动工况字段",
+        "[DONE] 已补齐ch03提出的联调失败班组协同清单",
+        "[DONE] ch05已补充回归覆盖矩阵与回归失败统计字段"
+      ]
+    },
+    "ch05": {
+      "status": "completed",
+      "word_count": 3500,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成多场景回归与发布门禁实验章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch04提出的回归覆盖矩阵",
+        "[DONE] 已补齐ch04提出的回归失败统计字段",
+        "[DONE] 已补齐ch04提出的跨班组复盘会模板",
+        "[DONE] ch06已补充综合实训评分量表与异常样本抽检字段"
+      ]
+    },
+    "ch06": {
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成综合实训评估与交接演练章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch05提出的综合实训评分量表",
+        "[DONE] 已补齐ch05提出的异常样本抽检字段",
+        "[DONE] 已补齐ch05提出的班组交接评分模板",
+        "[DONE] ch07已补充高级异常场景编排模板与联合演练清单"
+      ]
+    },
+    "ch07": {
+      "status": "completed",
+      "word_count": 3700,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成高级异常场景编排与联合演练章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch06提出的高级异常场景编排模板",
+        "[DONE] 已补齐ch06提出的场景难度分级字段",
+        "[DONE] 已补齐ch06提出的跨班组联合演练清单",
+        "[DONE] ch08已补充结业评分门槛与值守降级模板"
+      ]
+    },
+    "ch08": {
+      "status": "completed",
+      "word_count": 3600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成结业综合验证与值守降级演练章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch07提出的结业综合验证评分门槛表",
+        "[DONE] 已补齐ch07提出的结业判定置信度字段",
+        "[DONE] 已补齐ch07提出的演练失败后值守降级模板",
+        "[DONE] ch09已补充课程复盘主持脚本与跨学期对比字段"
+      ]
+    },
+    "ch09": {
+      "status": "completed",
+      "word_count": 3700,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成课程复盘与跨学期持续改进章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch08提出的课程复盘主持脚本与改进项闭环模板",
+        "[DONE] 已补齐ch08提出的跨学期对比字段与偏差归因结构",
+        "[DONE] 已补齐ch08提出的值守降级演练长期追踪指标",
+        "[DONE] ch10已补充课程实施发布检查清单与班组接收验收模板"
+      ]
+    },
+    "ch10": {
+      "status": "completed",
+      "word_count": 3800,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-17",
+      "issues": [
+        "[DONE] 已完成课程实施发布与体系收束章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch09提出的课程实施发布检查清单与交付包目录",
+        "[DONE] 已补齐ch09提出的课程版本冻结规则与变更审批字段",
+        "[DONE] 已补齐ch09提出的运行班组接收验收单与值守排班发布模板",
+        "[DONE] M10全书十章实验链条闭环完成",
+        "[DONE] 已完成BKM10全书质量总评审（reviews/BKM10_book_final_r1.md）"
+      ]
+    }
+  },
+  "overall_progress": "100.0%"
+}

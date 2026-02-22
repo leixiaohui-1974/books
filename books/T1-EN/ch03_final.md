@@ -11,11 +11,11 @@ v1 2026-02-16: First draft
 >
 > Architecture is where theory becomes operational capability. Without explicit layering, interfaces, and governance hooks, even strong control theory cannot scale to network-level autonomy.
 
-## 3.1 From theoretical principles to implementable architecture
+## From theoretical principles to implementable architecture
 
 Chapter 2 established the Eight Principles of CHS. This chapter translates those principles into system architecture. The design target is practical: support safe, auditable, and scalable autonomy across heterogeneous hydraulic assets and operational contexts.
 
-## 3.2 WNAL L0-L5 as architecture maturity levels
+## WNAL L0-L5 as architecture maturity levels
 
 Water Network Autonomy Levels (WNAL) provide the capability staircase for architecture planning:
 
@@ -33,7 +33,7 @@ Architecture choices should be made against target level claims, not abstract �
 {Size: half page}
 {Color scheme: blue theme}
 
-## 3.3 HydroOS three-tier architecture
+## HydroOS three-tier architecture
 
 A practical Water Network Operating System (HydroOS) can be described in three tiers:
 
@@ -43,7 +43,7 @@ A practical Water Network Operating System (HydroOS) can be described in three t
 
 The three-tier split prevents logic coupling and enables independent verification and upgrades.
 
-## 3.4 SCADA+MAS Fusion Architecture
+## SCADA+MAS Fusion Architecture
 
 CHS architecture is not “SCADA replacement.” It is SCADA extension through Multi-Agent System (MAS) coordination:
 
@@ -58,7 +58,7 @@ This SCADA+MAS Fusion Architecture preserves reliability while enabling adaptive
 {Size: full page}
 {Color scheme: blue theme}
 
-## 3.5 Runtime safety and governance hooks
+## Runtime safety and governance hooks
 
 Architecture must natively support:
 
@@ -70,7 +70,7 @@ Architecture must natively support:
 
 If these hooks are bolted on after deployment, architecture debt becomes a safety risk.
 
-## 3.6 Interface design principles
+## Interface design principles
 
 For cross-vendor and cross-region interoperability, CHS recommends three interface principles:
 
@@ -86,7 +86,7 @@ For cross-vendor and cross-region interoperability, CHS recommends three interfa
 | Safety event | severity, trigger, affected assets, required action | mandatory escalation + logging |
 | Human takeover | role ID, reason, scope, timeout | enforce handover confirmation |
 
-## 3.7 Architecture readiness checklist (minimum L3 gate)
+## Architecture readiness checklist (minimum L3 gate)
 
 | Gate | Minimum criterion |
 |---|---|
@@ -96,7 +96,7 @@ For cross-vendor and cross-region interoperability, CHS recommends three interfa
 | Verification gate | Reproducible SIM-SIL-HIL evidence exists for key scenarios |
 | Governance gate | Human takeover and audit chain are tested in drill conditions |
 
-## 3.8 Architecture anti-patterns
+## Architecture anti-patterns
 
 Common failures in water autonomy programs include:
 
@@ -107,6 +107,6 @@ Common failures in water autonomy programs include:
 
 These anti-patterns often produce brittle systems with weak accountability. Staged rollout from bounded ODD slices is recommended before wider autonomy claims.
 
-## 3.9 Chapter summary and bridge to Chapter 4
+## Chapter summary and bridge to Chapter 4
 
 This chapter translated CHS principles into architecture patterns: WNAL maturity framing, HydroOS three-tier structure, SCADA+MAS Fusion Architecture, and runtime governance hooks. With architecture defined, the next question is trust evidence. Chapter 4 introduces the verification and validation framework (SIM-SIL-HIL, ODD-based testing, and runtime monitoring).

@@ -1,0 +1,11 @@
+{
+  "task_id": "task_20260222_095809",
+  "task_description": "生成3篇水系统控制论科普文章",
+  "subtask_count": 5,
+  "workflow_path": "/root/.openclaw/workspace/books/agent-runs/task_20260222_095809_workflow.json",
+  "scripts_count": 5,
+  "executed_count": 5,
+  "status": "completed",
+  "output_dir": "/root/.openclaw/workspace/books/agent-outputs",
+  "timestamp": "2026-02-22T09:58:09.146363"
+}

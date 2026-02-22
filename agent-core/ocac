@@ -1,0 +1,142 @@
+#!/usr/bin/env python3
+"""
+OpenClaw Agent Core - 统一入口
+整合所有功能：任务执行、调度、Web监控
+"""
+
+import sys
+import argparse
+from typing import Optional
+
+# 添加路径
+sys.path.insert(0, '/root/.openclaw/workspace/books/agent-core')
+
+def main():
+    parser = argparse.ArgumentParser(
+        description='OpenClaw Agent Core (OCAC) - 统一入口',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+示例:
+  # 运行任务
+  ocac run --task "生成10篇公众号文章" --execute
+  
+  # 调度一次性任务
+  ocac schedule --id task1 --task "生成报告" --at "2026-02-23 09:00"
+  
+  # 调度周期性任务
+  ocac schedule --id daily --task "日报生成" --interval 1440
+  
+  # 启动Web监控
+  ocac web --port 8080
+  
+  # 启动调度器守护进程
+  ocac daemon
+        """
+    )
+    
+    subparsers = parser.add_subparsers(dest='command', help='命令')
+    
+    # run 命令
+    run_parser = subparsers.add_parser('run', help='运行任务')
+    run_parser.add_argument('--task', '-t', required=True, help='任务描述')
+    run_parser.add_argument('--id', '-i', help='任务ID')
+    run_parser.add_argument('--execute', '-e', action='store_true', help='实际执行')
+    run_parser.add_argument('--agent', '-a', default='kimi-coding/k2p5', help='Agent模型')
+    
+    # schedule 命令
+    schedule_parser = subparsers.add_parser('schedule', help='调度任务')
+    schedule_parser.add_argument('--id', '-i', required=True, help='任务ID')
+    schedule_parser.add_argument('--task', '-t', required=True, help='任务描述')
+    schedule_parser.add_argument('--at', help='执行时间 (YYYY-MM-DD HH:MM)')
+    schedule_parser.add_argument('--interval', '-n', type=int, help='间隔（分钟）')
+    
+    # list 命令
+    list_parser = subparsers.add_parser('list', help='列出任务')
+    list_parser.add_argument('--all', '-a', action='store_true', help='显示所有')
+    
+    # web 命令
+    web_parser = subparsers.add_parser('web', help='启动Web监控')
+    web_parser.add_argument('--port', '-p', type=int, default=8080, help='端口号')
+    
+    # daemon 命令
+    daemon_parser = subparsers.add_parser('daemon', help='启动调度器守护进程')
+    
+    # eval 命令
+    eval_parser = subparsers.add_parser('eval', help='评估任务输出')
+    eval_parser.add_argument('--id', '-i', required=True, help='任务ID')
+    
+    args = parser.parse_args()
+    
+    if not args.command:
+        parser.print_help()
+        return
+    
+    # 执行命令
+    if args.command == 'run':
+        from ocac_v2 import OCAC
+        ocac = OCAC(auto_execute=args.execute)
+        result = ocac.run(args.task, args.id, args.agent, args.execute)
+        print(f"\n任务结果:\n{result}")
+    
+    elif args.command == 'schedule':
+        from task_scheduler import TaskScheduler
+        scheduler = TaskScheduler()
+        
+        if args.at:
+            from datetime import datetime
+            run_at = datetime.strptime(args.at, "%Y-%m-%d %H:%M")
+            scheduler.schedule_once(args.id, args.task, run_at)
+        elif args.interval:
+            scheduler.schedule_recurring(args.id, args.task, args.interval)
+        else:
+            print("错误: 需要 --at 或 --interval 参数")
+            sys.exit(1)
+    
+    elif args.command == 'list':
+        from ocac_v2 import OCAC
+        ocac = OCAC()
+        tasks = ocac.list_tasks()
+        
+        print(f"\n📋 任务列表 ({len(tasks)}个)\n")
+        for t in tasks[:20 if not args.all else len(tasks)]:
+            status_icon = {
+                'completed': '✅',
+                'running': '🔄',
+                'prepared': '⏳',
+                'failed': '❌'
+            }.get(t['status'], '❓')
+            
+            print(f"{status_icon} {t['task_id']}")
+            print(f"   描述: {t['task_description'][:50]}...")
+            print(f"   状态: {t['status']} | 子任务: {t['subtask_count']}")
+            print()
+    
+    elif args.command == 'web':
+        from web_monitor import OCACWebServer
+        server = OCACWebServer(port=args.port)
+        server.start()
+    
+    elif args.command == 'daemon':
+        from task_scheduler import TaskScheduler
+        scheduler = TaskScheduler()
+        scheduler.start()
+        
+        print("调度器守护进程已启动")
+        print("按 Ctrl+C 停止")
+        
+        try:
+            import time
+            while True:
+                time.sleep(1)
+        except KeyboardInterrupt:
+            scheduler.stop()
+    
+    elif args.command == 'eval':
+        from ocac_v2 import OCAC
+        ocac = OCAC()
+        result = ocac.evaluate_outputs(args.id)
+        print(f"\n评估结果:\n{result}")
+
+
+if __name__ == "__main__":
+    main()

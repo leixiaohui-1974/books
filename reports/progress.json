@@ -1,0 +1,11 @@
+{
+  "project": "水系统控制论：理论、技术与实践（25万字版）",
+  "status": "COMPLETED",
+  "total_modules": 50,
+  "completed_modules": 50,
+  "word_count_target": 250000,
+  "word_count_actual": 280000,
+  "completion_date": "2026-02-22T08:32:00+08:00",
+  "output_file": "/root/.openclaw/workspace/reports/25w-report/CHS_25W_Report_Full.md",
+  "modules_directory": "/root/.openclaw/workspace/reports/25w-report/modules/"
+}

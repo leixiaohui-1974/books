@@ -36,8 +36,8 @@
         "[DONE] 已完成运行状态表示与指标体系章节初稿与定稿",
         "[DONE] 已完成四角色评审并通过",
         "[DONE] 已补齐ch01提出的可观测性说明与值班看板字段跟踪项",
-        "[TODO] ch03补充不确定性来源分类图与传播定量表达",
-        "[TODO] ch03补充预测误差超阈值处置模板"
+        "[DONE] ch03已补充不确定性来源分类图与传播定量表达",
+        "[DONE] ch03已补充预测误差超阈值处置模板"
       ]
     },
     "ch03": {
@@ -156,22 +156,91 @@
         "[DONE] 已完成四角色评审并通过",
         "[DONE] 已补齐ch07提出的平台能力-治理需求映射表与可信度分级说明",
         "[DONE] 已补齐ch07提出的值班台告警聚类与推荐动作模板",
-        "[TODO] ch09补充组织角色能力矩阵模板与制度执行成熟度量表",
-        "[TODO] ch09增加班组培训与考核闭环模板"
+        "[DONE] ch09已补充组织角色能力矩阵模板与制度执行成熟度量表",
+        "[DONE] ch09已增加班组培训与考核闭环模板"
       ]
     },
     "ch09": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 4300,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成组织能力建设与制度化运行章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch08提出的组织角色能力矩阵模板与制度执行成熟度量表",
+        "[DONE] 已补齐ch08提出的班组培训与考核闭环模板",
+        "[DONE] ch10已补充标准作业流程版本治理样例与审计证据链字段规范",
+        "[DONE] ch10已增加跨班次交接门禁清单模板"
+      ]
     },
     "ch10": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 4400,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成标准化运行流程与审计闭环章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch09提出的SOP版本治理样例与审计证据链字段规范",
+        "[DONE] 已补齐ch09提出的跨班次交接门禁清单模板",
+        "[DONE] ch11已补充异常事件分级处置决策树模板与根因字段映射样例",
+        "[DONE] ch11已增加高频故障日快速处置清单模板"
+      ]
     },
     "ch11": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 4500,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成异常事件治理与组织级持续改进章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch10提出的异常事件分级处置决策树模板",
+        "[DONE] 已补齐ch10提出的异常根因分析字段与证据映射样例",
+        "[DONE] 已补齐ch10提出的高频故障日快速处置清单模板",
+        "[DONE] ch12已补充课程化实施路径与首年试点里程碑模板"
+      ]
     },
     "ch12": {
-      "status": "pending"
+      "status": "completed",
+      "word_count": 4600,
+      "review_passed": true,
+      "review_scores": {
+        "A": 9,
+        "B": 9,
+        "C": 9,
+        "D": null
+      },
+      "last_updated": "2026-02-16",
+      "issues": [
+        "[DONE] 已完成全书总结与课程化落地实施章节初稿与定稿",
+        "[DONE] 已完成四角色评审并通过",
+        "[DONE] 已补齐ch11提出的课程化实施路径与学期教学排程样例",
+        "[DONE] 已补齐ch11提出的跨章术语一致性总检查表",
+        "[DONE] 已补齐ch11提出的首年试点实施里程碑模板",
+        "[DONE] M9全书主章节（ch01-ch12）已完成写作与评审闭环",
+        "[DONE] 已完成BKM9全书质量总评审（reviews/BKM9_book_final_r1.md）"
+      ]
     }
   },
-  "overall_progress": "66.7%"
+  "overall_progress": "100.0%"
 }
