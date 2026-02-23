@@ -138,6 +138,14 @@ class Orchestrator:
         # 活跃任务
         self.active_tasks: Dict[str, WritingTask] = {}
 
+        # 并发写作信号量 — 限制同时运行的写作任务
+        self._writer_semaphore = asyncio.Semaphore(
+            self.config.orchestrator.max_concurrent_writers
+        )
+
+        # 任务取消令牌
+        self._cancel_tokens: Dict[str, asyncio.Event] = {}
+
         # 任务完成统计
         self._task_stats = {
             "completed": 0,
@@ -230,19 +238,41 @@ class Orchestrator:
         return ""
 
     def _load_progress(self, book_id: str) -> BookProgress:
-        """读取 progress/BK[X].json"""
+        """
+        读取 progress/BK[X].json（含文件锁）
+
+        使用共享锁(LOCK_SH)防止读取到写入中间状态
+        """
+        import fcntl
         progress_path = os.path.join(self.books_root, "progress", f"BK{book_id}.json")
         if os.path.exists(progress_path):
             with open(progress_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
+                try:
+                    fcntl.flock(f.fileno(), fcntl.LOCK_SH)
+                    data = json.load(f)
+                finally:
+                    fcntl.flock(f.fileno(), fcntl.LOCK_UN)
             return BookProgress(**data)
         return BookProgress(book_id=book_id, book_title="", total_chapters=0)
 
     def _save_progress(self, progress: BookProgress):
-        """保存进度文件（原子化写入）"""
+        """
+        保存进度文件（原子化写入 + 排他锁）
+
+        使用排他锁(LOCK_EX)确保并发写入安全
+        """
+        import fcntl
         progress_path = os.path.join(self.books_root, "progress", f"BK{progress.book_id}.json")
-        content = json.dumps(progress.model_dump(), ensure_ascii=False, indent=2)
-        self._atomic_write(progress_path, content)
+        lock_path = progress_path + ".lock"
+        os.makedirs(os.path.dirname(progress_path), exist_ok=True)
+
+        with open(lock_path, "w") as lock_f:
+            try:
+                fcntl.flock(lock_f.fileno(), fcntl.LOCK_EX)
+                content = json.dumps(progress.model_dump(), ensure_ascii=False, indent=2)
+                self._atomic_write(progress_path, content)
+            finally:
+                fcntl.flock(lock_f.fileno(), fcntl.LOCK_UN)
 
     def _find_next_chapter(self, progress: BookProgress, total_chapters: int) -> Optional[str]:
         """找到下一个待写章节"""
@@ -347,7 +377,21 @@ class Orchestrator:
 
         完整 DAG：
         write → [glossary_check, consistency_check, reference_check] → review → gate
+
+        并发控制: 受 _writer_semaphore 限制，防止超过 max_concurrent_writers
+        取消支持: 每轮迭代前检查 _cancel_tokens
         """
+        # 注册取消令牌
+        cancel_event = asyncio.Event()
+        self._cancel_tokens[task.id] = cancel_event
+
+        async with self._writer_semaphore:
+            return await self._execute_writing_cycle_inner(task, cancel_event)
+
+    async def _execute_writing_cycle_inner(
+        self, task: WritingTask, cancel_event: asyncio.Event
+    ) -> Dict[str, Any]:
+        """写作循环内部实现（持有信号量时调用）"""
         skill = task.skill_type
         threshold = SKILL_THRESHOLDS.get(skill, {"min_score": 8.0, "max_iterations": 6})
 
@@ -363,6 +407,16 @@ class Orchestrator:
         self._audit.log_writing_started(task.book_id, task.chapter_id)
 
         for iteration in range(start_iteration, task.max_iterations + 1):
+            # 取消检查
+            if cancel_event.is_set() or self._shutting_down:
+                logger.info(f"[{task.book_id}/{task.chapter_id}] 任务已取消")
+                self._save_checkpoint(task, max(iteration - 1, 0), {
+                    "word_count": 0, "metadata": {"cancelled": True}
+                })
+                task.status = "cancelled"
+                self._cancel_tokens.pop(task.id, None)
+                self._cleanup_task(task)
+                return {"status": "cancelled", "iterations": iteration - 1}
             task.current_iteration = iteration
             task.status = "in_progress"
 
@@ -553,6 +607,9 @@ class Orchestrator:
         """清理已完成任务的资源 — 防止内存泄漏"""
         # 从 active_tasks 移除
         self.active_tasks.pop(task.id, None)
+
+        # 清理取消令牌
+        self._cancel_tokens.pop(task.id, None)
 
         # 清理相关 gate
         gate_ids_to_remove = [
@@ -1172,6 +1229,27 @@ class Orchestrator:
             f"Orchestrator 已关闭 (取消 {active_count} 个任务, "
             f"保存 {saved_count} 个检查点)"
         )
+
+    def cancel_task(self, task_id: str) -> bool:
+        """
+        取消活跃任务 — 设置取消令牌，下轮迭代前生效
+
+        Returns: True 如果任务存在并已标记取消, False 如果任务不存在
+        """
+        if task_id in self._cancel_tokens:
+            self._cancel_tokens[task_id].set()
+            task = self.active_tasks.get(task_id)
+            if task:
+                self._audit.log(
+                    "task_cancelled",
+                    actor="api",
+                    book_id=task.book_id,
+                    chapter_id=task.chapter_id,
+                    details={"task_id": task_id},
+                )
+            logger.info(f"任务 {task_id} 已标记取消")
+            return True
+        return False
 
     @property
     def is_shutting_down(self) -> bool:

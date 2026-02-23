@@ -64,7 +64,13 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
             logger.warning(f"速率限制: {client_ip} 超过 {self._max_requests} req/{self._window}s")
             return JSONResponse(
                 status_code=429,
-                content={"error": "请求过于频繁", "retry_after_seconds": self._window},
+                content={
+                    "error": {
+                        "code": "RATE_LIMITED",
+                        "message": "请求过于频繁",
+                        "details": {"retry_after_seconds": self._window},
+                    }
+                },
             )
 
         timestamps.append(now)
@@ -80,7 +86,7 @@ BOOKS_ROOT = os.environ.get("BOOKS_ROOT", config.books_root)
 app = FastAPI(
     title="HydroScribe — CHS 多智能体协同写作助手",
     description="基于 OpenManus+OpenClaw 架构，融合 9 大写作技能的多智能体系统 (阿里云百炼优化)",
-    version="0.3.0",
+    version="0.4.0",
 )
 
 app.add_middleware(
@@ -163,13 +169,9 @@ async def get_book(book_id: str):
 async def start_writing(req: StartTaskRequest):
     """启动写作任务"""
     if not validate_book_id(req.book_id):
-        return JSONResponse(
-            status_code=400,
-            content={
-                "error": f"未知书目: {req.book_id}",
-                "valid_book_ids": sorted(BOOK_REGISTRY.keys()),
-            },
-        )
+        return api_error(400, "INVALID_BOOK_ID", f"未知书目: {req.book_id}", {
+            "valid_book_ids": sorted(BOOK_REGISTRY.keys()),
+        })
     asyncio.create_task(
         orchestrator.start_book(req.book_id, req.skill_type)
     )
@@ -336,10 +338,9 @@ async def get_registry_book(book_id: str):
     """获取单本书的注册规格"""
     spec = get_book_spec(book_id)
     if not spec:
-        return JSONResponse(
-            status_code=404,
-            content={"error": f"书目 {book_id} 不存在", "valid_book_ids": sorted(BOOK_REGISTRY.keys())},
-        )
+        return api_error(404, "BOOK_NOT_FOUND", f"书目 {book_id} 不存在", {
+            "valid_book_ids": sorted(BOOK_REGISTRY.keys()),
+        })
     return {"book_id": book_id, **spec}
 
 
@@ -367,6 +368,50 @@ async def clear_dead_letters():
     """清空死信队列"""
     orchestrator.event_bus.clear_dead_letters()
     return {"status": "cleared"}
+
+
+# ── 任务取消 ──────────────────────────────────────────────────
+
+@app.post("/api/tasks/{task_id}/cancel")
+async def cancel_task(task_id: str):
+    """取消活跃的写作任务（下轮迭代前生效）"""
+    if task_id not in orchestrator.active_tasks:
+        return api_error(404, "TASK_NOT_FOUND", f"任务 {task_id} 不存在或已完成", {
+            "active_task_ids": list(orchestrator.active_tasks.keys()),
+        })
+
+    cancelled = orchestrator.cancel_task(task_id)
+    if cancelled:
+        return {"status": "cancelling", "task_id": task_id, "message": "取消信号已发送，将在当前迭代结束后生效"}
+    else:
+        return api_error(500, "CANCEL_FAILED", f"无法取消任务 {task_id}")
+
+
+# ── 统一错误响应 ──────────────────────────────────────────────
+
+def api_error(
+    status_code: int,
+    error_code: str,
+    message: str,
+    details: dict = None,
+) -> JSONResponse:
+    """
+    统一 API 错误响应格式
+
+    所有错误响应遵循:
+    {
+        "error": {"code": "BOOK_NOT_FOUND", "message": "...", "details": {...}}
+    }
+    """
+    body = {
+        "error": {
+            "code": error_code,
+            "message": message,
+        }
+    }
+    if details:
+        body["error"]["details"] = details
+    return JSONResponse(status_code=status_code, content=body)
 
 
 # ── 健康检查与监控 ────────────────────────────────────────────

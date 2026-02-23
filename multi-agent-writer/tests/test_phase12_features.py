@@ -350,5 +350,5 @@ class TestAPINewEndpoints:
     def test_book_id_validation_on_task_start(self):
         """POST /api/tasks/start 应返回 400 for unknown book_id"""
         source = self._read_app_source()
-        assert "status_code=400" in source
+        assert "INVALID_BOOK_ID" in source
         assert "validate_book_id" in source
