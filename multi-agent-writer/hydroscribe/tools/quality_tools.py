@@ -83,23 +83,40 @@ class CheckConsistencyTool:
 
         # 检查工程混淆
         if "胶东" in content and "水电站" in content:
-            # 胶东是调水工程，不是水电站
-            context = content[max(0, content.index("胶东") - 50):content.index("胶东") + 100]
-            if "水电站" in context or "发电" in context:
-                issues.append({
-                    "type": "project_confusion",
-                    "message": "胶东调水是明渠调水工程(非水电站)，请检查是否混淆了胶东调水和沙坪水电站",
-                    "severity": "red",
-                })
+            # 胶东是调水工程，不是水电站 — 检查是否在同一语句中混淆
+            for match in re.finditer(r'胶东', content):
+                start = match.start()
+                # 取同一句子范围（到最近的句号/分号/换行）
+                sent_start = max(content.rfind('。', 0, start) + 1, content.rfind('\n', 0, start) + 1, 0)
+                sent_end = min(
+                    content.find('。', start) if content.find('。', start) != -1 else len(content),
+                    content.find('\n', start) if content.find('\n', start) != -1 else len(content),
+                )
+                sentence = content[sent_start:sent_end]
+                if "水电站" in sentence or "发电" in sentence:
+                    issues.append({
+                        "type": "project_confusion",
+                        "message": "胶东调水是明渠调水工程(非水电站)，请检查是否混淆了胶东调水和沙坪水电站",
+                        "severity": "red",
+                    })
+                    break
 
         if "沙坪" in content and "调水" in content:
-            context = content[max(0, content.index("沙坪") - 50):content.index("沙坪") + 100]
-            if "调水" in context and "梯级" not in context:
-                issues.append({
-                    "type": "project_confusion",
-                    "message": "沙坪是大渡河水电站(非调水工程)，请检查是否混淆",
-                    "severity": "red",
-                })
+            for match in re.finditer(r'沙坪', content):
+                start = match.start()
+                sent_start = max(content.rfind('。', 0, start) + 1, content.rfind('\n', 0, start) + 1, 0)
+                sent_end = min(
+                    content.find('。', start) if content.find('。', start) != -1 else len(content),
+                    content.find('\n', start) if content.find('\n', start) != -1 else len(content),
+                )
+                sentence = content[sent_start:sent_end]
+                if "调水" in sentence and "梯级" not in sentence:
+                    issues.append({
+                        "type": "project_confusion",
+                        "message": "沙坪是大渡河水电站(非调水工程)，请检查是否混淆",
+                        "severity": "red",
+                    })
+                    break
 
         red = [i for i in issues if i["severity"] == "red"]
         yellow = [i for i in issues if i["severity"] == "yellow"]
@@ -145,10 +162,21 @@ class CheckReferenceTool:
         recent = sum(1 for r in refs if re.search(r'202[1-6]', r))
         recent_rate = recent / max(total, 1)
 
-        # 必引
+        # 必引 — 拆分作者和年份分别匹配，以处理 "Lei X, ... 2025a" 类格式
         missing = []
+        all_ref_text = " ".join(refs) + " " + content
         for must in self.MUST_CITE:
-            if not any(must in r for r in refs) and must not in content:
+            parts = must.split()
+            if len(parts) == 2:
+                # 如 "Lei 2025"：检查作者名和年份是否同时出现在某条参考文献中
+                author, year = parts
+                found = any(author in r and year in r for r in refs)
+                if not found:
+                    # 也在正文中搜索
+                    found = author in content and year in content
+            else:
+                found = must in all_ref_text
+            if not found:
                 missing.append(must)
 
         # 最低数量要求
@@ -182,11 +210,23 @@ class CheckStructureTool:
         checks = {}
 
         if book_type in ("textbook", "BK"):
-            # 教材质量清单
-            checks["has_learning_objectives"] = bool(re.search(r'学习目标|Learning Objectives', content, re.I))
-            checks["has_summary"] = bool(re.search(r'本章小结|Chapter Summary|小结', content, re.I))
-            checks["has_exercises"] = bool(re.search(r'习题|Exercises|Problems', content, re.I))
-            checks["has_further_reading"] = bool(re.search(r'拓展阅读|Further Reading|References', content, re.I))
+            # 教材质量清单 — 要求标题级别的结构标记（# 或单独成行）
+            checks["has_learning_objectives"] = bool(re.search(
+                r'^#{1,4}\s*学习目标|^学习目标\s*$|^#{1,4}\s*Learning Objectives',
+                content, re.I | re.MULTILINE
+            ))
+            checks["has_summary"] = bool(re.search(
+                r'^#{1,4}\s*(?:本章小结|Chapter Summary|小结)\s*$',
+                content, re.I | re.MULTILINE
+            ))
+            checks["has_exercises"] = bool(re.search(
+                r'^#{1,4}\s*(?:习题|Exercises|Problems)\s*$',
+                content, re.I | re.MULTILINE
+            ))
+            checks["has_further_reading"] = bool(re.search(
+                r'^#{1,4}\s*(?:拓展阅读|Further Reading|References)\s*$',
+                content, re.I | re.MULTILINE
+            ))
 
             # 概念密度
             bold_terms = re.findall(r'\*\*([^*]{2,20})\*\*', content)

@@ -473,7 +473,16 @@ class Orchestrator:
                             for ref in check_result["must_cite_missing"][:3]:
                                 feedback_parts.append(f"  🟡 缺少必引文献: {ref}")
 
-                writer.review_feedback = "\n".join(feedback_parts)
+                feedback_text = "\n".join(feedback_parts)
+                max_feedback = self.config.orchestrator.max_feedback_tokens
+                if len(feedback_text) > max_feedback:
+                    feedback_text = feedback_text[:max_feedback] + \
+                        f"\n\n[... 反馈已截断，原始长度 {len(feedback_text)} 字符 ...]"
+                    logger.info(
+                        f"[{task.book_id}/{task.chapter_id}] 反馈截断: "
+                        f"{len('\n'.join(feedback_parts))} → {max_feedback} 字符"
+                    )
+                writer.review_feedback = feedback_text
 
         task.status = "max_iterations_reached"
         self._cleanup_task(task)
@@ -665,12 +674,16 @@ class Orchestrator:
         gate_event = asyncio.Event()
         self._pending_gates[gate_id] = gate_event
 
-        # 等待（最多30分钟）
+        # 等待人工审批（超时由配置控制）
+        timeout = self.config.orchestrator.gate_timeout_seconds
+        timeout_action = self.config.orchestrator.gate_timeout_action
         try:
-            await asyncio.wait_for(gate_event.wait(), timeout=1800)
+            await asyncio.wait_for(gate_event.wait(), timeout=timeout)
         except asyncio.TimeoutError:
-            logger.warning(f"门控 {gate_id} 超时，自动通过")
-            return True
+            approved = (timeout_action == "approve")
+            action_desc = "自动通过" if approved else "自动驳回"
+            logger.warning(f"门控 {gate_id} 超时({timeout}s)，{action_desc}")
+            return approved
 
         return self._gate_decisions.get(gate_id, True)
 

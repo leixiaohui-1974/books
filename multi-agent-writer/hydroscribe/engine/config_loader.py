@@ -69,11 +69,14 @@ class LLMRoleConfig:
 class OrchestratorConfig:
     """编排器配置"""
     gate_mode: str = "auto"  # auto | human | hybrid
+    gate_timeout_seconds: int = 3600  # 人工门控超时(秒)，默认1小时
+    gate_timeout_action: str = "reject"  # reject | approve — 超时后的默认动作
     review_weight: float = 0.80
     utility_weight: float = 0.20
     coordination_mode: str = "specialist"  # specialist | master_slave
     max_concurrent_writers: int = 3
     max_concurrent_reviewers: int = 8
+    max_feedback_tokens: int = 4000  # 反馈截断上限(字符)
 
 
 @dataclass
