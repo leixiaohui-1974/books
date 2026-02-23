@@ -356,6 +356,8 @@ async def get_metrics():
             "ws_connections": ws_connections,
         },
         "circuit_breakers": orchestrator.llm_manager.get_circuit_breaker_stats(),
+        "llm_latency": orchestrator.llm_manager.get_latency_stats(),
+        "task_stats": orchestrator.get_task_stats(),
         "coordination_mode": orchestrator.coordination_mode,
     }
 

@@ -158,12 +158,50 @@ class LLMResponse:
     raw_response: Optional[Any] = None
 
 
+class LatencyTracker:
+    """
+    LLM 调用延迟追踪器 — 记录每次调用耗时，计算统计分布
+
+    保留最近 max_samples 个样本，按需计算 min/max/p50/p95。
+    """
+
+    def __init__(self, max_samples: int = 200):
+        self._samples: List[float] = []
+        self._max_samples = max_samples
+        self._total_calls = 0
+
+    def record(self, latency_ms: float):
+        self._samples.append(latency_ms)
+        self._total_calls += 1
+        if len(self._samples) > self._max_samples:
+            self._samples = self._samples[-self._max_samples:]
+
+    def get_stats(self) -> dict:
+        if not self._samples:
+            return {
+                "total_calls": 0,
+                "min_ms": 0, "max_ms": 0,
+                "avg_ms": 0, "p50_ms": 0, "p95_ms": 0,
+            }
+        sorted_s = sorted(self._samples)
+        n = len(sorted_s)
+        return {
+            "total_calls": self._total_calls,
+            "min_ms": round(sorted_s[0], 1),
+            "max_ms": round(sorted_s[-1], 1),
+            "avg_ms": round(sum(sorted_s) / n, 1),
+            "p50_ms": round(sorted_s[n // 2], 1),
+            "p95_ms": round(sorted_s[min(int(n * 0.95), n - 1)], 1),
+        }
+
+
 class BaseLLMClient(ABC):
     """LLM 客户端基类"""
 
     def __init__(self, config: LLMConfig):
         self.config = config
         self._total_usage = LLMUsage()
+        self._latency = LatencyTracker()
         self._circuit_breaker = CircuitBreaker(
             failure_threshold=5,
             recovery_timeout=60.0,
@@ -202,16 +240,20 @@ class BaseLLMClient(ABC):
 
         for attempt in range(1, self.config.max_retries + 1):
             try:
+                call_start = time.monotonic()
                 response = await self.generate(
                     messages=messages,
                     system_prompt=system_prompt,
                     max_tokens=max_tokens,
                     temperature=temperature,
                 )
+                latency_ms = (time.monotonic() - call_start) * 1000
+                self._latency.record(latency_ms)
                 if response.usage:
                     self._total_usage.prompt_tokens += response.usage.prompt_tokens
                     self._total_usage.completion_tokens += response.usage.completion_tokens
                     self._total_usage.total_tokens += response.usage.total_tokens
+                    response.usage.latency_ms = int(latency_ms)
                 self._circuit_breaker.record_success()
                 return response
             except Exception as e:
@@ -236,6 +278,10 @@ class BaseLLMClient(ABC):
     @property
     def circuit_breaker_stats(self) -> dict:
         return self._circuit_breaker.get_stats()
+
+    @property
+    def latency_stats(self) -> dict:
+        return self._latency.get_stats()
 
     def get_total_usage(self) -> LLMUsage:
         return self._total_usage
@@ -548,6 +594,61 @@ class LocalLLMClient(BaseLLMClient):
         )
 
 
+# ── Dry-run 客户端 ─────────────────────────────────────────────────
+
+class DryRunClient(BaseLLMClient):
+    """
+    Dry-run LLM 客户端 — 不调用任何 API，返回占位内容
+
+    用途:
+    - 验证管线完整性（config → writer → reviewer → gate → save）
+    - CI/CD 冒烟测试
+    - 估算 token 消耗
+    """
+
+    async def generate(
+        self,
+        messages: List[Dict[str, str]],
+        system_prompt: str = "",
+        max_tokens: Optional[int] = None,
+        temperature: Optional[float] = None,
+    ) -> LLMResponse:
+        await asyncio.sleep(0.01)  # 模拟网络延迟
+        # 根据 messages 推断请求类型
+        last_msg = messages[-1]["content"] if messages else ""
+        if "大纲" in last_msg or "outline" in last_msg.lower():
+            content = "1.1 引言\n1.2 基本概念\n1.3 核心理论\n1.4 案例分析\n1.5 本章小结"
+        elif "评审" in last_msg or "review" in last_msg.lower():
+            content = (
+                '[教师评审]\n- 覆盖度: ★★★★☆\n- 可教性评分: 8/10\n'
+                '- 修改建议: [DRY-RUN] 无实际评审\n'
+                '{"overall": 8.0, "decision": "approve"}'
+            )
+        else:
+            content = (
+                f"# [DRY-RUN] 占位内容\n\n"
+                f"本段内容由 dry-run 模式生成，用于验证管线完整性。\n\n"
+                f"{'水系统控制论（CHS）提出了安全包络和水网自主等级的概念。' * 20}\n\n"
+                f"## 本章小结\n\n本章占位内容已完成。"
+            )
+
+        prompt_tokens = sum(len(m["content"]) // 4 for m in messages)
+        completion_tokens = len(content) // 4
+        return LLMResponse(
+            content=content,
+            usage=LLMUsage(
+                prompt_tokens=prompt_tokens,
+                completion_tokens=completion_tokens,
+                total_tokens=prompt_tokens + completion_tokens,
+                model="dry-run",
+                provider="dry-run",
+            ),
+            model="dry-run",
+            provider="dry-run",
+            finish_reason="stop",
+        )
+
+
 # ── 提供商注册表 ─────────────────────────────────────────────────
 
 _PROVIDER_REGISTRY: Dict[LLMProvider, type] = {
@@ -558,8 +659,11 @@ _PROVIDER_REGISTRY: Dict[LLMProvider, type] = {
 }
 
 
-def create_llm_client(config: LLMConfig) -> BaseLLMClient:
+def create_llm_client(config: LLMConfig, dry_run: bool = False) -> BaseLLMClient:
     """工厂函数 — 根据配置创建 LLM 客户端"""
+    if dry_run:
+        logger.info(f"[dry-run] 使用 DryRunClient 替代 {config.provider.value}/{config.model}")
+        return DryRunClient(config)
     client_cls = _PROVIDER_REGISTRY.get(config.provider)
     if not client_cls:
         raise ValueError(f"不支持的 LLM 提供商: {config.provider}")
@@ -603,15 +707,16 @@ class LLMManager:
     - 统一 token 用量统计
     """
 
-    def __init__(self):
+    def __init__(self, dry_run: bool = False):
         self._clients: Dict[str, BaseLLMClient] = {}
         self._configs: Dict[str, LLMConfig] = {}
         self._default_role = "default"
+        self._dry_run = dry_run
 
     def register(self, role: str, config: LLMConfig):
         """注册一个角色的 LLM 配置"""
         self._configs[role] = config
-        self._clients[role] = create_llm_client(config)
+        self._clients[role] = create_llm_client(config, dry_run=self._dry_run)
 
     def get_client(self, role: str = "default") -> BaseLLMClient:
         """获取指定角色的 LLM 客户端"""
@@ -676,3 +781,7 @@ class LLMManager:
     def get_circuit_breaker_stats(self) -> Dict[str, dict]:
         """获取所有角色的熔断器状态"""
         return {role: client.circuit_breaker_stats for role, client in self._clients.items()}
+
+    def get_latency_stats(self) -> Dict[str, dict]:
+        """获取所有角色的延迟统计"""
+        return {role: client.latency_stats for role, client in self._clients.items()}

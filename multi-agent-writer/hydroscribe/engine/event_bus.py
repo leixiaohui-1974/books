@@ -104,8 +104,14 @@ class EventBus:
         self._global_subscribers.clear()
         logger.info("EventBus 已关闭")
 
-    async def publish(self, event: Event):
-        """发布事件"""
+    async def publish(self, event: Event, handler_timeout: float = 10.0):
+        """
+        发布事件（带处理器超时保护）
+
+        Args:
+            event: 待发布的事件
+            handler_timeout: 单个处理器的最大执行时间（秒），超时则跳过
+        """
         async with self._lock:
             # 保存到历史
             self._history.append(event)
@@ -114,28 +120,32 @@ class EventBus:
 
         logger.info(f"[Event] {event.type.value} from {event.source_agent}: {json.dumps(event.payload, ensure_ascii=False, default=str)[:200]}")
 
-        # 通知特定订阅者
+        # 通知特定订阅者（带超时保护）
         for handler in self._subscribers.get(event.type, []):
-            try:
-                if asyncio.iscoroutinefunction(handler):
-                    await handler(event)
-                else:
-                    handler(event)
-            except Exception as e:
-                logger.error(f"Event handler error: {e}")
+            await self._invoke_handler(handler, event, handler_timeout)
 
-        # 通知全局订阅者
+        # 通知全局订阅者（带超时保护）
         for handler in self._global_subscribers:
-            try:
-                if asyncio.iscoroutinefunction(handler):
-                    await handler(event)
-                else:
-                    handler(event)
-            except Exception as e:
-                logger.error(f"Global handler error: {e}")
+            await self._invoke_handler(handler, event, handler_timeout)
 
         # 广播到所有 WebSocket 连接
         await self._broadcast_ws(event)
+
+    async def _invoke_handler(self, handler: Callable, event: Event, timeout: float):
+        """调用单个处理器（带超时保护）"""
+        handler_name = getattr(handler, "__name__", str(handler))
+        try:
+            if asyncio.iscoroutinefunction(handler):
+                await asyncio.wait_for(handler(event), timeout=timeout)
+            else:
+                handler(event)
+        except asyncio.TimeoutError:
+            logger.warning(
+                f"事件处理器超时 [{handler_name}] "
+                f"(>{timeout}s, event={event.type.value})"
+            )
+        except Exception as e:
+            logger.error(f"事件处理器错误 [{handler_name}]: {e}")
 
     async def _broadcast_ws(self, event: Event):
         """广播事件到所有 WebSocket 客户端"""

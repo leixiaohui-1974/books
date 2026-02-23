@@ -77,6 +77,7 @@ class OrchestratorConfig:
     max_concurrent_writers: int = 3
     max_concurrent_reviewers: int = 8
     max_feedback_tokens: int = 4000  # 反馈截断上限(字符)
+    dry_run: bool = False  # True = 跳过 LLM 调用，用占位内容验证管线
 
 
 @dataclass
@@ -183,6 +184,10 @@ def _apply_env_overrides(config: HydroScribeConfig) -> HydroScribeConfig:
         config.openclaw_enabled = os.environ["HYDROSCRIBE_OPENCLAW_ENABLED"].lower() in ("true", "1", "yes")
     if os.environ.get("HYDROSCRIBE_OPENCLAW_URL"):
         config.openclaw_gateway_url = os.environ["HYDROSCRIBE_OPENCLAW_URL"]
+
+    # Dry-run 模式
+    if os.environ.get("HYDROSCRIBE_DRY_RUN"):
+        config.orchestrator.dry_run = os.environ["HYDROSCRIBE_DRY_RUN"].lower() in ("true", "1", "yes")
 
     return config
 

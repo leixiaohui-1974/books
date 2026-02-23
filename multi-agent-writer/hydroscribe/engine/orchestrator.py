@@ -119,8 +119,11 @@ class Orchestrator:
         self.event_bus = EventBus()
 
         # LLM Manager — 多提供商管理
-        self.llm_manager = LLMManager()
+        self.llm_manager = LLMManager(dry_run=self.config.orchestrator.dry_run)
         self._init_llm_manager()
+
+        if self.config.orchestrator.dry_run:
+            logger.warning("[dry-run] 模式已启用 — LLM 调用将返回占位内容")
 
         # Agent 池
         self.writers: Dict[str, BaseWriterAgent] = {}
@@ -133,6 +136,14 @@ class Orchestrator:
 
         # 活跃任务
         self.active_tasks: Dict[str, WritingTask] = {}
+
+        # 任务完成统计
+        self._task_stats = {
+            "completed": 0,
+            "failed": 0,
+            "max_iterations_reached": 0,
+            "total_iterations": 0,  # 成功任务的总迭代次数
+        }
 
         # 待人工审批的门控
         self._pending_gates: Dict[str, asyncio.Event] = {}
@@ -378,6 +389,7 @@ class Orchestrator:
                     payload={"iteration": iteration, "error": str(e)},
                 ))
                 task.status = "error"
+                self._task_stats["failed"] += 1
                 self._cleanup_task(task)
                 return {
                     "status": "error",
@@ -442,6 +454,8 @@ class Orchestrator:
                 ))
 
                 task.status = "completed"
+                self._task_stats["completed"] += 1
+                self._task_stats["total_iterations"] += iteration
                 self._clear_checkpoint(task)
                 self._cleanup_task(task)
                 return {
@@ -501,6 +515,7 @@ class Orchestrator:
                 writer.review_feedback = feedback_text
 
         task.status = "max_iterations_reached"
+        self._task_stats["max_iterations_reached"] += 1
         self._clear_checkpoint(task)
         self._cleanup_task(task)
         return {
@@ -1047,6 +1062,23 @@ class Orchestrator:
         return await self.execute_writing_cycle(task)
 
     # ── LLM 用量查询 ────────────────────────────────────────────
+
+    def get_task_stats(self) -> Dict[str, Any]:
+        """获取任务完成统计"""
+        completed = self._task_stats["completed"]
+        total = completed + self._task_stats["failed"] + self._task_stats["max_iterations_reached"]
+        avg_iterations = (
+            round(self._task_stats["total_iterations"] / completed, 1)
+            if completed > 0 else 0
+        )
+        return {
+            "completed": completed,
+            "failed": self._task_stats["failed"],
+            "max_iterations_reached": self._task_stats["max_iterations_reached"],
+            "total_tasks": total,
+            "success_rate": round(completed / max(total, 1) * 100, 1),
+            "avg_iterations": avg_iterations,
+        }
 
     def get_llm_usage(self) -> Dict[str, Any]:
         """获取所有角色的 LLM token 用量"""
