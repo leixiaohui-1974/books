@@ -1,10 +1,17 @@
 """
 BaseReviewerAgent — 评审智能体基类
 继承 OpenManus BaseAgent，专用于多角色评审
+
+上下文管理策略：
+- 短文（<15K字）：整体评审
+- 中文（15K-30K字）：智能压缩后评审（保留标题/公式/定义，压缩段落）
+- 长文（>30K字）：分段评审后合并结果
+- 每次评审后清理对话历史
 """
 
 import os
 import re
+import json
 import sys
 from typing import Any, Dict, List, Optional
 
@@ -13,45 +20,47 @@ from pydantic import Field
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'openmanus'))
 
 from app.agent.base import BaseAgent as OpenManusBaseAgent
-from app.schema import AgentState, Message
+from app.schema import AgentState, Memory, Message
 
 from hydroscribe.schema import (
     Event, EventType, ReviewScore, ReviewerRole, SkillType
 )
 from hydroscribe.engine.event_bus import EventBus
+from hydroscribe.engine.context_manager import (
+    ContextManager, ReviewChunker, estimate_tokens
+)
 
 
 class BaseReviewerAgent(OpenManusBaseAgent):
     """
     评审智能体基类
 
-    每个 Reviewer Agent 对应一个评审角色（教师/专家/工程师/国际读者等），
-    内置该角色的评审 System Prompt 和评分标准。
-
-    核心流程：
-    1. 接收待审内容（Markdown）
-    2. 构建角色化的 System Prompt
-    3. 执行评审，输出结构化评分
-    4. 通过 EventBus 推送评审结果
+    上下文管理关键设计：
+    1. 评审prompt固定（2-6K token），内容占比可控
+    2. 长内容自动分段评审，合并结果
+    3. 每次评审完毕清理对话，无状态设计
+    4. 评审结果强制JSON格式，方便解析
     """
 
-    # 评审角色
     reviewer_role: ReviewerRole = Field(default=ReviewerRole.EXPERT)
-
-    # 评审 prompt（从 agents/*.md 加载）
     reviewer_prompt_template: str = Field(default="")
-
-    # 评分锚点（从 scoring_rubrics.md 加载）
     scoring_rubrics: str = Field(default="")
+    weight: float = Field(default=1.0, description="评审角色权重")
 
-    # 事件总线
     event_bus: Optional[Any] = Field(default=None, exclude=True)
+
+    _context_manager: Optional[Any] = None
 
     max_steps: int = 5
 
     class Config:
         arbitrary_types_allowed = True
         extra = "allow"
+
+    def _get_context_manager(self) -> ContextManager:
+        if self._context_manager is None:
+            self._context_manager = ContextManager()
+        return self._context_manager
 
     def _build_review_prompt(self, content: str, book_id: str, chapter_id: str) -> str:
         """构建评审 System Prompt"""
@@ -98,48 +107,55 @@ class BaseReviewerAgent(OpenManusBaseAgent):
 
     async def review(self, content: str, book_id: str, chapter_id: str) -> ReviewScore:
         """
-        执行评审 — 主入口
-
-        Args:
-            content: 待评审的 Markdown 内容
-            book_id: 书目 ID
-            chapter_id: 章节 ID
-
-        Returns:
-            ReviewScore 评审结果
+        执行评审 — 主入口，自动处理上下文长度
         """
-        # 发布评审开始事件
         if self.event_bus:
             await self.event_bus.publish(Event(
                 type=EventType.REVIEW_STARTED,
                 source_agent=self.name,
                 book_id=book_id,
                 chapter_id=chapter_id,
-                payload={"role": self.reviewer_role.value}
+                payload={
+                    "role": self.reviewer_role.value,
+                    "content_tokens": estimate_tokens(content),
+                }
             ))
 
-        # 构建 prompt
-        self.system_prompt = self._build_review_prompt(content, book_id, chapter_id)
+        review_prompt = self._build_review_prompt(content, book_id, chapter_id)
 
-        # 发送待审内容
-        review_request = (
-            f"请评审以下 {book_id} {chapter_id} 的内容：\n\n"
-            f"---\n{content[:15000]}\n---\n"  # 截断到 15000 字以控制 token
-        )
+        # 检查是否需要分段
+        ctx = self._get_context_manager()
+        chunker = ctx.get_review_chunker()
+        segments = chunker.prepare_review_content(content, review_prompt)
 
-        if len(content) > 15000:
-            review_request += f"\n（注：原文共 {len(content)} 字，此处展示前 15000 字用于评审）"
+        if len(segments) == 1:
+            score = await self._review_single(
+                segments[0]["content"], book_id, chapter_id, review_prompt,
+                is_summary=segments[0].get("is_summary", False),
+            )
+        else:
+            segment_results = []
+            for seg in segments:
+                seg_prompt = review_prompt + f"\n\n[注意: 这是第{seg['segment']}段内容，请只评审此段]"
+                result_text = await self._call_llm(seg["content"], seg_prompt, book_id, chapter_id)
+                parsed = self._parse_review_json(result_text)
+                segment_results.append(parsed)
+                self._reset_memory()
 
-        self.update_memory("user", review_request)
+            merged = chunker.merge_segment_reviews(segment_results)
+            score = ReviewScore(
+                reviewer_role=self.reviewer_role.value,
+                overall=merged.get("overall_score", 5.0),
+                scores=merged.get("dimension_scores", {}),
+                decision=merged.get("decision", "major"),
+                issues_red=merged.get("issues_red", []),
+                issues_yellow=merged.get("issues_yellow", []),
+                issues_green=merged.get("issues_green", []),
+                comments=merged.get("comments", "分段评审合并结果"),
+            )
 
-        # 调用 LLM 评审
-        result = await self.step()
-
-        # 解析评审结果
-        score = self._parse_review_result(result)
         score.reviewer_role = self.reviewer_role.value
 
-        # 发布评审评分事件
         if self.event_bus:
             await self.event_bus.publish(Event(
                 type=EventType.REVIEW_SCORE,
@@ -150,49 +166,93 @@ class BaseReviewerAgent(OpenManusBaseAgent):
                     "role": self.reviewer_role.value,
                     "overall": score.overall,
                     "decision": score.decision,
-                    "issues_red": score.issues_red,
-                    "issues_yellow": score.issues_yellow,
-                    "issues_green": score.issues_green,
-                    "scores": score.scores,
+                    "issues_red": score.issues_red[:5],
+                    "issues_yellow": score.issues_yellow[:5],
                 }
             ))
 
+        self._reset_memory()
         return score
 
-    def _parse_review_result(self, result: str) -> ReviewScore:
-        """解析 LLM 返回的评审结果（JSON 格式）"""
-        import json
+    async def _review_single(
+        self, content: str, book_id: str, chapter_id: str,
+        review_prompt: str, is_summary: bool = False,
+    ) -> ReviewScore:
+        """单次评审"""
+        note = ""
+        if is_summary:
+            note = "\n（注：内容经过智能压缩，保留了标题/公式/定义等关键信息）"
 
+        result_text = await self._call_llm(content, review_prompt + note, book_id, chapter_id)
+        return self._parse_review_result(result_text)
+
+    async def _call_llm(
+        self, content: str, system_prompt: str,
+        book_id: str, chapter_id: str,
+    ) -> str:
+        """调用LLM执行评审"""
+        self.system_prompt = system_prompt
+        review_request = (
+            f"请评审以下 {book_id} {chapter_id} 的内容：\n\n"
+            f"---\n{content}\n---\n"
+        )
+        self.update_memory("user", review_request)
+        result = await self.step()
+        return result
+
+    def _reset_memory(self):
+        """重置对话历史"""
+        try:
+            self.memory = Memory()
+        except Exception:
+            pass
+
+    def _parse_review_result(self, result: str) -> ReviewScore:
+        """解析 LLM 返回的评审结果"""
         score = ReviewScore()
 
         if not result:
             score.comments = "评审未返回结果"
             return score
 
-        # 尝试提取 JSON 块
+        parsed = self._parse_review_json(result)
+        score.overall = float(parsed.get("overall_score", 0))
+        score.scores = parsed.get("dimension_scores", {})
+        score.decision = parsed.get("decision", "major")
+        score.issues_red = parsed.get("issues_red", [])
+        score.issues_yellow = parsed.get("issues_yellow", [])
+        score.issues_green = parsed.get("issues_green", [])
+        score.comments = parsed.get("comments", "")
+
+        if score.overall == 0:
+            score_match = re.search(r'(\d+\.?\d*)\s*/\s*10', result)
+            if score_match:
+                score.overall = float(score_match.group(1))
+            score.comments = result[:1000]
+            score.decision = "major"
+
+        return score
+
+    def _parse_review_json(self, result: str) -> Dict:
+        """从LLM输出中提取JSON评审结果"""
+        if not result:
+            return {}
+
         json_match = re.search(r'```json\s*(.*?)\s*```', result, re.DOTALL)
         if json_match:
             try:
-                data = json.loads(json_match.group(1))
-                score.overall = float(data.get("overall_score", 0))
-                score.scores = data.get("dimension_scores", {})
-                score.decision = data.get("decision", "major")
-                score.issues_red = data.get("issues_red", [])
-                score.issues_yellow = data.get("issues_yellow", [])
-                score.issues_green = data.get("issues_green", [])
-                score.comments = data.get("comments", "")
-                return score
+                return json.loads(json_match.group(1))
             except (json.JSONDecodeError, ValueError):
                 pass
 
-        # JSON 解析失败，尝试从文本中提取评分
-        score_match = re.search(r'(\d+\.?\d*)\s*/\s*10', result)
-        if score_match:
-            score.overall = float(score_match.group(1))
+        json_match = re.search(r'\{[^{}]*"overall_score"[^{}]*\}', result, re.DOTALL)
+        if json_match:
+            try:
+                return json.loads(json_match.group())
+            except (json.JSONDecodeError, ValueError):
+                pass
 
-        score.comments = result[:1000]
-        score.decision = "major"  # 默认需要大修
-        return score
+        return {}
 
     async def step(self) -> str:
         """执行一步 — 调用 LLM"""

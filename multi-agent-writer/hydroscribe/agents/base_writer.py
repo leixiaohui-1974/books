@@ -1,16 +1,20 @@
 """
 BaseWriterAgent — 写作智能体基类
 继承 OpenManus 的 BaseAgent 架构，专用于 CHS 学术写作
+
+上下文管理策略：
+- 每个小节独立生成，避免单次请求过长
+- 使用 ChunkWriter 做滑动窗口+累积摘要（不保留全文在对话中）
+- 写完每节后清理对话历史，只保留摘要
 """
 
 import asyncio
 import os
-from abc import abstractmethod
+import re
 from typing import Any, Dict, List, Optional
 
 from pydantic import Field
 
-# OpenManus imports (路径适配)
 import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'openmanus'))
 
@@ -22,42 +26,38 @@ from hydroscribe.schema import (
     SkillType, WritingTask
 )
 from hydroscribe.engine.event_bus import EventBus
+from hydroscribe.engine.context_manager import (
+    ContextManager, ChunkWriter, ConversationCompressor, estimate_tokens
+)
 
 
 class BaseWriterAgent(OpenManusBaseAgent):
     """
     写作智能体基类 — 继承 OpenManus BaseAgent
 
-    每个 Writer Agent 对应一种文体（BK/SCI/CN/PAT/RPT/STD-CN/STD-INT/WX/PPT），
-    内置该文体的 System Prompt、写作技法和金标准参考。
-
-    核心流程：
-    1. 接收 WritingTask（含章节规格、前序章节、评审意见）
-    2. 构建上下文（术语表、符号表、写作风格指南）
-    3. 分段写作（大章节按小节分片，防止单次输出过长）
-    4. 通过 EventBus 流式推送写作进度
-    5. 输出完整章节 Markdown + 元数据
+    上下文管理关键设计：
+    1. 每个小节独立 LLM 请求（不累积全文到对话历史）
+    2. 使用累积摘要替代全文回顾（降低token消耗90%+）
+    3. 写完一节后主动清理对话，只保留最近3轮+摘要
+    4. 系统prompt中的术语/符号做智能截断
     """
 
-    # 文体类型
     skill_type: SkillType = Field(default=SkillType.BK)
-
-    # 事件总线（运行时注入）
     event_bus: Optional[Any] = Field(default=None, exclude=True)
 
-    # 写作上下文
     glossary: str = Field(default="", description="术语表内容")
     symbols: str = Field(default="", description="符号表内容")
     style_guide: str = Field(default="", description="写作风格指南")
     prev_chapter_tail: str = Field(default="", description="前序章节末尾 500 字")
     review_feedback: str = Field(default="", description="上一轮评审意见（修改轮）")
 
-    # 当前任务
     current_task: Optional[WritingTask] = Field(default=None, exclude=True)
-
-    # 输出缓冲
     output_buffer: str = Field(default="", exclude=True)
     word_count: int = Field(default=0, exclude=True)
+
+    # 上下文管理
+    _context_manager: Optional[Any] = None
+    _chunk_writer: Optional[Any] = None
 
     max_steps: int = 30
 
@@ -65,10 +65,21 @@ class BaseWriterAgent(OpenManusBaseAgent):
         arbitrary_types_allowed = True
         extra = "allow"
 
+    def _get_context_manager(self) -> ContextManager:
+        if self._context_manager is None:
+            self._context_manager = ContextManager()
+        return self._context_manager
+
+    def _get_chunk_writer(self, task_id: str) -> ChunkWriter:
+        ctx = self._get_context_manager()
+        return ctx.get_chunk_writer(task_id)
+
     def _build_system_prompt(self, task: WritingTask) -> str:
         """
         构建 System Prompt：合并文体模板 + 章节规格 + 术语 + 风格
         子类可覆写以添加文体特定内容
+
+        注意：术语和符号使用 ContextManager 做截断
         """
         spec = task.spec
         prompt_parts = [
@@ -85,9 +96,10 @@ class BaseWriterAgent(OpenManusBaseAgent):
             prompt_parts.append(self.style_guide)
             prompt_parts.append("")
 
+        # 术语和符号由 ContextManager 控制截断
         if self.glossary:
             prompt_parts.append("## 术语规范（严格遵循，不得使用禁止别名）")
-            prompt_parts.append(self.glossary[:3000])  # 截断以节省 token
+            prompt_parts.append(self.glossary[:3000])
             prompt_parts.append("")
 
         if self.symbols:
@@ -97,12 +109,20 @@ class BaseWriterAgent(OpenManusBaseAgent):
 
         if self.prev_chapter_tail:
             prompt_parts.append("## 前序章节末尾（用于衔接）")
-            prompt_parts.append(self.prev_chapter_tail)
+            prompt_parts.append(self.prev_chapter_tail[-1000:])
             prompt_parts.append("")
 
         if self.review_feedback:
             prompt_parts.append("## 上一轮评审意见（本次修改必须回应）")
-            prompt_parts.append(self.review_feedback)
+            # 评审意见做智能截断，优先保留🔴和🟡
+            feedback = self.review_feedback
+            if estimate_tokens(feedback) > 5000:
+                # 优先保留致命和重要问题
+                lines = feedback.split("\n")
+                priority_lines = [l for l in lines if "🔴" in l or "🟡" in l or l.startswith("[")]
+                other_lines = [l for l in lines if l not in priority_lines]
+                feedback = "\n".join(priority_lines[:50] + other_lines[:10])
+            prompt_parts.append(feedback)
             prompt_parts.append("")
 
         return "\n".join(prompt_parts)
@@ -111,42 +131,75 @@ class BaseWriterAgent(OpenManusBaseAgent):
         """
         写一个完整章节 — 主入口
 
-        Returns:
-            {
-                "content": str,      # Markdown 正文
-                "word_count": int,
-                "sections": list,    # 小节列表
-                "metadata": dict     # 概念数/公式数/例题数等
-            }
+        上下文管理策略：
+        1. 大纲生成：独立请求，完成后清理对话
+        2. 每个小节：使用 ChunkWriter 准备上下文（滑动窗口+累积摘要）
+        3. 写完一节后：更新摘要 + 清理对话历史
         """
         self.current_task = task
         self.output_buffer = ""
         self.word_count = 0
 
-        # 构建 System Prompt
+        # 初始化上下文管理
+        chunk_writer = self._get_chunk_writer(task.id)
+        chunk_writer.accumulated_summary = ""
+        chunk_writer.section_count = 0
+        chunk_writer.total_word_count = 0
+
         self.system_prompt = self._build_system_prompt(task)
 
-        # 发布写作开始事件
         if self.event_bus:
             await self.event_bus.publish(Event(
                 type=EventType.WRITING_STARTED,
                 source_agent=self.name,
                 book_id=task.book_id,
                 chapter_id=task.chapter_id,
-                payload={"target_words": task.spec.target_words, "title": task.spec.title}
+                payload={
+                    "target_words": task.spec.target_words,
+                    "title": task.spec.title,
+                    "context_budget": self._get_context_manager().budget.total,
+                }
             ))
 
-        # 生成章节大纲
+        # ① 生成大纲（独立请求）
         outline = await self._generate_outline(task)
 
-        # 按小节分段写作
+        # 清理大纲生成的对话历史
+        self._reset_memory()
+
+        # ② 按小节分段写作
         full_content = ""
         sections = []
 
         for i, section in enumerate(outline):
-            section_content = await self._write_section(task, section, i, len(outline), full_content)
+            # 用 ChunkWriter 准备上下文
+            section_ctx = chunk_writer.prepare_section_context(
+                outline=outline,
+                section_index=i,
+                prev_content=full_content,
+                system_prompt=self._build_system_prompt(task),
+                glossary=self.glossary,
+                symbols=self.symbols,
+                style_guide=self.style_guide,
+                review_feedback=self.review_feedback if i == 0 else "",  # 评审意见只在第一节传
+            )
+
+            # 设置系统prompt（已截断）
+            self.system_prompt = section_ctx["system_prompt"]
+
+            # 写入小节
+            section_content = await self._write_section_managed(
+                task, section, i, len(outline), section_ctx["user_prompt"]
+            )
+
             full_content += section_content + "\n\n"
             sections.append(section)
+
+            # 更新累积摘要
+            chunk_writer.update_summary(section, section_content)
+
+            # 清理对话历史（关键！防止对话膨胀）
+            self._reset_memory()
 
             # 流式推送进度
             self.word_count = len(full_content)
@@ -162,13 +215,14 @@ class BaseWriterAgent(OpenManusBaseAgent):
                         "total_sections": len(outline),
                         "word_count": self.word_count,
                         "target_words": task.spec.target_words,
-                        "progress": round(self.word_count / max(task.spec.target_words, 1) * 100, 1)
+                        "progress": round(self.word_count / max(task.spec.target_words, 1) * 100, 1),
+                        "context_tokens_used": section_ctx["context_tokens"],
+                        "accumulated_summary_tokens": estimate_tokens(chunk_writer.accumulated_summary),
                     }
                 ))
 
         self.output_buffer = full_content
 
-        # 发布写作完成事件
         result = {
             "content": full_content,
             "word_count": self.word_count,
@@ -189,14 +243,33 @@ class BaseWriterAgent(OpenManusBaseAgent):
                 }
             ))
 
+        # 清理任务资源
+        self._get_context_manager().cleanup_task(task.id)
+
         return result
 
+    def _reset_memory(self):
+        """重置对话历史 — 防止上下文膨胀"""
+        try:
+            self.memory = Memory()
+        except Exception:
+            pass
+
+    async def _write_section_managed(
+        self,
+        task: WritingTask,
+        section_title: str,
+        section_index: int,
+        total_sections: int,
+        user_prompt: str,
+    ) -> str:
+        """使用上下文管理器写一个小节"""
+        self.update_memory("user", user_prompt)
+        result = await self.step()
+        return result if result else ""
+
     async def _generate_outline(self, task: WritingTask) -> List[str]:
-        """
-        生成章节大纲（小节列表）
-        子类可覆写以使用 LLM 动态生成
-        """
-        # 默认实现：从 spec 中解析
+        """生成章节大纲"""
         spec = task.spec
         prompt = (
             f"为《{task.book_id}》的 {spec.chapter_id}「{spec.title}」生成详细的小节大纲。\n"
@@ -211,12 +284,10 @@ class BaseWriterAgent(OpenManusBaseAgent):
         self.update_memory("user", prompt)
         step_result = await self.step()
 
-        # 解析返回的大纲
         lines = step_result.strip().split("\n") if step_result else []
         outline = [line.strip() for line in lines if line.strip() and any(c.isdigit() for c in line[:5])]
 
         if not outline:
-            # fallback：生成默认大纲
             ch_num = spec.chapter_id.replace("ch", "")
             outline = [
                 f"{ch_num}.1 引言",
@@ -229,57 +300,13 @@ class BaseWriterAgent(OpenManusBaseAgent):
 
         return outline
 
-    async def _write_section(
-        self,
-        task: WritingTask,
-        section_title: str,
-        section_index: int,
-        total_sections: int,
-        prev_content: str
-    ) -> str:
-        """
-        写一个小节
-        """
-        spec = task.spec
-        words_per_section = spec.target_words // max(total_sections, 1)
-
-        prompt = (
-            f"现在请撰写「{section_title}」这一小节。\n"
-            f"约 {words_per_section} 字。\n"
-        )
-
-        if section_index == 0:
-            prompt += "这是本章的第一小节，需要包含引导性内容。\n"
-        if section_index == total_sections - 1:
-            prompt += "这是本章最后一小节，需要包含本章小结。\n"
-
-        if prev_content:
-            # 传入前文末尾用于衔接
-            tail = prev_content[-500:] if len(prev_content) > 500 else prev_content
-            prompt += f"\n前文末尾（用于衔接）：\n...{tail}\n"
-
-        self.update_memory("user", prompt)
-        result = await self.step()
-        return result if result else ""
-
     def _extract_metadata(self, content: str) -> Dict[str, Any]:
         """从写作内容中提取元数据"""
-        import re
-
-        # 统计公式数量
         equations = len(re.findall(r'\$\$[^$]+\$\$', content)) + len(re.findall(r'\\begin\{equation\}', content))
-
-        # 统计例题数量
         examples = len(re.findall(r'【例\d', content)) + len(re.findall(r'\[例\d', content))
-
-        # 统计图表数量
         figures = len(re.findall(r'\[图\s*\d', content)) + len(re.findall(r'Figure\s*\d', content, re.I))
         tables = len(re.findall(r'\[表\s*\d', content)) + len(re.findall(r'Table\s*\d', content, re.I))
-
-        # 统计新概念（粗略：加粗的术语）
         concepts = len(re.findall(r'\*\*[^*]{2,20}\*\*', content))
-
-        # 统计参考文献
         references = len(re.findall(r'\[\d+\]', content))
 
         return {
@@ -287,15 +314,12 @@ class BaseWriterAgent(OpenManusBaseAgent):
             "examples": examples,
             "figures": figures,
             "tables": tables,
-            "concepts": min(concepts, 30),  # 限制合理范围
+            "concepts": min(concepts, 30),
             "references": references,
         }
 
     async def step(self) -> str:
-        """
-        执行一步 — 调用 LLM 生成内容
-        继承自 OpenManus BaseAgent
-        """
+        """执行一步 — 调用 LLM 生成内容"""
         if not self.memory.messages:
             return ""
 

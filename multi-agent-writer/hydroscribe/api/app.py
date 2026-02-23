@@ -11,11 +11,11 @@ from typing import Optional
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
 from hydroscribe.engine.orchestrator import Orchestrator
 from hydroscribe.engine.event_bus import EventBus
-from hydroscribe.schema import EventType
+from hydroscribe.schema import EventType, Event, SkillType
 
 logger = logging.getLogger("hydroscribe.api")
 
@@ -26,7 +26,7 @@ BOOKS_ROOT = os.environ.get("BOOKS_ROOT", "/home/user/books")
 app = FastAPI(
     title="HydroScribe — CHS 多智能体协同写作助手",
     description="基于 OpenManus 架构，融合 9 大写作技能的多智能体系统",
-    version="0.1.0",
+    version="0.2.0",
 )
 
 app.add_middleware(
@@ -39,6 +39,18 @@ app.add_middleware(
 orchestrator = Orchestrator(books_root=BOOKS_ROOT)
 
 
+# ── 请求模型 ──────────────────────────────────────────────────
+
+class StartTaskRequest(BaseModel):
+    book_id: str
+    skill_type: str = "BK"
+    gate_mode: str = "auto"
+
+
+class GateRequest(BaseModel):
+    reason: str = ""
+
+
 # ── REST API ──────────────────────────────────────────────────
 
 @app.get("/api/status")
@@ -46,8 +58,9 @@ async def get_status():
     """系统状态"""
     return {
         "status": "running",
-        "version": "0.1.0",
+        "version": "0.2.0",
         "books_root": BOOKS_ROOT,
+        "skill_types": [s.value for s in SkillType],
         "orchestrator": orchestrator.get_status(),
     }
 
@@ -77,15 +90,17 @@ async def get_book(book_id: str):
 
 
 @app.post("/api/tasks/start")
-async def start_writing(book_id: str, skill_type: str = "BK"):
+async def start_writing(req: StartTaskRequest):
     """启动写作任务"""
-    # 后台执行，不阻塞 API
-    task = asyncio.create_task(orchestrator.start_book(book_id, skill_type))
+    asyncio.create_task(
+        orchestrator.start_book(req.book_id, req.skill_type)
+    )
     return {
         "status": "started",
-        "book_id": book_id,
-        "skill_type": skill_type,
-        "message": f"已启动 {book_id} 的写作任务，请通过 WebSocket 监控进度",
+        "book_id": req.book_id,
+        "skill_type": req.skill_type,
+        "gate_mode": req.gate_mode,
+        "message": f"已启动 {req.book_id} 的写作任务，请通过 WebSocket 监控进度",
     }
 
 
@@ -95,30 +110,63 @@ async def get_events(limit: int = 50, book_id: Optional[str] = None):
     return {"events": orchestrator.event_bus.get_history(limit=limit, book_id=book_id)}
 
 
-@app.post("/api/gate/{task_id}/approve")
-async def approve_gate(task_id: str):
+@app.get("/api/agents")
+async def get_agents():
+    """获取所有活跃的 Agent 状态"""
+    writers = {k: {"name": v.name, "skill": v.skill_type.value} for k, v in orchestrator.writers.items()}
+    reviewers = {k: {"name": v.name, "role": v.reviewer_role.value} for k, v in orchestrator.reviewers.items()}
+    return {
+        "writers": writers,
+        "reviewers": reviewers,
+        "agent_states": orchestrator.event_bus.get_agent_status_summary(),
+    }
+
+
+@app.get("/api/skills")
+async def get_skills():
+    """获取9大写作技能信息"""
+    from hydroscribe.schema import SKILL_REVIEWERS, SKILL_THRESHOLDS
+    skills = {}
+    for skill in SkillType:
+        reviewers = SKILL_REVIEWERS.get(skill, [])
+        threshold = SKILL_THRESHOLDS.get(skill, {})
+        skills[skill.value] = {
+            "name": skill.value,
+            "reviewer_count": len(reviewers),
+            "reviewers": [r.value for r in reviewers],
+            "threshold": threshold,
+        }
+    return {"skills": skills}
+
+
+@app.post("/api/gate/{gate_id}/approve")
+async def approve_gate(gate_id: str):
     """人工批准门控"""
-    await orchestrator.event_bus.publish(
-        __import__("hydroscribe.schema", fromlist=["Event"]).Event(
-            type=EventType.GATE_APPROVED,
-            source_agent="human",
-            payload={"task_id": task_id},
-        )
-    )
-    return {"status": "approved"}
+    orchestrator.approve_gate(gate_id)
+    await orchestrator.event_bus.publish(Event(
+        type=EventType.GATE_APPROVED,
+        source_agent="human",
+        payload={"gate_id": gate_id},
+    ))
+    return {"status": "approved", "gate_id": gate_id}
 
 
-@app.post("/api/gate/{task_id}/reject")
-async def reject_gate(task_id: str, reason: str = ""):
+@app.post("/api/gate/{gate_id}/reject")
+async def reject_gate(gate_id: str, req: GateRequest):
     """人工驳回门控"""
-    await orchestrator.event_bus.publish(
-        __import__("hydroscribe.schema", fromlist=["Event"]).Event(
-            type=EventType.GATE_REJECTED,
-            source_agent="human",
-            payload={"task_id": task_id, "reason": reason},
-        )
-    )
-    return {"status": "rejected"}
+    orchestrator.reject_gate(gate_id)
+    await orchestrator.event_bus.publish(Event(
+        type=EventType.GATE_REJECTED,
+        source_agent="human",
+        payload={"gate_id": gate_id, "reason": req.reason},
+    ))
+    return {"status": "rejected", "gate_id": gate_id}
+
+
+@app.get("/api/gates/pending")
+async def get_pending_gates():
+    """获取待审批的门控列表"""
+    return {"pending_gates": list(orchestrator._pending_gates.keys())}
 
 
 # ── WebSocket 实时推送 ────────────────────────────────────────
@@ -132,10 +180,26 @@ async def websocket_endpoint(websocket: WebSocket):
 
     try:
         while True:
-            # 保持连接（接收客户端心跳或指令）
             data = await websocket.receive_text()
             if data == "ping":
                 await websocket.send_text("pong")
+            elif data.startswith("{"):
+                try:
+                    cmd = json.loads(data)
+                    action = cmd.get("action")
+                    if action == "start":
+                        asyncio.create_task(
+                            orchestrator.start_book(
+                                cmd.get("book_id", "T1-CN"),
+                                cmd.get("skill_type", "BK"),
+                            )
+                        )
+                    elif action == "approve":
+                        orchestrator.approve_gate(cmd.get("gate_id", ""))
+                    elif action == "reject":
+                        orchestrator.reject_gate(cmd.get("gate_id", ""))
+                except json.JSONDecodeError:
+                    pass
     except WebSocketDisconnect:
         orchestrator.event_bus.unregister_ws(websocket)
         logger.info("WebSocket 客户端已断开")
