@@ -424,6 +424,91 @@ assert cited_in_text == defined_in_refs, "引用与文献列表不匹配"
 
 `books/T1-CN/T1-CN_revised_v1_manus.md`（10,841行）是Manus AI帮写的T1-CN全书修订稿，含完整12章结构、引导案例、阅读指引。后续写T1-CN各章时：先读取Manus稿对应章节作参考底稿，保留工程数据和案例素材，按SKILL.md术语规范重新打磨，补充雷晓辉自引论文。
 
+**技巧25 Claude+Gemini双模型图文协作工作流**
+
+Claude负责全文写作+插图提示词生成，Gemini（Nano Banana/Imagen）负责根据提示词生成插图并嵌入原文，形成完整图文输出。
+
+**工作流三步走**：
+
+```
+步骤1 Claude写作阶段
+  └→ 输出完整文章，在每个需要插图的位置嵌入标准化占位符
+
+步骤2 用户→Gemini
+  └→ 将Claude输出的全文（含占位符）粘贴给Gemini
+  └→ Gemini自动提取占位符中的提示词，生成图片，替换占位符
+
+步骤3 Gemini输出
+  └→ 图文并茂的完整文章/书稿
+```
+
+**插图占位符标准格式**（Claude输出时使用）：
+
+```markdown
+[插图：图X-Y 中文图题 | 英文提示词 | 尺寸WxH | 风格说明]
+```
+
+**具体示例**：
+
+```markdown
+如图1所示，水系统控制论将水利工程抽象为"六元组"控制回路。
+
+[插图：图1 水系统状态-输入-输出-扰动控制框图 | A control system block diagram for water systems. White background, blue color scheme. Central block labeled "水系统 f(·)" with state x_k inside. Four input arrows: u_k control input (blue), d_k disturbance (orange), θ_k slow parameters (gray dashed). Output y_k with measurement noise v_k. Feedback loop through Controller block. Chinese+English bilingual labels. Academic textbook quality. | 1800x1200 | 学术线框图，黑白灰+蓝色点缀，600dpi]
+
+该框图清晰表达了水系统的可控性结构……
+```
+
+**Claude写作阶段的规则**：
+
+1. **正文流畅优先**：占位符前后的正文要自然衔接，占位符不影响阅读连贯性
+2. **提示词复用技巧14/18**：占位符内的英文提示词直接复用技巧14（SCI）或技巧18（中文期刊）的提示词格式
+3. **中文图题必须有**：占位符第一项是中文"图X-Y 图题"，与正文引用对应
+4. **尺寸和风格必须有**：帮助Gemini生成正确比例和风格的图片
+5. **每章/每篇论文末尾附图表清单**：
+
+```markdown
+---
+## 本章插图清单
+| 图号 | 图题 | 类型 | 尺寸 |
+|------|------|------|------|
+| 图1 | 水系统控制框图 | 架构图 | 1800×1200 |
+| 图2 | 多时间尺度控制层级 | 分层图 | 2400×1200 |
+```
+
+**Gemini端设定指令**（用户粘贴给Gemini的初始化提示词）：
+
+```
+Gemini，接下来我们进行学术图文排版工作。我会发送Claude写好的文章，
+文中用 [插图：图题 | 英文提示词 | 尺寸 | 风格] 格式预留图片位置。
+
+你的任务：
+1. 完整阅读文章
+2. 提取所有 [插图：xxx] 中的英文提示词部分
+3. 用你的图像生成能力，按提示词、尺寸、风格要求生成对应图片
+4. 将图片插入到占位符位置，输出图文并茂的完整文章
+5. 图片下方保留中文图题（如"图1 水系统控制框图"）
+
+风格统一要求：学术教材质量，白色背景，中英文双语标注，
+配色方案：蓝(#1565C0)物理/控制、绿(#4CAF50)安全、
+紫(#7B1FA2)认知、橙(#FF7043)扰动。
+```
+
+**不同文体的占位符数量建议**：
+
+| 文体 | 图数 | 说明 |
+|------|------|------|
+| 中文核心期刊 | 2-4张 | 版面有限，精选关键图 |
+| SCI论文 | 3-6张 | 按WRR/JHydro要求 |
+| 专著章节 | 4-8张 | 每节1-2张 |
+| 技术报告 | 不限 | 图表丰富 |
+| 微信公众号 | 3-5张 | 视觉吸引力优先 |
+
+**数据曲线图例外**：实验/仿真数据图不走Gemini，由Claude直接生成matplotlib/plotly代码。占位符标记为：
+
+```markdown
+[数据图：图X-Y 图题 | matplotlib代码见附录 fig_code/figX_Y.py]
+```
+
 ---
 
 ## 4. 文献检索
