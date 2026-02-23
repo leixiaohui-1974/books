@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """
 HydroScribe — CHS 多智能体协同写作助手
-入口文件：启动 FastAPI 服务
+入口文件：启动 FastAPI 服务 (v0.3.0)
 
-用法：
+推荐用法：
+    hydroscribe serve             # 使用 CLI (推荐)
+    hydroscribe init              # 首次配置向导
+
+兼容用法：
     python main.py                # 默认 8000 端口
     python main.py --port 3000    # 自定义端口
     python main.py --dev          # 开发模式（热重载）
@@ -30,33 +34,42 @@ logging.basicConfig(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="HydroScribe — CHS 多智能体协同写作助手")
-    parser.add_argument("--port", "-p", type=int, default=8000, help="服务端口 (默认: 8000)")
-    parser.add_argument("--host", "-H", type=str, default="0.0.0.0", help="绑定地址 (默认: 0.0.0.0)")
+    parser = argparse.ArgumentParser(description="HydroScribe — CHS 多智能体协同写作助手 v0.3.0")
+    parser.add_argument("--port", "-p", type=int, default=None, help="服务端口 (默认: 8000)")
+    parser.add_argument("--host", "-H", type=str, default=None, help="绑定地址 (默认: 0.0.0.0)")
     parser.add_argument("--dev", action="store_true", help="开发模式（热重载）")
     args = parser.parse_args()
+
+    # 使用配置系统加载设置
+    from hydroscribe.engine.config_loader import get_config
+    cfg = get_config()
+
+    host = args.host or cfg.server.host
+    port = args.port or cfg.server.port
 
     import uvicorn
 
     print(f"""
     ╔═══════════════════════════════════════════════════════╗
-    ║         HydroScribe — CHS 多智能体协同写作助手        ║
+    ║    HydroScribe v0.3.0 — CHS 多智能体协同写作助手     ║
     ║                                                       ║
-    ║  前端仪表盘: http://localhost:{args.port}                ║
-    ║  API  文档:  http://localhost:{args.port}/docs            ║
-    ║  WebSocket:  ws://localhost:{args.port}/ws                ║
+    ║  前端仪表盘: http://localhost:{port:<5}                 ║
+    ║  API  文档:  http://localhost:{port:<5}/docs             ║
+    ║  WebSocket:  ws://localhost:{port:<5}/ws                 ║
     ║                                                       ║
-    ║  基于 OpenManus 架构 | 融合 9 大写作技能              ║
-    ║  9 Writer + N Reviewer + EventBus + 实时 UI           ║
+    ║  LLM:  {cfg.llm_default.provider + '/' + cfg.llm_default.model:<46}║
+    ║  Gate: {cfg.orchestrator.gate_mode:<46}║
+    ║                                                       ║
+    ║  推荐使用 CLI: hydroscribe serve                      ║
     ╚═══════════════════════════════════════════════════════╝
     """)
 
     uvicorn.run(
         "hydroscribe.api.app:app",
-        host=args.host,
-        port=args.port,
+        host=host,
+        port=port,
         reload=args.dev,
-        log_level="info",
+        log_level=cfg.server.log_level,
     )
 
 
