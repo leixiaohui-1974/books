@@ -463,7 +463,21 @@ def cmd_start(args):
     skill_type = args.skill or "BK"
     books_root = args.books_root or cfg.books_root
 
+    # --dry-run 覆盖配置
+    if getattr(args, "dry_run", False):
+        cfg.orchestrator.dry_run = True
+
+    # 验证 book_id
+    from hydroscribe.engine.book_registry import BOOK_REGISTRY
+    if book_id not in BOOK_REGISTRY:
+        console.print(f"[red]未知书目: {book_id}[/]")
+        console.print(f"[dim]可用书目: {', '.join(sorted(BOOK_REGISTRY.keys()))}[/]")
+        return
+
     console.print(BANNER)
+
+    if cfg.orchestrator.dry_run:
+        console.print("[bold yellow]  [DRY-RUN] 模式 — LLM 调用将返回占位内容[/]\n")
 
     orch = Orchestrator(books_root=books_root, config=cfg)
 
@@ -613,6 +627,114 @@ def cmd_status(args):
         console.print(table)
 
 
+# ── report — 进度摘要报告 ─────────────────────────────────────
+
+def cmd_report(args):
+    """生成进度摘要报告（Markdown 格式）"""
+    books_root = args.books_root or os.environ.get("BOOKS_ROOT", "/home/user/books")
+    progress_dir = os.path.join(books_root, "progress")
+    output = args.output or os.path.join("output", "progress_report.md")
+
+    from hydroscribe.engine.book_registry import BOOK_REGISTRY
+
+    lines = [
+        "# CHS 教材体系写作进度报告",
+        f"",
+        f"生成时间: {__import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M')}",
+        f"",
+        "## 总览",
+        f"",
+        f"| 书目 | 书名 | 总章数 | 已完成 | 进度 | 最后更新 |",
+        f"|------|------|--------|--------|------|---------|",
+    ]
+
+    total_chapters = 0
+    total_completed = 0
+
+    if os.path.exists(progress_dir):
+        for f in sorted(os.listdir(progress_dir)):
+            if f.endswith(".json") and not f.startswith("."):
+                with open(os.path.join(progress_dir, f), "r", encoding="utf-8") as fp:
+                    data = json.load(fp)
+
+                book_id = data.get("book_id", f.replace("BK", "").replace(".json", ""))
+                total = data.get("total_chapters", 0)
+                chapters = data.get("chapters", {})
+                completed = sum(1 for ch in chapters.values() if ch.get("status") == "completed")
+                progress = data.get("overall_progress", "0%")
+
+                last_update = ""
+                for ch in chapters.values():
+                    lu = ch.get("last_updated", "")
+                    if lu > last_update:
+                        last_update = lu
+
+                spec = BOOK_REGISTRY.get(book_id, {})
+                title = spec.get("title", data.get("book_title", ""))
+
+                lines.append(f"| {book_id} | {title} | {total} | {completed} | {progress} | {last_update or '-'} |")
+
+                total_chapters += total
+                total_completed += completed
+
+                # 详细章节
+                if chapters:
+                    lines.append(f"")
+                    lines.append(f"### {book_id} — {title}")
+                    lines.append(f"")
+                    for ch_id, ch in sorted(chapters.items()):
+                        status = ch.get("status", "pending")
+                        wc = ch.get("word_count", 0)
+                        iters = ch.get("iterations", 0)
+                        todo = ch.get("todo_count", 0)
+                        scores = ch.get("review_scores", {})
+                        score_str = ", ".join(f"{r}={s}" for r, s in scores.items()) if scores else "-"
+                        todo_str = f" [TODO:{todo}]" if todo > 0 else ""
+                        lines.append(f"- **{ch_id}**: {status} | {wc}字 | {iters}轮 | 评分: {score_str}{todo_str}")
+
+    lines.append(f"")
+    lines.append(f"## 统计")
+    lines.append(f"")
+    lines.append(f"- 总章数: {total_chapters}")
+    lines.append(f"- 已完成: {total_completed}")
+    overall_pct = round(total_completed / max(total_chapters, 1) * 100, 1)
+    lines.append(f"- 总进度: {overall_pct}%")
+
+    report_content = "\n".join(lines)
+
+    os.makedirs(os.path.dirname(output), exist_ok=True)
+    with open(output, "w", encoding="utf-8") as f:
+        f.write(report_content)
+
+    console.print(f"[green]进度报告已生成: {output}[/]")
+    console.print(f"  总计 {total_completed}/{total_chapters} 章完成 ({overall_pct}%)")
+
+
+# ── validate — 配置校验 ────────────────────────────────────────
+
+def cmd_validate(args):
+    """校验配置文件有效性"""
+    from hydroscribe.engine.config_loader import get_config, validate_config
+
+    console.print(BANNER)
+    console.print("[bold]配置校验...[/]\n")
+
+    cfg = get_config()
+    errors, warnings = validate_config(cfg)
+
+    for err in errors:
+        console.print(f"  [red]ERROR[/]   {err}")
+    for warn in warnings:
+        console.print(f"  [yellow]WARN[/]    {warn}")
+
+    if not errors and not warnings:
+        console.print("  [green]PASS[/]  配置有效，无问题")
+    elif errors:
+        console.print(f"\n  [red]{len(errors)} 个错误, {len(warnings)} 个警告 — 请修复后重试[/]")
+    else:
+        console.print(f"\n  [yellow]{len(warnings)} 个警告 — 可运行但建议修复[/]")
+
+
 # ── check — 质量检查 ──────────────────────────────────────────
 
 def cmd_check(args):
@@ -745,6 +867,7 @@ def main():
     p_start.add_argument("book_id", help="书目ID (如 T1-CN, T2a, M1)")
     p_start.add_argument("--skill", default="BK", help="写作技能: BK/SCI/CN/PAT/RPT/STD-CN/STD-INT/WX/PPT")
     p_start.add_argument("--chapters", default=None, help="并行多章: ch01,ch02,ch03")
+    p_start.add_argument("--dry-run", action="store_true", help="Dry-run 模式 (不调用 LLM)")
 
     # status
     sub.add_parser("status", help="查看所有书目进度")
@@ -761,8 +884,15 @@ def main():
     # doctor
     sub.add_parser("doctor", help="环境自诊断")
 
+    # report
+    p_report = sub.add_parser("report", help="生成进度摘要报告 (Markdown)")
+    p_report.add_argument("--output", "-o", default=None, help="输出文件路径 (默认 output/progress_report.md)")
+
     # config
     sub.add_parser("config", help="显示当前配置 (脱敏)")
+
+    # validate
+    sub.add_parser("validate", help="校验配置文件有效性")
 
     args = parser.parse_args()
 
@@ -771,10 +901,12 @@ def main():
         "serve": cmd_serve,
         "start": cmd_start,
         "status": cmd_status,
+        "report": cmd_report,
         "check": cmd_check,
         "agents": cmd_agents,
         "doctor": cmd_doctor,
         "config": cmd_config,
+        "validate": cmd_validate,
     }
 
     handler = cmd_map.get(args.command)

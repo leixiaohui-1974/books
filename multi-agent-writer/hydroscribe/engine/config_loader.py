@@ -308,3 +308,76 @@ def set_config(config: HydroScribeConfig):
     """设置全局配置"""
     global _global_config
     _global_config = config
+
+
+def validate_config(config: HydroScribeConfig) -> tuple:
+    """
+    校验配置有效性
+
+    Returns:
+        (errors: list[str], warnings: list[str])
+        errors 为致命问题（应阻止启动），warnings 为可运行但需关注的问题
+    """
+    errors = []
+    warnings = []
+
+    # books_root 存在性
+    if not os.path.isdir(config.books_root):
+        errors.append(f"books_root 目录不存在: {config.books_root}")
+
+    # gate_mode 取值
+    valid_gate_modes = {"auto", "human", "hybrid"}
+    if config.orchestrator.gate_mode not in valid_gate_modes:
+        errors.append(
+            f"orchestrator.gate_mode 无效: '{config.orchestrator.gate_mode}' "
+            f"(允许: {', '.join(sorted(valid_gate_modes))})"
+        )
+
+    # coordination_mode 取值
+    valid_coord_modes = {"specialist", "master_slave"}
+    if config.orchestrator.coordination_mode not in valid_coord_modes:
+        errors.append(
+            f"orchestrator.coordination_mode 无效: '{config.orchestrator.coordination_mode}' "
+            f"(允许: {', '.join(sorted(valid_coord_modes))})"
+        )
+
+    # max_concurrent_writers 合理性
+    if config.orchestrator.max_concurrent_writers < 1:
+        errors.append("orchestrator.max_concurrent_writers 必须 >= 1")
+    elif config.orchestrator.max_concurrent_writers > 10:
+        warnings.append(f"orchestrator.max_concurrent_writers={config.orchestrator.max_concurrent_writers} 较大，可能造成 API 限流")
+
+    # review_weight + utility_weight
+    total_weight = config.orchestrator.review_weight + config.orchestrator.utility_weight
+    if abs(total_weight - 1.0) > 0.01:
+        warnings.append(
+            f"review_weight({config.orchestrator.review_weight}) + "
+            f"utility_weight({config.orchestrator.utility_weight}) = {total_weight:.2f} (建议总和为 1.0)"
+        )
+
+    # LLM 配置
+    llm = config.llm_default
+    valid_providers = {"openai", "anthropic", "alibaba_bailian", "local"}
+    if llm.provider and llm.provider not in valid_providers:
+        warnings.append(
+            f"llm.provider '{llm.provider}' 不在已知列表中 "
+            f"(已知: {', '.join(sorted(valid_providers))})"
+        )
+
+    if not llm.model:
+        warnings.append("llm.model 未设置")
+
+    if llm.provider != "local" and not llm.api_key:
+        warnings.append(f"llm.api_key 未设置 (provider={llm.provider})")
+
+    if llm.max_tokens < 256:
+        warnings.append(f"llm.max_tokens={llm.max_tokens} 过低，可能导致输出截断")
+
+    if not (0.0 <= llm.temperature <= 2.0):
+        errors.append(f"llm.temperature={llm.temperature} 超出范围 [0.0, 2.0]")
+
+    # Server 端口
+    if not (1 <= config.server.port <= 65535):
+        errors.append(f"server.port={config.server.port} 超出范围 [1, 65535]")
+
+    return errors, warnings
