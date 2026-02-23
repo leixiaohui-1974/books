@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  hydroscribe:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../books:/app/books:ro
+      - ../progress:/app/progress
+      - ../terminology:/app/terminology:ro
+      - ../writing-projects:/app/writing-projects:ro
+    environment:
+      - BOOKS_ROOT=/app
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    restart: unless-stopped

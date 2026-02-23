@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HydroScribe — CHS 多智能体协同写作助手</title>
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --primary-light: #e8f0fe;
+      --success: #0d904f;
+      --success-light: #e6f4ea;
+      --warning: #e37400;
+      --warning-light: #fef7e0;
+      --danger: #d93025;
+      --danger-light: #fce8e6;
+      --bg: #f8f9fa;
+      --card: #ffffff;
+      --border: #e0e0e0;
+      --text: #202124;
+      --text-secondary: #5f6368;
+      --sidebar-bg: #1a1a2e;
+      --sidebar-text: #e0e0e0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* ── 侧边栏 ── */
+    .sidebar {
+      width: 220px;
+      background: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      padding: 20px 0;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar .logo {
+      padding: 0 20px 20px;
+      font-size: 18px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 10px;
+    }
+
+    .sidebar .logo span { color: var(--primary); }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      color: var(--sidebar-text);
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.2s;
+      cursor: pointer;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .sidebar nav a.active { border-left: 3px solid var(--primary); }
+
+    .sidebar .connection {
+      margin-top: auto;
+      padding: 15px 20px;
+      font-size: 12px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar .connection .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+
+    .dot-green { background: var(--success); }
+    .dot-red { background: var(--danger); }
+    .dot-yellow { background: var(--warning); }
+
+    /* ── 主内容 ── */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    .main h1 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    /* ── 统计卡片 ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    .stat-card .label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .stat-card .value.primary { color: var(--primary); }
+    .stat-card .value.success { color: var(--success); }
+    .stat-card .value.warning { color: var(--warning); }
+
+    /* ── 面板 ── */
+    .panel {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    .panel h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── 活跃任务 ── */
+    .task-item {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .task-item .task-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .task-item .task-title { font-weight: 600; font-size: 14px; }
+
+    .task-item .task-status {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+
+    .status-writing { background: var(--primary-light); color: var(--primary); }
+    .status-reviewing { background: var(--warning-light); color: var(--warning); }
+    .status-completed { background: var(--success-light); color: var(--success); }
+    .status-waiting { background: var(--danger-light); color: var(--danger); }
+
+    .progress-bar {
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-bar .fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* ── Agent 状态 ── */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .agent-card {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .agent-card .agent-name {
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .agent-card .agent-task {
+      color: var(--text-secondary);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    /* ── 事件流 ── */
+    .event-stream {
+      max-height: 400px;
+      overflow-y: auto;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 12px;
+    }
+
+    .event-item {
+      padding: 6px 10px;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .event-item:hover { background: #f8f8f8; }
+
+    .event-time { color: var(--text-secondary); white-space: nowrap; min-width: 70px; }
+    .event-agent { color: var(--primary); font-weight: 500; min-width: 120px; }
+    .event-msg { flex: 1; }
+
+    /* ── 评审面板 ── */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .review-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .review-card .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .review-card .review-role { font-weight: 600; font-size: 14px; }
+
+    .review-card .review-score {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .score-high { color: var(--success); }
+    .score-mid { color: var(--warning); }
+    .score-low { color: var(--danger); }
+
+    .issue-list { list-style: none; font-size: 13px; }
+    .issue-list li { padding: 3px 0; }
+    .issue-red { color: var(--danger); }
+    .issue-yellow { color: var(--warning); }
+    .issue-green { color: var(--success); }
+
+    /* ── 书架 ── */
+    .bookshelf {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .book-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border-left: 4px solid var(--primary);
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .book-card:hover { transform: translateY(-2px); }
+
+    .book-card .book-id { font-size: 12px; color: var(--primary); font-weight: 600; }
+    .book-card .book-title { font-size: 15px; font-weight: 600; margin: 6px 0; }
+    .book-card .book-meta { font-size: 12px; color: var(--text-secondary); }
+
+    /* ── 按钮 ── */
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn:hover { opacity: 0.85; }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-success { background: var(--success); color: white; }
+    .btn-warning { background: var(--warning); color: white; }
+
+    /* ── 隐藏页面 ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── 书目进度条 ── */
+    .book-progress-list { list-style: none; }
+    .book-progress-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+    }
+    .book-progress-list .book-label { min-width: 60px; font-weight: 600; }
+    .book-progress-list .bar-container {
+      flex: 1;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .book-progress-list .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.5s;
+    }
+    .book-progress-list .pct { min-width: 40px; text-align: right; font-size: 12px; color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <!-- 侧边栏 -->
+  <div class="sidebar">
+    <div class="logo">Hydro<span>Scribe</span></div>
+    <nav>
+      <a class="active" data-page="dashboard" onclick="showPage('dashboard')">&#x1F4CA; 仪表盘</a>
+      <a data-page="bookshelf" onclick="showPage('bookshelf')">&#x1F4DA; 书架</a>
+      <a data-page="writing" onclick="showPage('writing')">&#x270D;&#xFE0F; 写作面板</a>
+      <a data-page="review" onclick="showPage('review')">&#x1F4DD; 评审面板</a>
+      <a data-page="agents" onclick="showPage('agents')">&#x1F916; Agent 状态</a>
+      <a data-page="events" onclick="showPage('events')">&#x1F4E1; 事件流</a>
+    </nav>
+    <div class="connection">
+      <span class="dot dot-red" id="ws-dot"></span>
+      <span id="ws-status">未连接</span>
+    </div>
+  </div>
+
+  <!-- 主内容 -->
+  <div class="main">
+
+    <!-- 仪表盘 -->
+    <div id="page-dashboard" class="page active">
+      <h1>HydroScribe 仪表盘</h1>
+
+      <div class="stats-grid">
+        <div class="stat-card"><div class="label">总书目</div><div class="value primary" id="stat-total">16</div></div>
+        <div class="stat-card"><div class="label">进行中</div><div class="value warning" id="stat-active">0</div></div>
+        <div class="stat-card"><div class="label">已完成章节</div><div class="value success" id="stat-completed">0</div></div>
+        <div class="stat-card"><div class="label">待审批</div><div class="value" id="stat-pending">0</div></div>
+      </div>
+
+      <div class="panel">
+        <h2>&#x1F4D6; 书目进度总览</h2>
+        <ul class="book-progress-list" id="book-progress-list">
+          <li><span class="book-label">T1-CN</span><div class="bar-container"><div class="bar-fill" style="width:100%;background:var(--success)"></div></div><span class="pct">100%</span></li>
+          <li><span class="book-label">T1-EN</span><div class="bar-container"><div class="bar-fill" style="width:35%;background:var(--primary)"></div></div><span class="pct">35%</span></li>
+          <li><span class="book-label">T2a</span><div class="bar-container"><div class="bar-fill" style="width:0%;background:var(--primary)"></div></div><span class="pct">0%</span></li>
+          <li><span class="book-label">T2b</span><div class="bar-container"><div class="bar-fill" style="width:0%;background:#ccc"></div></div><span class="pct">0%</span></li>
+          <li><span class="book-label">M1-M8</span><div class="bar-container"><div class="bar-fill" style="width:0%;background:#ccc"></div></div><span class="pct">0%</span></li>
+          <li><span class="book-label">M9-M10</span><div class="bar-container"><div class="bar-fill" style="width:0%;background:#ccc"></div></div><span class="pct">0%</span></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h2>&#x26A1; 当前活跃任务</h2>
+        <div id="active-tasks">
+          <p style="color:var(--text-secondary);font-size:13px;">暂无活跃任务。点击「书架」选择一本书开始写作。</p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>&#x1F4E1; 最近事件</h2>
+        <div class="event-stream" id="dashboard-events">
+          <div class="event-item">
+            <span class="event-time">--:--:--</span>
+            <span class="event-agent">system</span>
+            <span class="event-msg">HydroScribe 已启动，等待连接...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 书架 -->
+    <div id="page-bookshelf" class="page">
+      <h1>&#x1F4DA; CHS 教材体系书架</h1>
+
+      <h2 style="margin:16px 0 12px;font-size:15px;">第一层 · 种子</h2>
+      <div class="bookshelf" id="shelf-tier1"></div>
+
+      <h2 style="margin:16px 0 12px;font-size:15px;">第二层 · 骨架</h2>
+      <div class="bookshelf" id="shelf-tier2"></div>
+
+      <h2 style="margin:16px 0 12px;font-size:15px;">第三层 · 血肉</h2>
+      <div class="bookshelf" id="shelf-tier3"></div>
+
+      <h2 style="margin:16px 0 12px;font-size:15px;">第四层 · 生态</h2>
+      <div class="bookshelf" id="shelf-tier4"></div>
+    </div>
+
+    <!-- 写作面板 -->
+    <div id="page-writing" class="page">
+      <h1>&#x270D;&#xFE0F; 实时写作面板</h1>
+      <div class="panel" id="writing-panel">
+        <p style="color:var(--text-secondary);">启动写作任务后，这里将实时显示 Writer Agent 的写作进度。</p>
+        <div id="writing-content" style="font-family:serif;line-height:1.8;margin-top:16px;white-space:pre-wrap;"></div>
+      </div>
+    </div>
+
+    <!-- 评审面板 -->
+    <div id="page-review" class="page">
+      <h1>&#x1F4DD; 多角色评审面板</h1>
+      <div class="reviews-grid" id="reviews-grid">
+        <p style="color:var(--text-secondary);">评审开始后，各角色的评审结果将实时展示在这里。</p>
+      </div>
+    </div>
+
+    <!-- Agent 状态 -->
+    <div id="page-agents" class="page">
+      <h1>&#x1F916; Agent 状态面板</h1>
+      <div class="agents-grid" id="agents-grid"></div>
+    </div>
+
+    <!-- 事件流 -->
+    <div id="page-events" class="page">
+      <h1>&#x1F4E1; 实时事件流</h1>
+      <div class="panel">
+        <div class="event-stream" id="full-events" style="max-height:calc(100vh - 200px);"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // ── 全局状态 ──
+    const state = {
+      ws: null,
+      events: [],
+      activeTasks: {},
+      agents: {},
+      reviews: {},
+      writingContent: '',
+    };
+
+    // ── 书目数据 ──
+    const BOOKS = {
+      tier1: [
+        { id: 'T1-CN', title: '水系统控制论', pages: '150-200', publisher: '水利水电', progress: 100, chapters: '9/9' },
+        { id: 'T1-EN', title: 'Cybernetics of Hydro Systems', pages: '100-150', publisher: 'IAHR/CRC', progress: 35, chapters: '2/6' },
+      ],
+      tier2: [
+        { id: 'T2a', title: '建模与控制', pages: '400-500', publisher: '高教社/Springer', progress: 0, chapters: '0/16' },
+        { id: 'T2b', title: '智能与自主', pages: '400-500', publisher: '高教社/Springer', progress: 0, chapters: '0/14' },
+        { id: 'M9', title: '水系统运行工程导论', pages: '300', publisher: '高教/Cambridge', progress: 0, chapters: '0/10' },
+      ],
+      tier3: [
+        { id: 'M1', title: '明渠水动力降阶建模', pages: '300', publisher: '科学/Springer', progress: 0, chapters: '0/10' },
+        { id: 'M2', title: '水网预测控制', pages: '350', publisher: '科学/Springer AIC', progress: 0, chapters: '0/12' },
+        { id: 'M3', title: '水网运行安全包络', pages: '250', publisher: '水利水电/CRC', progress: 0, chapters: '0/8' },
+        { id: 'M4', title: '水网多智能体系统', pages: '300', publisher: '电子工业/Springer', progress: 0, chapters: '0/10' },
+        { id: 'M5', title: '水利认知智能', pages: '280', publisher: '机械工业/CRC', progress: 0, chapters: '0/10' },
+        { id: 'M6', title: '水网控制在环验证', pages: '250', publisher: '水利水电/IAHR', progress: 0, chapters: '0/8' },
+        { id: 'M7', title: 'HydroOS设计与实现', pages: '350', publisher: '科学/IWA', progress: 0, chapters: '0/10' },
+        { id: 'M8', title: '胶东调水与沙坪水电站', pages: '400', publisher: '水利水电/Springer', progress: 0, chapters: '0/14' },
+      ],
+      tier4: [
+        { id: 'M10', title: '水网智能控制实验', pages: '200', publisher: '高教社', progress: 0, chapters: '0/8' },
+      ],
+    };
+
+    // ── 页面切换 ──
+    function showPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById('page-' + page).classList.add('active');
+      document.querySelector(`[data-page="${page}"]`).classList.add('active');
+    }
+
+    // ── 渲染书架 ──
+    function renderBookshelf() {
+      for (const [tier, books] of Object.entries(BOOKS)) {
+        const shelf = document.getElementById('shelf-' + tier);
+        if (!shelf) continue;
+        shelf.innerHTML = books.map(b => `
+          <div class="book-card" onclick="startBook('${b.id}')">
+            <div class="book-id">${b.id}</div>
+            <div class="book-title">${b.title}</div>
+            <div class="book-meta">${b.pages} 页 | ${b.publisher}</div>
+            <div class="progress-bar" style="margin-top:10px"><div class="fill" style="width:${b.progress}%"></div></div>
+            <div class="progress-text">${b.chapters} 章 | ${b.progress}%</div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // ── 启动写作 ──
+    async function startBook(bookId) {
+      if (!confirm(`启动 ${bookId} 的写作任务？`)) return;
+      try {
+        const resp = await fetch(`/api/tasks/start?book_id=${bookId}&skill_type=BK`, { method: 'POST' });
+        const data = await resp.json();
+        addEvent('system', `orchestrator`, `启动 ${bookId} 写作: ${data.message}`);
+        showPage('dashboard');
+      } catch (e) {
+        alert('启动失败: ' + e.message);
+      }
+    }
+
+    // ── WebSocket 连接 ──
+    function connectWS() {
+      const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+      state.ws = new WebSocket(`${protocol}//${location.host}/ws`);
+
+      state.ws.onopen = () => {
+        document.getElementById('ws-dot').className = 'dot dot-green';
+        document.getElementById('ws-status').textContent = '已连接';
+        addEvent('system', 'websocket', 'WebSocket 连接成功');
+
+        // 心跳
+        setInterval(() => { if (state.ws.readyState === 1) state.ws.send('ping'); }, 30000);
+      };
+
+      state.ws.onmessage = (e) => {
+        if (e.data === 'pong') return;
+        try {
+          const event = JSON.parse(e.data);
+          handleEvent(event);
+        } catch (err) {
+          console.error('Parse error:', err);
+        }
+      };
+
+      state.ws.onclose = () => {
+        document.getElementById('ws-dot').className = 'dot dot-red';
+        document.getElementById('ws-status').textContent = '已断开';
+        setTimeout(connectWS, 3000);
+      };
+
+      state.ws.onerror = () => {
+        document.getElementById('ws-dot').className = 'dot dot-yellow';
+        document.getElementById('ws-status').textContent = '连接错误';
+      };
+    }
+
+    // ── 事件处理 ──
+    function handleEvent(event) {
+      const typeMap = {
+        'task.created': '&#x1F4CB; 任务创建',
+        'task.started': '&#x25B6;&#xFE0F; 开始执行',
+        'task.completed': '&#x2705; 任务完成',
+        'writing.started': '&#x270D;&#xFE0F; 开始写作',
+        'writing.chunk': '&#x1F4DD; 写作进度',
+        'writing.done': '&#x2705; 初稿完成',
+        'review.started': '&#x1F50D; 开始评审',
+        'review.score': '&#x2B50; 评审评分',
+        'review.done': '&#x1F4CA; 评审完成',
+        'revision.needed': '&#x1F504; 需要修改',
+        'chapter.completed': '&#x1F389; 章节完成',
+        'gate.waiting': '&#x23F3; 等待审批',
+      };
+
+      const label = typeMap[event.type] || event.type;
+      const payload = event.payload || {};
+
+      let msg = label;
+      if (event.type === 'writing.chunk') {
+        msg += ` | ${payload.section || ''} (${payload.word_count || 0}/${payload.target_words || 0}字, ${payload.progress || 0}%)`;
+        updateWritingProgress(payload);
+      } else if (event.type === 'review.score') {
+        msg += ` | ${payload.role}: ${payload.overall}/10`;
+        updateReview(payload);
+      } else if (event.type === 'review.done') {
+        msg += ` | 均分 ${payload.avg_score}`;
+      } else if (event.type === 'chapter.completed') {
+        msg += ` | ${payload.word_count}字, ${payload.iterations}轮, 均分${payload.avg_score}`;
+      }
+
+      if (event.book) msg = `[${event.book}/${event.chapter || ''}] ` + msg;
+
+      addEvent(event.timestamp, event.agent, msg);
+
+      // 更新 Agent 状态
+      if (event.agent) {
+        const statusMap = { 'task.started': 'busy', 'writing.started': 'busy', 'review.started': 'busy',
+                           'task.completed': 'idle', 'writing.done': 'idle', 'review.score': 'idle' };
+        if (statusMap[event.type]) {
+          state.agents[event.agent] = { status: statusMap[event.type], task: msg };
+          renderAgents();
+        }
+      }
+    }
+
+    function addEvent(time, agent, msg) {
+      const ts = typeof time === 'string' && time.includes('T')
+        ? new Date(time).toLocaleTimeString('zh-CN', { hour12: false })
+        : (typeof time === 'string' ? time : new Date().toLocaleTimeString('zh-CN', { hour12: false }));
+
+      const html = `<div class="event-item"><span class="event-time">${ts}</span><span class="event-agent">${agent}</span><span class="event-msg">${msg}</span></div>`;
+
+      // Dashboard 事件
+      const dashEvents = document.getElementById('dashboard-events');
+      dashEvents.insertAdjacentHTML('afterbegin', html);
+      if (dashEvents.children.length > 20) dashEvents.lastChild.remove();
+
+      // 完整事件流
+      const fullEvents = document.getElementById('full-events');
+      fullEvents.insertAdjacentHTML('afterbegin', html);
+      if (fullEvents.children.length > 200) fullEvents.lastChild.remove();
+    }
+
+    function updateWritingProgress(payload) {
+      const panel = document.getElementById('writing-content');
+      if (!panel) return;
+      const pct = payload.progress || 0;
+      panel.innerHTML = `
+        <div style="margin-bottom:12px;">
+          <strong>当前小节:</strong> ${payload.section || '--'}
+          (${payload.section_index || 0}/${payload.total_sections || 0})
+        </div>
+        <div class="progress-bar" style="height:10px"><div class="fill" style="width:${pct}%"></div></div>
+        <div class="progress-text">${payload.word_count || 0} / ${payload.target_words || 0} 字 (${pct}%)</div>
+      `;
+    }
+
+    function updateReview(payload) {
+      const grid = document.getElementById('reviews-grid');
+      const role = payload.role || 'unknown';
+      const score = payload.overall || 0;
+      const scoreClass = score >= 8 ? 'score-high' : (score >= 6 ? 'score-mid' : 'score-low');
+
+      let issuesHtml = '';
+      (payload.issues_red || []).forEach(i => issuesHtml += `<li class="issue-red">&#x1F534; ${i}</li>`);
+      (payload.issues_yellow || []).forEach(i => issuesHtml += `<li class="issue-yellow">&#x1F7E1; ${i}</li>`);
+      (payload.issues_green || []).forEach(i => issuesHtml += `<li class="issue-green">&#x1F7E2; ${i}</li>`);
+
+      const card = `
+        <div class="review-card" id="review-${role}">
+          <div class="review-header">
+            <span class="review-role">${role}</span>
+            <span class="review-score ${scoreClass}">${score.toFixed(1)}</span>
+          </div>
+          <ul class="issue-list">${issuesHtml || '<li style="color:var(--text-secondary)">无问题</li>'}</ul>
+        </div>
+      `;
+
+      const existing = document.getElementById('review-' + role);
+      if (existing) {
+        existing.outerHTML = card;
+      } else {
+        grid.insertAdjacentHTML('beforeend', card);
+      }
+    }
+
+    function renderAgents() {
+      const grid = document.getElementById('agents-grid');
+      grid.innerHTML = Object.entries(state.agents).map(([name, info]) => {
+        const dotClass = info.status === 'busy' ? 'dot-green' : 'dot-yellow';
+        return `
+          <div class="agent-card">
+            <div class="agent-name"><span class="dot ${dotClass}"></span> ${name}</div>
+            <div class="agent-task">${info.status === 'busy' ? '执行中' : '空闲'}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // ── 初始化 ──
+    window.addEventListener('DOMContentLoaded', () => {
+      renderBookshelf();
+      connectWS();
+
+      // 定时拉取状态
+      setInterval(async () => {
+        try {
+          const resp = await fetch('/api/status');
+          const data = await resp.json();
+          document.getElementById('stat-active').textContent =
+            Object.keys(data.orchestrator?.active_tasks || {}).length;
+        } catch (e) {}
+      }, 10000);
+    });
+  </script>
+</body>
+</html>
