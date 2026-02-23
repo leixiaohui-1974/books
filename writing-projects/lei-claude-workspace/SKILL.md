@@ -1,169 +1,172 @@
 ---
-name: lei-claude-workspace
-description: 雷晓辉与Claude协作工作空间——自动初始化GitHub仓库(books)作为永久记忆、加载九大文体写作技能、配置文献检索API、执行写-审-改闭环。当用户提到任何写作任务（论文、专利、书稿、报告、标准、公众号、PPT、审稿回复）、要求继续上次工作、查看进度、或进行学术研究时，必须使用此技能。这是所有任务的入口技能。
+name: chs-research-writing
+description: CHS科研写作技能——管理论文(25篇SCI)、专利(36件)、专著(25万字)、标准、报告、公众号、PPT的全流程写作，自动初始化三大GitHub仓库（books/WriterLLM/patent）实现永久存储与断点续写，集成Brave文献检索API和九大文体写-审-改闭环。当用户提到任何写作任务、要求继续上次工作、查看进度、搜文献、查资料时，必须使用此技能。
 ---
 
-# 雷晓辉 × Claude 协作工作空间
+# CHS科研写作技能
 
-> 一个技能统管全局：初始化 → 读记忆 → 干活 → 存记忆
+> 一个技能管全部科研写作：论文 · 专利 · 专著 · 标准 · 报告 · 公众号 · PPT
 
 ---
 
-## 0. 每次会话必做：自动初始化
+## 0. 每次会话必做：初始化三库
 
-收到第一条消息后，**静默执行**以下脚本（不要问用户），然后再回应：
+收到第一条消息后**静默执行**，不要征求用户同意：
 
 ```bash
 cd /home/claude
 git config --global user.name "Lei Xiaohui"
 git config --global user.email "lxh@iwhr.com"
 
-if [ ! -d "books" ]; then
-  git clone https://leixiaohui-1974:${GITHUB_PAT}@github.com/leixiaohui-1974/books.git
-else
-  cd books && git pull --rebase && cd ..
-fi
+PAT="${GITHUB_PAT}"   # 从项目配置中获取
+
+for REPO in books WriterLLM patent; do
+  if [ ! -d "$REPO" ]; then
+    git clone "https://leixiaohui-1974:${PAT}@github.com/leixiaohui-1974/${REPO}.git"
+  else
+    cd "$REPO" && git pull --rebase && cd ..
+  fi
+done
 ```
 
-**环境变量**（运行时注入，不硬编码到输出中）：
-- `GITHUB_PAT`: GitHub Personal Access Token
-- `BRAVE_API_KEY`: Brave Search API Key（用于文献检索）
-
-初始化后读取：
-1. `books/writing-projects/CLAUDE.md` → 写作系统完整指令
-2. `books/writing-projects/academic-writer-skill/SKILL.md` → 九大文体规范
-3. `books/memory/` → 最近工作记录
+初始化后**必读两个文件**（其他按需加载）：
+1. 本文件（你正在读的这个）→ 任务路由 + 写作技巧
+2. `books/memory/` 最新日期文件 → 恢复上次工作上下文
 
 ---
 
-## 1. 永久记忆系统
+## 1. 三大仓库（全部可读可写）
 
-### 记忆存放位置
+### books — 知识中枢与永久记忆
 
+| 目录 | 内容 | 何时读 |
+|------|------|--------|
+| `memory/` | 每日工作日志，跨会话记忆 | **每次必读**最新记录 |
+| `writing-projects/CLAUDE.md` | 九大文体写作系统完整指令 | 进入写作模式时 |
+| `writing-projects/academic-writer-skill/` | 评审角色/检查脚本/写作技法/评分标准 | 需要具体文体规范时 |
+| `books/` | 《水系统控制论》专著9章(~25万字) | 续写/修改书稿时 |
+| `research-materials/` | 研究报告/分析/论文列表/简历 | 查资料/写综述时 |
+
+### WriterLLM — SCI论文群
+
+| 文件 | 内容 | 何时读 |
+|------|------|--------|
+| `claude.md` / `AGENTS.md` | 25篇论文写作引擎指令+作者团队信息 | 写/改SCI论文时 |
+| `progress.json` | 论文进度(25篇，已21篇accepted) | 查进度/续写时 |
+| `papers/` | 各论文稿件(CHS_WRR_v9等) | 修改具体论文时 |
+
+**论文编号体系**：P1a/P1b/P1c/P2A-E(总论)、CKG-1/2/3(陈凯歌)、SC-1/2(苏超)、HZF-1/2/3(黄志锋)、WHM-1/2(吴辉明)、BAK-1/YBK-1(水槽)
+
+### patent — 专利族
+
+| 文件 | 内容 | 何时读 |
+|------|------|--------|
+| `patents/progress.md` | 36件专利进度(全部完成) | 查进度/交叉检查时 |
+| `patents/PFx-x.md` | 各专利全文 | 修改/审核具体专利时 |
+
+**专利族编号**：PF1(水力建模6件)、PF2(控制策略6件)、PF3(安全与ODD 5件)、PF4(MAS与数字孪生5件)、PF5(大模型5件)、PF6(在环测试5件)、PF7(HydroOS 4件)
+
+---
+
+## 2. 任务路由表
+
+| 用户说的话 | 读什么 | 存到哪 |
+|-----------|--------|--------|
+| 写SCI/英文论文/P1a/CKG-2... | `WriterLLM/claude.md` + `progress.json` | WriterLLM/papers/ |
+| 写中文核心论文 | `books/.../CLAUDE.md` → CN流程 | books/writing-projects/ |
+| 写专利/改专利/PF3-2... | `patent/patents/progress.md` + 对应PF文件 | patent/patents/ |
+| 写书/续写第X章 | `books/books/` 对应章节 | books/books/ |
+| 写报告/写可研 | `books/.../CLAUDE.md` → RPT流程 | books/writing-projects/ |
+| 写标准/写国标/写ISO | `books/.../CLAUDE.md` → STD流程 | books/writing-projects/ |
+| 写公众号/写推文 | `books/.../CLAUDE.md` → WX流程 | books/writing-projects/ |
+| 做PPT/做汇报 | `books/.../CLAUDE.md` → PPT流程 | books/writing-projects/ |
+| 审稿回复 | 上传的审稿意见+原论文 | books/writing-projects/ |
+| 查文献/验证引用 | Brave API检索 | — |
+| 继续/上次做什么了 | `books/memory/` 最新文件 | — |
+| 论文进度 | `WriterLLM/progress.json` | — |
+| 专利进度 | `patent/patents/progress.md` | — |
+| 查资料/找XX | 三库 `grep -r` | — |
+
+---
+
+## 3. 科研写作12条技巧
+
+### 流程类
+
+**技巧1 写-审-改闭环**
+所有正式文档必须多角色评审迭代。九大文体各有专属评审角色和达标标准（详见 `academic-writer-skill/SKILL.md`）。
+
+**技巧2 三库持久化**
+产出按类型存入对应仓库。commit规范：`[类型] 描述`。断点续传：说"继续"即可从memory恢复。
+
+**技巧3 讨论→写作自然切换**
+不急于动笔。先在讨论中理清要素（类型/创新点/目标读者/结构），信息足够后输出提纲，确认再动笔。
+
+**技巧4 分层渐进**
+长文档分模块：提纲→逐节撰写→组装→通检。25万字书稿用L4策略（50模块×5000字）。
+
+### 质量类
+
+**技巧5 质量关卡强制**
+初稿必跑 `run_checks.py`。参考文献验证关卡不可跳过——编造文献整篇打回。
+
+**技巧6 文献检索用Brave API**
+验证真实性、查最新进展、确认标准有效。检索命令见本文件第4节。
+
+**技巧7 跨文档一致性**
+论文-专利-书稿间术语/参数/符号统一。创新点重叠<30%。用 `check_consistency.py` 检查。
+
+**技巧8 ODD场景化思维**
+水网问题从运行设计域切入：正常域→扩展域→MRC，六维参数向量结构化。这是CHS标志性方法。
+
+### 工具类
+
+**技巧9 python-docx生成Word**
+避免JS的中文引号转义问题。内容写文本文件，Python脚本读取生成docx。
+
+**技巧10 审稿回复要简练**
+每条意见1-2段，说清"改了什么"。不堆砌不套话。不同意就说"我们的理解是……"。
+
+**技巧11 多平台内容分发**
+同一学术内容可适配：SCI论文→中文核心→公众号科普→PPT汇报→短视频脚本。
+
+**技巧12 上下文高效利用**
+按需加载文件，不一次读完。先看目录结构，按任务定位具体内容。
+
+---
+
+## 4. 文献检索
+
+```bash
+curl -s "https://api.search.brave.com/res/v1/web/search?q=${QUERY}&count=10" \
+  -H "X-Subscription-Token: ${BRAVE_API_KEY}" \
+  -H "Accept: application/json"
 ```
-books/
-├── memory/                    ← 工作记忆（每次会话结束时更新）
-│   ├── YYYY-MM-DD.md          ← 当日工作日志
-│   └── skills/                ← 学到的新技能
-├── writing-projects/          ← 所有写作产出
-│   ├── CLAUDE.md              ← 写作系统主指令
-│   ├── academic-writer-skill/ ← 九大文体技能包
-│   └── [各项目目录]/
-├── research-materials/        ← 研究素材
-└── books/                     ← 已有书稿
-```
 
-### 会话结束前
+**典型用途**：
+- `q=DOI+10.1016/xxx` → 验证参考文献
+- `q=water+network+autonomous+control+2024` → 检索最新进展
+- `q=GB/T+50509+现行` → 确认标准有效性
+- `q=发明专利+水网+分布式控制` → 查竞争专利
 
-如果本次会话产生了重要产出，自动追加到 `memory/YYYY-MM-DD.md` 并 git push：
+---
+
+## 5. 会话结束存档
 
 ```bash
 cd /home/claude/books
-# 追加今日工作记录
 cat >> memory/$(date +%Y-%m-%d).md << 'EOF'
+
 ## HH:MM 更新
-- 完成了什么
-- 关键决策
-- 待办事项
+- 完成：[产出]
+- 决策：[关键决策]
+- 待办：[下次做什么]
 EOF
 git add -A && git commit -m "[memory] $(date +%Y-%m-%d) 工作记录" && git push
 ```
 
----
-
-## 2. 协作技巧清单（实战沉淀）
-
-以下是我们长期协作中积累的核心技巧：
-
-### 技巧1：写-审-改闭环
-所有正式文档必须经过多角色评审迭代，不一次交付。九大文体各有专属评审角色和达标标准（详见 `academic-writer-skill/SKILL.md`）。
-
-### 技巧2：GitHub持久化
-所有产出存入 books 仓库，跨会话不丢失。commit message 规范：`[类型] 描述`。断点续传：新会话说"继续"即可从上次中断处恢复。
-
-### 技巧3：分层渐进
-长文档（>1万字）分模块写作：先提纲→逐节撰写→组装→通检。25万字书稿用L4策略（50模块×5000字）。
-
-### 技巧4：python-docx生成Word
-避免JS的docx-js（中文引号转义地狱）。用python-docx，中文内容写在单独的文本文件中，Python脚本读取生成docx，规避字符串嵌套问题。
-
-### 技巧5：审稿回复要简练
-每条意见回复1-2段，说清"改了什么"就行。不堆砌、不套话。不同意的意见用"关于此问题，我们的理解是……"委婉表达。
-
-### 技巧6：文献检索用Brave API
+如修改了其他仓库，也对应push：
 ```bash
-curl -s "https://api.search.brave.com/res/v1/web/search?q=QUERY" \
-  -H "X-Subscription-Token: ${BRAVE_API_KEY}" \
-  -H "Accept: application/json" | python3 -m json.tool
+cd /home/claude/WriterLLM && git add -A && git commit -m "[论文编号] 描述" && git push
+cd /home/claude/patent && git add -A && git commit -m "[PFx-x] 描述" && git push
 ```
-用于验证参考文献真实性、检索最新研究进展、确认标准现行有效。
-
-### 技巧7：跨文档一致性
-同一计划内多篇文档共享术语表、工程参数、符号系统。用 `check_consistency.py` 自动检查。创新点重叠不超过30%。
-
-### 技巧8：ODD场景化思维
-任何水网相关写作，都从ODD（运行设计域）角度切入：正常域→扩展域→MRC，用六维参数向量结构化表达运行边界。这是CHS理论体系的标志性方法。
-
-### 技巧9：讨论模式→写作模式自然切换
-不急于动笔。先在讨论模式中理清要素（文档类型、创新点、目标读者、结构），信息足够后输出提纲，用户确认再进入写作模式。
-
-### 技巧10：质量关卡强制执行
-初稿完成后必须运行对应的检查脚本（`run_checks.py`），参考文献验证关卡不可跳过——发现编造文献整篇打回重写。
-
-### 技巧11：多平台内容分发
-同一学术内容可适配多平台：SCI论文→中文核心→公众号科普→PPT汇报→短视频脚本。核心观点不变，表达方式按平台调整。
-
-### 技巧12：上下文高效利用
-- 长文件先看目录结构，按需读取具体章节
-- 多文件任务优先读取 CLAUDE.md 或 SKILL.md 获取全局指引
-- 不要一次性读完所有文件，按任务需要分步加载
-
----
-
-## 3. 任务路由
-
-根据用户指令自动路由到对应工作流：
-
-| 用户说的话 | 动作 |
-|-----------|------|
-| 写论文/写SCI/写期刊 | 读取 `academic-writer-skill/SKILL.md` → SCI/CN流程 |
-| 写专利 | 读取 `academic-writer-skill/SKILL.md` → PAT流程 |
-| 写书/写章节/继续书稿 | 读取 `academic-writer-skill/SKILL.md` → BK流程 |
-| 写报告 | 读取 `academic-writer-skill/SKILL.md` → RPT流程 |
-| 写标准 | 读取 `academic-writer-skill/SKILL.md` → STD流程 |
-| 写公众号/写推文 | 读取 `academic-writer-skill/SKILL.md` → WX流程 |
-| 做PPT/做汇报 | 读取 `academic-writer-skill/SKILL.md` → PPT流程 |
-| 审稿回复/回复审稿人 | 用python-docx生成简练回复函 |
-| 继续/上次到哪了 | git pull → 读取 memory/ 和 progress.json → 断点恢复 |
-| 查文献/搜论文 | 用Brave API检索 |
-| 状态/进度 | 读取所有 progress.json → 输出汇总表 |
-
----
-
-## 4. 文献检索工作流
-
-```
-用户需求 → Brave API搜索 → 筛选高质量来源 → 结构化输出
-```
-
-支持的检索场景：
-- 验证参考文献真实性（DOI/标题）
-- 检索某主题近5年进展
-- 确认GB/T、ISO标准现行有效
-- 查找竞争专利
-
----
-
-## 5. 快速参考
-
-### 九大文体代号
-RPT(报告) | BK(书稿) | SCI(英文论文) | CN(中文论文) | PAT(专利) | STD-CN(国标) | STD-INT(国际标准) | WX(公众号) | PPT(演示)
-
-### 关键文件路径
-- 写作主指令：`books/writing-projects/CLAUDE.md`
-- 九大文体技能：`books/writing-projects/academic-writer-skill/SKILL.md`
-- 写作技法库：`books/writing-projects/academic-writer-skill/references/writing_craft_guide.md`
-- 评分标准：`books/writing-projects/academic-writer-skill/references/scoring_rubrics.md`
-- 检查脚本：`books/writing-projects/academic-writer-skill/scripts/`
-- 工作记忆：`books/memory/`
-- 研究素材：`books/research-materials/`
