@@ -18,7 +18,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from hydroscribe.engine.orchestrator import Orchestrator
 from hydroscribe.engine.event_bus import EventBus
-from hydroscribe.engine.config_loader import get_config
+from hydroscribe.engine.config_loader import get_config, reload_config
 from hydroscribe.engine.logging_config import setup_logging
 from hydroscribe.engine.book_registry import BOOK_REGISTRY, get_book_spec, validate_book_id
 from hydroscribe.engine.audit_log import get_audit_logger
@@ -368,6 +368,101 @@ async def clear_dead_letters():
     """清空死信队列"""
     orchestrator.event_bus.clear_dead_letters()
     return {"status": "cleared"}
+
+
+# ── 配置热重载 ────────────────────────────────────────────────
+
+@app.post("/api/config/reload")
+async def reload_config_endpoint():
+    """
+    热重载配置 — 重新从 TOML + 环境变量加载
+
+    可安全热更新: gate_mode, weights, max_concurrent_writers, log_level, max_feedback_tokens
+    需重启才生效: server.host/port, llm.provider/model
+    """
+    from hydroscribe.engine.audit_log import get_audit_logger
+
+    old_gate = orchestrator.config.orchestrator.gate_mode
+    old_writers = orchestrator.config.orchestrator.max_concurrent_writers
+
+    new_config = reload_config()
+
+    # 应用可安全热更新的字段到 orchestrator
+    orchestrator.config = new_config
+    orchestrator.gate_mode = new_config.orchestrator.gate_mode
+
+    changes = []
+    if old_gate != new_config.orchestrator.gate_mode:
+        changes.append(f"gate_mode: {old_gate} → {new_config.orchestrator.gate_mode}")
+    if old_writers != new_config.orchestrator.max_concurrent_writers:
+        changes.append(f"max_concurrent_writers: {old_writers} → {new_config.orchestrator.max_concurrent_writers}")
+
+    get_audit_logger().log(
+        "config_reloaded",
+        actor="api",
+        details={"changes": changes},
+    )
+
+    return {
+        "status": "reloaded",
+        "changes": changes,
+        "message": "配置已热重载" if changes else "配置已重载（无变更）",
+    }
+
+
+# ── 事件重放 ──────────────────────────────────────────────────
+
+class ReplayRequest(BaseModel):
+    event_type: Optional[str] = None
+    book_id: Optional[str] = None
+    limit: int = 50
+
+
+@app.post("/api/events/replay")
+async def replay_events(req: ReplayRequest):
+    """
+    从历史重放事件 — 重新触发订阅者处理（调试/恢复用途）
+
+    注意: 不会广播到 WebSocket，仅触发内部订阅者
+    """
+    event_type = None
+    if req.event_type:
+        try:
+            event_type = EventType(req.event_type)
+        except ValueError:
+            return api_error(400, "INVALID_EVENT_TYPE", f"未知事件类型: {req.event_type}", {
+                "valid_types": [e.value for e in EventType],
+            })
+
+    count = await orchestrator.event_bus.replay_from_history(
+        event_type=event_type,
+        book_id=req.book_id,
+        limit=req.limit,
+    )
+    return {"status": "replayed", "events_replayed": count}
+
+
+# ── 任务管理 ──────────────────────────────────────────────────
+
+@app.get("/api/tasks")
+async def list_tasks():
+    """列出所有活跃任务"""
+    tasks = {}
+    for task_id, task in orchestrator.active_tasks.items():
+        tasks[task_id] = {
+            "book_id": task.book_id,
+            "chapter_id": task.chapter_id,
+            "status": task.status,
+            "iteration": task.current_iteration,
+            "max_iterations": task.max_iterations,
+            "skill_type": task.skill_type.value,
+            "gate_mode": task.gate_mode,
+        }
+    return {
+        "active_count": len(tasks),
+        "max_concurrent": orchestrator.config.orchestrator.max_concurrent_writers,
+        "tasks": tasks,
+    }
 
 
 # ── 任务取消 ──────────────────────────────────────────────────

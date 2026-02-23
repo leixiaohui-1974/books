@@ -807,6 +807,83 @@ def cmd_audit(args):
     console.print(f"\n  [dim]日志文件: {al.filepath}[/]")
 
 
+# ── tasks — 查看活跃任务 ──────────────────────────────────────
+
+def cmd_tasks(args):
+    """查看活跃任务列表（通过 API）"""
+    import urllib.request
+
+    host = args.host or "localhost"
+    port = args.port or 8000
+    url = f"http://{host}:{port}/api/tasks"
+
+    console.print(BANNER)
+    console.print("[bold]活跃任务[/]\n")
+
+    try:
+        with urllib.request.urlopen(url, timeout=5) as resp:
+            data = json.loads(resp.read())
+    except Exception as e:
+        console.print(f"  [red]无法连接服务器 {url}: {e}[/]")
+        console.print("  [dim]提示: 确保 hydroscribe serve 正在运行[/]")
+        return
+
+    tasks = data.get("tasks", {})
+    max_c = data.get("max_concurrent", 3)
+
+    if not tasks:
+        console.print(f"  [dim]无活跃任务 (并发上限: {max_c})[/]")
+        return
+
+    table = Table(title=f"活跃任务 ({len(tasks)}/{max_c})", box=box.ROUNDED)
+    table.add_column("Task ID", style="dim", min_width=10)
+    table.add_column("书目", min_width=6)
+    table.add_column("章节", min_width=6)
+    table.add_column("状态", min_width=10)
+    table.add_column("轮次", justify="right")
+    table.add_column("技能", min_width=4)
+
+    for tid, t in tasks.items():
+        short_id = tid[:8] + "..."
+        status_color = "green" if t["status"] == "completed" else "yellow"
+        table.add_row(
+            short_id, t["book_id"], t["chapter_id"],
+            f"[{status_color}]{t['status']}[/]",
+            f"{t['iteration']}/{t['max_iterations']}",
+            t["skill_type"],
+        )
+
+    console.print(table)
+
+
+# ── cancel — 取消任务 ────────────────────────────────────────
+
+def cmd_cancel(args):
+    """取消活跃的写作任务（通过 API）"""
+    import urllib.request
+
+    host = args.host or "localhost"
+    port = args.port or 8000
+    task_id = args.task_id
+
+    url = f"http://{host}:{port}/api/tasks/{task_id}/cancel"
+
+    try:
+        req = urllib.request.Request(url, method="POST", data=b"")
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            data = json.loads(resp.read())
+    except Exception as e:
+        console.print(f"[red]取消失败: {e}[/]")
+        return
+
+    if "error" in data:
+        err = data["error"]
+        console.print(f"[red]错误: {err.get('message', str(err))}[/]")
+    else:
+        console.print(f"[green]任务 {task_id} 取消信号已发送[/]")
+        console.print(f"  [dim]{data.get('message', '')}[/]")
+
+
 # ── check — 质量检查 ──────────────────────────────────────────
 
 def cmd_check(args):
@@ -978,6 +1055,17 @@ def main():
     p_audit.add_argument("--event", "-e", default=None, help="按事件类型过滤 (如 writing_completed)")
     p_audit.add_argument("--book", "-b", default=None, help="按书目过滤 (如 T1-CN)")
 
+    # tasks
+    p_tasks = sub.add_parser("tasks", help="查看活跃任务 (需服务运行)")
+    p_tasks.add_argument("--host", default="localhost", help="服务器地址")
+    p_tasks.add_argument("--port", type=int, default=8000, help="服务器端口")
+
+    # cancel
+    p_cancel = sub.add_parser("cancel", help="取消活跃任务 (需服务运行)")
+    p_cancel.add_argument("task_id", help="要取消的任务 ID")
+    p_cancel.add_argument("--host", default="localhost", help="服务器地址")
+    p_cancel.add_argument("--port", type=int, default=8000, help="服务器端口")
+
     args = parser.parse_args()
 
     cmd_map = {
@@ -992,6 +1080,8 @@ def main():
         "config": cmd_config,
         "validate": cmd_validate,
         "audit": cmd_audit,
+        "tasks": cmd_tasks,
+        "cancel": cmd_cancel,
     }
 
     handler = cmd_map.get(args.command)

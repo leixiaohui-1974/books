@@ -221,6 +221,45 @@ class EventBus:
             for e in events[-limit:]
         ]
 
+    async def replay_from_history(
+        self,
+        event_type: Optional[EventType] = None,
+        book_id: Optional[str] = None,
+        limit: int = 50,
+    ) -> int:
+        """
+        从历史中重放事件 — 重新触发订阅者（用于调试/恢复）
+
+        Args:
+            event_type: 只重放特定类型（None = 全部）
+            book_id: 只重放特定书目（None = 全部）
+            limit: 最多重放 N 条
+
+        Returns:
+            实际重放的事件数
+        """
+        events = self._history[:]
+        if event_type:
+            events = [e for e in events if e.type == event_type]
+        if book_id:
+            events = [e for e in events if e.book_id == book_id]
+
+        events = events[-limit:]
+        replayed = 0
+
+        for event in events:
+            for handler in self._subscribers.get(event.type, []):
+                await self._invoke_handler(handler, event, 10.0)
+            for handler in self._global_subscribers:
+                await self._invoke_handler(handler, event, 10.0)
+            replayed += 1
+
+        logger.info(
+            f"[replay] 重放 {replayed} 个事件"
+            f" (type={event_type.value if event_type else 'all'}, book={book_id or 'all'})"
+        )
+        return replayed
+
     def get_agent_status_summary(self) -> Dict[str, str]:
         """从事件历史推断各 Agent 当前状态"""
         agent_states: Dict[str, str] = {}

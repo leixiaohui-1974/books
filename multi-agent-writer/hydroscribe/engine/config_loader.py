@@ -310,6 +310,45 @@ def set_config(config: HydroScribeConfig):
     _global_config = config
 
 
+def reload_config() -> HydroScribeConfig:
+    """
+    热重载配置 — 重新从 TOML + 环境变量加载
+
+    安全规则（不可热更新的字段）:
+    - server.host / server.port（需要重启）
+    - llm.provider / llm.model（需要重建 LLM clients）
+
+    Returns:
+        新加载的配置对象（同时更新全局单例）
+    """
+    global _global_config
+    new_config = load_config()
+    old_config = _global_config
+
+    changed = []
+    if old_config:
+        # 检测变更
+        if old_config.orchestrator.gate_mode != new_config.orchestrator.gate_mode:
+            changed.append(f"gate_mode: {old_config.orchestrator.gate_mode} → {new_config.orchestrator.gate_mode}")
+        if old_config.orchestrator.max_concurrent_writers != new_config.orchestrator.max_concurrent_writers:
+            changed.append(f"max_concurrent_writers: {old_config.orchestrator.max_concurrent_writers} → {new_config.orchestrator.max_concurrent_writers}")
+        if old_config.orchestrator.review_weight != new_config.orchestrator.review_weight:
+            changed.append(f"review_weight: {old_config.orchestrator.review_weight} → {new_config.orchestrator.review_weight}")
+        if old_config.orchestrator.max_feedback_tokens != new_config.orchestrator.max_feedback_tokens:
+            changed.append(f"max_feedback_tokens: {old_config.orchestrator.max_feedback_tokens} → {new_config.orchestrator.max_feedback_tokens}")
+        if old_config.log_level != new_config.log_level:
+            changed.append(f"log_level: {old_config.log_level} → {new_config.log_level}")
+
+    _global_config = new_config
+
+    if changed:
+        logger.info(f"配置已热重载: {'; '.join(changed)}")
+    else:
+        logger.info("配置已重载（无变更）")
+
+    return new_config
+
+
 def validate_config(config: HydroScribeConfig) -> tuple:
     """
     校验配置有效性
