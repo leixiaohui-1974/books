@@ -7,23 +7,70 @@ import json
 import logging
 import os
 import time
+from collections import defaultdict
 from typing import Optional
 
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from pydantic import BaseModel
+from starlette.middleware.base import BaseHTTPMiddleware
 
 from hydroscribe.engine.orchestrator import Orchestrator
 from hydroscribe.engine.event_bus import EventBus
 from hydroscribe.engine.config_loader import get_config
 from hydroscribe.engine.logging_config import setup_logging
+from hydroscribe.engine.book_registry import BOOK_REGISTRY, get_book_spec, validate_book_id
+from hydroscribe.engine.audit_log import get_audit_logger
 from hydroscribe.schema import EventType, Event, SkillType
 
 logger = logging.getLogger("hydroscribe.api")
 
 # 启动时间记录 (用于 uptime 计算)
 _start_time = time.monotonic()
+
+
+# ── 速率限制中间件 ────────────────────────────────────────────
+
+class RateLimitMiddleware(BaseHTTPMiddleware):
+    """
+    简单的滑动窗口速率限制器
+
+    按客户端 IP 限制每分钟请求数。WebSocket 和健康检查端点豁免。
+    """
+
+    def __init__(self, app, max_requests: int = 120, window_seconds: int = 60):
+        super().__init__(app)
+        self._max_requests = max_requests
+        self._window = window_seconds
+        self._requests: dict = defaultdict(list)
+
+    async def dispatch(self, request: Request, call_next):
+        # 豁免路径
+        path = request.url.path
+        if path in ("/health", "/ready", "/ws") or path.startswith("/static"):
+            return await call_next(request)
+
+        client_ip = request.client.host if request.client else "unknown"
+        now = time.monotonic()
+
+        # 清理过期记录
+        timestamps = self._requests[client_ip]
+        cutoff = now - self._window
+        self._requests[client_ip] = [t for t in timestamps if t > cutoff]
+        timestamps = self._requests[client_ip]
+
+        if len(timestamps) >= self._max_requests:
+            logger.warning(f"速率限制: {client_ip} 超过 {self._max_requests} req/{self._window}s")
+            return JSONResponse(
+                status_code=429,
+                content={"error": "请求过于频繁", "retry_after_seconds": self._window},
+            )
+
+        timestamps.append(now)
+        return await call_next(request)
+
+
 
 # ── 初始化 ────────────────────────────────────────────────────
 
@@ -42,6 +89,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(RateLimitMiddleware, max_requests=120, window_seconds=60)
 
 orchestrator = Orchestrator(books_root=BOOKS_ROOT, config=config)
 
@@ -114,6 +162,14 @@ async def get_book(book_id: str):
 @app.post("/api/tasks/start")
 async def start_writing(req: StartTaskRequest):
     """启动写作任务"""
+    if not validate_book_id(req.book_id):
+        return JSONResponse(
+            status_code=400,
+            content={
+                "error": f"未知书目: {req.book_id}",
+                "valid_book_ids": sorted(BOOK_REGISTRY.keys()),
+            },
+        )
     asyncio.create_task(
         orchestrator.start_book(req.book_id, req.skill_type)
     )
@@ -249,6 +305,68 @@ async def get_config_info():
             "gateway_url": cfg.openclaw_gateway_url if cfg.openclaw_enabled else "",
         },
     }
+
+
+# ── 书目注册表 ────────────────────────────────────────────────
+
+@app.get("/api/registry")
+async def get_registry():
+    """获取全部书目注册表"""
+    return {
+        "total_books": len(BOOK_REGISTRY),
+        "books": {
+            bid: {
+                "title": spec["title"],
+                "tier": spec["tier"],
+                "tier_name": spec["tier_name"],
+                "total_chapters": spec["total_chapters"],
+                "target_words": spec["target_words"],
+                "publisher": spec["publisher"],
+                "language": spec["language"],
+                "priority": spec["priority"],
+                "batch": spec["batch"],
+            }
+            for bid, spec in BOOK_REGISTRY.items()
+        },
+    }
+
+
+@app.get("/api/registry/{book_id}")
+async def get_registry_book(book_id: str):
+    """获取单本书的注册规格"""
+    spec = get_book_spec(book_id)
+    if not spec:
+        return JSONResponse(
+            status_code=404,
+            content={"error": f"书目 {book_id} 不存在", "valid_book_ids": sorted(BOOK_REGISTRY.keys())},
+        )
+    return {"book_id": book_id, **spec}
+
+
+# ── 审计日志 ──────────────────────────────────────────────────
+
+@app.get("/api/audit")
+async def get_audit_trail(limit: int = 50):
+    """获取最近的审计日志"""
+    audit = get_audit_logger()
+    records = audit.read_recent(limit=limit)
+    return {"total": len(records), "records": records}
+
+
+# ── 死信队列 ──────────────────────────────────────────────────
+
+@app.get("/api/dead-letters")
+async def get_dead_letters(limit: int = 50):
+    """获取事件总线死信队列（处理失败/超时的事件）"""
+    entries = orchestrator.event_bus.get_dead_letters(limit=limit)
+    return {"total": len(entries), "dead_letters": entries}
+
+
+@app.delete("/api/dead-letters")
+async def clear_dead_letters():
+    """清空死信队列"""
+    orchestrator.event_bus.clear_dead_letters()
+    return {"status": "cleared"}
 
 
 # ── 健康检查与监控 ────────────────────────────────────────────

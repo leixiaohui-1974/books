@@ -22,7 +22,7 @@ class EventBus:
     - 支持优雅关闭
     """
 
-    def __init__(self, max_history: int = 1000, ws_heartbeat_interval: float = 30.0):
+    def __init__(self, max_history: int = 1000, ws_heartbeat_interval: float = 30.0, max_dead_letters: int = 200):
         self._subscribers: Dict[EventType, List[Callable]] = defaultdict(list)
         self._global_subscribers: List[Callable] = []
         self._ws_connections: Set[Any] = set()
@@ -32,6 +32,9 @@ class EventBus:
         self._shutting_down = False
         self._ws_heartbeat_interval = ws_heartbeat_interval
         self._heartbeat_task: Optional[asyncio.Task] = None
+        # 死信队列 — 记录处理失败/超时的事件
+        self._dead_letters: List[Dict] = []
+        self._max_dead_letters = max_dead_letters
 
     def subscribe(self, event_type: EventType, handler: Callable):
         """订阅特定事件类型"""
@@ -132,7 +135,7 @@ class EventBus:
         await self._broadcast_ws(event)
 
     async def _invoke_handler(self, handler: Callable, event: Event, timeout: float):
-        """调用单个处理器（带超时保护）"""
+        """调用单个处理器（带超时保护 + 死信记录）"""
         handler_name = getattr(handler, "__name__", str(handler))
         try:
             if asyncio.iscoroutinefunction(handler):
@@ -144,8 +147,35 @@ class EventBus:
                 f"事件处理器超时 [{handler_name}] "
                 f"(>{timeout}s, event={event.type.value})"
             )
+            self._record_dead_letter(event, handler_name, "timeout", f"超时 >{timeout}s")
         except Exception as e:
             logger.error(f"事件处理器错误 [{handler_name}]: {e}")
+            self._record_dead_letter(event, handler_name, "error", str(e))
+
+    def _record_dead_letter(self, event: Event, handler_name: str, reason: str, detail: str):
+        """记录失败事件到死信队列"""
+        from datetime import datetime, timezone
+        entry = {
+            "event_id": event.id,
+            "event_type": event.type.value,
+            "handler": handler_name,
+            "reason": reason,
+            "detail": detail,
+            "book_id": event.book_id,
+            "chapter_id": event.chapter_id,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+        }
+        self._dead_letters.append(entry)
+        if len(self._dead_letters) > self._max_dead_letters:
+            self._dead_letters = self._dead_letters[-self._max_dead_letters:]
+
+    def get_dead_letters(self, limit: int = 50) -> List[Dict]:
+        """查询死信队列（最近 N 条）"""
+        return self._dead_letters[-limit:]
+
+    def clear_dead_letters(self):
+        """清空死信队列"""
+        self._dead_letters.clear()
 
     async def _broadcast_ws(self, event: Event):
         """广播事件到所有 WebSocket 客户端"""

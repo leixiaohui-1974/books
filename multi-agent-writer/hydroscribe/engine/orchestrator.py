@@ -37,6 +37,7 @@ from hydroscribe.engine.llm_bridge import (
 )
 from hydroscribe.agents.base_writer import BaseWriterAgent
 from hydroscribe.agents.base_reviewer import BaseReviewerAgent
+from hydroscribe.engine.audit_log import get_audit_logger
 
 logger = logging.getLogger("hydroscribe.orchestrator")
 
@@ -148,6 +149,9 @@ class Orchestrator:
         # 待人工审批的门控
         self._pending_gates: Dict[str, asyncio.Event] = {}
         self._gate_decisions: Dict[str, bool] = {}
+
+        # 审计日志
+        self._audit = get_audit_logger()
 
         # 加载共享资源
         self._glossary = self._load_file("terminology/glossary_cn.md")
@@ -353,6 +357,8 @@ class Orchestrator:
                 f"[{task.book_id}/{task.chapter_id}] 从检查点恢复, 跳过前 {start_iteration - 1} 轮"
             )
 
+        self._audit.log_writing_started(task.book_id, task.chapter_id)
+
         for iteration in range(start_iteration, task.max_iterations + 1):
             task.current_iteration = iteration
             task.status = "in_progress"
@@ -390,6 +396,7 @@ class Orchestrator:
                 ))
                 task.status = "error"
                 self._task_stats["failed"] += 1
+                self._audit.log_writing_failed(task.book_id, task.chapter_id, error=str(e))
                 self._cleanup_task(task)
                 return {
                     "status": "error",
@@ -422,6 +429,7 @@ class Orchestrator:
 
             # ⑤c 保存检查点（每轮迭代后，支持崩溃恢复）
             self._save_checkpoint(task, iteration, write_result)
+            self._audit.log_checkpoint_saved(task.book_id, task.chapter_id, iteration=iteration)
 
             # ⑥ 门控决策
             passed = self._gate_check(review_result, threshold)
@@ -456,6 +464,14 @@ class Orchestrator:
                 task.status = "completed"
                 self._task_stats["completed"] += 1
                 self._task_stats["total_iterations"] += iteration
+                self._audit.log_writing_completed(
+                    task.book_id, task.chapter_id,
+                    word_count=write_result["word_count"], iterations=iteration,
+                )
+                self._audit.log_review_passed(
+                    task.book_id, task.chapter_id,
+                    scores={s.reviewer_role: s.overall for s in review_result.reviews},
+                )
                 self._clear_checkpoint(task)
                 self._cleanup_task(task)
                 return {
@@ -467,6 +483,10 @@ class Orchestrator:
                     "utility_checks": utility_results,
                 }
             else:
+                self._audit.log_review_rejected(
+                    task.book_id, task.chapter_id,
+                    scores={s.reviewer_role: s.overall for s in review_result.reviews},
+                )
                 await self.event_bus.publish(Event(
                     type=EventType.REVISION_NEEDED,
                     source_agent="orchestrator",
