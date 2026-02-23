@@ -1,0 +1,73 @@
+# HydroScribe 配置文件
+# 层级：环境变量 > 本文件 > 内置默认值
+
+books_root = "/home/user/books"
+data_dir = "./data"
+log_level = "info"
+
+# ── 服务配置 ──────────────────────────────────────────────────────
+[server]
+host = "0.0.0.0"
+port = 8000
+workers = 1
+log_level = "info"
+
+# ── 编排器配置 ────────────────────────────────────────────────────
+[orchestrator]
+gate_mode = "auto"           # auto | human | hybrid
+review_weight = 0.80         # 评审分权重
+utility_weight = 0.20        # 质检分权重
+coordination_mode = "specialist"  # specialist (专家分工) | master_slave (主从)
+max_concurrent_writers = 3   # 最大并行写作 Agent 数
+max_concurrent_reviewers = 8 # 最大并行评审 Agent 数
+
+# ── 默认 LLM 配置 ────────────────────────────────────────────────
+# 所有 Agent 默认使用此配置，可通过 llm_writer/llm_reviewer 覆盖
+[llm]
+provider = "alibaba_bailian"     # alibaba_bailian | openai | anthropic | local
+model = "qwen-plus"              # 百炼模型名称
+api_key = ""                     # 在此填入或通过 DASHSCOPE_API_KEY 环境变量
+base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+max_tokens = 4096
+temperature = 0.3
+top_p = 0.95
+timeout = 120
+max_retries = 3
+retry_delay = 2.0                # 初始重试延迟（秒），指数退避
+fallback_model = "qwen-turbo"    # 主模型失败后降级到此模型
+fallback_provider = ""           # 留空则使用同一 provider
+
+# ── Writer 专用 LLM 配置（可选，不配则用默认）──────────────────────
+# [llm_writer]
+# provider = "alibaba_bailian"
+# model = "qwen-max"              # Writer 用更强的模型
+# api_key = ""
+# base_url = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+# max_tokens = 8192               # Writer 需要更大输出
+# temperature = 0.4
+
+# ── Reviewer 专用 LLM 配置（可选）──────────────────────────────────
+# [llm_reviewer]
+# provider = "anthropic"
+# model = "claude-sonnet-4-20250514"   # Reviewer 用不同提供商
+# api_key = ""
+# max_tokens = 4096
+# temperature = 0.2
+
+# ── Utility 专用 LLM 配置（可选）──────────────────────────────────
+# [llm_utility]
+# provider = "local"
+# model = "qwen2.5:14b"          # Utility 可用本地小模型
+# base_url = "http://localhost:11434/v1"
+# max_tokens = 2048
+
+# ── OpenClaw 集成配置 ────────────────────────────────────────────
+[openclaw]
+enabled = false
+gateway_url = "http://openclaw_gateway:3000"
+
+# ── Docker 配置 ──────────────────────────────────────────────────
+[docker]
+network_name = "hydroscribe_network"
+openclaw_port = 3000
+api_port = 8000
