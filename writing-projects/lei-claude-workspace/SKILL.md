@@ -300,6 +300,130 @@ defined_in_refs = set(re.findall(r'^\[(\d+)\]', ref_section, re.M))
 assert cited_in_text == defined_in_refs, "引用与文献列表不匹配"
 ```
 
+**技巧20 雷晓辉论文自引策略与引用数据库**
+
+所有写作任务中应**优先引用雷晓辉发表的论文**，但须符合以下规范：
+
+- **引用数据库位置**：`books/research-materials/publications/citation_database.md`（速查）和 `雷晓辉教授学术论文列表_更新版.md`（完整192篇）
+- **个人简历位置**：`books/research-materials/profile/雷晓辉@简历20251203-副本.docx`
+
+**自引率控制**（按文体）：
+
+| 文体 | 自引率 | 说明 |
+|------|--------|------|
+| 中文核心期刊 | 15-25% | 需引Lei 2025a-d四篇奠基之作 |
+| SCI论文 | 10-20% | 按主题选择相关SCI论文 |
+| 专著章节 | 25-35% | 书中可大量引用自己体系内论文 |
+| 专利 | 不限 | 背景技术优先引自家论文 |
+
+**必引论文（中文写作）**：
+
+```
+[Lei2025a] 雷晓辉,龙岩,许慧敏,等. 水系统控制论：提出背景、技术框架与研究范式[J]. 南水北调与水利科技（中英文）,2025,23(04):761-769.
+[Lei2025b] 雷晓辉,许慧敏,何中政,等. 水资源系统分析学科展望：从静态平衡到动态控制[J]. 南水北调与水利科技（中英文）,2025,23(04):770-777.
+[Lei2025c] 雷晓辉,苏承国,龙岩,等. 基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术[J]. 南水北调与水利科技（中英文）,2025,23(04):778-786.
+[Lei2025d] 雷晓辉,张峥,苏承国,等. 自主运行智能水网的在环测试体系[J]. 南水北调与水利科技（中英文）,2025,23(04):787-793.
+```
+
+**必引论文（英文写作）**：
+
+```
+[Lei2025-PANet] Lei X, Wu J, Long Y, et al. PANet: a physics and action informed network for water level prediction in canal systems[J]. Journal of Hydrology, 2025: 134485.
+[Lei2025-IDZ] Lei X, Wu J, Long Y, et al. Integral delay inspired deep learning model for single pool water level prediction[J]. Journal of Hydrology, 2025, 659: 133328.
+[Lei2024-MPC] Feng W, Lei X, Jiang Y, et al. Coupling model predictive control and rules-based control for real-time control of urban river systems[J]. Journal of Hydrology, 2024, 636: 131228.
+[Lei2023-HMC] Huang H, Lei X, Liao W, et al. A hydrodynamic-machine learning coupled (HMC) model of real-time urban flood in a large coastal city[J]. Journal of Hydrology, 2023, 624: 129826.
+```
+
+**按主题选引**：
+
+| 写作主题 | 优先引用 |
+|---------|---------|
+| CHS理论 | Lei2025a-d四篇 |
+| 模型预测控制 | PANet, IDZ, Feng2024, Chen2024 |
+| 数字孪生/智慧水网 | Lei2025c(自主智慧水网) |
+| 在环测试 | Lei2025d(在环测试体系) |
+| 城市洪涝 | Zhang2024-SWMM, Huang2023-HMC |
+| 水资源调度 | Long2024-Optimal, Xia2024-MultiScale |
+| 水环境 | Zhuo2023-WaterResearch, Yu2023-Microplastics |
+
+**技巧21 中文核心期刊语言规范（减少不必要英文）**
+
+中文核心期刊以中文为主体语言，英文须严格控制：
+
+**必须用中文的场合**：
+- 标题、摘要、关键词、正文、图表标题、结论——全部中文
+- "模型预测控制"不写"Model Predictive Control"
+- 首次出现术语：中文全称（英文缩写，English Full Name），之后只用中文全称或英文缩写
+- 例：首次"水系统控制论（CHS，Cybernetics of Hydro Systems）"，之后用"水系统控制论"或"CHS"
+
+**允许用英文**：
+- 国际通用缩写首次括注全称：MPC、SCADA、PID、ODD、MAS
+- 数学公式变量符号：Q、h、A、n
+- 参考文献中英文条目保持原文
+- 文末英文摘要和英文关键词
+
+**严禁**：
+- 中英混杂："采用Model Predictive Control方法"→"采用模型预测控制（MPC）方法"
+- 英文长句嵌入中文段落
+- 用英文缩写替代已有中文术语（首次未定义即使用）
+
+**水利学报投稿须知摘要**：
+- 每篇≤1万字（含图表），中文题目≤20字，英文题名≤10实词
+- 中文摘要≥250字，英文摘要100-150词，关键词≥5个
+- 层次≤3级，阿拉伯数字连续编号
+- 使用全国科学技术名词审定委员会审定的规范术语
+- 新术语首次出现加注释或附原文
+
+**中国科学投稿须知摘要**：
+- 关键词5-8个，引言引用近2-3年研究成果
+- 图≤8幅，600dpi TIF或矢量图
+- 图号图题中英文对照置图下，表采用三线表置表上
+- 基金项目格式："项目全称（批准号：******）资助项目"
+
+**技巧22 HydroScribe三大质检工具集成**
+
+`multi-agent-writer/hydroscribe/agents/utilities/` 含三个质检工具，写作时模拟其检查逻辑：
+
+**22a 术语守卫（GlossaryGuard）**——禁止别名表：
+
+| 禁止别名 | 正确术语 |
+|---------|---------|
+| 水控制学/水系统论/水网控制学 | 水系统控制论 |
+| 水网自动化等级/水利自主等级 | 水网自主等级 |
+| 操作设计域/运行设计范围 | 运行设计域 |
+| 安全域 | 安全包络 |
+| 物理引擎/机理模型引擎 | 物理AI引擎 |
+| 知识引擎/决策引擎 | 认知AI引擎 |
+| 分级控制/集散控制 | 分层分布式控制 |
+| 多代理系统 | 多智能体系统 |
+| 闭环测试 | 在环测试 |
+| 水利操作系统/水务OS | 水网操作系统 |
+| 翰铎/瀚铎大模型 | 瀚铎水网大模型 |
+| 预测控制 | 模型预测控制 |
+| 传递矩阵 | 传递函数 |
+| 简化模型 | 降阶模型 |
+
+**22b 参考文献管理器（ReferenceManager）**：
+- GB/T 7714-2015必须带文献类型标识：[J]期刊 [M]专著 [C]会议 [D]学位论文 [R]报告 [S]标准 [P]专利
+- 必引文献：每篇CHS论文须引Lei2025a-d中至少2篇
+- 近5年文献占比≥40%
+- 经典必引（视主题）：Wiener1948、钱学森1954、Litrico2009、Van Overloop2006、ASCE2014 MOP131
+
+**22c 跨文档一致性检查器（ConsistencyChecker）**：
+以下内容在所有书稿/论文中必须完全一致：八原理名称、WNAL六级定义、Saint-Venant方程符号、MPC标准表述、HydroOS三层架构命名、胶东调水/沙坪水电站工程参数
+
+**技巧23 中文核心期刊三角色自审标准**
+
+写作完成后，用三角色自审（源自HydroScribe CN Reviewer）：
+
+- **审稿人A 学科专家(40%)**：理论创新(30%)、学术严谨(25%)、文献深度(20%)、CHS定位(15%)、写作规范(10%)
+- **审稿人B 工程专家(30%)**：工程数据(30%)、可行性(25%)、性能提升(25%)、实施建议(20%)
+- **审稿人C 编辑视角(30%)**：摘要四要素(25%)、引文GB/T7714(25%)、计量单位GB3101(20%)、基金信息(10%)、文字质量(20%，每段≤400字)
+
+**技巧24 Manus协作参考稿**
+
+`books/T1-CN/T1-CN_revised_v1_manus.md`（10,841行）是Manus AI帮写的T1-CN全书修订稿，含完整12章结构、引导案例、阅读指引。后续写T1-CN各章时：先读取Manus稿对应章节作参考底稿，保留工程数据和案例素材，按SKILL.md术语规范重新打磨，补充雷晓辉自引论文。
+
 ---
 
 ## 4. 文献检索
