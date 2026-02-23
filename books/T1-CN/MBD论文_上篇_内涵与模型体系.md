@@ -113,6 +113,8 @@ PBM与SM构成"校准—验证"循环：SM从PBM降阶得到，PBM仿真标定SM
 
 图1　"多学科模型独立+系统级统一仿真验证"的底座能力示意
 
+![图1](fig_A1.jpg)
+
 Fig.1　Schematic diagram of the foundational capability of "independent multidisciplinary models + unified system-level simulation verification"
 
 同时，统一仿真平台还承担设计阶段与运行阶段之间的桥梁功能：设计阶段的模型资产（含参数集、验证报告）通过标准化接口交付至运行期数字孪生平台；运行阶段的实测数据回馈至仿真平台进行参数动态校正，形成"设计—运行—再设计/再验证"的持续进化闭环。
