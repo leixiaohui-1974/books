@@ -150,6 +150,9 @@ class Orchestrator:
         self._pending_gates: Dict[str, asyncio.Event] = {}
         self._gate_decisions: Dict[str, bool] = {}
 
+        # 关闭标志
+        self._shutting_down = False
+
         # 审计日志
         self._audit = get_audit_logger()
 
@@ -1113,6 +1116,66 @@ class Orchestrator:
             }
             for role, u in usage.items()
         }
+
+    # ── 优雅关闭 ──────────────────────────────────────────────
+
+    async def shutdown(self):
+        """
+        优雅关闭 — 取消活跃任务 + 保存检查点 + 清理资源
+
+        调用顺序:
+        1. 设置 shutting_down 标志
+        2. 为每个活跃任务保存最终检查点
+        3. 取消活跃的 asyncio 任务
+        4. 关闭 EventBus（含 WebSocket 清理）
+        5. 记录审计日志
+        """
+        self._shutting_down = True
+        logger.info("Orchestrator 正在优雅关闭...")
+
+        # 保存所有活跃任务的检查点
+        saved_count = 0
+        for task_id, task in list(self.active_tasks.items()):
+            try:
+                self._save_checkpoint(task, task.current_iteration, {
+                    "word_count": 0,
+                    "metadata": {"shutdown": True},
+                })
+                saved_count += 1
+                logger.info(
+                    f"[shutdown] 保存检查点: {task.book_id}/{task.chapter_id} "
+                    f"iter={task.current_iteration}"
+                )
+            except Exception as e:
+                logger.warning(f"[shutdown] 检查点保存失败 {task_id}: {e}")
+
+        # 清理活跃任务
+        active_count = len(self.active_tasks)
+        self.active_tasks.clear()
+        self._pending_gates.clear()
+
+        # 关闭 EventBus
+        await self.event_bus.shutdown()
+
+        # 审计日志
+        self._audit.log(
+            "system_shutdown",
+            actor="orchestrator",
+            details={
+                "active_tasks_cancelled": active_count,
+                "checkpoints_saved": saved_count,
+                "task_stats": self._task_stats,
+            },
+        )
+
+        logger.info(
+            f"Orchestrator 已关闭 (取消 {active_count} 个任务, "
+            f"保存 {saved_count} 个检查点)"
+        )
+
+    @property
+    def is_shutting_down(self) -> bool:
+        return getattr(self, "_shutting_down", False)
 
     # ── 状态查询 ──────────────────────────────────────────────
 

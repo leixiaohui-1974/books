@@ -12,7 +12,7 @@ from typing import Optional
 
 from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, PlainTextResponse
 from pydantic import BaseModel
 from starlette.middleware.base import BaseHTTPMiddleware
 
@@ -103,9 +103,9 @@ async def startup_event():
 
 @app.on_event("shutdown")
 async def shutdown_event():
-    """应用关闭 — 优雅停止所有资源"""
+    """应用关闭 — 优雅停止所有资源（含活跃任务检查点保存）"""
     logger.info("收到关闭信号，正在优雅停止...")
-    await orchestrator.event_bus.shutdown()
+    await orchestrator.shutdown()
     logger.info("HydroScribe API 已关闭")
 
 
@@ -478,6 +478,98 @@ async def get_metrics():
         "task_stats": orchestrator.get_task_stats(),
         "coordination_mode": orchestrator.coordination_mode,
     }
+
+
+# ── Prometheus 指标导出 ────────────────────────────────────────
+
+@app.get("/metrics", response_class=PlainTextResponse)
+async def prometheus_metrics():
+    """
+    Prometheus 兼容的指标端点 — text/plain exposition format
+
+    可直接配置为 Prometheus scrape target:
+        scrape_configs:
+          - job_name: hydroscribe
+            static_configs:
+              - targets: ['localhost:8000']
+    """
+    uptime = int(time.monotonic() - _start_time)
+    stats = orchestrator.get_task_stats()
+    llm_usage = orchestrator.get_llm_usage()
+    total_tokens = orchestrator.llm_manager.get_total_tokens()
+    latency = orchestrator.llm_manager.get_latency_stats()
+    cb_stats = orchestrator.llm_manager.get_circuit_breaker_stats()
+
+    lines = [
+        "# HELP hydroscribe_uptime_seconds Server uptime in seconds",
+        "# TYPE hydroscribe_uptime_seconds gauge",
+        f"hydroscribe_uptime_seconds {uptime}",
+        "",
+        "# HELP hydroscribe_tasks_total Total tasks by status",
+        "# TYPE hydroscribe_tasks_total counter",
+        f'hydroscribe_tasks_total{{status="completed"}} {stats["completed"]}',
+        f'hydroscribe_tasks_total{{status="failed"}} {stats["failed"]}',
+        f'hydroscribe_tasks_total{{status="max_iterations"}} {stats["max_iterations_reached"]}',
+        "",
+        "# HELP hydroscribe_active_tasks Current active tasks",
+        "# TYPE hydroscribe_active_tasks gauge",
+        f"hydroscribe_active_tasks {len(orchestrator.active_tasks)}",
+        "",
+        "# HELP hydroscribe_active_writers Current active writer agents",
+        "# TYPE hydroscribe_active_writers gauge",
+        f"hydroscribe_active_writers {len(orchestrator.writers)}",
+        "",
+        "# HELP hydroscribe_active_reviewers Current active reviewer agents",
+        "# TYPE hydroscribe_active_reviewers gauge",
+        f"hydroscribe_active_reviewers {len(orchestrator.reviewers)}",
+        "",
+        "# HELP hydroscribe_pending_gates Gates awaiting human approval",
+        "# TYPE hydroscribe_pending_gates gauge",
+        f"hydroscribe_pending_gates {len(orchestrator._pending_gates)}",
+        "",
+        "# HELP hydroscribe_ws_connections Active WebSocket connections",
+        "# TYPE hydroscribe_ws_connections gauge",
+        f"hydroscribe_ws_connections {len(orchestrator.event_bus._ws_connections)}",
+        "",
+        "# HELP hydroscribe_events_total Total events in history",
+        "# TYPE hydroscribe_events_total counter",
+        f"hydroscribe_events_total {len(orchestrator.event_bus._history)}",
+        "",
+        "# HELP hydroscribe_dead_letters_total Dead letter queue size",
+        "# TYPE hydroscribe_dead_letters_total gauge",
+        f"hydroscribe_dead_letters_total {len(orchestrator.event_bus._dead_letters)}",
+        "",
+        "# HELP hydroscribe_llm_tokens_total Total LLM tokens consumed",
+        "# TYPE hydroscribe_llm_tokens_total counter",
+        f"hydroscribe_llm_tokens_total {total_tokens}",
+        "",
+    ]
+
+    # Per-role LLM token metrics
+    for role, usage in llm_usage.items():
+        prompt = usage.get("prompt_tokens", 0)
+        completion = usage.get("completion_tokens", 0)
+        lines.append(f'hydroscribe_llm_prompt_tokens{{role="{role}"}} {prompt}')
+        lines.append(f'hydroscribe_llm_completion_tokens{{role="{role}"}} {completion}')
+
+    if llm_usage:
+        lines.insert(-1, "# HELP hydroscribe_llm_prompt_tokens LLM prompt tokens by role")
+        lines.insert(-1, "# TYPE hydroscribe_llm_prompt_tokens counter")
+
+    # Latency metrics
+    for role, lat in latency.items():
+        if isinstance(lat, dict):
+            avg_ms = lat.get("avg_ms", 0)
+            lines.append(f'hydroscribe_llm_latency_avg_ms{{role="{role}"}} {avg_ms}')
+
+    # Circuit breaker status
+    for role, cb in cb_stats.items():
+        if isinstance(cb, dict):
+            state = 1 if cb.get("state") == "open" else 0
+            lines.append(f'hydroscribe_circuit_breaker_open{{role="{role}"}} {state}')
+
+    lines.append("")
+    return "\n".join(lines)
 
 
 # ── WebSocket 实时推送 ────────────────────────────────────────

@@ -1,5 +1,5 @@
 """
-HydroScribe CLI — 命令行入口 (v0.3.0)
+HydroScribe CLI — 命令行入口 (v0.4.0)
 
 用法:
     hydroscribe init                # 交互式初始化向导
@@ -11,6 +11,9 @@ HydroScribe CLI — 命令行入口 (v0.3.0)
     hydroscribe agents              # 列出所有 Agent
     hydroscribe doctor              # 环境自诊断
     hydroscribe config              # 显示当前配置
+    hydroscribe validate            # 校验配置文件
+    hydroscribe report              # 生成进度摘要报告
+    hydroscribe audit               # 查看审计日志
 """
 
 import argparse
@@ -36,7 +39,7 @@ BANNER = """[bold blue]
  ╦ ╦┬ ┬┌┬┐┬─┐┌─┐╔═╗┌─┐┬─┐┬┌┐ ┌─┐
  ╠═╣└┬┘ ││├┬┘│ │╚═╗│  ├┬┘│├┴┐├┤
  ╩ ╩ ┴ ─┴┘┴└─└─┘╚═╝└─┘┴└─┴└─┘└─┘[/]
-[dim]CHS 多智能体协同写作助手 v0.3.0[/]
+[dim]CHS 多智能体协同写作助手 v0.4.0[/]
 [dim]OpenManus + OpenClaw | 百炼/OpenAI/Anthropic/Local[/]
 """
 
@@ -735,6 +738,75 @@ def cmd_validate(args):
         console.print(f"\n  [yellow]{len(warnings)} 个警告 — 可运行但建议修复[/]")
 
 
+# ── audit — 审计日志查看 ──────────────────────────────────────
+
+def cmd_audit(args):
+    """查看审计日志（最近 N 条）"""
+    from hydroscribe.engine.audit_log import get_audit_logger
+
+    console.print(BANNER)
+    console.print("[bold]审计日志[/]\n")
+
+    limit = args.limit or 20
+    event_filter = args.event or None
+    book_filter = args.book or None
+
+    al = get_audit_logger()
+    records = al.read_recent(limit=max(limit * 3, 200))  # 读多一些再过滤
+
+    # 过滤
+    if event_filter:
+        records = [r for r in records if event_filter in r.get("event", "")]
+    if book_filter:
+        records = [r for r in records if r.get("book_id", "") == book_filter]
+
+    records = records[-limit:]
+
+    if not records:
+        console.print("  [dim]暂无审计记录[/]")
+        if event_filter or book_filter:
+            console.print(f"  [dim]过滤条件: event={event_filter}, book={book_filter}[/]")
+        return
+
+    table = Table(
+        title=f"审计日志 (最近 {len(records)} 条)",
+        box=box.SIMPLE,
+        show_lines=False,
+    )
+    table.add_column("时间", style="dim", min_width=19)
+    table.add_column("事件", style="bold", min_width=18)
+    table.add_column("操作者", min_width=10)
+    table.add_column("书目", min_width=6)
+    table.add_column("章节", min_width=6)
+    table.add_column("详情", max_width=40)
+
+    for rec in records:
+        ts = rec.get("timestamp", "")[:19]
+        event = rec.get("event", "")
+        actor = rec.get("actor", "")
+        book = rec.get("book_id", "") or ""
+        chapter = rec.get("chapter_id", "") or ""
+        details = rec.get("details", {})
+        detail_str = ", ".join(f"{k}={v}" for k, v in details.items()) if details else ""
+        if len(detail_str) > 40:
+            detail_str = detail_str[:37] + "..."
+
+        # 颜色
+        if "failed" in event:
+            style = "red"
+        elif "completed" in event or "passed" in event:
+            style = "green"
+        elif "rejected" in event:
+            style = "yellow"
+        else:
+            style = None
+
+        table.add_row(ts, event, actor, book, chapter, detail_str, style=style)
+
+    console.print(table)
+    console.print(f"\n  [dim]日志文件: {al.filepath}[/]")
+
+
 # ── check — 质量检查 ──────────────────────────────────────────
 
 def cmd_check(args):
@@ -847,6 +919,12 @@ def main():
   hydroscribe start T1-CN       开始写作
   hydroscribe doctor            环境自诊断
 
+运维:
+  hydroscribe audit             查看审计日志
+  hydroscribe audit -e failed   按事件过滤
+  hydroscribe validate          校验配置
+  hydroscribe report            生成进度报告
+
 更多信息: https://github.com/your-repo/hydroscribe
         """,
     )
@@ -894,6 +972,12 @@ def main():
     # validate
     sub.add_parser("validate", help="校验配置文件有效性")
 
+    # audit
+    p_audit = sub.add_parser("audit", help="查看审计日志 (最近 N 条)")
+    p_audit.add_argument("--limit", "-n", type=int, default=20, help="显示条数 (默认 20)")
+    p_audit.add_argument("--event", "-e", default=None, help="按事件类型过滤 (如 writing_completed)")
+    p_audit.add_argument("--book", "-b", default=None, help="按书目过滤 (如 T1-CN)")
+
     args = parser.parse_args()
 
     cmd_map = {
@@ -907,6 +991,7 @@ def main():
         "doctor": cmd_doctor,
         "config": cmd_config,
         "validate": cmd_validate,
+        "audit": cmd_audit,
     }
 
     handler = cmd_map.get(args.command)

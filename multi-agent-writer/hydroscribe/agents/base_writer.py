@@ -268,8 +268,17 @@ class BaseWriterAgent(OpenManusBaseAgent):
         section_index: int,
         total_sections: int,
         user_prompt: str,
+        max_retries: int = 2,
+        retry_delay: float = 3.0,
     ) -> str:
-        """使用上下文管理器写一个小节"""
+        """
+        使用上下文管理器写一个小节（含段级重试）
+
+        重试策略:
+        - 最多重试 max_retries 次（默认 2 次）
+        - 每次重试前等待 retry_delay 秒（指数退避）
+        - 全部重试耗尽后返回 TODO 占位符
+        """
         import logging
         logger = logging.getLogger("hydroscribe.writer")
 
@@ -277,16 +286,33 @@ class BaseWriterAgent(OpenManusBaseAgent):
             f"[{self.name}] 写作小节 {section_index + 1}/{total_sections}: {section_title}"
         )
 
-        self.update_memory("user", user_prompt)
-        try:
-            result = await self.step()
-            return result if result else ""
-        except Exception as e:
-            logger.error(
-                f"[{self.name}] 小节 {section_title} 写作失败: {e}"
-            )
-            # 返回错误占位符，让 write_chapter 继续处理后续小节
-            return f"\n\n[TODO: 小节「{section_title}」生成失败，需人工补充 — {e}]\n\n"
+        last_error = None
+        for attempt in range(1, max_retries + 2):  # 1 次初始 + max_retries 次重试
+            self.update_memory("user", user_prompt)
+            try:
+                result = await self.step()
+                if attempt > 1:
+                    logger.info(
+                        f"[{self.name}] 小节 {section_title} 第 {attempt} 次尝试成功"
+                    )
+                return result if result else ""
+            except Exception as e:
+                last_error = e
+                if attempt <= max_retries:
+                    wait = retry_delay * (2 ** (attempt - 1))
+                    logger.warning(
+                        f"[{self.name}] 小节 {section_title} 第 {attempt} 次失败: {e}, "
+                        f"{wait:.0f}s 后重试..."
+                    )
+                    self._reset_memory()
+                    await asyncio.sleep(wait)
+                else:
+                    logger.error(
+                        f"[{self.name}] 小节 {section_title} 全部 {max_retries + 1} 次尝试失败: {e}"
+                    )
+
+        # 全部重试耗尽 — 返回 TODO 占位符
+        return f"\n\n[TODO: 小节「{section_title}」生成失败（{max_retries + 1}次尝试），需人工补充 — {last_error}]\n\n"
 
     async def _generate_outline(self, task: WritingTask) -> List[str]:
         """生成章节大纲"""
