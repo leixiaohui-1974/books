@@ -25,6 +25,89 @@ from typing import Any, Dict, List, Optional
 logger = logging.getLogger("hydroscribe.llm_provider")
 
 
+class CircuitState(str, Enum):
+    """熔断器状态"""
+    CLOSED = "closed"        # 正常 — 请求通过
+    OPEN = "open"            # 熔断 — 快速失败
+    HALF_OPEN = "half_open"  # 试探 — 允许少量请求通过
+
+
+class CircuitBreaker:
+    """
+    LLM 熔断器 — 防止 API 级联失败
+
+    状态机:
+    CLOSED → (连续 failure_threshold 次失败) → OPEN
+    OPEN → (等待 recovery_timeout 秒) → HALF_OPEN
+    HALF_OPEN → (success_threshold 次连续成功) → CLOSED
+    HALF_OPEN → (任意一次失败) → OPEN
+    """
+
+    def __init__(
+        self,
+        failure_threshold: int = 5,
+        recovery_timeout: float = 60.0,
+        success_threshold: int = 2,
+        name: str = "default",
+    ):
+        self.failure_threshold = failure_threshold
+        self.recovery_timeout = recovery_timeout
+        self.success_threshold = success_threshold
+        self.name = name
+
+        self._state = CircuitState.CLOSED
+        self._failure_count = 0
+        self._success_count = 0
+        self._last_failure_time = 0.0
+        self._total_trips = 0  # 累计熔断次数
+
+    @property
+    def state(self) -> CircuitState:
+        if self._state == CircuitState.OPEN:
+            if time.monotonic() - self._last_failure_time >= self.recovery_timeout:
+                self._state = CircuitState.HALF_OPEN
+                self._success_count = 0
+                logger.info(f"熔断器 [{self.name}] OPEN → HALF_OPEN (尝试恢复)")
+        return self._state
+
+    def record_success(self):
+        if self._state == CircuitState.HALF_OPEN:
+            self._success_count += 1
+            if self._success_count >= self.success_threshold:
+                self._state = CircuitState.CLOSED
+                self._failure_count = 0
+                logger.info(f"熔断器 [{self.name}] HALF_OPEN → CLOSED (已恢复)")
+        else:
+            self._failure_count = 0
+
+    def record_failure(self):
+        self._failure_count += 1
+        self._last_failure_time = time.monotonic()
+
+        if self._state == CircuitState.HALF_OPEN:
+            self._state = CircuitState.OPEN
+            self._total_trips += 1
+            logger.warning(f"熔断器 [{self.name}] HALF_OPEN → OPEN (恢复失败)")
+        elif self._failure_count >= self.failure_threshold:
+            self._state = CircuitState.OPEN
+            self._total_trips += 1
+            logger.warning(
+                f"熔断器 [{self.name}] CLOSED → OPEN "
+                f"(连续 {self._failure_count} 次失败, 累计熔断 {self._total_trips} 次)"
+            )
+
+    def allow_request(self) -> bool:
+        return self.state != CircuitState.OPEN
+
+    def get_stats(self) -> dict:
+        return {
+            "state": self.state.value,
+            "failure_count": self._failure_count,
+            "total_trips": self._total_trips,
+            "recovery_timeout": self.recovery_timeout,
+        }
+
+
 class LLMProvider(str, Enum):
     """支持的 LLM 提供商"""
     ALIBABA_BAILIAN = "alibaba_bailian"
@@ -81,6 +164,12 @@ class BaseLLMClient(ABC):
     def __init__(self, config: LLMConfig):
         self.config = config
         self._total_usage = LLMUsage()
+        self._circuit_breaker = CircuitBreaker(
+            failure_threshold=5,
+            recovery_timeout=60.0,
+            success_threshold=2,
+            name=f"{config.provider.value}/{config.model}",
+        )
 
     @abstractmethod
     async def generate(
@@ -100,7 +189,14 @@ class BaseLLMClient(ABC):
         max_tokens: Optional[int] = None,
         temperature: Optional[float] = None,
     ) -> LLMResponse:
-        """带重试机制的生成"""
+        """带重试 + 熔断器的生成"""
+        # 熔断器检查
+        if not self._circuit_breaker.allow_request():
+            raise RuntimeError(
+                f"熔断器已打开 [{self._circuit_breaker.name}]，"
+                f"将在 {self._circuit_breaker.recovery_timeout}s 后尝试恢复"
+            )
+
         last_error = None
         delay = self.config.retry_delay
 
@@ -116,10 +212,16 @@ class BaseLLMClient(ABC):
                     self._total_usage.prompt_tokens += response.usage.prompt_tokens
                     self._total_usage.completion_tokens += response.usage.completion_tokens
                     self._total_usage.total_tokens += response.usage.total_tokens
+                self._circuit_breaker.record_success()
                 return response
             except Exception as e:
                 last_error = e
+                self._circuit_breaker.record_failure()
                 if attempt < self.config.max_retries:
+                    # 如果熔断器已打开，不再重试
+                    if not self._circuit_breaker.allow_request():
+                        logger.warning(f"熔断器打开，跳过剩余重试")
+                        break
                     logger.warning(
                         f"LLM 调用失败 (尝试 {attempt}/{self.config.max_retries}): {e}. "
                         f"{delay:.1f}s 后重试..."
@@ -130,6 +232,10 @@ class BaseLLMClient(ABC):
         raise RuntimeError(
             f"LLM 调用在 {self.config.max_retries} 次重试后仍然失败: {last_error}"
         )
+
+    @property
+    def circuit_breaker_stats(self) -> dict:
+        return self._circuit_breaker.get_stats()
 
     def get_total_usage(self) -> LLMUsage:
         return self._total_usage

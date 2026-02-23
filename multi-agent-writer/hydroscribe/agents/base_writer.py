@@ -223,11 +223,17 @@ class BaseWriterAgent(OpenManusBaseAgent):
 
         self.output_buffer = full_content
 
+        metadata = self._extract_metadata(full_content)
+
+        # 输出验证 — 字数/TODO标记/结构
+        validation = self._validate_output(full_content, task)
+        metadata["validation"] = validation
+
         result = {
             "content": full_content,
             "word_count": self.word_count,
             "sections": sections,
-            "metadata": self._extract_metadata(full_content)
+            "metadata": metadata,
         }
 
         if self.event_bus:
@@ -330,6 +336,62 @@ class BaseWriterAgent(OpenManusBaseAgent):
             "tables": tables,
             "concepts": min(concepts, 30),
             "references": references,
+        }
+
+    def _validate_output(self, content: str, task: WritingTask) -> Dict[str, Any]:
+        """
+        验证生成内容 — 字数达标/TODO标记/结构完整性
+
+        返回:
+            {
+                "word_count_ratio": float,  # 实际/目标比例
+                "word_count_ok": bool,      # 在 50%-150% 范围内
+                "todo_markers": list,       # 找到的 [TODO] 标记
+                "todo_count": int,
+                "has_title": bool,
+                "has_content": bool,
+                "warnings": list,
+            }
+        """
+        import logging
+        logger = logging.getLogger("hydroscribe.writer")
+
+        warnings = []
+
+        # 字数验证
+        target = task.spec.target_words or 10000
+        actual = len(content)
+        ratio = actual / max(target, 1)
+        word_count_ok = 0.5 <= ratio <= 1.5
+        if not word_count_ok:
+            pct = round(ratio * 100, 1)
+            warnings.append(f"字数偏差: 目标 {target}, 实际 {actual} ({pct}%)")
+            logger.warning(f"[{self.name}] {warnings[-1]}")
+
+        # TODO 标记检测 (CLAUDE.md §12.1)
+        todo_pattern = re.compile(r'\[TODO[:\s][^\]]*\]', re.IGNORECASE)
+        todo_markers = todo_pattern.findall(content)
+        if todo_markers:
+            warnings.append(f"含 {len(todo_markers)} 个 [TODO] 标记，需人工补充")
+            logger.info(f"[{self.name}] 检测到 {len(todo_markers)} 个 TODO 标记")
+
+        # 基本结构检查
+        has_title = bool(re.search(r'^#', content, re.MULTILINE))
+        has_content = len(content.strip()) > 500
+
+        if not has_title:
+            warnings.append("内容缺少标题 (# 标记)")
+        if not has_content:
+            warnings.append("内容过短 (<500字)")
+
+        return {
+            "word_count_ratio": round(ratio, 2),
+            "word_count_ok": word_count_ok,
+            "todo_markers": todo_markers[:10],  # 最多返回10个
+            "todo_count": len(todo_markers),
+            "has_title": has_title,
+            "has_content": has_content,
+            "warnings": warnings,
         }
 
     async def step(self) -> str:

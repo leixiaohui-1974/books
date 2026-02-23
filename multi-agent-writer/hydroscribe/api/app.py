@@ -242,10 +242,59 @@ async def get_config_info():
 async def health_check():
     """健康检查 — 适配 Docker HEALTHCHECK / K8s liveness probe"""
     uptime_seconds = int(time.monotonic() - _start_time)
+
+    # 检查文件系统可写性
+    fs_ok = True
+    try:
+        test_path = os.path.join(orchestrator.books_root, ".health_check")
+        with open(test_path, "w") as f:
+            f.write("ok")
+        os.unlink(test_path)
+    except Exception:
+        fs_ok = False
+
+    # 检查事件总线
+    event_bus_ok = orchestrator.event_bus is not None
+
+    all_ok = fs_ok and event_bus_ok
     return {
-        "status": "healthy",
+        "status": "healthy" if all_ok else "degraded",
         "version": "0.3.0",
         "uptime_seconds": uptime_seconds,
+        "checks": {
+            "filesystem": "ok" if fs_ok else "error",
+            "event_bus": "ok" if event_bus_ok else "error",
+        },
+    }
+
+
+@app.get("/ready")
+async def readiness_check():
+    """就绪探针 — K8s readiness probe / 负载均衡器健康检查
+
+    与 /health 区别: /health 检查进程存活，/ready 检查能否接受新任务
+    """
+    # 基本存活
+    uptime_seconds = int(time.monotonic() - _start_time)
+
+    # LLM 可用性 (检查是否有至少一个已配置的 provider)
+    llm_configured = len(orchestrator.llm_manager._clients) > 0
+
+    # 活跃任务是否过载
+    max_tasks = orchestrator.config.orchestrator.max_concurrent_writers
+    active_count = len(orchestrator.active_tasks)
+    tasks_ok = active_count < max_tasks
+
+    ready = llm_configured and tasks_ok
+
+    return {
+        "ready": ready,
+        "uptime_seconds": uptime_seconds,
+        "checks": {
+            "llm_configured": llm_configured,
+            "tasks_capacity": f"{active_count}/{max_tasks}",
+            "accepting_tasks": tasks_ok,
+        },
     }
 
 

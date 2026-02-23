@@ -221,11 +221,10 @@ class Orchestrator:
         return BookProgress(book_id=book_id, book_title="", total_chapters=0)
 
     def _save_progress(self, progress: BookProgress):
-        """保存进度文件"""
+        """保存进度文件（原子化写入）"""
         progress_path = os.path.join(self.books_root, "progress", f"BK{progress.book_id}.json")
-        os.makedirs(os.path.dirname(progress_path), exist_ok=True)
-        with open(progress_path, "w", encoding="utf-8") as f:
-            json.dump(progress.model_dump(), f, ensure_ascii=False, indent=2)
+        content = json.dumps(progress.model_dump(), ensure_ascii=False, indent=2)
+        self._atomic_write(progress_path, content)
 
     def _find_next_chapter(self, progress: BookProgress, total_chapters: int) -> Optional[str]:
         """找到下一个待写章节"""
@@ -397,6 +396,9 @@ class Orchestrator:
             final_score = self._compute_final_score(review_result, utility_results, skill)
             review_result.avg_score = final_score
 
+            # ⑤b 保存评审记录
+            self._save_review_record(task, review_result, iteration)
+
             # ⑥ 门控决策
             passed = self._gate_check(review_result, threshold)
 
@@ -476,11 +478,12 @@ class Orchestrator:
                 feedback_text = "\n".join(feedback_parts)
                 max_feedback = self.config.orchestrator.max_feedback_tokens
                 if len(feedback_text) > max_feedback:
+                    original_len = len(feedback_text)
                     feedback_text = feedback_text[:max_feedback] + \
-                        f"\n\n[... 反馈已截断，原始长度 {len(feedback_text)} 字符 ...]"
+                        f"\n\n[... 反馈已截断，原始长度 {original_len} 字符 ...]"
                     logger.info(
                         f"[{task.book_id}/{task.chapter_id}] 反馈截断: "
-                        f"{len('\n'.join(feedback_parts))} → {max_feedback} 字符"
+                        f"{original_len} → {max_feedback} 字符"
                     )
                 writer.review_feedback = feedback_text
 
@@ -790,25 +793,38 @@ class Orchestrator:
 
     # ── 文件保存 ──────────────────────────────────────────────
 
-    def _save_draft(self, task: WritingTask, content: str, iteration: int) -> str:
-        """保存初稿"""
-        dir_path = os.path.join(self.books_root, "books", task.book_id)
+    @staticmethod
+    def _atomic_write(path: str, content: str):
+        """原子化写入 — 先写临时文件再重命名，防止写入中断导致文件损坏"""
+        import tempfile
+        dir_path = os.path.dirname(path)
         os.makedirs(dir_path, exist_ok=True)
+        fd, tmp_path = tempfile.mkstemp(dir=dir_path, suffix=".tmp")
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                f.write(content)
+            os.replace(tmp_path, path)  # 原子操作
+        except Exception:
+            # 清理临时文件
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+            raise
+
+    def _save_draft(self, task: WritingTask, content: str, iteration: int) -> str:
+        """保存初稿（原子化写入）"""
+        dir_path = os.path.join(self.books_root, "books", task.book_id)
         filename = f"{task.chapter_id}_v{iteration}.md"
         path = os.path.join(dir_path, filename)
 
         header = f"<!-- 变更日志\nv{iteration} {datetime.now().strftime('%Y-%m-%d')}: {'初稿' if iteration == 1 else f'第{iteration}轮修改'}\n-->\n\n"
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(header + content)
+        self._atomic_write(path, header + content)
         return path
 
     def _save_final(self, task: WritingTask, content: str) -> str:
-        """保存终稿"""
+        """保存终稿（原子化写入）"""
         dir_path = os.path.join(self.books_root, "books", task.book_id)
-        os.makedirs(dir_path, exist_ok=True)
         path = os.path.join(dir_path, f"{task.chapter_id}_final.md")
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(content)
+        self._atomic_write(path, content)
         return path
 
     def _update_progress(self, task: WritingTask, write_result: dict, review: AggregatedReview):
@@ -833,9 +849,8 @@ class Orchestrator:
     # ── 评审记录保存 ──────────────────────────────────────────
 
     def _save_review_record(self, task: WritingTask, review: AggregatedReview, iteration: int):
-        """保存评审记录到 reviews/ 目录"""
+        """保存评审记录到 reviews/ 目录（原子化写入）"""
         reviews_dir = os.path.join(self.books_root, "reviews")
-        os.makedirs(reviews_dir, exist_ok=True)
 
         filename = f"BK{task.book_id}_{task.chapter_id}_r{iteration}.md"
         path = os.path.join(reviews_dir, filename)
@@ -867,8 +882,10 @@ class Orchestrator:
                 lines.append(f"\n> {r.comments[:500]}")
             lines.append("")
 
-        with open(path, "w", encoding="utf-8") as f:
-            f.write("\n".join(lines))
+        try:
+            self._atomic_write(path, "\n".join(lines))
+        except Exception as e:
+            logger.error(f"评审记录保存失败: {e}")
 
     # ── 多Agent协同模式 ────────────────────────────────────────
 
