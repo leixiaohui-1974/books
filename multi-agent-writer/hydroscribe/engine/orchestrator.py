@@ -32,6 +32,9 @@ from hydroscribe.engine.config_loader import (
 from hydroscribe.engine.llm_provider import (
     LLMManager, LLMConfig, LLMProvider, LLMUsage, create_llm_client
 )
+from hydroscribe.engine.llm_bridge import (
+    LLMBridge, create_writer_bridge, create_reviewer_bridge, create_utility_bridge
+)
 from hydroscribe.agents.base_writer import BaseWriterAgent
 from hydroscribe.agents.base_reviewer import BaseReviewerAgent
 
@@ -177,6 +180,7 @@ class Orchestrator:
             self._glossary_guard.event_bus = self.event_bus
             self._glossary_guard.glossary_content = self._glossary
             self._glossary_guard.symbols_content = self._symbols
+            self._glossary_guard.llm = create_utility_bridge(self.llm_manager)
         return self._glossary_guard
 
     def _get_consistency_checker(self):
@@ -186,6 +190,7 @@ class Orchestrator:
                 name="consistency-checker", books_root=self.books_root
             )
             self._consistency_checker.event_bus = self.event_bus
+            self._consistency_checker.llm = create_utility_bridge(self.llm_manager)
         return self._consistency_checker
 
     def _get_reference_manager(self):
@@ -193,6 +198,7 @@ class Orchestrator:
             from hydroscribe.agents.utilities.reference_manager import ReferenceManagerAgent
             self._reference_manager = ReferenceManagerAgent(name="reference-manager")
             self._reference_manager.event_bus = self.event_bus
+            self._reference_manager.llm = create_utility_bridge(self.llm_manager)
         return self._reference_manager
 
     # ── 文件操作 ──────────────────────────────────────────────
@@ -648,38 +654,39 @@ class Orchestrator:
             agent_cls = WRITER_REGISTRY.get(key)
             if agent_cls:
                 agent = agent_cls(name=f"writer-{key.lower()}")
-                agent.event_bus = self.event_bus
-                self.writers[key] = agent
             else:
                 agent = BaseWriterAgent(name=f"writer-{key.lower()}", skill_type=skill_type)
-                agent.event_bus = self.event_bus
-                self.writers[key] = agent
+            agent.event_bus = self.event_bus
+            # 注入 LLM Bridge — 让 Agent.step() 使用 HydroScribe LLMManager
+            agent.llm = create_writer_bridge(self.llm_manager)
+            self.writers[key] = agent
         return self.writers[key]
 
     def _get_or_create_reviewer(self, role: ReviewerRole) -> BaseReviewerAgent:
         """获取或创建 Reviewer Agent（优先使用专业Reviewer注册表）"""
         key = role.value
         if key not in self.reviewers:
+            agent = None
             # 优先从 REVIEWER_REGISTRY 加载专业评审
             try:
                 from hydroscribe.agents.reviewers import REVIEWER_REGISTRY
                 agent_cls = REVIEWER_REGISTRY.get(role)
                 if agent_cls:
                     agent = agent_cls(name=f"reviewer-{key}")
-                    agent.event_bus = self.event_bus
-                    self.reviewers[key] = agent
-                    return agent
             except ImportError:
                 pass
 
-            # 回退：使用基类 + 外部prompt文件
-            prompt_template = self._load_reviewer_prompt(role)
-            agent = BaseReviewerAgent(
-                name=f"reviewer-{key}",
-                reviewer_role=role,
-                reviewer_prompt_template=prompt_template,
-            )
+            if agent is None:
+                # 回退：使用基类 + 外部prompt文件
+                prompt_template = self._load_reviewer_prompt(role)
+                agent = BaseReviewerAgent(
+                    name=f"reviewer-{key}",
+                    reviewer_role=role,
+                    reviewer_prompt_template=prompt_template,
+                )
             agent.event_bus = self.event_bus
+            # 注入 LLM Bridge — 让 Agent.step() 使用 HydroScribe LLMManager
+            agent.llm = create_reviewer_bridge(self.llm_manager)
             self.reviewers[key] = agent
         return self.reviewers[key]
 

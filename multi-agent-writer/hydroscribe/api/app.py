@@ -6,6 +6,7 @@ import asyncio
 import json
 import logging
 import os
+import time
 from typing import Optional
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
@@ -16,9 +17,13 @@ from pydantic import BaseModel
 from hydroscribe.engine.orchestrator import Orchestrator
 from hydroscribe.engine.event_bus import EventBus
 from hydroscribe.engine.config_loader import get_config
+from hydroscribe.engine.logging_config import setup_logging
 from hydroscribe.schema import EventType, Event, SkillType
 
 logger = logging.getLogger("hydroscribe.api")
+
+# 启动时间记录 (用于 uptime 计算)
+_start_time = time.monotonic()
 
 # ── 初始化 ────────────────────────────────────────────────────
 
@@ -228,6 +233,65 @@ async def get_config_info():
             "enabled": cfg.openclaw_enabled,
             "gateway_url": cfg.openclaw_gateway_url if cfg.openclaw_enabled else "",
         },
+    }
+
+
+# ── 健康检查与监控 ────────────────────────────────────────────
+
+@app.get("/health")
+async def health_check():
+    """健康检查 — 适配 Docker HEALTHCHECK / K8s liveness probe"""
+    uptime_seconds = int(time.monotonic() - _start_time)
+    return {
+        "status": "healthy",
+        "version": "0.3.0",
+        "uptime_seconds": uptime_seconds,
+    }
+
+
+@app.get("/api/metrics")
+async def get_metrics():
+    """系统指标 — 供监控面板使用"""
+    uptime_seconds = int(time.monotonic() - _start_time)
+
+    # LLM 用量
+    llm_usage = orchestrator.get_llm_usage()
+    total_tokens = orchestrator.llm_manager.get_total_tokens()
+
+    # Agent 统计
+    active_writers = len(orchestrator.writers)
+    active_reviewers = len(orchestrator.reviewers)
+    active_tasks = len(orchestrator.active_tasks)
+    pending_gates = len(orchestrator._pending_gates)
+
+    # 事件统计
+    event_count = len(orchestrator.event_bus._history)
+    ws_connections = len(orchestrator.event_bus._ws_connections)
+
+    return {
+        "uptime_seconds": uptime_seconds,
+        "agents": {
+            "writers_active": active_writers,
+            "reviewers_active": active_reviewers,
+            "tasks_active": active_tasks,
+            "gates_pending": pending_gates,
+        },
+        "llm": {
+            "total_tokens": total_tokens,
+            "usage_by_role": {
+                role: {
+                    "prompt_tokens": u.get("prompt_tokens", 0),
+                    "completion_tokens": u.get("completion_tokens", 0),
+                    "total_tokens": u.get("total_tokens", 0),
+                }
+                for role, u in llm_usage.items()
+            },
+        },
+        "events": {
+            "total_count": event_count,
+            "ws_connections": ws_connections,
+        },
+        "coordination_mode": orchestrator.coordination_mode,
     }
 
 

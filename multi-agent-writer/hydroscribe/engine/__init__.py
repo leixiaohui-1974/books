@@ -8,3 +8,7 @@ from hydroscribe.engine.llm_provider import (
     BaseLLMClient, AlibabaBailianClient, OpenAIClient, AnthropicClient, LocalLLMClient,
     create_llm_client, create_llm_from_dict,
 )
+from hydroscribe.engine.llm_bridge import (
+    LLMBridge, create_writer_bridge, create_reviewer_bridge, create_utility_bridge
+)
+from hydroscribe.engine.logging_config import setup_logging, LogContext
