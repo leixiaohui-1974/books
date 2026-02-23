@@ -15,28 +15,30 @@ from pydantic import BaseModel
 
 from hydroscribe.engine.orchestrator import Orchestrator
 from hydroscribe.engine.event_bus import EventBus
+from hydroscribe.engine.config_loader import get_config
 from hydroscribe.schema import EventType, Event, SkillType
 
 logger = logging.getLogger("hydroscribe.api")
 
 # ── 初始化 ────────────────────────────────────────────────────
 
-BOOKS_ROOT = os.environ.get("BOOKS_ROOT", "/home/user/books")
+config = get_config()
+BOOKS_ROOT = os.environ.get("BOOKS_ROOT", config.books_root)
 
 app = FastAPI(
     title="HydroScribe — CHS 多智能体协同写作助手",
-    description="基于 OpenManus 架构，融合 9 大写作技能的多智能体系统",
-    version="0.2.0",
+    description="基于 OpenManus+OpenClaw 架构，融合 9 大写作技能的多智能体系统 (阿里云百炼优化)",
+    version="0.3.0",
 )
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=config.server.cors_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-orchestrator = Orchestrator(books_root=BOOKS_ROOT)
+orchestrator = Orchestrator(books_root=BOOKS_ROOT, config=config)
 
 
 # ── 请求模型 ──────────────────────────────────────────────────
@@ -167,6 +169,66 @@ async def reject_gate(gate_id: str, req: GateRequest):
 async def get_pending_gates():
     """获取待审批的门控列表"""
     return {"pending_gates": list(orchestrator._pending_gates.keys())}
+
+
+class MasterSlaveRequest(BaseModel):
+    book_id: str
+    chapter_ids: list
+    skill_type: str = "BK"
+
+
+@app.post("/api/tasks/master-slave")
+async def start_master_slave(req: MasterSlaveRequest):
+    """主从模式 — 并行启动多章写作"""
+    asyncio.create_task(
+        orchestrator.execute_master_slave(req.book_id, req.chapter_ids, req.skill_type)
+    )
+    return {
+        "status": "started",
+        "mode": "master_slave",
+        "book_id": req.book_id,
+        "chapters": req.chapter_ids,
+        "max_concurrent": orchestrator.config.orchestrator.max_concurrent_writers,
+        "message": f"已启动 {len(req.chapter_ids)} 章并行写作",
+    }
+
+
+@app.get("/api/llm/usage")
+async def get_llm_usage():
+    """获取 LLM token 用量统计"""
+    return {
+        "usage": orchestrator.get_llm_usage(),
+        "total_tokens": orchestrator.llm_manager.get_total_tokens(),
+    }
+
+
+@app.get("/api/config")
+async def get_config_info():
+    """获取当前配置（脱敏）"""
+    cfg = orchestrator.config
+    return {
+        "books_root": cfg.books_root,
+        "llm": {
+            "provider": cfg.llm_default.provider,
+            "model": cfg.llm_default.model,
+            "base_url": cfg.llm_default.base_url,
+            "max_tokens": cfg.llm_default.max_tokens,
+            "temperature": cfg.llm_default.temperature,
+            # api_key 脱敏
+            "api_key_set": bool(cfg.llm_default.api_key),
+        },
+        "orchestrator": {
+            "gate_mode": cfg.orchestrator.gate_mode,
+            "coordination_mode": cfg.orchestrator.coordination_mode,
+            "review_weight": cfg.orchestrator.review_weight,
+            "utility_weight": cfg.orchestrator.utility_weight,
+            "max_concurrent_writers": cfg.orchestrator.max_concurrent_writers,
+        },
+        "openclaw": {
+            "enabled": cfg.openclaw_enabled,
+            "gateway_url": cfg.openclaw_gateway_url if cfg.openclaw_enabled else "",
+        },
+    }
 
 
 # ── WebSocket 实时推送 ────────────────────────────────────────

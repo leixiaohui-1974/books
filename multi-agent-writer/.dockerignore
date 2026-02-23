@@ -1,0 +1,53 @@
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.eggs
+dist
+build
+*.egg
+
+# Virtual environments
+.venv
+venv
+env
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tests
+tests/
+.pytest_cache
+.coverage
+htmlcov
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Docs
+*.md
+!hydroscribe/prompts/*.md
+
+# Logs & output
+logs/
+output/
+*.log
+
+# Secrets
+.env
+*.pem
+*.key

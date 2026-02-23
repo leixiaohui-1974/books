@@ -1,6 +1,15 @@
 """
 Orchestrator — 多智能体编排器（系统大脑）
 参考 OpenManus PlanningFlow，实现 Plan → Execute → Reflect 三阶段循环
+
+协同模式：
+- specialist (专家分工): 不同 OpenManus 实例按文体特化，Orchestrator 按技能路由
+- master_slave (主从): Orchestrator 分解任务为子任务，分配给多个并行 Writer
+
+集成层：
+- LLM Provider: 多提供商抽象 (百炼/OpenAI/Anthropic/本地)
+- Config Loader: TOML 配置 + 环境变量覆盖
+- OpenClaw Skill: 可被 OpenClaw 网关作为 Skill 调度
 """
 
 import asyncio
@@ -17,6 +26,12 @@ from hydroscribe.schema import (
     SkillType, WritingTask
 )
 from hydroscribe.engine.event_bus import EventBus
+from hydroscribe.engine.config_loader import (
+    HydroScribeConfig, get_config, LLMRoleConfig
+)
+from hydroscribe.engine.llm_provider import (
+    LLMManager, LLMConfig, LLMProvider, LLMUsage, create_llm_client
+)
 from hydroscribe.agents.base_writer import BaseWriterAgent
 from hydroscribe.agents.base_reviewer import BaseReviewerAgent
 
@@ -80,16 +95,29 @@ class Orchestrator:
     1. Plan  — 解析用户指令，读取书目规格，生成写作 DAG
     2. Execute — 按 DAG 调度 Writer/Reviewer/Utility Agent
     3. Reflect — 汇总评审结果（加权），门控决策，Utility检查，更新进度
+
+    协同模式（由 config.orchestrator.coordination_mode 控制）：
+    - specialist: 按文体路由到专用 Agent（默认，低并发场景）
+    - master_slave: 分解大任务为子任务，多 Writer 并行执行
     """
 
     def __init__(
         self,
         books_root: str = "/home/user/books",
         gate_mode: str = "auto",
+        config: Optional[HydroScribeConfig] = None,
     ):
-        self.books_root = books_root
-        self.gate_mode = gate_mode
+        # 加载配置
+        self.config = config or get_config()
+        self.books_root = books_root or self.config.books_root
+        self.gate_mode = gate_mode or self.config.orchestrator.gate_mode
+        self.coordination_mode = self.config.orchestrator.coordination_mode
+
         self.event_bus = EventBus()
+
+        # LLM Manager — 多提供商管理
+        self.llm_manager = LLMManager()
+        self._init_llm_manager()
 
         # Agent 池
         self.writers: Dict[str, BaseWriterAgent] = {}
@@ -110,6 +138,35 @@ class Orchestrator:
         # 加载共享资源
         self._glossary = self._load_file("terminology/glossary_cn.md")
         self._symbols = self._load_file("terminology/symbols.md")
+
+    def _init_llm_manager(self):
+        """根据配置初始化 LLM Manager"""
+        for role in ("default", "writer", "reviewer", "utility"):
+            role_config = self.config.get_llm_config(role)
+            if role_config.model:
+                try:
+                    provider = LLMProvider(role_config.provider)
+                except ValueError:
+                    provider = LLMProvider.OPENAI
+
+                llm_config = LLMConfig(
+                    provider=provider,
+                    model=role_config.model,
+                    api_key=role_config.api_key,
+                    base_url=role_config.base_url,
+                    max_tokens=role_config.max_tokens,
+                    temperature=role_config.temperature,
+                    top_p=role_config.top_p,
+                    timeout=role_config.timeout,
+                    max_retries=role_config.max_retries,
+                    retry_delay=role_config.retry_delay,
+                    fallback_model=role_config.fallback_model,
+                    fallback_provider=role_config.fallback_provider,
+                )
+                self.llm_manager.register(role, llm_config)
+                logger.info(
+                    f"LLM [{role}]: {role_config.provider}/{role_config.model}"
+                )
 
     # ── Utility Agent 惰性加载 ────────────────────────────────
 
@@ -751,6 +808,92 @@ class Orchestrator:
         with open(path, "w", encoding="utf-8") as f:
             f.write("\n".join(lines))
 
+    # ── 多Agent协同模式 ────────────────────────────────────────
+
+    async def execute_master_slave(
+        self, book_id: str, chapter_ids: List[str], skill_type: str = "BK"
+    ) -> Dict[str, Any]:
+        """
+        主从模式 — Orchestrator 作为 Master 分配多章写作给并行 Writer
+
+        适用场景：需要同时推进多个章节（如赶工期）
+        限制：并行数受 config.orchestrator.max_concurrent_writers 控制
+        """
+        skill = SkillType(skill_type)
+        max_concurrent = self.config.orchestrator.max_concurrent_writers
+        results = {}
+
+        semaphore = asyncio.Semaphore(max_concurrent)
+
+        async def _write_chapter(ch_id: str):
+            async with semaphore:
+                logger.info(f"[master_slave] 分配 {book_id}/{ch_id} 给并行 Writer")
+                return await self.start_book_chapter(book_id, ch_id, skill_type)
+
+        tasks_list = [_write_chapter(ch_id) for ch_id in chapter_ids]
+        completed = await asyncio.gather(*tasks_list, return_exceptions=True)
+
+        for ch_id, result in zip(chapter_ids, completed):
+            if isinstance(result, Exception):
+                results[ch_id] = {"status": "error", "error": str(result)}
+            else:
+                results[ch_id] = result
+
+        return {
+            "mode": "master_slave",
+            "book_id": book_id,
+            "chapters_requested": len(chapter_ids),
+            "results": results,
+        }
+
+    async def start_book_chapter(
+        self, book_id: str, chapter_id: str, skill_type: str = "BK"
+    ) -> Dict[str, Any]:
+        """启动指定章节的写作"""
+        skill = SkillType(skill_type)
+
+        task = WritingTask(
+            book_id=book_id,
+            chapter_id=chapter_id,
+            skill_type=skill,
+            spec=ChapterSpec(
+                chapter_id=chapter_id,
+                title=f"{book_id} {chapter_id}",
+                target_words=30000,
+            ),
+            reviewers=list(SKILL_REVIEWERS.get(skill, [])),
+            max_iterations=SKILL_THRESHOLDS.get(skill, {}).get("max_iterations", 6),
+            gate_mode=self.gate_mode,
+        )
+
+        self.active_tasks[task.id] = task
+
+        await self.event_bus.publish(Event(
+            type=EventType.TASK_CREATED,
+            source_agent="orchestrator",
+            book_id=book_id,
+            chapter_id=chapter_id,
+            payload={"task_id": task.id, "skill": skill_type, "mode": self.coordination_mode}
+        ))
+
+        return await self.execute_writing_cycle(task)
+
+    # ── LLM 用量查询 ────────────────────────────────────────────
+
+    def get_llm_usage(self) -> Dict[str, Any]:
+        """获取所有角色的 LLM token 用量"""
+        usage = self.llm_manager.get_all_usage()
+        return {
+            role: {
+                "prompt_tokens": u.prompt_tokens,
+                "completion_tokens": u.completion_tokens,
+                "total_tokens": u.total_tokens,
+                "model": u.model,
+                "provider": u.provider,
+            }
+            for role, u in usage.items()
+        }
+
     # ── 状态查询 ──────────────────────────────────────────────
 
     def get_status(self) -> Dict[str, Any]:
@@ -766,4 +909,10 @@ class Orchestrator:
             },
             "pending_gates": list(self._pending_gates.keys()),
             "event_history_count": len(self.event_bus._history),
+            "coordination_mode": self.coordination_mode,
+            "llm_config": {
+                "provider": self.config.llm_default.provider,
+                "model": self.config.llm_default.model,
+            },
+            "llm_usage": self.get_llm_usage(),
         }
