@@ -17,17 +17,21 @@ class EventBus:
     """
     事件总线：所有 Agent 的通信中枢
     - 支持事件订阅/发布
-    - 支持 WebSocket 广播到前端
+    - 支持 WebSocket 广播到前端（含心跳检测）
     - 保存事件历史（用于 UI 回放）
+    - 支持优雅关闭
     """
 
-    def __init__(self, max_history: int = 1000):
+    def __init__(self, max_history: int = 1000, ws_heartbeat_interval: float = 30.0):
         self._subscribers: Dict[EventType, List[Callable]] = defaultdict(list)
         self._global_subscribers: List[Callable] = []
         self._ws_connections: Set[Any] = set()
         self._history: List[Event] = []
         self._max_history = max_history
         self._lock = asyncio.Lock()
+        self._shutting_down = False
+        self._ws_heartbeat_interval = ws_heartbeat_interval
+        self._heartbeat_task: Optional[asyncio.Task] = None
 
     def subscribe(self, event_type: EventType, handler: Callable):
         """订阅特定事件类型"""
@@ -44,6 +48,61 @@ class EventBus:
     def unregister_ws(self, ws):
         """注销 WebSocket 连接"""
         self._ws_connections.discard(ws)
+
+    def start_heartbeat(self):
+        """启动 WebSocket 心跳任务 — 定期 ping 检测断连"""
+        if self._heartbeat_task is None or self._heartbeat_task.done():
+            self._heartbeat_task = asyncio.ensure_future(self._heartbeat_loop())
+            logger.info(f"WebSocket 心跳已启动 (间隔 {self._ws_heartbeat_interval}s)")
+
+    async def _heartbeat_loop(self):
+        """心跳循环 — 向所有 WS 连接发送 ping，清理断连"""
+        while not self._shutting_down:
+            try:
+                await asyncio.sleep(self._ws_heartbeat_interval)
+            except asyncio.CancelledError:
+                break
+
+            if not self._ws_connections:
+                continue
+
+            dead = set()
+            for ws in list(self._ws_connections):
+                try:
+                    await ws.send_text('{"type":"heartbeat"}')
+                except Exception:
+                    dead.add(ws)
+
+            if dead:
+                self._ws_connections -= dead
+                logger.info(f"心跳清理 {len(dead)} 个断连 WebSocket")
+
+    async def shutdown(self):
+        """优雅关闭 — 通知所有 WS 连接并清理资源"""
+        self._shutting_down = True
+        logger.info("EventBus 正在关闭...")
+
+        # 取消心跳
+        if self._heartbeat_task and not self._heartbeat_task.done():
+            self._heartbeat_task.cancel()
+            try:
+                await self._heartbeat_task
+            except asyncio.CancelledError:
+                pass
+
+        # 通知所有 WS 连接
+        for ws in list(self._ws_connections):
+            try:
+                await ws.send_text('{"type":"shutdown","message":"服务器正在关闭"}')
+                await ws.close()
+            except Exception:
+                pass
+        self._ws_connections.clear()
+
+        # 清理订阅者
+        self._subscribers.clear()
+        self._global_subscribers.clear()
+        logger.info("EventBus 已关闭")
 
     async def publish(self, event: Event):
         """发布事件"""

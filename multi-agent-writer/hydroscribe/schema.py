@@ -206,6 +206,11 @@ class ChapterProgress(BaseModel):
     last_updated: str = ""
     issues: List[str] = Field(default_factory=list)
     iterations: int = 0
+    # Phase 9: 扩展元数据
+    file_path: str = ""                                    # 终稿文件路径
+    metadata: Dict[str, Any] = Field(default_factory=dict) # 公式/例题/图表/概念计数
+    todo_count: int = 0                                    # [TODO] 标记数量
+    validation_warnings: List[str] = Field(default_factory=list)  # 输出验证警告
 
 
 class BookProgress(BaseModel):

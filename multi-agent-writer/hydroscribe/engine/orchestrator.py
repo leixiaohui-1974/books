@@ -333,7 +333,16 @@ class Orchestrator:
         skill = task.skill_type
         threshold = SKILL_THRESHOLDS.get(skill, {"min_score": 8.0, "max_iterations": 6})
 
-        for iteration in range(1, task.max_iterations + 1):
+        # 检查点恢复 — 从上次中断处继续
+        start_iteration = 1
+        checkpoint = self._load_checkpoint(task)
+        if checkpoint:
+            start_iteration = checkpoint["completed_iteration"] + 1
+            logger.info(
+                f"[{task.book_id}/{task.chapter_id}] 从检查点恢复, 跳过前 {start_iteration - 1} 轮"
+            )
+
+        for iteration in range(start_iteration, task.max_iterations + 1):
             task.current_iteration = iteration
             task.status = "in_progress"
 
@@ -399,6 +408,9 @@ class Orchestrator:
             # ⑤b 保存评审记录
             self._save_review_record(task, review_result, iteration)
 
+            # ⑤c 保存检查点（每轮迭代后，支持崩溃恢复）
+            self._save_checkpoint(task, iteration, write_result)
+
             # ⑥ 门控决策
             passed = self._gate_check(review_result, threshold)
 
@@ -430,6 +442,7 @@ class Orchestrator:
                 ))
 
                 task.status = "completed"
+                self._clear_checkpoint(task)
                 self._cleanup_task(task)
                 return {
                     "status": "completed",
@@ -488,6 +501,7 @@ class Orchestrator:
                 writer.review_feedback = feedback_text
 
         task.status = "max_iterations_reached"
+        self._clear_checkpoint(task)
         self._cleanup_task(task)
         return {
             "status": "max_iterations_reached",
@@ -828,8 +842,11 @@ class Orchestrator:
         return path
 
     def _update_progress(self, task: WritingTask, write_result: dict, review: AggregatedReview):
-        """更新进度文件"""
+        """更新进度文件（含扩展元数据）"""
         progress = self._load_progress(task.book_id)
+
+        metadata = write_result.get("metadata", {})
+        validation = metadata.get("validation", {})
 
         progress.chapters[task.chapter_id] = ChapterProgress(
             status="completed",
@@ -838,6 +855,13 @@ class Orchestrator:
             review_scores={s.reviewer_role: s.overall for s in review.reviews},
             last_updated=datetime.now().strftime("%Y-%m-%d"),
             iterations=task.current_iteration,
+            file_path=os.path.join("books", task.book_id, f"{task.chapter_id}_final.md"),
+            metadata={
+                k: v for k, v in metadata.items()
+                if k != "validation"  # validation 单独存储
+            },
+            todo_count=validation.get("todo_count", 0),
+            validation_warnings=validation.get("warnings", []),
         )
 
         completed = sum(1 for ch in progress.chapters.values() if ch.status == "completed")
@@ -845,6 +869,71 @@ class Orchestrator:
         progress.overall_progress = f"{completed / total * 100:.1f}%"
 
         self._save_progress(progress)
+
+    # ── 检查点 (Checkpoint/Resume) ────────────────────────────────
+
+    def _checkpoint_path(self, task: WritingTask) -> str:
+        """获取检查点文件路径"""
+        return os.path.join(
+            self.books_root, "progress",
+            f".checkpoint_{task.book_id}_{task.chapter_id}.json"
+        )
+
+    def _save_checkpoint(self, task: WritingTask, iteration: int, write_result: dict):
+        """
+        保存检查点 — 每轮迭代完成写作+评审后调用
+
+        检查点包含足够的信息以支持崩溃后恢复:
+        - 已完成的迭代轮次
+        - 最新草稿内容摘要（word_count, metadata）
+        - 最新草稿文件路径
+        """
+        checkpoint = {
+            "book_id": task.book_id,
+            "chapter_id": task.chapter_id,
+            "completed_iteration": iteration,
+            "max_iterations": task.max_iterations,
+            "word_count": write_result.get("word_count", 0),
+            "metadata": write_result.get("metadata", {}),
+            "draft_path": os.path.join(
+                self.books_root, "books", task.book_id,
+                f"{task.chapter_id}_v{iteration}.md"
+            ),
+            "timestamp": datetime.now().isoformat(),
+        }
+        path = self._checkpoint_path(task)
+        try:
+            self._atomic_write(path, json.dumps(checkpoint, ensure_ascii=False, indent=2))
+            logger.debug(f"[checkpoint] 保存: {task.book_id}/{task.chapter_id} iter={iteration}")
+        except Exception as e:
+            logger.warning(f"[checkpoint] 保存失败: {e}")
+
+    def _load_checkpoint(self, task: WritingTask) -> Optional[dict]:
+        """加载检查点 — 如果存在，返回已保存的状态"""
+        path = self._checkpoint_path(task)
+        if not os.path.exists(path):
+            return None
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                checkpoint = json.load(f)
+            logger.info(
+                f"[checkpoint] 恢复: {task.book_id}/{task.chapter_id} "
+                f"从第 {checkpoint['completed_iteration']} 轮"
+            )
+            return checkpoint
+        except Exception as e:
+            logger.warning(f"[checkpoint] 加载失败: {e}")
+            return None
+
+    def _clear_checkpoint(self, task: WritingTask):
+        """清除检查点 — 任务完成或达到最大迭代后调用"""
+        path = self._checkpoint_path(task)
+        if os.path.exists(path):
+            try:
+                os.unlink(path)
+                logger.debug(f"[checkpoint] 清除: {task.book_id}/{task.chapter_id}")
+            except Exception as e:
+                logger.warning(f"[checkpoint] 清除失败: {e}")
 
     # ── 评审记录保存 ──────────────────────────────────────────
 

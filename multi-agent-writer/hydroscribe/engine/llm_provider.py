@@ -672,3 +672,7 @@ class LLMManager:
     def get_total_tokens(self) -> int:
         """获取总 token 用量"""
         return sum(c.get_total_usage().total_tokens for c in self._clients.values())
+
+    def get_circuit_breaker_stats(self) -> Dict[str, dict]:
+        """获取所有角色的熔断器状态"""
+        return {role: client.circuit_breaker_stats for role, client in self._clients.items()}

@@ -46,6 +46,21 @@ app.add_middleware(
 orchestrator = Orchestrator(books_root=BOOKS_ROOT, config=config)
 
 
+@app.on_event("startup")
+async def startup_event():
+    """应用启动 — 启动 WebSocket 心跳"""
+    orchestrator.event_bus.start_heartbeat()
+    logger.info("HydroScribe API 已启动")
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """应用关闭 — 优雅停止所有资源"""
+    logger.info("收到关闭信号，正在优雅停止...")
+    await orchestrator.event_bus.shutdown()
+    logger.info("HydroScribe API 已关闭")
+
+
 # ── 请求模型 ──────────────────────────────────────────────────
 
 class StartTaskRequest(BaseModel):
@@ -340,6 +355,7 @@ async def get_metrics():
             "total_count": event_count,
             "ws_connections": ws_connections,
         },
+        "circuit_breakers": orchestrator.llm_manager.get_circuit_breaker_stats(),
         "coordination_mode": orchestrator.coordination_mode,
     }
 
@@ -378,6 +394,9 @@ async def websocket_endpoint(websocket: WebSocket):
     except WebSocketDisconnect:
         orchestrator.event_bus.unregister_ws(websocket)
         logger.info("WebSocket 客户端已断开")
+    except Exception as e:
+        orchestrator.event_bus.unregister_ws(websocket)
+        logger.warning(f"WebSocket 异常断开: {e}")
 
 
 # ── 前端页面 ──────────────────────────────────────────────────
