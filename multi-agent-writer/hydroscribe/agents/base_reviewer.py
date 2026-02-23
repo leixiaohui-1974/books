@@ -178,19 +178,32 @@ class BaseReviewerAgent(OpenManusBaseAgent):
         self, content: str, book_id: str, chapter_id: str,
         review_prompt: str, is_summary: bool = False,
     ) -> ReviewScore:
-        """单次评审"""
+        """单次评审 — 异常时返回降级评分"""
+        import logging
+        logger = logging.getLogger("hydroscribe.reviewer")
+
         note = ""
         if is_summary:
             note = "\n（注：内容经过智能压缩，保留了标题/公式/定义等关键信息）"
 
-        result_text = await self._call_llm(content, review_prompt + note, book_id, chapter_id)
-        return self._parse_review_result(result_text)
+        try:
+            result_text = await self._call_llm(content, review_prompt + note, book_id, chapter_id)
+            return self._parse_review_result(result_text)
+        except Exception as e:
+            logger.error(f"[{self.name}] 评审 {book_id}/{chapter_id} 失败: {e}")
+            return ReviewScore(
+                reviewer_role=self.reviewer_role.value,
+                overall=5.0,
+                decision="major",
+                comments=f"评审异常 ({e})，建议人工评审",
+                issues_red=[f"自动评审失败: {e}"],
+            )
 
     async def _call_llm(
         self, content: str, system_prompt: str,
         book_id: str, chapter_id: str,
     ) -> str:
-        """调用LLM执行评审"""
+        """调用LLM执行评审 — 异常向上传播到 _review_single"""
         self.system_prompt = system_prompt
         review_request = (
             f"请评审以下 {book_id} {chapter_id} 的内容：\n\n"
@@ -255,17 +268,37 @@ class BaseReviewerAgent(OpenManusBaseAgent):
         return {}
 
     async def step(self) -> str:
-        """执行一步 — 调用 LLM"""
+        """执行一步 — 调用 LLM
+
+        异常处理策略：
+        - LLM 调用失败时向上传播异常
+        - review() 方法负责捕获并返回降级的 ReviewScore
+        """
         if not self.memory.messages:
             return ""
 
+        import logging
+        logger = logging.getLogger("hydroscribe.reviewer")
+
         try:
+            logger.debug(
+                f"[{self.name}] step() 调用 LLM, "
+                f"messages={len(self.memory.messages)}, "
+                f"role={self.reviewer_role.value}"
+            )
+
             response = await self.llm.ask(
                 messages=self.memory.messages,
                 system_msgs=[Message.system_message(self.system_prompt)] if self.system_prompt else None,
             )
-            if response:
-                self.update_memory("assistant", response)
-            return response or ""
+
+            content = response or ""
+            if content:
+                self.update_memory("assistant", content)
+
+            logger.debug(f"[{self.name}] step() 返回 {len(content)} 字")
+            return content
+
         except Exception as e:
-            return f"[ERROR: {str(e)}]"
+            logger.error(f"[{self.name}] step() LLM 调用失败: {e}", exc_info=True)
+            raise

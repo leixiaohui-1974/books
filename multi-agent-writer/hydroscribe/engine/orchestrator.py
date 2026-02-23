@@ -355,7 +355,27 @@ class Orchestrator:
             writer.style_guide = self._get_style_guide(skill, task.book_id)
             writer.prev_chapter_tail = self._load_prev_chapter_tail(task.book_id, task.chapter_id)
 
-            write_result = await writer.write_chapter(task)
+            try:
+                write_result = await writer.write_chapter(task)
+            except Exception as e:
+                logger.error(
+                    f"[{task.book_id}/{task.chapter_id}] 第 {iteration} 轮写作异常: {e}",
+                    exc_info=True,
+                )
+                await self.event_bus.publish(Event(
+                    type=EventType.TASK_FAILED,
+                    source_agent="orchestrator",
+                    book_id=task.book_id,
+                    chapter_id=task.chapter_id,
+                    payload={"iteration": iteration, "error": str(e)},
+                ))
+                task.status = "error"
+                self._cleanup_task(task)
+                return {
+                    "status": "error",
+                    "iterations": iteration,
+                    "error": str(e),
+                }
 
             # ② 保存初稿
             output_path = self._save_draft(task, write_result["content"], iteration)
@@ -408,6 +428,7 @@ class Orchestrator:
                 ))
 
                 task.status = "completed"
+                self._cleanup_task(task)
                 return {
                     "status": "completed",
                     "iterations": iteration,
@@ -455,11 +476,32 @@ class Orchestrator:
                 writer.review_feedback = "\n".join(feedback_parts)
 
         task.status = "max_iterations_reached"
+        self._cleanup_task(task)
         return {
             "status": "max_iterations_reached",
             "iterations": task.max_iterations,
             "message": "建议人工审核",
         }
+
+    # ── 任务清理 ──────────────────────────────────────────────
+
+    def _cleanup_task(self, task: WritingTask):
+        """清理已完成任务的资源 — 防止内存泄漏"""
+        # 从 active_tasks 移除
+        self.active_tasks.pop(task.id, None)
+
+        # 清理相关 gate
+        gate_ids_to_remove = [
+            gid for gid in self._pending_gates
+            if gid.startswith(f"{task.book_id}_{task.chapter_id}")
+        ]
+        for gid in gate_ids_to_remove:
+            self._pending_gates.pop(gid, None)
+
+        logger.info(
+            f"[{task.book_id}/{task.chapter_id}] 任务清理完成 "
+            f"(active_tasks={len(self.active_tasks)}, gates={len(self._pending_gates)})"
+        )
 
     # ── 并行质检 ──────────────────────────────────────────────
 

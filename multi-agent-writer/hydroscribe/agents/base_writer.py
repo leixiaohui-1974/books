@@ -264,9 +264,23 @@ class BaseWriterAgent(OpenManusBaseAgent):
         user_prompt: str,
     ) -> str:
         """使用上下文管理器写一个小节"""
+        import logging
+        logger = logging.getLogger("hydroscribe.writer")
+
+        logger.info(
+            f"[{self.name}] 写作小节 {section_index + 1}/{total_sections}: {section_title}"
+        )
+
         self.update_memory("user", user_prompt)
-        result = await self.step()
-        return result if result else ""
+        try:
+            result = await self.step()
+            return result if result else ""
+        except Exception as e:
+            logger.error(
+                f"[{self.name}] 小节 {section_title} 写作失败: {e}"
+            )
+            # 返回错误占位符，让 write_chapter 继续处理后续小节
+            return f"\n\n[TODO: 小节「{section_title}」生成失败，需人工补充 — {e}]\n\n"
 
     async def _generate_outline(self, task: WritingTask) -> List[str]:
         """生成章节大纲"""
@@ -319,17 +333,38 @@ class BaseWriterAgent(OpenManusBaseAgent):
         }
 
     async def step(self) -> str:
-        """执行一步 — 调用 LLM 生成内容"""
+        """执行一步 — 调用 LLM 生成内容
+
+        异常处理策略：
+        - 瞬态错误 (网络/超时): 由 LLMProvider 层重试，最终传播到 write_chapter
+        - 永久错误 (认证/模型不存在): 立即传播
+        - write_chapter 捕获并发布 TASK_FAILED 事件
+        """
         if not self.memory.messages:
             return ""
 
+        import logging
+        logger = logging.getLogger("hydroscribe.writer")
+
         try:
+            logger.debug(
+                f"[{self.name}] step() 调用 LLM, "
+                f"messages={len(self.memory.messages)}, "
+                f"system_prompt={len(self.system_prompt or '')}字"
+            )
+
             response = await self.llm.ask(
                 messages=self.memory.messages,
                 system_msgs=[Message.system_message(self.system_prompt)] if self.system_prompt else None,
             )
-            if response:
-                self.update_memory("assistant", response)
-            return response or ""
+
+            content = response or ""
+            if content:
+                self.update_memory("assistant", content)
+
+            logger.debug(f"[{self.name}] step() 返回 {len(content)} 字")
+            return content
+
         except Exception as e:
-            return f"[ERROR: {str(e)}]"
+            logger.error(f"[{self.name}] step() LLM 调用失败: {e}", exc_info=True)
+            raise
