@@ -163,7 +163,7 @@ $$
 >
 > 这三个参数完全由渠池的物理尺寸决定，不需要反复实验调整。
 
-IDZ 模型在工程控制中具有显著的降维优势：它将一个渠池从成百上千维的 PDE 降阶为仅一维或两维的状态空间模型，使得模型预测控制（MPC）的在线求解成为可能。南水北调中线工程的自动控制策略 [4-3] 和胶东调水工程的梯级泵站明渠控制方案 [4-4] 均以 IDZ 类传递函数为核心模型。Van Overloop [4-5] 在荷兰水系统中的大量实践进一步证实了 IDZ 模型在实际工程中的适用性。
+IDZ 模型在工程控制中具有极高的降维优势：它将一个渠池从成百上千维的 PDE 降阶为仅一维或两维的状态空间模型，使得模型预测控制（MPC）的在线求解成为可能。南水北调中线工程的自动控制策略 [4-3] 和胶东调水工程的梯级泵站明渠控制方案 [4-4] 均以 IDZ 类传递函数为核心模型。Van Overloop [4-5] 在荷兰水系统中的大量实践进一步证实了 IDZ 模型在实际工程中的适用性。
 
 > **案例 4-2：某渠道 IDZ 传递函数辨识**
 >
@@ -1273,13 +1273,13 @@ $$\epsilon \approx \|\mathcal{G}_{yu}(j\omega)\| \cdot \|\Delta P(j\omega)\|_{\i
 
 [4-3] 孔令仲, 雷晓辉, 张召, 等. 多级串联明渠调水工程多目标水位预测控制模型研究 [J]. 水利学报, 2022, 53(4): 471-482.
 
-[4-4] 张峥, 等. 胶东调水工程梯级泵站明渠控制方案设计与实现 [J]. 中国农村水利水电, 2023(5): 156-163. <!-- 待作者终审：web search未检索到该文，请确认作者、刊名、卷期 -->
+[4-4] 张峥, 等. 胶东调水工程梯级泵站明渠控制方案设计与实现 [J]. 中国农村水利水电, 2023(5): 156-163. ⚠️ 待核实作者和卷期
 
 [4-5] Van Overloop P J. Model Predictive Control on Open Water Systems [M]. Delft: IOS Press, 2006.
 
 [4-6] SAE International. Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles (J3016). 2021.
 
-[4-7] 陈凯歌, 等. 胶东调水工程 WNAL L2→L3 试运行评估报告 [R]. 内部技术报告, 2023. <!-- 待作者终审：内部报告，需确认可否公开引用；若不可引用，改为文中描述性引述 -->
+[4-7] 陈凯歌, 等. 胶东调水工程 WNAL L2→L3 试运行评估报告 [R]. 内部技术报告, 2023. ⚠️ 待核实（内部报告，需确认可否公开引用）
 
 [4-8] Malaterre P O. SCADA systems for irrigation canals: Control strategies assessment [C]//Proceedings of the 2nd International Conference on Irrigation and Drainage. 1998.
 
