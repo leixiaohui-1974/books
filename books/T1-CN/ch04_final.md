@@ -1150,6 +1150,12 @@ $$\tilde{x}(k+1) = \begin{bmatrix} f(x, \theta, u) \\ \theta + w_\theta \end{bma
 
 ---
 
+[4-1] Cunge J A, Holly F M, Verwey A. Practical Aspects of Computational River Hydraulics[M]. London: Pitman Publishing, 1980.（圣维南方程数值求解权威专著）
+
+[4-2] Litrico X, Fromion V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009.（IDZ/积分延迟零点传递函数模型的经典文献）
+
+[4-3] 孔令仲, 雷晓辉, 张召, 等. 多级串联明渠调水工程多目标水位预测控制模型研究[J]. 水利学报, 2022, 53(4): 471-482.（南水北调中线基于IDZ模型的MPC控制策略）
+
 [4-4] 张峥，等。胶东调水工程梯级泵站明渠控制方案设计与实现。中国农村水利水电，2023(5): 156-163.
 
 [4-5] Van Overloop P J. Model Predictive Control on Open Water Systems. IOS Press, 2006.
