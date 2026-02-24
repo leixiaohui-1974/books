@@ -715,6 +715,23 @@ MBD 四层一闭环框架（ODD 定义→模型与决策→在环验证→闭环
 
 ---
 
+## 本章术语表
+
+| 术语 | 英文 | 定义 | 首次出现 |
+|------|------|------|----------|
+| CHS | Cybernetics of Hydro Systems | 水系统控制论，融合控制理论、水利工程和人工智能的交叉学科 | §1.4.1 |
+| WNAL | Water Network Autonomy Level | 水网自主运行等级，L0–L5六级分类框架 | §1.3.2 |
+| ODD | Operational Design Domain | 运行设计域，定义自主控制系统的适用边界条件 | §1.3.2 |
+| MRC | Minimal Risk Condition | 最小风险条件，超出ODD时系统应达到的安全状态 | §1.3.2 |
+| HydroOS | Hydro Operating System | 水网操作系统，CHS的软件架构实现 | §1.4.4 |
+| SCADA | Supervisory Control and Data Acquisition | 数据采集与监控系统 | §1.2.3 |
+| HDC | Hierarchical and Distributed Control | 分层分布式控制 | §1.2.4 |
+| MPC | Model Predictive Control | 模型预测控制 | §1.2.4 |
+| 设计锁定效应 | Design Lock-in Effect | 物理/信息/社会三维度参数建成后难以修改的工程矛盾 | §1.6.1 |
+| 八原理 | Eight Principles of CHS | CHS的理论基座：传递函数化、可控可观性、分层分布式、安全包络、在环验证、认知增强、人机共融、全生命周期自主演进 | §1.4.2 |
+
+---
+
 ## 本章参考文献
 
 

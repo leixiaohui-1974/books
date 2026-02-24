@@ -791,13 +791,14 @@ $$A^\top W_o A - W_o + C^\top C = 0$$
 
 Kalman R E 于 1960 年在国际自动控制联合会（IFAC）首届世界大会上发表的论文奠定了可控可观性的理论基础；同年，他在 SIAM Journal on Control 发表的论文中系统化了线性系统的状态空间理论，将可控可观性与最优控制（LQR）统一于同一框架下。这两篇论文是控制论历史上被引用最多的经典文献之一，研究生阶段学习控制理论时应通读。
 
-雷晓辉（Lei 2025b）在本书配套论文《基于无人驾驶理念的自主运行智慧水网架构》（南水北调与水利科技，2025 年第 4 期）中，从 CHS 八原理视角阐释了水系统可控可观性的工程意义，是本章内容的系统性学术论证，建议对照阅读。⚠️ 以下文献待核实：
-- Litrico X, Fromion V. Modeling and control of hydrosystems[M]. Springer, 2009. （水力系统传递函数建模的权威教材，本章 IDZ 模型的主要参考文献）
-- Van Overloop P J. Model predictive control on open water systems[D]. TU Delft, 2006. （将 MPC 引入明渠系统的奠基性博士论文，对可控可观性在 MPC 框架中的作用有详细论述）
+雷晓辉（Lei 2025b）在本书配套论文《基于无人驾驶理念的自主运行智慧水网架构》（南水北调与水利科技，2025 年第 4 期）中，从 CHS 八原理视角阐释了水系统可控可观性的工程意义，是本章内容的系统性学术论证，建议对照阅读。
 
-**传感器布局优化**：⚠️ 以下引用待核实真实性
-- Gaudes A, et al. Using machine learning to optimize pressure sensor placement for leak detection in water distribution networks[J]. Water Resources Research, 2020. （供水管网压力传感器布局的机器学习方法）
-- Hug-Glanzmann G, Andersson G. Decentralized optimal power flow control for overlapping areas in power systems[J]. IEEE, 2009. （稀疏矩阵在大规模系统可观性分析中的应用，电力领域但方法可类比）
+- Litrico X, Fromion V. Modeling and control of hydrosystems [M]. London: Springer, 2009.（水力系统传递函数建模的权威教材，本章 IDZ 模型的主要参考文献）
+- Van Overloop P J. Model predictive control on open water systems [D]. Delft: TU Delft, 2006.（将 MPC 引入明渠系统的奠基性博士论文，对可控可观性在 MPC 框架中的作用有详细论述）
+
+**传感器布局优化**：
+- Sela L, Amin S. Robust sensor placement for pipeline monitoring: Mixed integer and greedy optimization [J]. Advanced Engineering Informatics, 2018, 36: 55-63.（供水管网传感器布局的混合整数优化方法）
+- Santos-Ruiz I, López-Estrada F R, Valencia-Palomo G, et al. Pressure sensor placement for leak localization in water distribution networks using information theory [J]. Sensors, 2022, 22(2): 443.（基于信息论的传感器布局优化方法）
 
 ### 5.10.2 推荐工具
 
