@@ -1,0 +1,25 @@
+graph TB
+    subgraph "系统拓扑 System Topology"
+        Q["上游来水 Upstream Inflow<br/><b style='color:#FF7043'>t=2h: +20% 阶跃扰动</b>"]
+        Q -->|流量 Q| G1["闸门G1 Gate G1<br/><b>控制点1 Control Point 1</b>"]
+        G1 --> P1["渠池1 Canal Pool 1<br/>L = 35 km<br/>τ₁ = 45 min"]
+        P1 --> Pump["泵站P1 Pump Station P1<br/><b>控制点2 Control Point 2</b>"]
+        Pump --> P2["渠池2 Canal Pool 2<br/>L = 25 km<br/>τ₂ = 30 min"]
+        P2 --> Target["下游断面 Downstream Section<br/>目标 Target: h_ref ± 0.1 m<br/>安全包络 Safety Envelope: ± 0.5 m"]
+    end
+    
+    subgraph "控制策略对比 Control Strategy Comparison"
+        A["<b>策略A: 局部PID</b><br/>Strategy A: Local PID<br/><br/>偏差峰值 Peak: 0.25 m<br/>启停次数 Starts: 8/8h<br/>能耗 Energy: +30%"]
+        B["<b>策略B: 前馈+反馈</b><br/>Strategy B: FF+FB<br/><br/>偏差峰值 Peak: 0.12 m<br/>启停次数 Starts: 5/8h<br/>能耗 Energy: +12%"]
+        C["<b>策略C: 集中MPC</b><br/>Strategy C: MPC<br/><br/>偏差峰值 Peak: 0.06 m<br/>启停次数 Starts: 2/8h<br/>能耗 Energy: +3%"]
+    end
+    
+    style Q fill:#FF7043,stroke:#333,stroke-width:2px,color:#fff
+    style G1 fill:#1565C0,stroke:#333,stroke-width:2px,color:#fff
+    style Pump fill:#1565C0,stroke:#333,stroke-width:2px,color:#fff
+    style P1 fill:#B3E5FC,stroke:#1565C0,stroke-width:2px
+    style P2 fill:#B3E5FC,stroke:#1565C0,stroke-width:2px
+    style Target fill:#4CAF50,stroke:#333,stroke-width:2px,color:#fff
+    style A fill:#FFE082,stroke:#333,stroke-width:2px
+    style B fill:#FFF59D,stroke:#333,stroke-width:2px
+    style C fill:#A5D6A7,stroke:#333,stroke-width:2px

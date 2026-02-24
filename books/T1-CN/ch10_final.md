@@ -3,7 +3,6 @@ v1 2026-02-23: 从 ch05_v5.md 拆分生成，§5.1-5.3+§5.6-5.8 → §9.1-9.6
 -->
 
 # 第十章 HydroOS 三层架构
-# Chapter 10: Three-Layer Architecture of HydroOS
 
 ---
 
@@ -380,119 +379,6 @@ HydroOS 的部署路径与 WNAL 等级升级路径对齐（见图10-5）：
 | L3→L4 | 审计链 + 自主演进机制 | 治理者（策略审批） | 18—24 个月 |
 
 分级部署的核心优势在于"小步快跑、风险可控"——每个阶段都有明确的上线门槛和验收标准，避免"大爆炸"式一次性上线带来的巨大风险。
-
----
-
-## 本章小结
-
-本章系统阐述了 HydroOS 的三层架构设计。HydroOS 不是要替代既有 SCADA 系统，而是在 SCADA 之上构建一个智能决策层，实现从"功能集成"到"能力闭环"的转变。
-
-**核心要点**：
-1. 三层架构（DAL→PAI→CAI）分别承担设备抽象、物理 AI 和认知 AI 职责，层间通过标准化接口交互
-2. 运行时治理机制（策略门禁、四态机、审计链）为系统运行提供可信保障
-3. SCADA+MAS 融合架构支持渐进式升级，保护既有投资
-4. 最小可行 HydroOS 定义了上线门槛，分级部署路径与 WNAL 等级对齐
-
-**与八原理的关系**：本章架构设计是第六章八原理的工程落地——原理一和二（传递函数化、可控可观性）对应 DAL 和 PAI 的建模能力，原理三和四（分层分布式、安全包络）对应三层架构和策略门禁，原理五（在环验证）对应上线门槛清单，原理七和八（人机共融、自主演进）对应审计链和分级部署。
-
-下一章将详细讨论 PAI 和 CAI 两个 AI 引擎的核心算法与协作机制。
-
----
-
-## 推荐阅读
-
-1. **Lee & Seshia (2016)** "Introduction to Embedded Systems: A Cyber-Physical Systems Approach"——CPS 基础教材，理解物理过程与计算过程的融合。
-2. **Wooldridge (2009)** "An Introduction to MultiAgent Systems"——MAS 经典教材，理解分布式智能体的设计与协调。
-3. **ISA-95/IEC 62264** 企业—控制系统集成国际标准——理解工业分层架构的设计范式。
-4. **OPC Foundation (2023)** "OPC UA Specification Part 1: Framework and Architecture"——OPC UA 技术标准，理解工业语义互操作。
-5. **雷晓辉等 (2025)** "基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术"——HydroOS 的原始论述和工程实现路径。
-
----
-
-## 本章练习与思考题
-
-**L1（基础理解）**
-
-1. 简述 HydroOS 三层架构（DAL/PAI/CAI）的核心职责和典型响应时间。
-
-2. 说明策略门禁四项检查的内容和目的。为什么每一项都是必需的？
-
-**L2（分析应用）**
-
-3. 某调水工程已有 SCADA 系统（Modbus TCP 协议，500 个测点），计划升级到 HydroOS L2。请列出 MVH 上线门槛清单中需要完成的工作，并估算所需时间。
-
-4. 比较 MAS 架构与传统 SCADA 集中式架构的优缺点。在什么场景下 MAS 的优势最明显？
-
-**L3（综合设计）**
-
-5. 为一个管理 100 个闸门、20 座泵站的大型灌区设计 DAL 设备注册方案，包括 UDSM 设备类型定义、通信协议选择和时钟同步策略。
-
-6. 设计一个四态机状态转换场景：系统从正常态进入应急态，再恢复到正常态。列出每个转换的触发条件、系统动作和人工确认要求。
-
----
-
-## 本章术语表
-
-| 术语 | 英文 | 定义 | 首次出现 |
-|------|------|------|----------|
-| HydroOS | HydroOS | 水网操作系统，HydroOS 三层架构（DAL/PAI/CAI） | §10.1 |
-| 设备抽象层 | Device Abstraction Layer (DAL) | 屏蔽硬件差异，统一设备语义的底层架构 | §10.2 |
-| 物理 AI 引擎 | Physical AI Engine (PAI) | 基于机理模型的预测、控制与约束优化的中层引擎 | §10.2 |
-| 认知 AI 引擎 | Cognitive AI Engine (CAI) | 语义理解、因果诊断、策略解释与协同的上层引擎 | §10.2 |
-| 统一设备语义模型 | Unified Device Semantic Model (UDSM) | 为水利设备定义标准化属性集和能力集的语义模型 | §10.3 |
-| 策略门禁 | Policy Gatekeeper | 上线前的最后一道关卡，执行四项检查 | §10.4 |
-| 四态机 | Four-State Machine | 管理系统运行模式的有限状态机（正常/降级/应急/检修） | §10.4 |
-| 审计链 | Audit Trail | 记录系统运行过程中每一个重要事件的完整上下文 | §10.4 |
-| 多智能体系统 | Multi-Agent System (MAS) | 每个功能单元被建模为具有自主性、交互性和适应性的智能体 | §10.5 |
-| OPC UA | Open Platform Communications Unified Architecture | 工业语义互操作的通信标准 | §10.5 |
-| 最小可行 HydroOS | Minimum Viable HydroOS (MVH) | 工程项目启动 HydroOS 部署时必须完成的最低要求清单 | §10.6 |
-
----
-
-## 本章参考文献
-
-[10-1] Avizienis A, Laprie J C, Randell B, et al. Basic concepts and taxonomy of dependable and secure computing [J]. IEEE Transactions on Dependable and Secure Computing, 2004, 1(1): 11-33.
-
-[10-2] OPC Foundation. OPC Unified Architecture Specification Part 1: Framework and Architecture [S]. OPCF, 2023.
-
-[10-3] IEC. IEC 61131-3: Programmable Controllers - Part 3: Programming Languages [S]. Geneva: IEC, 2013.
-
-[10-4] 王浩，雷晓辉，尚毅梓。南水北调中线工程智能调控与应急调度关键技术 [J]. 南水北调与水利科技，2017, 15(2): 1-8.
-
-[10-5] IEC. IEC 61588: Precision clock synchronization protocol for networked measurement and control systems [S]. Geneva: IEC, 2019.
-
-[10-6] Kopetz H. Time-Triggered Architecture: A Foundation for Dependable Embedded Systems [M]. Boston, MA: Springer, 2003.
-
-[10-19] 胶东调水工程运行管理中心。胶东调水工程 HydroOS 试运行报告 [R]. 济南：山东省水利厅，2025.
-
-[10-20] Avizienis A, Laprie J C, Randell B, et al. Basic concepts and taxonomy of dependable and secure computing [J]. IEEE Transactions on Dependable and Secure Computing, 2004, 1(1): 11-33.
-
-[10-21] Buyalski C P, Ehler D G, Falvey H T, et al. Canal Systems Automation Manual, Volume 1 [M]. Denver: U.S. Bureau of Reclamation, 1991.
-
-[10-22] Wooldridge M. An Introduction to MultiAgent Systems [M]. 2nd ed. Hoboken, NJ: Wiley, 2009.
-
-[10-23] 雷晓辉，苏承国，龙岩，等。基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术 [J]. 南水北调与水利科技 (中英文), 2025, 23(04): 778-786. DOI:10.13476/j.cnki.nsbdqk.2025.0079.
-
-[10-24] 叶尚君，张雷，姬辰，等。SCADA 与 MAS 融合架构在梯级水电站的应用 [J]. 水力发电学报，2025, 44(3): 45-56.
-
-[10-26] Lee E A, Seshia S A. Introduction to Embedded Systems: A Cyber-Physical Systems Approach [M]. 2nd ed. Cambridge, MA: MIT Press, 2016.
-
-[10-27] NIST. Cyber-Physical Systems Framework Version 1.0 [R]. Gaithersburg, MD: NIST, 2015.
-
-[10-28] IEC. IEC 62264 (ISA-95): Enterprise-Control System Integration [S]. Geneva: IEC, 2013.
-
----
-
-**出版前核验提示**
-
-1. ☐ 三层架构名称与§1.4.2、T2a ch05 完全一致
-2. ☐ 图10-1 架构图与第一章架构图命名对齐
-3. ☐ 策略门禁四项检查与§7.4.3 MRC 设计保持一致
-4. ☐ 四态机状态定义与§7.3 WNAL 等级定义一致
-5. ☐ 最小可行 HydroOS 清单与§7.6 L3 准入检查清单兼容
-6. ✅ 所有工程案例为综合提炼、无指向性工程或时间标识
-7. ☐ 参考文献格式符合 GB/T 7714-2015，自引率≤15%
-8. ✅ 术语表中英文与全书统一术语表一致
 
 ---
 
@@ -1012,4 +898,89 @@ HydroOS 是 CHS 的软件实现，与 WNAL 等级存在明确映射关系：
 5. 工程实例证明 HydroOS 可显著提高控制性能和人机协同效率
 
 **与第六章的衔接**：第六章将详细阐述八原理的数学基础和工程实施方法。本章提供"怎么做"的指南，第六章回答"为什么"的理论基础。
+
+## 推荐阅读
+
+1. **Lee & Seshia (2016)** "Introduction to Embedded Systems: A Cyber-Physical Systems Approach"——CPS 基础教材，理解物理过程与计算过程的融合。
+2. **Wooldridge (2009)** "An Introduction to MultiAgent Systems"——MAS 经典教材，理解分布式智能体的设计与协调。
+3. **ISA-95/IEC 62264** 企业—控制系统集成国际标准——理解工业分层架构的设计范式。
+4. **OPC Foundation (2023)** "OPC UA Specification Part 1: Framework and Architecture"——OPC UA 技术标准，理解工业语义互操作。
+5. **雷晓辉等 (2025)** "基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术"——HydroOS 的原始论述和工程实现路径。
+
+---
+
+## 本章练习与思考题
+
+**L1（基础理解）**
+
+1. 简述 HydroOS 三层架构（DAL/PAI/CAI）的核心职责和典型响应时间。
+
+2. 说明策略门禁四项检查的内容和目的。为什么每一项都是必需的？
+
+**L2（分析应用）**
+
+3. 某调水工程已有 SCADA 系统（Modbus TCP 协议，500 个测点），计划升级到 HydroOS L2。请列出 MVH 上线门槛清单中需要完成的工作，并估算所需时间。
+
+4. 比较 MAS 架构与传统 SCADA 集中式架构的优缺点。在什么场景下 MAS 的优势最明显？
+
+**L3（综合设计）**
+
+5. 为一个管理 100 个闸门、20 座泵站的大型灌区设计 DAL 设备注册方案，包括 UDSM 设备类型定义、通信协议选择和时钟同步策略。
+
+6. 设计一个四态机状态转换场景：系统从正常态进入应急态，再恢复到正常态。列出每个转换的触发条件、系统动作和人工确认要求。
+
+---
+
+## 本章术语表
+
+| 术语 | 英文 | 定义 | 首次出现 |
+|------|------|------|----------|
+| HydroOS | HydroOS | 水网操作系统，HydroOS 三层架构（DAL/PAI/CAI） | §10.1 |
+| 设备抽象层 | Device Abstraction Layer (DAL) | 屏蔽硬件差异，统一设备语义的底层架构 | §10.2 |
+| 物理 AI 引擎 | Physical AI Engine (PAI) | 基于机理模型的预测、控制与约束优化的中层引擎 | §10.2 |
+| 认知 AI 引擎 | Cognitive AI Engine (CAI) | 语义理解、因果诊断、策略解释与协同的上层引擎 | §10.2 |
+| 统一设备语义模型 | Unified Device Semantic Model (UDSM) | 为水利设备定义标准化属性集和能力集的语义模型 | §10.3 |
+| 策略门禁 | Policy Gatekeeper | 上线前的最后一道关卡，执行四项检查 | §10.4 |
+| 四态机 | Four-State Machine | 管理系统运行模式的有限状态机（正常/降级/应急/检修） | §10.4 |
+| 审计链 | Audit Trail | 记录系统运行过程中每一个重要事件的完整上下文 | §10.4 |
+| 多智能体系统 | Multi-Agent System (MAS) | 每个功能单元被建模为具有自主性、交互性和适应性的智能体 | §10.5 |
+| OPC UA | Open Platform Communications Unified Architecture | 工业语义互操作的通信标准 | §10.5 |
+| 最小可行 HydroOS | Minimum Viable HydroOS (MVH) | 工程项目启动 HydroOS 部署时必须完成的最低要求清单 | §10.6 |
+
+---
+
+## 本章参考文献
+
+[10-1] Avizienis A, Laprie J C, Randell B, et al. Basic concepts and taxonomy of dependable and secure computing [J]. IEEE Transactions on Dependable and Secure Computing, 2004, 1(1): 11-33.
+
+[10-2] OPC Foundation. OPC Unified Architecture Specification Part 1: Framework and Architecture [S]. OPCF, 2023.
+
+[10-3] IEC. IEC 61131-3: Programmable Controllers - Part 3: Programming Languages [S]. Geneva: IEC, 2013.
+
+[10-4] 王浩，雷晓辉，尚毅梓。南水北调中线工程智能调控与应急调度关键技术 [J]. 南水北调与水利科技，2017, 15(2): 1-8.
+
+[10-5] IEC. IEC 61588: Precision clock synchronization protocol for networked measurement and control systems [S]. Geneva: IEC, 2019.
+
+[10-6] Kopetz H. Time-Triggered Architecture: A Foundation for Dependable Embedded Systems [M]. Boston, MA: Springer, 2003.
+
+[10-19] 胶东调水工程运行管理中心。胶东调水工程 HydroOS 试运行报告 [R]. 济南：山东省水利厅，2025.
+
+[10-20] Avizienis A, Laprie J C, Randell B, et al. Basic concepts and taxonomy of dependable and secure computing [J]. IEEE Transactions on Dependable and Secure Computing, 2004, 1(1): 11-33.
+
+[10-21] Buyalski C P, Ehler D G, Falvey H T, et al. Canal Systems Automation Manual, Volume 1 [M]. Denver: U.S. Bureau of Reclamation, 1991.
+
+[10-22] Wooldridge M. An Introduction to MultiAgent Systems [M]. 2nd ed. Hoboken, NJ: Wiley, 2009.
+
+[10-23] 雷晓辉，苏承国，龙岩，等。基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术 [J]. 南水北调与水利科技 (中英文), 2025, 23(04): 778-786. DOI:10.13476/j.cnki.nsbdqk.2025.0079.
+
+[10-24] 叶尚君，张雷，姬辰，等。SCADA 与 MAS 融合架构在梯级水电站的应用 [J]. 水力发电学报，2025, 44(3): 45-56.
+
+[10-26] Lee E A, Seshia S A. Introduction to Embedded Systems: A Cyber-Physical Systems Approach [M]. 2nd ed. Cambridge, MA: MIT Press, 2016.
+
+[10-27] NIST. Cyber-Physical Systems Framework Version 1.0 [R]. Gaithersburg, MD: NIST, 2015.
+
+[10-28] IEC. IEC 62264 (ISA-95): Enterprise-Control System Integration [S]. Geneva: IEC, 2013.
+
+---
+
 

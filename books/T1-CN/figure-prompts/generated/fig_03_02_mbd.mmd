@@ -1,0 +1,43 @@
+```mermaid
+graph TB
+    subgraph "ODD定义层 ODD Definition"
+        ODD["运行设计域六维参数<br/>水文/设备/通信/环境/负载/时间<br/>↔ P4安全包络"]
+    end
+    
+    subgraph "模型决策层 Model & Decision"
+        MOD["四类模型协同<br/>PBM | SM | OSEM | 数据模型<br/>+ MPC决策引擎<br/>↔ P1传递函数化"]
+    end
+    
+    subgraph "在环验证层 xIL Verification"
+        VER["MIL → SIL → HIL<br/>五元组证据链<br/>↔ P5在环验证"]
+    end
+    
+    subgraph "现场执行层 Field Execution"
+        EXE["SCADA + PLC + 执行器<br/>↔ P2可控可观性"]
+    end
+    
+    ODD -->|"目标与约束 ↓"| MOD
+    MOD -->|"模型与策略 ↓"| VER
+    VER -->|"验证通过 ↓"| EXE
+    EXE -.->|"数据回馈 ↑<br/>持续进化闭环"| ODD
+    
+    MOD -->|"状态反馈 ↑"| ODD
+    VER -->|"验证报告 ↑"| MOD
+
+    style ODD fill:#E3F2FD,stroke:#1565C0,stroke-width:2px
+    style MOD fill:#1565C0,color:#fff
+    style VER fill:#4CAF50,color:#fff
+    style EXE fill:#757575,color:#fff
+```
+
+---
+
+## 图 7-2: WNAL 等级跃迁四重门槛
+
+```mermaid
+graph LR
+    START["L_k<br/>当前等级"] --> GATE{"四重门槛<br/>全部通过?"}
+    
+    GATE -->|"✓全部通过"| END["L_k+1<br/>升级等级"]
+    GATE -->|"✗任一未通过"| FAIL["不得升级<br/>补强短板"]
+    
