@@ -1,0 +1,13 @@
+# 本地生成的图片（已上传到 figures/ 图床）
+books/T1-CN/figure-prompts/generated/*.png
+books/T1-CN/figure-prompts/generated/*.jpg
+
+# 临时文件
+*.tmp
+*.bak
+*~
+
+# 编辑器文件
+.vscode/
+.idea/
+*.swp
