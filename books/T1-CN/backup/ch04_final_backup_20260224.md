@@ -18,7 +18,7 @@
 > 
 > **适合读者**：控制论背景、水利工程背景、研究生
 > 
-> **与前章的关系**：本章基于第二章"从自动化到自主运行"的概念，将水系统形式化为标准的控制对象。
+> **与前章的关系**：本章基于第二章"控制论视角下的水系统"中引入的状态空间和传递函数概念，进行系统化的形式化展开。第二章给出了概览性描述，本章给出完整的数学推导和工程案例。
 > 
 > **与后章的关系**：本章的形式化方法（状态空间、传递函数）是第五章可控可观性和第六章八原理的数学基础。
 > 
@@ -240,7 +240,7 @@ $$
 | $\mathcal{R}$ | 风险边界 | 风险等级、应急响应等级 | "非汛期、上游水库无泄洪风险" |
 | $\mathcal{C}$ | 控制能力边界 | 模型精度、算力资源、人工值守等级 | "IDZ 模型经当前工况验证，控制周期<60s" |
 
-ODD 不是"附件说明"，而是自主运行的责任边界。超出 ODD，系统必须降级或请求人工接管（详见§4.3 和第六章）。ODD 也是动态的：随着系统积累运行经验和验证数据，ODD 可以逐步扩展。这与 WNAL 等级跃迁的逻辑一致——从 L2 到 L3 的关键跃迁之一，就是 ODD 从"稳态输水"扩展到"包含常见扰动的输水"。胶东调水工程在 2023 年的 WNAL L2→L3 试运行中，ODD 从"设计流量±10%"逐步扩展到"设计流量±30%"，每次扩展都经过了 SIL/HIL 验证（第八章）[4-7]。
+ODD 不是"附件说明"，而是自主运行的责任边界。超出 ODD，系统必须降级或请求人工接管（详见第二章§2.7四态机和第六章§6.5）。ODD 也是动态的：随着系统积累运行经验和验证数据，ODD 可以逐步扩展。这与 WNAL 等级跃迁的逻辑一致——从 L2 到 L3 的关键跃迁之一，就是 ODD 从"稳态输水"扩展到"包含常见扰动的输水"。胶东调水工程在 2023 年的 WNAL L2→L3 试运行中，ODD 从"设计流量±10%"逐步扩展到"设计流量±30%"，每次扩展都经过了 SIL/HIL 验证（第八章）[4-7]。
 
 ---
 
@@ -386,8 +386,6 @@ $$
 - 与高保真 PDE 模型对比，计算输出误差 RMSE
 - 在不同工况下验证，确定线性模型的适用范围（ODD）
 - 采用增益调度（Gain Scheduling），在不同工作点使用不同的线性模型
-
----
 
 ---
 
@@ -1179,44 +1177,21 @@ $$\tilde{x}(k+1) = \begin{bmatrix} f(x, \theta, u) \\ \theta + w_\theta \end{bma
 
 ---
 
-[4-1] Cunge J A, Holly F M, Verwey A. Practical Aspects of Computational River Hydraulics[M]. London: Pitman Publishing, 1980.（圣维南方程数值求解权威专著）
+[4-1] Cunge J A, Holly F M, Verwey A. Practical Aspects of Computational River Hydraulics [M]. London: Pitman Publishing, 1980.
 
-[4-2] Litrico X, Fromion V. Modeling and Control of Hydrosystems[M]. London: Springer, 2009.（IDZ/积分延迟零点传递函数模型的经典文献）
+[4-2] Litrico X, Fromion V. Modeling and Control of Hydrosystems [M]. London: Springer, 2009.
 
-[4-3] 孔令仲, 雷晓辉, 张召, 等. 多级串联明渠调水工程多目标水位预测控制模型研究[J]. 水利学报, 2022, 53(4): 471-482.（南水北调中线基于IDZ模型的MPC控制策略）
+[4-3] 孔令仲, 雷晓辉, 张召, 等. 多级串联明渠调水工程多目标水位预测控制模型研究 [J]. 水利学报, 2022, 53(4): 471-482.
 
-[4-4] 张峥，等。胶东调水工程梯级泵站明渠控制方案设计与实现。中国农村水利水电，2023(5): 156-163.
+[4-4] 张峥, 等. 胶东调水工程梯级泵站明渠控制方案设计与实现 [J]. 中国农村水利水电, 2023(5): 156-163. ⚠️ 待核实作者和卷期
 
 [4-5] Van Overloop P J. Model Predictive Control on Open Water Systems. IOS Press, 2006.
 
 [4-6] SAE International. Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles (J3016). 2021.
 
-[4-7] 陈凯歌，等。胶东调水工程 WNAL L2→L3 试运行评估报告。内部技术报告，2023.
+[4-7] 陈凯歌, 等. 胶东调水工程 WNAL L2→L3 试运行评估报告 [R]. 内部技术报告, 2023. ⚠️ 待核实（内部报告，需确认可否公开引用）
 
 [4-8] Malaterre P O. SCADA systems for irrigation canals: Control strategies assessment. In Proceedings of the 2nd International Conference on Irrigation and Drainage, 1998.
-
----
-
-
----
-
-## 关键术语
-
-| 术语 | 英文 | 说明 |
-|------|------|------|
-| 状态空间 | State Space | $x-u-d-y$四元组，描述系统动态 |
-| 传递函数 | Transfer Function | 输入 - 输出关系的频域描述 |
-| 圣维南方程 | Saint-Venant Equations | 一维明渠非恒定流基本方程（PDE） |
-| IDZ 模型 | Integrator-Delay-Zero | 积分延迟零点模型，渠道控制简化模型 |
-| 降阶 | Order Reduction | 从高维 PDE 到低阶传递函数的过程 |
-| 可控模型族 | Controllable Model Family | 高保真→降阶→数据增强的三层模型体系 |
-| ODD | Operational Design Domain | 运行设计域，系统安全运行的条件范围 |
-| 线性化 | Linearization | 在工作点附近 Taylor 展开，保留一阶项 |
-| 系统辨识 | System Identification | 从输入 - 输出数据估计模型参数 |
-| 增益调度 | Gain Scheduling | 在不同工作点使用不同的控制器参数 |
-
----
-
 
 ---
 
