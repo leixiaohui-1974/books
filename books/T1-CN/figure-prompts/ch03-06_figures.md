@@ -1,270 +1,151 @@
-# 第三章 插图提示词
+# 第三至六章 插图（10幅）
 
-> 本文件包含第三章全部 2 幅插图的 Gemini 生成提示词。
-
----
-
-## 图 3-1: CHS 八原理依赖导图
-
-**类型**：五层依赖结构图
-**位置**：§3.1.2（八原理总览）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"CHS八原理依赖导图"。中文标注。
-
-布局：五层水平排列，每层含1-2条原理，整体呈自下而上的层次结构。
-
-五层结构（自下而上）：
-- **第一层（基础建模层）**，蓝色：P1 传递函数化 | P2 可控可观性
-- **第二层（架构组织层）**，青色：P3 分层分布式
-- **第三层（安全验证层）**，绿色：P4 安全包络 | P5 在环验证
-- **第四层（智能增强层）**，橙色：P6 认知增强 | P7 人机共融
-- **第五层（演进层）**，金色：P8 全生命周期自主演进
-
-每条原理用圆角矩形表示，内部标注编号和简称。
-
-层间前向依赖箭头（黑色实线）：P1/P2→P3→P4/P5→P6/P7→P8
-**关键回边**：P4（安全包络）→P8（自主演进）用红色虚线箭头，标注"安全约束回边"——表示安全包络约束所有上层的演进行为。
-
-左侧标注"依赖方向：自下而上"。每层右侧标注对应WNAL等级要求："L1+""L2+""L3""L3+""L4+"。
-
-底部标注"图3-1 CHS八原理依赖导图"。风格：专业学术，层次清晰，P4的红色回边是视觉焦点。
+> 生成方式分配：
+> - 🎨 Gemini: 图5-1, 图5-2, 图6-2（概念图/架构图）
+> - 🐍 matplotlib: 图3-1, 图6-3, 图6-4, 图6-5 → 见 `code_figures.py`
+> - 📐 Mermaid: 图3-2 → 见 `mermaid_figures.md`
+> - ♻️ 复用: 图4-1=图2-2, 图6-1=图3-1
 
 ---
 
-## 图 3-2: MBD 四层一闭环架构
+## 🐍 图 3-1: CHS 八原理依赖导图
 
-**类型**：四层垂直堆叠+闭环图
-**位置**：§3.6（MBD框架）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"MBD四层一闭环架构"示意图。中文标注。
-
-布局：四层垂直堆叠，右侧有一条闭环回路箭头。
-
-四层内容（自上而下）：
-- **ODD定义层**（最上层，浅蓝）：标注"运行设计域（ODD）六维参数定义"，列举"水文/设备/通信/环境/负载/时间"
-- **模型与决策层**（第二层，蓝色）：标注"四类模型协同（PBM/SM/OSEM/数据模型）+ MPC决策"
-- **在环验证层**（第三层，绿色）：标注"MIL→SIL→HIL分级验证"，附"五元组证据链"
-- **现场执行层**（底层，灰色）：标注"SCADA+PLC+执行器"
-
-层间双向箭头：上层向下传递"目标与约束"，下层向上报告"状态与反馈"。
-
-右侧闭环回路：从现场执行层回到ODD定义层，标注"数据回馈→持续进化闭环"，用橙色虚线箭头。
-
-左侧标注CHS原理映射：ODD层↔P4安全包络、模型层↔P1传递函数化、验证层↔P5在环验证、执行层↔P2可控可观性。
-
-底部标注"图3-2 MBD四层一闭环架构"。风格：专业学术，四层清晰，闭环回路醒目。
-
----
----
-
-# 第四章 插图提示词
-
-> 本文件包含第四章 1 幅插图的 Gemini 生成提示词。
-> 注：图4-1与图2-2内容相同（可控模型族三层体系），但编号不同，建议复用图2-2。
+> **→ matplotlib 代码生成**: 见 `code_figures.py :: fig_03_01()`（待补充，与fig_01_04()同源但更详细）
+> 五层DAG，含P4→P8红色约束回边。
+> ⚠️ 图6-1复用本图。
 
 ---
 
-## 图 4-1: 可控模型族的三层体系
+## 📐 图 3-2: MBD 四层一闭环架构
 
-**类型**：金字塔/三层结构图
-**位置**：§4.3.2（可控模型族）
-
-**Gemini 提示词**：
-
-（同图2-2，请复用。仅需将底部标注改为"图4-1 可控模型族的三层体系"。）
-
----
----
-
-# 第五章 插图提示词
-
-> 第五章目前无插图。建议新增 2 幅图以增强可读性。
+> **→ Mermaid 代码生成**: 见 `mermaid_figures.md :: 图3-2`
+> 四层纵向结构+底层到顶层的闭环回边。
 
 ---
 
-## 图 5-1（新增）: 可控性与可观性的直觉解释
+## ♻️ 图 4-1: 可控模型族的三层体系
 
-**类型**：左右对比概念图
-**位置**：§5.1/§5.2 之间
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"可控性与可观性"直觉对比图。中文标注。
-
-布局：上下两行或左右两列对比。
-
-**上行/左列——可控性（Controllability）**：
-- 示意图：一段渠道，左端有一个闸门（蓝色，标注"执行器"），右端有一个水位标尺
-- 闸门上方有一个"控制信号 u"箭头
-- 水面用蓝色波浪线表示
-- 底部文字："可控性 = 通过执行器能否将系统从任意状态A转移到期望状态B"
-- 右侧小图标：✓ "可控"（闸门能影响水位）vs ✗ "不可控"（闸门坏了/距离太远）
-
-**下行/右列——可观性（Observability）**：
-- 示意图：一段渠道，中间有多个传感器（橙色三角形），标注"传感器"
-- 传感器上方有"观测信号 y"箭头
-- 水面下方有虚线标注"真实状态 x（不可直接测量）"
-- 底部文字："可观性 = 通过传感器测量能否唯一确定系统内部状态"
-- 右侧小图标：✓ "可观"（传感器足够）vs ✗ "不可观"（传感器盲区）
-
-中间连接文字："有传感器≠可观测，有执行器≠可控制——需要数学验证"
-
-底部标注"图5-1 可控性与可观性的直觉解释"。风格：专业学术，直觉友好。
+> **复用图2-2**，仅更改图号。
+> 源文件: `generated/fig_02_02_model_family.png`
 
 ---
 
-## 图 5-2（新增）: 传感器优化布局概念图
+## 🎨 图 5-1（新增）: 可控性与可观性的直觉解释
 
-**类型**：网络拓扑图+传感器标注
-**位置**：§5.3（传感器优化布局）
+**文件名**: fig_05_01_controllability_observability.png
 
-**Gemini 提示词**：
+**论文上下文**: 第五章§5.1，用直觉图示解释控制论中可控性和可观性的物理含义，帮助水利读者理解抽象概念。
 
-请生成一幅学术专著级别的"水网传感器优化布局"概念图。中文标注。
+**提示词**:
+A side-by-side conceptual diagram explaining controllability and observability for a water engineering textbook.
 
-布局：一个简化的水网拓扑图（约8-10个节点），叠加传感器位置标注。
+LEFT panel — "可控性 Controllability" (blue #1565C0 background tint):
+- A water reservoir with an adjustable gate at the outlet
+- Arrows showing: control input u → gate opening → water level changes
+- Metaphor: "能否通过闸门控制水位到达任意目标？ Can the gate drive water level to any target?"
+- Green checkmark for controllable state, red X for uncontrollable state
+- Example: gate fully controls downstream level ✓; upstream inflow uncontrollable ✗
 
-核心元素：
-- 水网拓扑：用蓝色线条表示渠道/管道，节点用蓝色圆点表示（水库/闸站/分水口）
-- 已有传感器位置：用绿色三角形标注，连线标注"已覆盖"
-- 优化建议新增位置：用橙色三角形+虚线圈标注，连线标注"建议新增"
-- 观测盲区：用红色虚线椭圆圈出某些节点之间的区域，标注"不可观区域"
+RIGHT panel — "可观性 Observability" (green #4CAF50 background tint):
+- Same reservoir with sensors at different locations
+- Arrows showing: water level → sensor readings → estimated state
+- Metaphor: "能否通过传感器推断全部内部状态？ Can sensors reveal all internal states?"
+- Green checkmark where sensors cover well, red X for blind spots
+- Example: water level measured ✓; sediment concentration unobserved ✗
 
-右上角图例：绿色三角形=现有传感器、橙色三角形=建议新增、红色虚线=不可观区域
+Center dividing line. Bottom summary: "可控性+可观性 = 闭环控制的前提条件 Prerequisites for Closed-loop Control"
 
-底部标注两行说明文字：
-- "优化目标：以最少传感器数量实现全网可观"
-- "方法：格拉姆矩阵分析 + 信息论方法"
-
-底部标注"图5-2 传感器优化布局概念图"。风格：专业学术网络拓扑图。
-
----
----
-
-# 第六章 插图提示词
-
-> 本文件包含第六章全部 5 幅插图的 Gemini 生成提示词。
-> 注：原图6-6应改为图6-5（无图6-5，编号不连续）。
+White background. Academic illustration style. Chinese+English labels. No 3D effects.
+Minimum 2400×1600 px. 300 DPI.
 
 ---
 
-## 图 6-1: CHS 八原理依赖导图
+## 🎨 图 5-2（新增）: 传感器优化布局概念图
 
-**类型**：五层依赖结构图
-**位置**：§6.1.2（八原理总览）
+**文件名**: fig_05_02_sensor_layout.png
 
-**Gemini 提示词**：
+**论文上下文**: §5.3，展示在管网/渠道系统中如何通过优化传感器布局来保障系统可观性。
 
-（同图3-1，请复用。仅需将底部标注改为"图6-1 CHS八原理依赖导图"。）
+**提示词**:
+A network topology diagram showing sensor placement optimization for a water distribution system, designed for an academic textbook.
 
----
+A simplified water network with: 1 reservoir (top, blue filled), 3 junction nodes (circles), 5 pipe segments (lines with arrows for flow direction), 2 demand points (bottom, green).
 
-## 图 6-2: CHS 四层分布式控制架构图
+Sensor placement shown in two scenarios:
+- LEFT scenario "冗余布局 Redundant": every node has a sensor (yellow triangle icon) — 7 sensors total, some redundant
+- RIGHT scenario "优化布局 Optimized": only 4 sensors at key nodes — determined by observability Gramian analysis
 
-**类型**：四层垂直架构图
-**位置**：§6.4（原理三）
+Color coding: nodes with sensors = solid yellow triangle marker; nodes without = hollow circle; critical nodes (where sensor is essential) = red border.
 
-**Gemini 提示词**：
+A small observability index bar chart at bottom comparing: redundant layout (score 0.95) vs optimized layout (score 0.92) — nearly equal observability with fewer sensors.
 
-请生成一幅学术专著级别的"CHS四层分布式控制架构"示意图。中文标注。
-
-布局：四层垂直堆叠，每层标注层名、功能和典型组件。
-
-四层内容（自上而下）：
-- **治理层**（顶层，浅金色）：标注"治理层（Governance）"，功能"政策制定/规程管理/应急指挥"，决策周期"周-月级"
-- **全局协调层**（第二层，深蓝色）：标注"全局协调层（Global Coordination）"，功能"全局优化/跨区域调度/负荷分配"，决策周期"小时级"
-- **区域优化层**（第三层，蓝色）：标注"区域优化层（Regional Optimization）"，功能"区域MPC/局部优化/上下游协调"，决策周期"分钟级"
-- **现场执行层**（底层，灰色）：标注"现场执行层（Field Execution）"，功能"PID控制/联锁保护/数据采集"，决策周期"秒级"
-
-层间连接：
-- 下行：目标/约束/指令（实线向下箭头）
-- 上行：状态/反馈/告警（虚线向上箭头）
-
-同层内：区域优化层显示3个并列的子区域框，标注"区域A""区域B""区域C"，之间有横向双箭头标注"对等协商"。
-
-底部标注"图6-2 CHS四层分布式控制架构"。风格：专业学术。
+White background. Clean network diagram style. Chinese+English labels.
+Minimum 2400×1600 px. 300 DPI.
 
 ---
 
-## 图 6-3: 安全包络红黄绿三区示意图
+## ♻️ 图 6-1: CHS 八原理依赖导图
 
-**类型**：时序曲线+三色区间图
-**位置**：§6.5.2（三区运行规则）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"安全包络红黄绿三区"示意图。中文标注。
-
-布局：上半部分为水位时序曲线+三色区间，下半部分为区间切换逻辑流程。
-
-**上半部分**：
-- 纵轴：水位（m），横轴：时间（h）
-- 三色区间水平带：
-  - 绿区（中间，浅绿色填充）：标注"正常运行域——性能优先策略"
-  - 黄区（绿区上下各一条，浅黄色填充）：标注"预警运行域——保守策略，自动拉回绿区"
-  - 红区（最外侧，浅红色填充）：标注"紧急保护域——确定性保护动作"
-- 一条蓝色实线曲线表示实际水位变化，曲线穿越绿区→黄区→回到绿区的过程
-- 在黄区段标注"自动切换保守模式"
-- 黄区和红区边界用虚线标注阈值数值
-
-**下半部分**：
-- 简单流程图：[状态检测]→{在绿区?}→是→"性能优化模式"；否→{在黄区?}→是→"保守模式+自动恢复"；否→"红区：确定性保护+请求接管"
-
-底部标注"图6-3 安全包络红黄绿三区示意图"。风格：专业学术，三色直观。
+> **复用图3-1**，仅更改图号。
 
 ---
 
-## 图 6-4: 在环验证深度与 WNAL 等级对应图
+## 🎨 图 6-2: CHS 四层分布式控制架构图
 
-**类型**：矩阵图/热力图
-**位置**：§6.6（原理五）
+**文件名**: fig_06_02_four_layer_architecture.png
 
-**Gemini 提示词**：
+**论文上下文**: 第六章§6.2 P3分层分布式控制原理详述，展示治理—全局—区域—执行四层结构及信息流。
 
-请生成一幅学术专著级别的"在环验证深度与WNAL等级对应"矩阵图。中文标注。
+**提示词**:
+A four-layer hierarchical and distributed control architecture diagram for water systems, designed for an academic textbook.
 
-布局：3行×6列矩阵，行为验证层次，列为WNAL等级。
+Four horizontal layers stacked vertically (top to bottom):
 
-矩阵结构：
-- **行**（从上到下）：MIL（模型在环）、SIL（软件在环）、HIL（硬件在环）
-- **列**（从左到右）：L0、L1、L2、L3、L4、L5
+Layer 1 (top, purple #7B1FA2 tint): "治理层 Governance Layer"
+- Contains: 政策目标 Policy Goals, 长期规划 Long-term Planning, 公共安全约束 Safety Constraints
+- Timescale: 年/季 Year/Season
 
-单元格填充规则：
-- 深蓝色（必须）：L2的MIL、L3的MIL+SIL、L4的MIL+SIL+HIL、L5全部
-- 浅蓝色（推荐）：L1的MIL、L2的SIL、L3的HIL
-- 白色/无填充：L0全部、L1的SIL/HIL
+Layer 2 (deep blue #1565C0): "全局优化层 Global Optimization Layer"  
+- Contains: 水资源分配 Resource Allocation, 多目标优化 Multi-Obj Optimization, 冲突协调 Conflict Resolution
+- Timescale: 月/旬 Month/Dekad
 
-L2→L3之间画一条红色竖向虚线，标注"质变节点：从此验证不可跳级"。
+Layer 3 (blue #42A5F5): "区域协调层 Regional Coordination Layer"
+- Contains: 子系统协调 Subsystem Coordination, 分布式MPC, Agent协商 Agent Negotiation
+- Timescale: 日/时 Day/Hour
 
-右侧图例：深蓝色=必须、浅蓝色=推荐、白色=不要求
+Layer 4 (bottom, gray #757575): "执行控制层 Execution Control Layer"
+- Contains: PID/MPC本地控制, SCADA数据采集, 执行器动作 Actuator Commands
+- Timescale: 分/秒 Min/Sec
 
-底部标注"图6-4 在环验证深度与WNAL等级对应"。风格：专业学术矩阵图。
+Between layers: downward solid arrows (目标下达 Target Dispatch) and upward dashed arrows (状态反馈 State Feedback).
+Between nodes in same layer: horizontal bidirectional arrows (对等协商 Peer Negotiation).
+
+Left axis label: "时间尺度递减 ↓ Timescale". Right axis label: "空间粒度递减 ↓ Spatial Scale"
+
+White background. Clean layered architecture style. Chinese+English labels. No 3D.
+Minimum 2400×1800 px. 300 DPI.
 
 ---
 
-## 图 6-5: 自主演进三重闭环示意图
+## 🐍 图 6-3: 安全包络红黄绿三区示意图
 
-**类型**：嵌套闭环图
-**位置**：§6.9.2（三重闭环）
-**注**：原文标注为图6-6，因无图6-5，建议改编号为图6-5。
+> **→ matplotlib 代码生成**: 见 `code_figures.py :: fig_06_03()`
+> **已生成**: `generated/fig_06_03_safety_envelope.png`
+> 时序曲线+三色区间+切换逻辑流程图。
+> ⚠️ 图8-1复用本图（微调阈值标注）。
 
-**Gemini 提示词**：
+---
 
-请生成一幅学术专著级别的"自主演进三重闭环"示意图。中文标注。
+## 🐍 图 6-4: 在环验证深度与 WNAL 等级对应图
 
-布局：三层同心嵌套闭环，外加安全约束括号。
+> **→ matplotlib 代码生成**: 见 `code_figures.py :: fig_06_04()`
+> **已生成**: `generated/fig_06_04_xil_wnal_matrix.png`
+> 3×6热力矩阵(MIL/SIL/HIL × L0-L5)。
+> ⚠️ 图8-2复用本图。
 
-三层闭环（从内到外）：
-- **内环（数据闭环）**，浅蓝色环：标注节点"采集→清洗→标注→回灌"，环中心标注"数据闭环（最快，天级）"
-- **中环（模型闭环）**，蓝色环：标注节点"离线训练→灰度验证→在线监控→回滚/切换"，环中心标注"模型闭环（中速，周级）"
-- **外环（策略闭环）**，深蓝色环：标注节点"版本管理→小步更新→效果评估→长期跟踪"，环中心标注"策略闭环（最慢，季级）"
+---
 
-安全约束：整个三层闭环外部用红色虚线大括号包围，标注"P4 安全包络约束——演进不得突破安全边界"。
+## 🐍 图 6-5: 自主演进三重闭环示意图
 
-右下角标注"灰度发布原则：小范围试错→全面推广"。
-
-底部标注"图6-5 自主演进三重闭环示意图"。风格：专业学术，嵌套层次清晰。
+> **→ matplotlib 代码生成**: 见 `code_figures.py :: fig_06_05()`（待补充）
+> 三重嵌套环形：数据闭环（内）→ 模型闭环（中）→ 策略闭环（外），原编号图6-6。

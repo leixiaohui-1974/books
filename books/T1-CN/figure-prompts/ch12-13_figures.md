@@ -1,172 +1,119 @@
-# 第十二章 插图提示词
+# 第十二至十三章 插图（5幅，全部新增）
 
-> 第十二章（沙坪水电站案例）目前无专属插图。建议新增 3 幅图。
-
----
-
-## 图 12-1（新增）: 枕头坝—沙坪水力电力耦合示意图
-
-**类型**：系统连接图
-**位置**：§12.1（工程概况）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"枕头坝—沙坪水力电力耦合"示意图。中文标注。
-
-布局：水平排列两座电站，之间显示水力和电力连接。
-
-核心元素：
-- **左侧：枕头坝电站**（蓝色方框）：标注"枕头坝电站（梯级第十三级）"，内部标注"装机760MW"，下方标注"出库流量Q_out"
-- **右侧：沙坪电站**（蓝色方框，加粗边框表示本章主角）：标注"沙坪二级电站（梯级第十四级）"，内部标注"装机380MW，极小库容"，上方标注"入库流量Q_in"
-- **两站之间上方**：蓝色波浪线连接，标注"水力联系：时间延迟≈80分钟（75-85分钟随流量变化）"，箭头从枕头坝指向沙坪
-- **两站之间下方**：红色双向箭头，标注"电力联系：均接入四川500kV电网，但无直接电力协调"
-- **沙坪方框内**：用红色虚线标注"核心挑战：库容极小→响应时间极短→控制裕度极窄"
-
-下方时间轴标注：
-- "枕头坝出库变化" → "80分钟传播" → "沙坪入库变化" → "沙坪需在<100分钟内完成调控"
-
-底部标注"图12-1 枕头坝—沙坪水力电力耦合示意图"。风格：专业工程示意图。
+> 生成方式分配：
+> - 🎨 Gemini: 图12-1, 图13-1（工程示意图/拓扑图）
+> - 🐍 matplotlib: 图12-2 → 见 `code_figures.py`
+> - 📐 Mermaid: 图12-3, 图13-2 → 见 `mermaid_figures.md`
 
 ---
 
-## 图 12-2（新增）: 沙坪 ODD 六维参数与三区运行规则
+## 🎨 图 12-1（新增）: 枕头坝—沙坪水力电力耦合示意图
 
-**类型**：雷达图/六维参数可视化+三色区间
-**位置**：§12.3（ODD定义）
+**文件名**: fig_12_01_zhentou_shaping_coupling.png
 
-**Gemini 提示词**：
+**论文上下文**: 第十二章§12.1，展示枕头坝一级电站尾水直供沙坪二级电站的水力-电力耦合关系，是沙坪案例的工程背景图。
 
-请生成一幅学术专著级别的"沙坪ODD六维参数与三区运行规则"示意图。中文标注。
+**提示词**:
+A hydraulic-power coupling schematic diagram showing the Zhentou Dam - Shaping hydropower cascade, designed for an academic textbook.
 
-布局：左侧为六维参数雷达图，右侧为关键变量的三区示意。
+Layout (left to right, following river flow):
 
-**左侧——六维参数雷达图**：
-六个轴（等角分布）：
-- 水文维：正常运行水位 552.5-553.5 m
-- 设备维：机组可用率 ≥80%
-- 通信维：SCADA采集正常，5分钟间隔
-- 环境维：非冰期、非极端暴雨
-- 负载维：总出力 100-300 MW
-- 时间维：预见期 ≥80 分钟
+LEFT — Zhentou Dam (枕头坝一级 760MW):
+- Dam cross-section icon with reservoir behind it
+- 3 turbine-generator units shown schematically
+- Labels: 枕头坝水库 Reservoir, 水轮机 Turbine ×3, 出力 P_枕
 
-用蓝色填充区域表示"正常ODD"，外圈橙色虚线表示"扩展ODD"。
+CENTER — Connecting channel/tailrace (尾水渠):
+- Short river/canal segment (~4.5km, 15min delay)
+- Arrow showing flow direction
+- Label: 尾水渠 Tailrace, L≈4.5km, τ≈15min
 
-**右侧——水位三区示意**：
-纵轴为水位，三色水平带：
-- 红区上界：554.0 m（校核洪水位）
-- 黄区上界：553.5 m → 红区下界
-- 绿区：552.0-553.5 m → 黄区下界
-- 黄区下界：551.5 m
-- 红区下界：551.0 m（死水位）
+RIGHT — Shaping Dam (沙坪二级 360MW):
+- Smaller dam with reservoir (较小库容 limited storage)
+- 4 turbine-generator units
+- Labels: 沙坪水库 Reservoir (V小), 水轮机 Turbine ×4, 出力 P_沙
 
-标注关键数值和对应控制策略。
+ABOVE the schematic — Power grid connection:
+- Both stations connected to 500kV grid via transmission lines
+- AGC dispatch arrows from grid to both stations
+- Label: 四川电网 Sichuan Grid, AGC指令
 
-底部标注"图12-2 沙坪ODD六维参数与三区运行规则"。风格：专业学术。
+KEY coupling relationships highlighted with colored arrows:
+- Blue arrow: 水力耦合 Hydraulic Coupling (枕头坝出库 = 沙坪入库 + 时延)
+- Red arrow: 电力耦合 Power Coupling (AGC同时调度两站)
+- Orange annotation: "核心难点: 枕头坝调节引起沙坪15min后水位剧烈波动"
 
----
-
-## 图 12-3（新增）: 沙坪 MPC 滚动优化控制流程
-
-**类型**：流程图
-**位置**：§12.5（水力调控策略）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"沙坪MPC滚动优化控制"流程图。中文标注。
-
-布局：循环流程图，表示MPC每5分钟的滚动优化过程。
-
-流程步骤（环形或从上到下+反馈回路）：
-
-1. **数据采集**（灰色框）："SCADA采集水位/流量/出力（5分钟周期）"
-2. **状态估计**（浅蓝框）："OSEM更新当前库容/真实入库流量/机组特性"
-3. **来流预测**（蓝色框）："基于枕头坝出库+时延模型，预测未来80分钟入库序列"
-4. **ODD检查**（黄色菱形）："六维参数是否在ODD内？"
-   - 是→进入优化
-   - 否→"切换保守模式/请求接管"（橙色出口）
-5. **MPC优化**（深蓝框）："80分钟滚动窗口，16步控制序列，目标：最小闸门动作+水位稳定"
-6. **安全包络检查**（红色菱形）："预测轨迹是否在绿区/黄区内？"
-   - 是→执行
-   - 否→"修正约束/切换保守策略"
-7. **执行**（绿色框）："下发首步控制指令→闸门/机组调整"
-8. **反馈**（虚线箭头回到步骤1）："等待5分钟后重新采集"
-
-右侧标注"每5分钟重复一次——滚动优化"
-
-底部标注"图12-3 沙坪MPC滚动优化控制流程"。风格：专业学术流程图。
-
----
----
-
-# 第十三章 插图提示词
-
-> 第十三章（梯级EDC案例）目前无专属插图。建议新增 2 幅图。
+White background. Clean engineering schematic style. Chinese+English labels. No 3D.
+Minimum 2400×1200 px. 300 DPI.
 
 ---
 
-## 图 13-1（新增）: 瀑深枕梯级水力电力耦合拓扑
+## 🐍 图 12-2（新增）: 沙坪 ODD 六维参数与三区运行规则
 
-**类型**：系统拓扑连接图
-**位置**：§13.1（工程概况）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"瀑深枕梯级水力电力耦合拓扑"示意图。中文标注。
-
-布局：从左到右的三站串联拓扑，上方为水力联系，下方为电力联系。
-
-三站从左到右：
-- **瀑布沟电站**（大蓝色方框）：标注"瀑布沟 3600MW"，内部标注"年调节库容，梯级'调节器'"
-- **深溪沟电站**（中蓝色方框）：标注"深溪沟 660MW"，内部标注"日调节库容，'反调节电站'"
-- **枕头坝电站**（中蓝色方框）：标注"枕头坝 760MW"，内部标注"日调节库容"
-
-**水力联系（上方蓝色箭头链）**：
-- 瀑布沟→深溪沟：标注"出库→入库，时延≈2-3小时"
-- 深溪沟→枕头坝：标注"出库→入库，时延≈1-2小时"
-- 枕头坝→（右侧虚箭头）→沙坪（第十二章）：标注"出库→沙坪入库，时延≈80分钟"
-
-**电力联系（下方红色双向箭头）**：
-- 三站共同连接到底部"四川500kV电网"（红色横线），标注"梯级总装机4620MW"
-- 电网向三站下发"AGC指令"（红色向下箭头）
-- 三站向电网报告"实发出力"（红色向上虚箭头）
-
-**核心矛盾标注**（中间气泡框）：
-"水力响应时滞1-3小时 vs 电力调令频率5分钟——时间尺度冲突是EDC控制的本质难点"
-
-上方标注两级架构："集控层（EDC统一优化）"横跨三站，"厂控层（各站独立执行）"分别标注在三站内。
-
-底部标注"图13-1 瀑深枕梯级水力电力耦合拓扑"。风格：专业工程拓扑图。
+> **→ matplotlib 代码生成**: 见 `code_figures.py :: fig_12_02()`
+> **已生成**: `generated/fig_12_02_shaping_odd_radar.png`
+> 左：六维雷达图，右：水位三区色带。
 
 ---
 
-## 图 13-2（新增）: 梯级 EDC 两级架构与负荷分配流程
+## 📐 图 12-3（新增）: 沙坪 MPC 滚动优化控制流程
 
-**类型**：分层架构+流程图
-**位置**：§13.3（EDC建模）
+> **→ Mermaid 代码生成**: 见 `mermaid_figures.md :: 图12-3`
+> MPC循环：数据采集→状态估计→来流预测→ODD检查→优化→安全检查→执行→滚动。
 
-**Gemini 提示词**：
+---
 
-请生成一幅学术专著级别的"梯级EDC两级架构与负荷分配流程"示意图。中文标注。
+## 🎨 图 13-1（新增）: 瀑深枕梯级水力电力耦合拓扑
 
-布局：上半部分为两级架构图，下半部分为负荷分配流程。
+**文件名**: fig_13_01_cascade_topology.png
 
-**上半部分——两级架构**：
-- **集控层**（顶部，深蓝色大框）：标注"梯级EDC优化引擎"
-  - 内部模块：AGC接口（接收电网总出力指令）→ 站间负荷分配优化（BDPSA算法）→ 五种策略模式选择器
-  - 五种模式小标签："水位平稳""最大蓄能""少调负荷""深枕平衡""枕站平衡"
-- **厂控层**（底部，三个并列蓝色框）：
-  - 瀑布沟厂控："接收分配出力→机组间负荷优化→执行"
-  - 深溪沟厂控："接收分配出力→水位优先控制→执行"
-  - 枕头坝厂控："接收分配出力→与沙坪预调通讯→执行"
+**论文上下文**: 第十三章§13.1，展示大渡河瀑布沟—深溪沟—枕头坝三站串联的水力电力耦合拓扑，是梯级案例的工程背景图。
 
-集控→厂控：向下箭头标注"分配出力指令（5分钟周期）"
-厂控→集控：向上虚线箭头标注"实发出力+水位反馈"
+**提示词**:
+A cascade hydropower topology diagram showing three stations in series along the Dadu River, designed for an academic textbook.
 
-**下半部分——负荷分配流程**（简化版）：
-- 输入："电网总指令 P_cmd"
-- 步骤1："约束检查（水力约束+振动区+机组可用性）"
-- 步骤2："BDPSA双向逐次逼近求解（<1秒）"
-- 步骤3："安全门禁检查（水位越限?转移速率超限?）"
-- 输出："三站分配出力 P_瀑/P_深/P_枕"
+Layout (top to bottom, following river flow downstream):
 
-底部标注"图13-2 梯级EDC两级架构与负荷分配流程"。风格：专业学术。
+STATION 1 (top) — "瀑布沟 Pubugou" (largest):
+- Large dam icon with reservoir
+- 6 turbine units, total capacity 3600 MW
+- Labels: 瀑布沟水库 (V=53.4亿m³), 装机3600MW
+- Color: deep blue #0D47A1
+
+Connecting river segment: arrow down, "大渡河 Dadu River, L≈42km"
+
+STATION 2 (middle) — "深溪沟 Shenxigou":
+- Medium dam with limited reservoir
+- 4 turbine units, 660 MW
+- Labels: 深溪沟水库 (V=0.6亿m³), 装机660MW
+- Color: blue #1565C0
+
+Connecting river segment: arrow down, "L≈28km"
+
+STATION 3 (bottom) — "枕头坝一级 Zhentou-I":
+- Medium dam with limited reservoir
+- 3 turbine units, 760 MW
+- Labels: 枕头坝水库 (V=0.3亿m³), 装机760MW
+- Color: blue #42A5F5
+
+Further downstream (dashed): 沙坪二级 Shaping-II (360MW, 第12章对象)
+
+RIGHT side — Grid connection:
+- All three stations connect to 四川500kV电网 Sichuan Grid
+- AGC指令 dispatches to all stations
+- Total cascade capacity: 5020MW
+
+LEFT side — Key coupling annotations:
+- 瀑布沟调蓄能力强 (大库容) — strong regulation
+- 深溪沟/枕头坝库容小 — weak regulation, sensitive to upstream
+- 水力时延: 瀑→深 约3h, 深→枕 约2h
+
+White background. Engineering topology style. Chinese+English labels.
+Minimum 2400×1800 px. 300 DPI.
+
+---
+
+## 📐 图 13-2（新增）: 梯级 EDC 两级架构与负荷分配流程
+
+> **→ Mermaid 代码生成**: 见 `mermaid_figures.md :: 图13-2`
+> 两级架构：集控层（AGC接口+BDPSA优化+五种策略模式）→ 三个厂控层。

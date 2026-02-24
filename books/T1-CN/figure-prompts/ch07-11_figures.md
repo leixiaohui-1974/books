@@ -1,411 +1,196 @@
-# 第七章 插图提示词
+# 第七至十一章 插图（13幅）
 
-> 本文件包含第七章全部 3 幅插图的 Gemini 生成提示词。
-
----
-
-## 图 7-1: WNAL L0-L5 阶梯图
-
-**类型**：六级阶梯图
-**位置**：§7.3（逐级定义）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"WNAL L0-L5水网自主等级阶梯图"。中文标注。
-
-布局：从左下到右上的六级台阶，每级台阶为一个长方形色块。
-
-六级台阶（从底到顶）：
-- **L0 手动运行**（浅灰色）：标注"人工观测+经验决策"，人的图标最大，机器图标极小
-- **L1 规则自动化**（浅蓝色）：标注"固定规则自动执行"，人的图标大，机器图标小
-- **L2 模型优化控制**（蓝色）：标注"基于模型的MPC优化"，人机图标接近等大
-- **L3 条件自主运行**（深蓝色，加粗边框）：标注"ODD内自主决策+安全降级"，机器图标大于人
-- **L4 高度自主运行**（更深蓝色）：标注"扩展ODD+自诊断自恢复"，机器图标远大于人
-- **L5 完全自主运行**（金色，虚线边框）：标注"全工况自主（长期愿景）"，标注"虚线=理论方向标"
-
-关键标注：
-- L2→L3之间画红色粗虚线，标注"**质变节点**：从此系统承担安全降级责任"
-- 左侧纵轴标注"自主程度递增 →"
-- 底部横轴标注"所需CHS原理支撑递增 →"
-- L3右侧标注"近期工程目标（3-5年）"
-- L4右侧标注"中期目标（5-10年）"
-
-每级台阶内部用小图标表示人/机比例关系变化。
-
-底部标注"图7-1 WNAL L0-L5水网自主等级阶梯图"。风格：专业学术，L3为视觉焦点。
+> 生成方式分配：
+> - 🎨 Gemini: 图9-1, 图10-1, 图10-4, 图10-5（概念图/架构图）
+> - 🐍 matplotlib: 图7-1, 图7-3, 图11-1 → 见 `code_figures.py`
+> - 📐 Mermaid: 图7-2, 图9-2, 图10-2, 图10-3 → 见 `mermaid_figures.md`
+> - ♻️ 复用: 图8-1≈图6-3, 图8-2=图6-4
 
 ---
 
-## 图 7-2: WNAL 等级跃迁四重门槛
+## 🐍 图 7-1: WNAL L0-L5 阶梯图
 
-**类型**：四象限/四列门槛图
-**位置**：§7.5（跃迁条件）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"WNAL等级跃迁四重门槛"示意图。中文标注。
-
-布局：中央为一个"等级跃迁"大箭头（从Lk到Lk+1），四周环绕四个门槛检查框。
-
-中央元素：
-- 大箭头从左侧"Lk"指向右侧"Lk+1"，箭头中标注"升级"
-- 箭头上方标注"四重门槛全部通过方可升级"
-
-四个门槛框（环绕中央箭头）：
-- **门槛一：技术门槛**（左上，蓝色框）：图标=齿轮，标注"模型精度/传感器覆盖/算法性能/计算平台"
-- **门槛二：验证门槛**（右上，绿色框）：图标=检查清单，标注"MIL/SIL/HIL通过/场景覆盖率达标/极端场景专项测试"
-- **门槛三：治理门槛**（左下，橙色框）：图标=文件/印章，标注"SOP完备/责任矩阵明确/应急预案演练/监管审批"
-- **门槛四：运行门槛**（右下，紫色框）：图标=时钟，标注"试运行时间达标/KPI持续达标/零安全事件记录"
-
-四个框与中央箭头之间各有一条连线，连线上标注"✓通过"或"✗未通过→不得升级"。
-
-类比文字（底部小字）："申请飞行员执照：理论考试+模拟器+体检+实际飞行"
-
-底部标注"图7-2 WNAL等级跃迁四重门槛"。风格：专业学术，四门槛对称排列。
+> **→ matplotlib 代码生成**: 见 `code_figures.py :: fig_07_01()`
+> **已生成**: `generated/fig_07_01_wnal_ladder.png`
+> 六级递增条形+L2/L3红色质变分界线。
 
 ---
 
-## 图 7-3: 八原理与 WNAL 等级映射图
+## 📐 图 7-2: WNAL 等级跃迁四重门槛
 
-**类型**：矩阵映射图
-**位置**：§7.7（八原理映射）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"CHS八原理与WNAL等级映射"矩阵图。中文标注。
-
-布局：8行×6列矩阵，行为八原理，列为WNAL等级。
-
-矩阵结构：
-- **行**（从上到下）：P1传递函数化、P2可控可观性、P3分层分布式、P4安全包络、P5在环验证、P6认知增强、P7人机共融、P8自主演进
-- **列**（从左到右）：L0、L1、L2、L3、L4、L5
-
-单元格填充规则：
-- 深蓝色（必须）= 该等级必须完整实现该原理
-- 浅蓝色（部分需要）= 该等级需要该原理的基本形式
-- 白色（不需要）= 该等级不要求该原理
-
-具体填充：
-- P1：L1浅蓝，L2+深蓝
-- P2：L2浅蓝，L3+深蓝
-- P3：L3+深蓝
-- P4：L2浅蓝（硬约束），L3+深蓝（完整安全包络）
-- P5：L2浅蓝（MIL），L3深蓝（MIL+SIL），L4+深蓝（全部）
-- P6：L3浅蓝，L4+深蓝
-- P7：L1浅蓝（基本HitL），L3深蓝（HotL），L4+深蓝
-- P8：L4浅蓝，L5深蓝
-
-L2→L3之间画红色竖向虚线，标注"最小完备集分界"。
-
-右侧标注：L3="最小原理集P1-P5+P7基本形式"
-
-底部标注"图7-3 CHS八原理与WNAL等级映射"。风格：专业学术矩阵图。
-
----
----
-
-# 第八章 插图提示词
-
-> 本文件包含第八章全部 2 幅插图的 Gemini 生成提示词。
+> **→ Mermaid 代码生成**: 见 `mermaid_figures.md :: 图7-2`
+> 四个门槛（技术/验证/治理/运行）汇入决策菱形的结构化流程。
 
 ---
 
-## 图 8-1: 安全包络红黄绿三区示意图
+## 🐍 图 7-3: 八原理与 WNAL 等级映射图
 
-**类型**：时序曲线+三色区间图
-**位置**：§8.1（安全包络概述）
-
-**Gemini 提示词**：
-
-（同图6-3，请复用。仅需将底部标注改为"图8-1 安全包络红黄绿三区示意图"。可适当在上半部分增加"三区阈值标定方法"标注：绿区上界=正常水位+裕度、黄区上界=设计洪水位、红区上界=校核洪水位。）
+> **→ matplotlib 代码生成**: 见 `code_figures.py :: fig_07_03()`
+> **已生成**: `generated/fig_07_03_principle_wnal_mapping.png`
+> 8×6热力矩阵(P1-P8 × L0-L5)。
 
 ---
 
-## 图 8-2: 在环验证深度与 WNAL 等级对应图
+## ♻️ 图 8-1: 安全包络红黄绿三区示意图
 
-**类型**：矩阵图
-**位置**：§8.5（在环验证）
-
-**Gemini 提示词**：
-
-（同图6-4，请复用。仅需将底部标注改为"图8-2 在环验证深度与WNAL等级对应"。）
-
----
----
-
-# 第九章 插图提示词
-
-> 第九章目前无插图。建议新增 2 幅图。
+> **复用图6-3**，增加ODD阈值标定说明注释。
+> 源文件: `generated/fig_06_03_safety_envelope.png`
 
 ---
 
-## 图 9-1（新增）: 水系统 CPSS 三层认知框架
+## ♻️ 图 8-2: 在环验证深度与 WNAL 等级对应图
 
-**类型**：三层嵌套结构图
-**位置**：§9.2（CPSS认知框架）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"水系统CPSS三层认知框架"示意图。中文标注。
-
-布局：三层同心嵌套结构（类似洋葱图），或三层堆叠。
-
-三层结构（从内到外或从下到上）：
-- **物理层（Physical）**（最内层，蓝色）：标注"水工建筑物/闸门/泵站/渠道"，图标=闸门和水流
-  - 右侧标注"决定：物理可控域"
-  - 不确定性来源："水文随机性/设备老化/地形变化"
-- **信息层（Cyber）**（中间层，绿色）：标注"传感器/通信网络/计算平台/数据库"，图标=天线和数据流
-  - 右侧标注"决定：可观测水平"
-  - 不确定性来源："通信中断/量测失真/网络攻击"
-- **社会层（Social）**（最外层，橙色）：标注"调度规程/多方协议/优先级规则/法律法规"，图标=人和文件
-  - 右侧标注"决定：多主体协同空间"
-  - 不确定性来源："规程冲突/利益博弈/政策变化"
-
-三层之间用双向箭头连接，标注交互类型："物理↔信息：感知与执行""信息↔社会：决策与协调""社会↔物理：治理与约束"
-
-底部标注"图9-1 水系统CPSS三层认知框架"。风格：专业学术，三层层次清晰。
+> **复用图6-4**，仅更改图号。
+> 源文件: `generated/fig_06_04_xil_wnal_matrix.png`
 
 ---
 
-## 图 9-2（新增）: MBD"四层一闭环"总体框架
+## 🎨 图 9-1（新增）: 水系统 CPSS 三层认知框架
 
-**类型**：四层+闭环流程图
-**位置**：§9.4（四层一闭环）
+**文件名**: fig_09_01_cpss_framework.png
 
-**Gemini 提示词**：
+**论文上下文**: 第九章§9.1，展示水系统作为信息-物理-社会系统(CPSS)的三层认知框架，是MBD方法论的顶层视角。
 
-（同图3-2"MBD四层一闭环架构"，但更详细。请在图3-2基础上扩展以下内容：）
+**提示词**:
+A three-layer nested framework diagram showing water system as a Cyber-Physical-Social System (CPSS), designed for an academic textbook.
 
-请生成一幅学术专著级别的"MBD四层一闭环总体框架"详细示意图。中文标注。
+Three concentric rounded rectangles (or three interlocking circles in Venn diagram style):
 
-布局：四层垂直堆叠+右侧闭环+左侧CHS原理映射。
+OUTER layer — "社会层 Social Layer" (purple #7B1FA2 tint):
+- Elements: 运行规程 SOP, 法规标准 Regulations, 利益相关者 Stakeholders, 公众参与 Public Engagement
+- Label: "S — 社会系统 Social System"
 
-四层内容（自上而下，比图3-2更详细）：
-- **ODD定义层**（浅蓝）：六维参数（水文维/设备维/通信维/环境维/负载维/时间维），附"三区阈值"
-- **模型决策层**（蓝色）：四类模型并列（PBM物理模型 | SM简化模型 | OSEM观测模型 | 数据增强模型），中间标注"MPC决策引擎"
-- **在环验证层**（绿色）：MIL→SIL→HIL三级流程，每级下方标注"五元组证据链"
-- **现场执行层**（灰色）：SCADA数据采集 + PLC执行 + 执行器反馈
+MIDDLE layer — "信息层 Cyber Layer" (blue #1565C0 tint):
+- Elements: 数字孪生 Digital Twin, 模型库 Model Repository, AI决策 AI Decision, 通信网络 Network
+- Label: "C — 信息系统 Cyber System"
 
-右侧闭环回路（橙色虚线）：现场执行层→数据回馈→ODD定义层（持续进化）
+INNER layer — "物理层 Physical Layer" (green #4CAF50 tint):
+- Elements: 水库 Reservoir, 渠道 Canal, 闸门 Gate, 泵站 Pump, 传感器 Sensor
+- Label: "P — 物理系统 Physical System"
 
-左侧CHS原理映射标注：
-- ODD层 ↔ P4安全包络
-- 模型层 ↔ P1传递函数化 + P2可控可观性
-- 验证层 ↔ P5在环验证
-- 执行层 ↔ P3分层分布式
+Arrows between layers:
+- Physical→Cyber: "数据采集 Data Acquisition" (upward)
+- Cyber→Physical: "控制指令 Control Commands" (downward)
+- Cyber→Social: "决策支持 Decision Support" (upward)
+- Social→Cyber: "目标约束 Objectives & Constraints" (downward)
 
-底部标注"图9-2 MBD四层一闭环总体框架"。风格：专业学术，详细但不杂乱。
+Bottom annotation: "MBD关注焦点: C层模型如何精确映射P层行为 MBD Focus: How C-layer models map P-layer behaviors"
 
----
----
-
-# 第十章 插图提示词
-
-> 本文件包含第十章全部 5 幅插图的 Gemini 生成提示词。
+White background. Academic diagram style. Chinese+English labels.
+Minimum 2400×1800 px. 300 DPI.
 
 ---
 
-## 图 10-1: HydroOS 三层架构图
+## 📐 图 9-2（新增）: MBD"四层一闭环"总体框架（详细版）
 
-**类型**：三层垂直堆叠图
-**位置**：§10.2（整体架构）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"HydroOS三层架构"示意图。中文标注。
-
-布局：三层垂直堆叠，每层标注层名、核心功能和典型组件。
-
-三层内容（自下而上）：
-- **设备抽象层 DAL**（底层，灰色）：标注"Device Abstraction Layer"
-  - 功能："统一设备接口/协议转换/数据标准化/通信容错"
-  - 图标：闸门、泵站、传感器等设备图标
-  - 对应原理：P2可控可观性
-- **物理 AI 引擎 PAI**（中层，蓝色）：标注"Physical AI Engine"
-  - 功能："可控模型族/MPC优化/状态估计/安全包络"
-  - 图标：数学公式、传递函数、模型图标
-  - 对应原理：P1传递函数化 + P4安全包络 + P5在环验证
-- **认知 AI 引擎 CAI**（顶层，金色）：标注"Cognitive AI Engine"
-  - 功能："语义理解/因果诊断/策略解释/知识调用"
-  - 图标：大脑、对话框、知识图谱
-  - 对应原理：P6认知增强 + P7人机共融
-
-层间接口：
-- DAL→PAI：标注"标准化数据流↑"
-- PAI→CAI：标注"模型输出+状态信息↑"
-- CAI→PAI：标注"策略建议↓（非直接控制）"
-- PAI→DAL：标注"控制指令↓"
-
-左侧标注"安全关键路径"（从DAL到PAI）用蓝色粗线，"增强路径"（CAI到PAI）用橙色虚线。
-
-关键设计原则标注："CAI故障不影响PAI运行——故障隔离"
-
-底部标注"图10-1 HydroOS三层架构"。风格：专业学术，层次分明。
+> **→ Mermaid 代码生成**: 见 `mermaid_figures.md :: 图9-2`
+> 扩展版图3-2，展示每层内部子模块（ODD六维、四类模型、三级验证、SCADA+PLC）。
 
 ---
 
-## 图 10-2: 策略门禁四项检查流程图
+## 🎨 图 10-1: HydroOS 三层架构图
 
-**类型**：串行流程图
-**位置**：§10.3.2（策略门禁）
+**文件名**: fig_10_01_hydroos_architecture.png
 
-**Gemini 提示词**：
+**论文上下文**: 第十章§10.2，HydroOS核心架构，展示设备抽象层(DAL)—物理AI层(PAI)—认知AI层(CAI)三层及其关键组件。
 
-请生成一幅学术专著级别的"策略门禁四项检查"流程图。中文标注。
+**提示词**:
+A three-layer software architecture diagram for HydroOS (Hydro Operating System), designed for an academic textbook. Vertical stack layout.
 
-布局：从左到右的串行流程，四个检查步骤依次排列。
+TOP layer — "CAI 认知AI层 Cognitive AI Engine" (purple #7B1FA2):
+- Components in boxes: 瀚铎大模型 Hando LLM, 知识图谱 Knowledge Graph, 多智能体协商 Multi-Agent Negotiation, 认知推理 Reasoning
+- Interface label at bottom: "CAI-API"
 
-流程步骤：
-- 入口：左侧"PAI/CAI生成的候选策略"（蓝色箭头）
-- **检查一：安全包络合规性**（红色框）：标注"预测状态是否在绿区/黄区内？"，图标=安全盾牌
-  - 通过→进入下一步；不通过→"拒绝，附拒绝原因"（红色出口）
-- **检查二：操作约束合规性**（橙色框）：标注"闸门变幅/流量变化率是否在限值内？"
-  - 通过→进入下一步；不通过→"拒绝"
-- **检查三：权限合规性**（黄色框）：标注"当前授权等级是否允许该操作？"
-  - 通过→进入下一步；不通过→"拒绝"
-- **检查四：一致性检查**（绿色框）：标注"多Agent策略之间是否冲突？"
-  - 通过→出口"策略放行→DAL执行"（绿色箭头）；不通过→"协调解冲突"
+MIDDLE layer — "PAI 物理AI层 Physical AI Engine" (blue #1565C0):
+- Components: MPC控制器 MPC Controller, 安全包络引擎 Safety Envelope, 模型库管理 Model Mgr (PBM/SM/OSEM), 状态估计器 State Estimator
+- Interface labels: top "PAI-API (接收CAI建议)", bottom "PAI-DAL接口"
 
-每个检查框下方标注输入/输出数据类型。
+BOTTOM layer — "DAL 设备抽象层 Device Abstraction Layer" (gray #757575):
+- Components: 协议适配器 Protocol Adapter, 设备驱动 Device Driver, SCADA桥接 SCADA Bridge, 数据归一化 Data Normalization
+- Bottom: physical devices icons (gate, pump, sensor)
 
-底部标注"图10-2 策略门禁四项检查流程"。风格：专业学术流程图。
+Between layers: bidirectional arrows.
+Left side annotation: "自主程度 ↑ Autonomy", Right side: "物理接近度 ↑ Physical Proximity"
 
----
-
-## 图 10-3: HydroOS 四态机状态转换图
-
-**类型**：状态机图
-**位置**：§10.3.3（四态机）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"HydroOS四态机状态转换"示意图。中文标注。
-
-布局：四个状态节点环形排列。
-
-四个状态（注意与图2-4类似但这里是HydroOS视角）：
-- **正常态**（绿色）："自主控制模式——PAI全功能运行"
-- **降级态**（黄色）："保守控制模式——PAI降级运行，CAI离线"
-- **应急态**（红色）："最小风险模式——仅DAL基础保护"
-- **检修态**（灰色）："维护模式——人工完全接管"
-
-状态转换箭头：
-- 正常→降级：标注"传感器部分离线/模型预测偏差增大"
-- 降级→应急：标注"关键设备故障/安全包络红区触发"
-- 应急→检修：标注"系统稳定后转入维护"
-- 检修→正常：标注"维护完成+系统自检通过"
-- 降级→正常：标注"故障恢复+状态验证通过"
-- 正常→检修：标注"计划维护窗口"
-
-底部标注"图10-3 HydroOS四态机状态转换"。风格：专业学术状态机图。
+White background. Clean software architecture style. Chinese+English labels. No 3D.
+Minimum 2400×1800 px. 300 DPI.
 
 ---
 
-## 图 10-4: SCADA+MAS+HydroOS 融合架构图
+## 📐 图 10-2: 策略门禁四项检查流程图
 
-**类型**：三层叠加融合图
-**位置**：§10.5（与SCADA的关系）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"SCADA+MAS+HydroOS融合架构"示意图。中文标注。
-
-布局：三层叠加结构，强调HydroOS是在SCADA之上构建的智能层。
-
-三层结构（自下而上）：
-- **底层：现有SCADA系统**（灰色，最宽）：标注"数据采集/远程监控/基础告警/PLC控制"
-  - 小图标：SCADA屏幕、传感器、闸门
-  - 标注"已有投资——保留不替换"
-- **中层：HydroOS（DAL+PAI）**（蓝色）：标注"设备抽象/统一接口/模型预测/MPC优化/安全包络"
-  - 小图标：数学模型、优化引擎
-  - 标注"新建智能层——在SCADA之上"
-- **上层：HydroOS（CAI）+ MAS 治理**（金色）：标注"认知诊断/策略解释/多Agent协调/人机交互"
-  - 小图标：大脑、对话框、多Agent
-
-层间接口标注：
-- SCADA→DAL："OPC/Modbus/MQTT协议适配"
-- DAL→PAI："标准化数据接口"
-- PAI→CAI："模型输出+状态估计"
-
-右侧标注数据流方向（上行：数据）和控制流方向（下行：指令）。
-
-关键信息："HydroOS不替代SCADA，而是在SCADA之上构建智能决策层"
-
-底部标注"图10-4 SCADA+MAS+HydroOS融合架构"。风格：专业学术。
+> **→ Mermaid 代码生成**: 见 `mermaid_figures.md :: 图10-2`
+> 四项串行检查（安全/约束/权限/一致性），通过才放行。
 
 ---
 
-## 图 10-5: HydroOS 分级部署路径与 WNAL 等级对应
+## 📐 图 10-3: HydroOS 四态机状态转换图
 
-**类型**：阶梯式部署路线图
-**位置**：§10.7（部署路径）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"HydroOS分级部署路径"路线图。中文标注。
-
-布局：从左到右的四级阶梯，每级对应一个WNAL等级。
-
-四级阶梯（从左到右）：
-- **L0→L1**（浅灰→浅蓝）：标注"基础数字化"
-  - 部署模块："SCADA升级 + DAL基础接口"
-  - 关键里程碑："全站数据可采集"
-- **L1→L2**（浅蓝→蓝色）：标注"模型化控制"
-  - 部署模块："DAL完整 + PAI核心（SM+OSEM+MPC）"
-  - 关键里程碑："单回路MPC上线"
-- **L2→L3**（蓝色→深蓝，红色分界线强调）：标注"条件自主"
-  - 部署模块："PAI完整（安全包络+四态机） + MIL/SIL验证"
-  - 关键里程碑："安全降级能力验证通过"
-- **L3→L4**（深蓝→金色）：标注"高度自主"
-  - 部署模块："CAI上线 + HIL验证 + 策略闭环"
-  - 关键里程碑："扩展ODD + 自诊断运行"
-
-每级台阶上方标注预估时间："1-2年""2-3年""3-5年""5-10年"
-
-底部标注"图10-5 HydroOS分级部署路径与WNAL等级对应"。风格：专业学术路线图。
-
----
----
-
-# 第十一章 插图提示词
-
-> 本文件包含第十一章 1 幅插图的 Gemini 生成提示词。
+> **→ Mermaid 代码生成**: 见 `mermaid_figures.md :: 图10-3`
+> 四态（正常/降级/应急/检修）+迁移条件。
 
 ---
 
-## 图 11-1: PAI-CAI 协作工作流
+## 🎨 图 10-4: SCADA+MAS+HydroOS 融合架构图
 
-**类型**：四阶段时序流程图
-**位置**：§11.4（三层引擎协作）
+**文件名**: fig_10_04_scada_mas_hydroos.png
 
-**Gemini 提示词**：
+**论文上下文**: §10.5，展示HydroOS如何在现有SCADA+多智能体(MAS)基础上叠加，而非替代。
 
-请生成一幅学术专著级别的"PAI-CAI协作工作流（水位异常事件处置全过程）"示意图。中文标注。
+**提示词**:
+A three-layer overlay architecture diagram showing the evolution from SCADA to HydroOS, designed for an academic textbook.
 
-布局：从左到右的四阶段时序流程，上半部分为PAI行为，下半部分为CAI行为，中间有交互箭头。
+Three overlapping horizontal layers (semi-transparent, showing the "additive" nature):
 
-四个阶段（从左到右）：
+BOTTOM layer (gray, solid) — "SCADA层 SCADA Layer (已有 Existing)":
+- Components: RTU/PLC, 组态软件 HMI, 历史数据库 Historian, 报警系统 Alarm
+- Era label: "1990s~"
 
-**阶段一：感知与检测（0-30秒）**
-- PAI行为（上方，蓝色）："OSEM检测水位异常 → 残差分析 → 判定为真实异常"
-- CAI行为（下方，金色）："接收异常信号 → 检索相似历史事件"
-- 交互：PAI→CAI传递"异常类型+严重度"
+MIDDLE layer (blue, semi-transparent overlay) — "MAS层 Multi-Agent Layer (扩展 Extended)":
+- Components: 区域Agent Regional Agent, 协商协议 Negotiation Protocol, 分布式决策 Distributed Decision
+- Era label: "2010s~"
 
-**阶段二：诊断与解释（30-120秒）**
-- PAI行为："快速仿真预测未来1h状态轨迹"
-- CAI行为："多源信息融合 → 因果链推理 → 生成诊断报告"
-- 交互：PAI→CAI传递"预测轨迹"，CAI输出"因果诊断报告"
+TOP layer (gradient blue-purple, semi-transparent) — "HydroOS层 (融合 Integrated)":
+- Components: PAI物理AI, CAI认知AI, 安全包络 Safety Envelope, 统一API Unified API
+- Era label: "2020s~"
 
-**阶段三：策略生成与安全检查（120-180秒）**
-- PAI行为："MPC生成候选策略 → 安全包络检查 → 策略门禁"
-- CAI行为："策略翻译为自然语言 → 风险说明"
-- 交互：PAI→CAI传递"候选策略"，CAI输出"可读操作建议"
+Arrows: SCADA data feeds upward to MAS and HydroOS. HydroOS controls down through SCADA actuators. MAS agents communicate laterally within their layer.
 
-**阶段四：执行与反馈（180秒后）**
-- PAI行为："通过DAL下发控制指令 → 监控执行效果"
-- CAI行为："生成操作日志 → 反馈到调度界面"
-- 交互：PAI→DAL"执行指令"，CAI→人"操作说明+监控提示"
+Key message annotation: "HydroOS = 在SCADA+MAS上叠加AI层，不替代底层 HydroOS adds AI layers on top, does not replace SCADA"
 
-顶部时间轴：0s → 30s → 120s → 180s → 持续
+White background. Layered architecture with transparency. Chinese+English labels.
+Minimum 2400×1600 px. 300 DPI.
 
-底部标注"图11-1 PAI-CAI协作工作流（水位异常事件处置全过程）"。风格：专业学术时序图。
+---
+
+## 🎨 图 10-5: HydroOS 分级部署路径与 WNAL 等级对应
+
+**文件名**: fig_10_05_hydroos_deployment.png
+
+**论文上下文**: §10.6，展示从WNAL L1到L4，HydroOS各层模块如何逐步部署激活。
+
+**提示词**:
+A deployment roadmap diagram showing how HydroOS modules activate at each WNAL level, designed for an academic textbook.
+
+Horizontal axis: WNAL levels L1 → L2 → L3 → L4 (left to right, ascending steps).
+Vertical axis: three HydroOS layers (DAL bottom, PAI middle, CAI top).
+
+At each WNAL level, show which modules are activated (filled box) vs not yet deployed (dashed box):
+
+L1: DAL basic (filled), PAI basic rules (filled), CAI none (dashed)
+L2: DAL full (filled), PAI MPC+model (filled), CAI none (dashed)  
+L3: DAL full, PAI full + safety envelope (filled), CAI basic LLM advisor (filled)
+L4: DAL full, PAI full + self-diagnosis (filled), CAI full multi-agent (filled)
+
+Use progressive color fill from light to dark as capabilities increase.
+Red dashed vertical line between L2 and L3: "质变: CAI上线 Phase Change: CAI Online"
+
+White background. Roadmap/deployment matrix style. Chinese+English labels.
+Minimum 2400×1200 px. 300 DPI.
+
+---
+
+## 🐍 图 11-1: PAI-CAI 协作工作流
+
+> **→ matplotlib 代码生成**: 见 `code_figures.py :: fig_11_01()`（待补充）
+> 双泳道时序图：PAI泳道（蓝）和CAI泳道（紫），四阶段协作流程。

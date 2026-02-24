@@ -1,211 +1,121 @@
-# 第一章 插图提示词
+# 第一章 插图（6幅）
 
-> 本文件包含第一章全部 6 幅插图的 Gemini 生成提示词。
-> 风格要求：学术专著插图风格，简洁专业，中文标注，配色统一（蓝色系为主色调，红色用于强调安全/警告，绿色用于正常状态）。
-> 输出格式：PNG，分辨率 300 dpi，宽度 1024px。
-
----
-
-## 图 1-1: 水利工程运行管理系统五代演进图
-
-**类型**：时间轴演进图
-**位置**：§1.2（五代演进）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"水利工程运行管理系统五代演进"时间轴示意图。中文标注。
-
-布局：水平时间轴从左到右，五个阶段依次排列，每个阶段用一个圆角矩形卡片表示，卡片之间用渐变色箭头连接，表达技术递进关系。
-
-五个阶段卡片内容：
-- 第一代（1960年代前）：标题"人工观测+经验调度"，图标为水尺/雨量筒，底色浅灰
-- 第二代（1960-1990年代）：标题"遥测遥控+集中监控"，图标为SCADA屏幕，底色浅蓝
-- 第三代（1990-2010年代）：标题"模型驱动+优化调度"，图标为数学公式/计算机，底色蓝色
-- 第四代（2010-2020年代）：标题"数据驱动+智能决策"，图标为神经网络/数字孪生，底色深蓝
-- 第五代（2020年代起）：标题"自主运行+人机共融"，图标为CHS/HydroOS标识，底色金色边框（突出强调），标注"CHS+HydroOS"
-
-时间轴下方用一条渐变线表示"自主化程度递增"（从浅灰到深蓝到金色）。
-
-风格：扁平化设计，无3D效果，专业学术风格，配色和谐。底部标注"图1-1 水利工程运行管理系统五代演进"。
+> 生成方式分配：
+> - 🎨 Gemini: 图1-1, 图1-2, 图1-3, 图1-5（概念图/信息图）
+> - 🐍 matplotlib: 图1-4 → 见 `code_figures.py :: fig_01_04()`
+> - 📐 Mermaid: 图1-6 → 见 `mermaid_figures.md :: 图1-6`
 
 ---
 
-## 图 1-2: 自动化与自主运行对比示意图
+## 🎨 图 1-1: 水利工程运行管理系统五代演进图
 
-**类型**：左右对比图
-**位置**：§1.2.5（自主运行内涵）
+**文件名**: fig_01_01_five_generations.png
 
-**Gemini 提示词**：
+**论文上下文**: 第一章§1.2，概述水利工程运行管理从1950s人工到2020s自主运行的五代演进历程，是全书的时代背景铺垫。
 
-请生成一幅学术专著级别的"自动化与自主运行"左右对比示意图。中文标注。
+**提示词**:
+A horizontal timeline infographic showing five generations of water system operation management evolution, designed for an academic textbook.
 
-布局：画面分为左右两半，中间用竖向虚线分隔。
+From left to right, five vertical cards connected by a bold progress arrow:
+- Gen 1 (1950s-1970s): "人工运行 Manual Operation" — icon: person with clipboard at dam. Background color: gray (#BDBDBD).
+- Gen 2 (1980s-1990s): "SCADA自动化 SCADA Automation" — icon: CRT monitor with alarm. Background color: light blue (#90CAF9).
+- Gen 3 (2000s): "网络化调度 Networked Dispatch" — icon: network topology with database. Background color: blue (#42A5F5).
+- Gen 4 (2010s): "数字孪生 Digital Twin" — icon: 3D water network model. Background color: deep blue (#1565C0).
+- Gen 5 (2020s→): "自主运行 Autonomous Operation" — icon: AI brain with water network. Background color: gold (#FFB300), dashed border (ongoing).
 
-左半部分——"自动化"：
-- 顶部标题"自动化（Automation）"
-- 核心图示：一个简单的线性流程"预设规则→执行→输出"，箭头为单向直线
-- 关键标签：人制定规则、机器执行、仅处理预设工况
-- 底部类比图标：计算器
-- 整体色调：灰蓝色
+Each card shows: decade range on top, Chinese+English name in center, brief description below, small icon.
+Bottom axis: arrow labeled "智能化程度递增 Intelligence Level →".
 
-右半部分——"自主运行"：
-- 顶部标题"自主运行（Autonomous Operation）"
-- 核心图示：一个闭环流程"感知→理解→决策→执行→反馈"，箭头为环形闭环
-- 在闭环外侧标注"安全包络"约束线（红色虚线）
-- 关键标签：机器感知决策、人监督、能应对新情况、能学习
-- 底部类比图标：计算机/操作系统
-- 整体色调：深蓝+金色
-
-右侧比左侧更醒目，用视觉暗示"升级"关系。中间有一个大箭头标注"范式跃迁"。
-
-底部标注"图1-2 自动化与自主运行对比"。风格：学术扁平化，配色和谐。
+White background. Clean academic infographic style. Chinese+English labels. No decorative elements.
+Minimum 2400×1200 px. 300 DPI.
 
 ---
 
-## 图 1-3: WNAL L0-L5 与 SAE 自动驾驶等级对比图
+## 🎨 图 1-2: 自动化与自主运行对比示意图
 
-**类型**：双列对比阶梯图
-**位置**：§1.3.1（从自动驾驶到自主水网）
+**文件名**: fig_01_02_auto_vs_autonomous.png
 
-**Gemini 提示词**：
+**论文上下文**: §1.3，核心概念辨析——"自动化"(Automation)按预设规则执行 vs "自主运行"(Autonomous Operation)具备感知-决策-执行-学习闭环能力。
 
-请生成一幅学术专著级别的"WNAL水网自主等级与SAE自动驾驶等级对比"示意图。中文标注。
+**提示词**:
+A split comparison diagram for an academic textbook, divided into left and right halves by a vertical dashed line.
 
-布局：左右双列阶梯式。
+LEFT side — "自动化 Automation" (blue background #E3F2FD):
+- Top: "预设规则 Pre-set Rules" box
+- Arrow down to "执行器 Actuator" box
+- Arrow down to "水利系统 Hydro System" box
+- Side label: "开环/固定规则 Open-loop / Fixed Rules"
+- Characteristics listed: 规则固定 Fixed Rules, 无学习能力 No Learning, 异常依赖人工 Manual Fallback
 
-左列——"SAE自动驾驶等级"：
-- 六级台阶从下到上排列：L0（无自动化）、L1（驾驶辅助）、L2（部分自动化）、L3（有条件自动化）、L4（高度自动化）、L5（完全自动化）
-- 颜色从浅灰渐变到深蓝
-- L2→L3之间标注红色分界线"质变节点"
-- 左侧标注图标：小汽车
+RIGHT side — "自主运行 Autonomous Operation" (green background #E8F5E9):
+- A closed loop: "感知 Perceive" → "决策 Decide" → "执行 Act" → "学习 Learn" → back to "感知"
+- Center of loop: "水利系统 Hydro System"
+- Characteristics listed: 自适应策略 Adaptive, 持续学习 Continuous Learning, 自动降级 Auto Degradation
 
-右列——"WNAL水网自主等级"：
-- 六级台阶从下到上排列：L0（手动运行）、L1（规则自动化）、L2（模型优化控制）、L3（条件自主运行）、L4（高度自主运行）、L5（完全自主运行）
-- 颜色从浅灰渐变到深蓝，L5用虚线边框
-- L2→L3之间标注红色分界线"质变节点"
-- 右侧标注图标：水利闸门/水网
+Center dividing line labeled: "关键区别 Key Difference"
+Bottom comparison bar: 自动化=被动响应 Reactive ↔ 自主运行=主动决策 Proactive
 
-两列之间用水平虚线连接同级别（L0对L0、L1对L1…），连线中间标注关键差异：
-- L0-L2线："借鉴"
-- L3线："借鉴+扩展（ODD不同）"
-- L4-L5线："超越（公共安全属性）"
-
-底部标注"图1-3 WNAL L0-L5与SAE自动驾驶等级对比"。风格：专业学术。
+White background. Clean academic style. Chinese+English labels.
+Minimum 2400×1600 px. 300 DPI.
 
 ---
 
-## 图 1-4: CHS 八原理层次关系图
+## 🎨 图 1-3: WNAL L0-L5 与 SAE 自动驾驶等级对比图
 
-**类型**：层次结构图（金字塔形）
-**位置**：§1.4.2（八原理概览）
+**文件名**: fig_01_03_wnal_sae_comparison.png
 
-**Gemini 提示词**：
+**论文上下文**: §1.4，将水网自主等级WNAL类比自动驾驶SAE分级，帮助读者建立直觉理解。
 
-请生成一幅学术专著级别的"CHS八原理层次关系"示意图。中文标注。
+**提示词**:
+A side-by-side staircase comparison diagram for an academic textbook.
 
-布局：五层水平排列的层次结构，自下而上递进，整体呈梯形或金字塔形。
+LEFT staircase — "WNAL 水网自主等级" (blue color scheme #1565C0):
+Six ascending steps from bottom: L0手动运行, L1规则自动化, L2模型优化, L3条件自主, L4高度自主, L5完全自主.
+A red dashed line between L2 and L3 labeled "质变节点 Critical Threshold".
 
-五层结构（自下而上）：
-- **基础层**（最底层，蓝色）：P1 传递函数化 | P2 可控可观性
-- **架构层**（第二层，青色）：P3 分层分布式 | P4 安全包络
-- **验证层**（第三层，绿色）：P5 在环验证
-- **智能层**（第四层，橙色）：P6 认知增强 | P7 人机共融
-- **演进层**（顶层，金色）：P8 全生命周期自主演进
+RIGHT staircase — "SAE 自动驾驶等级" (purple color scheme #7B1FA2):
+Six ascending steps: L0无自动化, L1驾驶辅助, L2部分自动, L3条件自动, L4高度自动, L5完全自动.
+A red dashed line between L2 and L3.
 
-层间关系：
-- 每层之间有向上的黑色实线箭头，表示"支撑"关系
-- P4（安全包络）到P8（自主演进）有一条红色虚线回边箭头，标注"安全约束"，表示安全包络约束演进过程
-- P4的框用红色边框强调其"安全底线"属性
+Between two staircases, horizontal dashed arrows connecting corresponding levels (L0↔L0, L1↔L1, ..., L5↔L5), showing the analogy.
 
-每层左侧标注层名（基础层/架构层/验证层/智能层/演进层），右侧标注该层在WNAL中的对应关系。
+Bottom label: "共同特征 Common Features: 渐进分级 Gradual Levels → L2/L3质变 Phase Transition → 安全约束 Safety Constraints"
 
-底部标注"图1-4 CHS八原理层次关系"。风格：专业学术，清晰简洁。
+White background. Academic comparison chart style. Chinese+English labels.
+Minimum 2400×1600 px.
 
 ---
 
-## 图 1-5: 本书结构导读图
+## 🐍 图 1-4: CHS 八原理层次关系图
 
-**类型**：章节结构流程图
-**位置**：§1.5（本书结构导读）
-
-**Gemini 提示词**：
-
-请生成一幅学术专著级别的"水系统控制论全书结构导读"示意图。中文标注。
-
-布局：自上而下的层次流程图，按五个部分组织十四章内容。
-
-五部分结构：
-
-**第一部分：导论**（浅蓝色区域）
-- 第一章 绪论
-
-**第二部分：理论基础**（蓝色区域）
-- 第二章 控制论视角 → 第三章 八原理概览
-- 第四章 形式化描述 → 第五章 可控可观性
-
-**第三部分：八原理与验证**（青色区域）
-- 第六章 八原理详述 → 第七章 WNAL分级
-- 第八章 安全包络与在环验证
-
-**第四部分：系统架构**（深蓝区域）
-- 第九章 MBD方法论 → 第十章 HydroOS → 第十一章 物理AI与认知AI
-
-**第五部分：工程实践**（金色区域）
-- 第十二章 沙坪（点） → 第十三章 梯级（链） → 第十四章 胶东（网）
-
-各部分用不同深浅的色块区分。章节之间用箭头表示依赖关系。从"点→链→网"用渐进放大的图标暗示系统规模递增。
-
-左侧标注逻辑线索："提出问题→建立框架→阐述原理→定义分级→介绍技术→展示实践"。
-
-底部标注"图1-5 本书结构导读"。风格：专业学术，清晰易读。
+> **→ matplotlib 代码生成**: 见 `code_figures.py :: fig_01_04()`
+> **已生成**: `generated/fig_01_04_eight_principles_hierarchy.png`
 
 ---
 
-## 图 1-6: 章节依赖关系图
+## 🎨 图 1-5: 本书结构导读图
 
-**类型**：有向无环图（DAG）
-**位置**：§1.7.3（章节依赖关系）
+**文件名**: fig_01_05_book_structure.png
 
-**Gemini 提示词**：
+**论文上下文**: §1.6，向读者展示全书五部分14章的组织逻辑，便于按需阅读。
 
-请生成一幅学术专著级别的"水系统控制论全书章节依赖关系"有向图。中文标注。
+**提示词**:
+A book structure overview diagram for an academic textbook preface, showing five parts with chapters organized in a top-down flow.
 
-布局：有向无环图（DAG），节点为章节，边为"需要先阅读"关系。
+Part I "导论 Introduction" (gray #BDBDBD): Chapter 1 绪论
+Part II "理论基础 Theoretical Foundation" (blue #1565C0): Chapters 2-5, horizontal row
+Part III "八原理与验证 Principles & Verification" (deep blue #0D47A1): Chapters 6-8, horizontal row
+Part IV "系统架构 System Architecture" (purple #7B1FA2): Chapters 9-11, horizontal row
+Part V "工程实践 Engineering Practice" (green #4CAF50): Chapters 12-14, horizontal row labeled "点Point → 链Chain → 网Network"
 
-节点排列（按五部分分组，每部分用浅色背景区域标识）：
+Parts connected by vertical arrows showing reading flow.
+Side annotations: "理论读者建议路径" and "工程读者建议路径" with different colored arrows.
 
-第一部分（顶部）：
-- 第一章（绪论）[入口节点，加粗边框]
+White background. Clean academic style. Chinese+English labels.
+Minimum 2400×1600 px.
 
-第二部分（第二行）：
-- 第二章（控制论视角）
-- 第三章（八原理概览）
-- 第四章（形式化描述）
-- 第五章（可控可观性）
+---
 
-第三部分（第三行）：
-- 第六章（八原理详述）
-- 第七章（WNAL分级）
-- 第八章（安全与验证）
+## 📐 图 1-6: 章节依赖关系图
 
-第四部分（第四行）：
-- 第九章（MBD方法论）
-- 第十章（HydroOS）
-- 第十一章（物理AI与认知AI）
-
-第五部分（底部）：
-- 第十二章（沙坪·点）
-- 第十三章（梯级·链）
-- 第十四章（胶东·网）
-
-有向边（箭头）：
-- 第一章→第二章、第一章→第三章
-- 第三章→第四章→第五章
-- 第三章→第六章→第七章
-- 第六章→第八章
-- 第六章→第九章→第十章→第十一章
-- 第一至十一章→第十二至十四章（用虚线汇聚表示"需要前置章节基础"）
-
-节点颜色按部分区分。边用灰色实线箭头，关键路径（第一→第三→第六→第十章）用蓝色加粗。
-
-底部标注"图1-6 章节依赖关系"。风格：专业学术DAG图。
+> **→ Mermaid 代码生成**: 见 `mermaid_figures.md :: 图1-6`
