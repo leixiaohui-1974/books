@@ -554,9 +554,6 @@ CHS 建议每个工程项目都建立一份"人机协同标准操作规程"（SO
 
 ---
 
-
----
-
 ## 6.11 八原理工程实例汇总
 
 为帮助读者理解八原理在真实工程中的落地形态，本节通过 8 个典型案例，展示每条原理的工程应用。
@@ -750,11 +747,11 @@ CHS 建议每个工程项目都建立一份"人机协同标准操作规程"（SO
 
 [6-1] SAE International. Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles: SAE J3016 [S]. Warrendale, PA: SAE, 2021.
 
-[6-2] 雷晓辉，龙岩，许慧敏，等。水系统控制论：提出背景、技术框架与研究范式 [J]. 南水北调与水利科技 (中英文), 2025, 23(04): 761-769+904. DOI:10.13476/j.cnki.nsbdqk.2025.0077.
+[6-2] 雷晓辉, 龙岩, 许慧敏, 等. 水系统控制论：提出背景、技术框架与研究范式 [J]. 南水北调与水利科技(中英文), 2025, 23(04): 761-769+904. DOI:10.13476/j.cnki.nsbdqk.2025.0077.
 
-[6-3] 雷晓辉，苏承国，龙岩，等。基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术 [J]. 南水北调与水利科技 (中英文), 2025, 23(04): 778-786. DOI:10.13476/j.cnki.nsbdqk.2025.0079.
+[6-3] 雷晓辉, 苏承国, 龙岩, 等. 基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术 [J]. 南水北调与水利科技(中英文), 2025, 23(04): 778-786. DOI:10.13476/j.cnki.nsbdqk.2025.0079.
 
-[6-4] 钱学森。工程控制论 [M]. 北京：科学出版社，1954.
+[6-4] 钱学森. 工程控制论 [M]. 北京: 科学出版社, 1954.
 
 [6-5] Wiener N. Cybernetics: Or Control and Communication in the Animal and the Machine [M]. Cambridge, MA: MIT Press, 1948.
 
@@ -780,25 +777,8 @@ CHS 建议每个工程项目都建立一份"人机协同标准操作规程"（SO
 
 [6-16] Schuurmans J, Clemmens A J, Dijkstra S, et al. Modeling of irrigation and drainage canals for controller design [J]. Journal of Irrigation and Drainage Engineering, 1999, 125(6): 338-344.
 
-[6-17] 王浩，雷晓辉，尚毅梓。南水北调中线工程智能调控与应急调度关键技术 [J]. 南水北调与水利科技，2017, 15(2): 1-8.
+[6-17] 王浩, 雷晓辉, 尚毅梓. 南水北调中线工程智能调控与应急调度关键技术 [J]. 南水北调与水利科技, 2017, 15(2): 1-8.
 
 [6-18] Buyalski C P, Ehler D G, Falvey H T, et al. Canal Systems Automation Manual, Volume 1 [M]. Denver: U.S. Bureau of Reclamation, 1991.
 
 [6-19] Astrom K J, Murray R M. Feedback Systems: An Introduction for Scientists and Engineers [M]. 2nd ed. Princeton: Princeton University Press, 2021.
-
----
-
-**出版前核验提示**
-
-1. ✅ 八原理名称与§1.4.2、§7.7 以及 T2a ch01 完全一致
-2. ☐ 图 6-1 依赖导图与 ARCH-01 编号一致，与第一章架构图命名对齐
-3. ✅ 安全包络三区定义与§7.4.3 MRC 设计、§9 HydroOS 安全模块保持一致
-4. ✅ 在环验证三层与§7.5.1 验证门槛描述一致
-5. ✅ 人机三种模式术语（HitL/HotL/HootL）与§7.3 WNAL 等级定义一致
-6. ☐ 最小实施清单 8 项与§7.6 L3 准入检查清单兼容（后者为 12 项扩展版）
-7. ✅ 所有引导案例为综合提炼、无指向性工程或时间标识
-8. ☐ 参考文献格式符合 GB/T 7714-2015，自引率≤15%
-9. ✅ 术语表中英文与全书统一术语表一致
-
----
-
