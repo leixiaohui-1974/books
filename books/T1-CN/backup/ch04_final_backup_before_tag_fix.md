@@ -57,10 +57,8 @@
 将水网表示为离散时间非线性系统：
 
 $$
-x_{k+1}=f(x_k,u_k,d_k,\theta_k),\quad y_k=g(x_k,u_k)+v_k
+x_{k+1}=f(x_k,u_k,d_k,\theta_k),\quad y_k=g(x_k,u_k)+v_k \tag{4-1}
 $$
-
-<div align="right">(4-1)</div>
 
 其中各变量的物理含义如下：
 
