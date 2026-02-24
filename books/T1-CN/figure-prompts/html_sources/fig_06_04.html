@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  /* local fonts */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: white; font-family: 'Noto Sans SC', sans-serif; padding: 30px; width: 900px; }
+  h2 { text-align: center; font-size: 16px; color: #212121; margin-bottom: 4px; }
+  h3 { text-align: center; font-size: 11px; color: #757575; font-weight: normal; margin-bottom: 30px; }
+  .matrix { display: grid; grid-template-columns: 120px repeat(6, 100px); gap: 3px; margin: 0 auto; width: fit-content; }
+  .cell { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 75px; border-radius: 6px; font-size: 12px; }
+  .header { background: transparent; font-weight: bold; font-size: 18px; color: #212121; height: 40px; }
+  .row-label { background: transparent; font-weight: bold; font-size: 13px; text-align: right; padding-right: 10px; align-items: flex-end; }
+  .row-label .sub { font-size: 10px; font-weight: normal; color: #757575; }
+  .required { background: #1565C0; color: white; }
+  .recommended { background: #90CAF9; color: #0D47A1; }
+  .na { background: #F5F5F5; color: #BDBDBD; }
+  .cell .label { font-weight: bold; font-size: 12px; }
+  .cell .sublabel { font-size: 9px; opacity: 0.8; margin-top: 2px; }
+  
+  .threshold { position: relative; }
+  .threshold::before { 
+    content: ''; position: absolute; left: -2px; top: -5px; bottom: -5px;
+    border-left: 3px dashed #E53935; z-index: 10;
+  }
+  
+  .legend { display: flex; gap: 20px; justify-content: center; margin-top: 20px; font-size: 11px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-box { width: 20px; height: 14px; border-radius: 3px; }
+  
+  .threshold-label { text-align: center; margin-top: 15px; color: #E53935; font-weight: bold; font-size: 12px; }
+  .note { text-align: center; color: #757575; font-size: 10px; margin-top: 5px; }
+</style>
+</head>
+<body>
+
+<h2>图 6-4  在环验证深度与WNAL等级对应</h2>
+<h3>Fig. 6-4  xIL Verification Depth vs. WNAL Level</h3>
+
+<div class="matrix">
+  <!-- Header row -->
+  <div class="cell header"></div>
+  <div class="cell header">L0</div>
+  <div class="cell header">L1</div>
+  <div class="cell header">L2</div>
+  <div class="cell header threshold">L3</div>
+  <div class="cell header">L4</div>
+  <div class="cell header">L5</div>
+  
+  <!-- MIL row -->
+  <div class="cell row-label">MIL<br><span class="sub">模型在环</span><br><span class="sub">Model-in-Loop</span></div>
+  <div class="cell na"><span class="label">—</span></div>
+  <div class="cell recommended"><span class="label">推荐</span><span class="sublabel">Recommended</span></div>
+  <div class="cell required"><span class="label">必须</span><span class="sublabel">Required</span></div>
+  <div class="cell required threshold"><span class="label">必须</span><span class="sublabel">Required</span></div>
+  <div class="cell required"><span class="label">必须</span><span class="sublabel">Required</span></div>
+  <div class="cell required"><span class="label">必须</span><span class="sublabel">Required</span></div>
+  
+  <!-- SIL row -->
+  <div class="cell row-label">SIL<br><span class="sub">软件在环</span><br><span class="sub">Software-in-Loop</span></div>
+  <div class="cell na"><span class="label">—</span></div>
+  <div class="cell na"><span class="label">—</span></div>
+  <div class="cell recommended"><span class="label">推荐</span><span class="sublabel">Recommended</span></div>
+  <div class="cell required threshold"><span class="label">必须</span><span class="sublabel">Required</span></div>
+  <div class="cell required"><span class="label">必须</span><span class="sublabel">Required</span></div>
+  <div class="cell required"><span class="label">必须</span><span class="sublabel">Required</span></div>
+  
+  <!-- HIL row -->
+  <div class="cell row-label">HIL<br><span class="sub">硬件在环</span><br><span class="sub">Hardware-in-Loop</span></div>
+  <div class="cell na"><span class="label">—</span></div>
+  <div class="cell na"><span class="label">—</span></div>
+  <div class="cell na"><span class="label">—</span></div>
+  <div class="cell recommended threshold"><span class="label">推荐</span><span class="sublabel">Recommended</span></div>
+  <div class="cell required"><span class="label">必须</span><span class="sublabel">Required</span></div>
+  <div class="cell required"><span class="label">必须</span><span class="sublabel">Required</span></div>
+</div>
+
+<div class="threshold-label">
+  ← L2 / L3 质变节点 Critical Threshold →
+</div>
+<div class="note">L3及以上要求三级在环验证全覆盖，L3是从"模型辅助"到"条件自主"的关键跃迁</div>
+
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-box" style="background:#1565C0;"></div>
+    <span>● 必须 Required</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-box" style="background:#90CAF9;"></div>
+    <span>◐ 推荐 Recommended</span>
+  </div>
+  <div class="legend-item">
+    <div class="legend-box" style="background:#F5F5F5; border: 1px solid #E0E0E0;"></div>
+    <span>○ 不要求 Not Required</span>
+  </div>
+  <div class="legend-item" style="color:#E53935; font-weight:bold;">
+    <span style="font-size:16px;">┆</span>
+    <span>L2/L3 分界</span>
+  </div>
+</div>
+
+</body>
+</html>

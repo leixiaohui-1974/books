@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  /* local fonts */
+  body { margin: 0; padding: 20px; background: white; font-family: 'Noto Sans SC', sans-serif; }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 900 650" width="2400" height="1733" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="650" fill="white"/>
+  
+  <!-- Title -->
+  <text x="420" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#212121">图 1-4  CHS八原理层次关系图</text>
+  <text x="420" y="50" text-anchor="middle" font-size="11" fill="#757575">Fig. 1-4  Hierarchical Structure of CHS Eight Principles</text>
+
+  <defs>
+    <marker id="arrUp" viewBox="0 0 10 10" refX="5" refY="0" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 10 L 5 0 L 10 10 z" fill="#9E9E9E"/>
+    </marker>
+    <marker id="arrRed" viewBox="0 0 10 10" refX="5" refY="0" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 10 L 5 0 L 10 10 z" fill="#E53935"/>
+    </marker>
+    <marker id="arrDown" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 5 10 L 10 0 z" fill="#E53935"/>
+    </marker>
+  </defs>
+
+  <!-- Layer 1: Foundation (bottom) -->
+  <rect x="60" y="530" width="700" height="90" rx="8" fill="#E3F2FD" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="90" y="570" font-size="12" font-weight="bold" fill="#1565C0">基础层</text>
+  <text x="90" y="588" font-size="9" fill="#1565C0">Foundation</text>
+  <!-- P1 -->
+  <rect x="200" y="542" width="220" height="66" rx="6" fill="white" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="310" y="567" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">P1 传递函数化</text>
+  <text x="310" y="585" text-anchor="middle" font-size="9" fill="#42A5F5">Transfer Function Formulation</text>
+  <!-- P2 -->
+  <rect x="450" y="542" width="220" height="66" rx="6" fill="white" stroke="#1565C0" stroke-width="1.5"/>
+  <text x="560" y="567" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565C0">P2 可控可观性</text>
+  <text x="560" y="585" text-anchor="middle" font-size="9" fill="#42A5F5">Controllability & Observability</text>
+
+  <!-- Layer 2: Architecture -->
+  <rect x="60" y="410" width="700" height="90" rx="8" fill="#E8F5E9" stroke="#0277BD" stroke-width="1.5"/>
+  <text x="90" y="450" font-size="12" font-weight="bold" fill="#0277BD">架构层</text>
+  <text x="90" y="468" font-size="9" fill="#0277BD">Architecture</text>
+  <!-- P3 -->
+  <rect x="200" y="422" width="220" height="66" rx="6" fill="white" stroke="#0277BD" stroke-width="1.5"/>
+  <text x="310" y="447" text-anchor="middle" font-size="12" font-weight="bold" fill="#0277BD">P3 分层分布式</text>
+  <text x="310" y="465" text-anchor="middle" font-size="9" fill="#42A5F5">Hierarchical & Distributed</text>
+  <!-- P4 (Safety - use red/green accent) -->
+  <rect x="450" y="422" width="220" height="66" rx="6" fill="#FFEBEE" stroke="#E53935" stroke-width="2"/>
+  <text x="560" y="447" text-anchor="middle" font-size="12" font-weight="bold" fill="#E53935">P4 安全包络</text>
+  <text x="560" y="465" text-anchor="middle" font-size="9" fill="#E53935">Safety Envelope</text>
+
+  <!-- Layer 3: Verification -->
+  <rect x="60" y="300" width="700" height="80" rx="8" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1.5"/>
+  <text x="90" y="340" font-size="12" font-weight="bold" fill="#4CAF50">验证层</text>
+  <text x="90" y="356" font-size="9" fill="#4CAF50">Verification</text>
+  <!-- P5 -->
+  <rect x="310" y="312" width="240" height="56" rx="6" fill="white" stroke="#4CAF50" stroke-width="1.5"/>
+  <text x="430" y="337" text-anchor="middle" font-size="12" font-weight="bold" fill="#4CAF50">P5 在环验证</text>
+  <text x="430" y="353" text-anchor="middle" font-size="9" fill="#66BB6A">xIL Testing (MIL/SIL/HIL)</text>
+
+  <!-- Layer 4: Intelligence -->
+  <rect x="60" y="185" width="700" height="88" rx="8" fill="#F3E5F5" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="90" y="225" font-size="12" font-weight="bold" fill="#7B1FA2">智能层</text>
+  <text x="90" y="243" font-size="9" fill="#7B1FA2">Intelligence</text>
+  <!-- P6 -->
+  <rect x="200" y="198" width="220" height="62" rx="6" fill="white" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="310" y="222" text-anchor="middle" font-size="12" font-weight="bold" fill="#7B1FA2">P6 认知增强</text>
+  <text x="310" y="240" text-anchor="middle" font-size="9" fill="#9C27B0">Cognitive AI Enhancement</text>
+  <!-- P7 -->
+  <rect x="450" y="198" width="220" height="62" rx="6" fill="white" stroke="#7B1FA2" stroke-width="1.5"/>
+  <text x="560" y="222" text-anchor="middle" font-size="12" font-weight="bold" fill="#7B1FA2">P7 人机共融</text>
+  <text x="560" y="240" text-anchor="middle" font-size="9" fill="#9C27B0">Human-Machine Fusion</text>
+
+  <!-- Layer 5: Evolution (top) -->
+  <rect x="60" y="80" width="700" height="78" rx="8" fill="#FFF3E0" stroke="#FFB300" stroke-width="1.5"/>
+  <text x="90" y="115" font-size="12" font-weight="bold" fill="#E65100">演进层</text>
+  <text x="90" y="133" font-size="9" fill="#E65100">Evolution</text>
+  <!-- P8 -->
+  <rect x="310" y="90" width="240" height="56" rx="6" fill="white" stroke="#FFB300" stroke-width="2"/>
+  <text x="430" y="114" text-anchor="middle" font-size="12" font-weight="bold" fill="#E65100">P8 自主演进</text>
+  <text x="430" y="132" text-anchor="middle" font-size="9" fill="#FF8F00">Autonomous Evolution</text>
+
+  <!-- Upward arrows between layers -->
+  <line x1="430" y1="527" x2="430" y2="503" stroke="#9E9E9E" stroke-width="1.5" marker-end="url(#arrUp)"/>
+  <line x1="430" y1="408" x2="430" y2="383" stroke="#9E9E9E" stroke-width="1.5" marker-end="url(#arrUp)"/>
+  <line x1="430" y1="297" x2="430" y2="276" stroke="#9E9E9E" stroke-width="1.5" marker-end="url(#arrUp)"/>
+  <line x1="430" y1="183" x2="430" y2="161" stroke="#9E9E9E" stroke-width="1.5" marker-end="url(#arrUp)"/>
+
+  <!-- P4→P8 Red constraint arrow (RIGHT side, from P4 up to P8) -->
+  <path d="M 672,440 C 770,440 790,120 672,118" fill="none" stroke="#E53935" stroke-width="2.5" stroke-dasharray="8,4" marker-end="url(#arrRed)"/>
+  <!-- Label on constraint arrow -->
+  <rect x="778" y="250" width="90" height="55" rx="4" fill="#FFEBEE" stroke="#E53935" stroke-width="1"/>
+  <text x="823" y="268" text-anchor="middle" font-size="10" font-weight="bold" fill="#E53935">安全约束</text>
+  <text x="823" y="284" text-anchor="middle" font-size="9" fill="#E53935">Safety</text>
+  <text x="823" y="298" text-anchor="middle" font-size="9" fill="#E53935">Constraint</text>
+
+  <!-- P8→P1 Feedback arrow (LEFT side, evolution feedback) -->
+  <path d="M 198,118 C 40,118 30,565 198,565" fill="none" stroke="#FFB300" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <rect x="2" y="315" width="50" height="45" rx="4" fill="#FFF8E1" stroke="#FFB300" stroke-width="1"/>
+  <text x="27" y="333" text-anchor="middle" font-size="8" font-weight="bold" fill="#E65100">持续</text>
+  <text x="27" y="347" text-anchor="middle" font-size="8" font-weight="bold" fill="#E65100">进化</text>
+  <text x="27" y="358" text-anchor="middle" font-size="7" fill="#FF8F00">Evolution</text>
+
+  <!-- Legend -->
+  <rect x="60" y="630" width="12" height="3" fill="#9E9E9E"/>
+  <text x="78" y="634" font-size="8" fill="#757575">层间依赖</text>
+  <line x1="140" y1="631" x2="170" y2="631" stroke="#E53935" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="175" y="634" font-size="8" fill="#E53935">P4安全约束→P8</text>
+  <line x1="290" y1="631" x2="320" y2="631" stroke="#FFB300" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="325" y="634" font-size="8" fill="#E65100">P8持续进化反馈</text>
+</svg>
+</body>
+</html>

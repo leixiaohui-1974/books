@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  /* local fonts */
+  body { margin: 0; padding: 20px; background: white; font-family: 'Noto Sans SC', sans-serif; }
+  svg { display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+<svg viewBox="0 0 900 600" width="2400" height="1600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="900" height="600" fill="white"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#212121" font-family="Noto Sans SC, sans-serif">图 2-2  可控模型族的三层体系</text>
+  <text x="450" y="55" text-anchor="middle" font-size="12" fill="#757575" font-family="Noto Sans SC, sans-serif">Fig. 2-2  Three-Layer Controllable Model Family</text>
+  
+  <!-- Pyramid layers (trapezoids, widest at bottom) -->
+  <!-- PBM - bottom layer (widest) -->
+  <polygon points="135,480 765,480 680,340 220,340" fill="#1565C0" opacity="0.9" stroke="white" stroke-width="2"/>
+  <text x="450" y="395" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="Noto Sans SC, sans-serif">PBM：高保真物理模型</text>
+  <text x="450" y="418" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)" font-family="Noto Sans SC, sans-serif">Physics-Based Model</text>
+  <text x="450" y="445" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)" font-family="Noto Sans SC, sans-serif">Saint-Venant / Navier-Stokes / 完整PDE方程组</text>
+  <text x="450" y="465" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)" font-family="Noto Sans SC, sans-serif">维度 ~10³  |  离线仿真 · 数字孪生</text>
+  
+  <!-- SM - middle layer -->
+  <polygon points="220,335 680,335 615,210 285,210" fill="#42A5F5" opacity="0.9" stroke="white" stroke-width="2"/>
+  <text x="450" y="258" text-anchor="middle" font-size="15" font-weight="bold" fill="white" font-family="Noto Sans SC, sans-serif">SM：面向控制的简化模型</text>
+  <text x="450" y="280" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.85)" font-family="Noto Sans SC, sans-serif">Simplified Model (IDZ / Transfer Function)</text>
+  <text x="450" y="305" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)" font-family="Noto Sans SC, sans-serif">维度 ~10¹  |  在线MPC优化控制</text>
+  
+  <!-- OSEM - top layer (narrowest) -->
+  <polygon points="285,205 615,205 560,105 340,105" fill="#90CAF9" opacity="0.9" stroke="white" stroke-width="2"/>
+  <text x="450" y="140" text-anchor="middle" font-size="14" font-weight="bold" fill="#0D47A1" font-family="Noto Sans SC, sans-serif">OSEM：观测与状态估计模型</text>
+  <text x="450" y="160" text-anchor="middle" font-size="11" fill="#1565C0" font-family="Noto Sans SC, sans-serif">Observation & State Estimation Model</text>
+  <text x="450" y="185" text-anchor="middle" font-size="10" fill="#1565C0" font-family="Noto Sans SC, sans-serif">参数校正 · 软测量 · 数据同化</text>
+  
+  <!-- Left axis: Fidelity -->
+  <line x1="95" y1="100" x2="95" y2="490" stroke="#1565C0" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <text x="88" y="300" text-anchor="middle" font-size="11" fill="#1565C0" font-family="Noto Sans SC, sans-serif" transform="rotate(-90,88,300)">物理保真度 Fidelity ↑</text>
+  
+  <!-- Right axis: Efficiency -->
+  <line x1="805" y1="490" x2="805" y2="100" stroke="#4CAF50" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <text x="815" y="300" text-anchor="middle" font-size="11" fill="#4CAF50" font-family="Noto Sans SC, sans-serif" transform="rotate(90,815,300)">计算效率 Efficiency ↑</text>
+  
+  <!-- Arrow: PBM→SM (Model Reduction) -->
+  <defs>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1565C0"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4CAF50"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#757575"/>
+    </marker>
+    <marker id="arrowDash" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#42A5F5"/>
+    </marker>
+  </defs>
+  
+  <!-- Curved arrow: PBM→SM 降阶 -->
+  <path d="M 170,400 Q 130,340 200,280" fill="none" stroke="#1565C0" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <text x="120" y="345" font-size="10" fill="#1565C0" font-family="Noto Sans SC, sans-serif" font-weight="bold">降阶方法</text>
+  <text x="120" y="360" font-size="9" fill="#1565C0" font-family="Noto Sans SC, sans-serif">Model Reduction</text>
+  
+  <!-- Curved arrow: SM↔OSEM 数据同化 -->
+  <path d="M 660,260 Q 730,200 640,155" fill="none" stroke="#42A5F5" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowDash)"/>
+  <text x="720" y="195" font-size="10" fill="#42A5F5" font-family="Noto Sans SC, sans-serif" font-weight="bold">数据同化</text>
+  <text x="720" y="210" font-size="9" fill="#42A5F5" font-family="Noto Sans SC, sans-serif">Data Assimilation</text>
+  
+  <!-- Feedback arrow: OSEM→PBM 参数反馈 -->
+  <path d="M 340,195 Q 300,300 180,420" fill="none" stroke="#757575" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowGray)"/>
+  <text x="220" y="280" font-size="9" fill="#757575" font-family="Noto Sans SC, sans-serif">参数反馈</text>
+  <text x="220" y="295" font-size="8" fill="#757575" font-family="Noto Sans SC, sans-serif">Parameter Feedback</text>
+  
+  <!-- Right side annotations -->
+  <rect x="785" y="110" width="100" height="30" rx="4" fill="#E3F2FD" stroke="#90CAF9"/>
+  <text x="835" y="130" text-anchor="middle" font-size="8" fill="#1565C0" font-family="Noto Sans SC, sans-serif">参数校正/软测量</text>
+  
+  <rect x="785" y="250" width="100" height="30" rx="4" fill="#E3F2FD" stroke="#42A5F5"/>
+  <text x="835" y="270" text-anchor="middle" font-size="8" fill="#1565C0" font-family="Noto Sans SC, sans-serif">在线MPC控制</text>
+  
+  <rect x="785" y="390" width="100" height="30" rx="4" fill="#E3F2FD" stroke="#1565C0"/>
+  <text x="835" y="410" text-anchor="middle" font-size="8" fill="#1565C0" font-family="Noto Sans SC, sans-serif">离线仿真/孪生</text>
+  
+  <!-- Bottom note -->
+  <text x="450" y="530" text-anchor="middle" font-size="10" fill="#757575" font-family="Noto Sans SC, sans-serif">三层模型通过降阶方法（PBM→SM）和数据同化（SM↔OSEM）形成闭环协作</text>
+  <text x="450" y="548" text-anchor="middle" font-size="9" fill="#9E9E9E" font-family="Noto Sans SC, sans-serif">Three layers collaborate via model reduction (PBM→SM) and data assimilation (SM↔OSEM)</text>
+
+  <!-- Dimension labels on pyramid edges -->
+  <text x="170" y="500" font-size="9" fill="#757575" font-family="Noto Sans SC, sans-serif">维度高 High-dimensional</text>
+  <text x="365" y="95" font-size="9" fill="#757575" font-family="Noto Sans SC, sans-serif">维度低 Low-dim.</text>
+</svg>
+</body>
+</html>
