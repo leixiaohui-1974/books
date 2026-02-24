@@ -3,6 +3,7 @@ v1 2026-02-23: 从 ch05_v5.md 拆分生成，§5.4-5.5 → §10.1-10.3
 -->
 
 # 第十一章 物理 AI 与认知 AI
+# Chapter 11: Physical AI and Cognitive AI
 
 ---
 
