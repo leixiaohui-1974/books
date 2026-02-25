@@ -1100,3 +1100,44 @@ Shadow Mode
 [8-19] Negenborn R R, Maestre J M. Distributed model predictive control: an overview and roadmap of future research opportunities [J]. IEEE Control Systems Magazine, 2014, 34(4): 87-97.
 
 出版前核验提示： 1. 图9-1使用ARCH-02语义模板，需与全书其他WNAL图保持完全一致。 2. 图9-2四重门槛图需与第十一章八原理关系图(ARCH-01)在视觉风格上统一。 3. 表8.3 L3准入检查清单中的具体数值（15%误差、90%覆盖率等）为示例性门槛，定稿前需与工程团队确认。 4. §9.8现状评估中的百分比分布为初步估计，建议定稿前补充正式调研数据。 5. 引导案例为多工程综合提炼的典型场景，不指向任何特定工程。 6. WNAL L0-L5定义表（§9.3总表）需与T2b ch08、M8 ch01中的定义完全一致（跨书一致性要求）。 7. §9.2.2 SAE对比表需与ch01§1.3.1中的对比保持一致。
+
+
+## 本章参考文献
+
+[8-1] SAE International. Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles: J3016_202104 [S]. Warrendale, PA: SAE International, 2021.
+
+[8-2] 雷晓辉, 王浩, 等. 南水北调中线工程智能调控理论与实践 [M]. 北京: 科学出版社, 2020.
+
+[8-3] 雷晓辉, 陈凯歌, 等. 水系统在环验证技术框架 [J]. 水利学报, 2023, 54(5): 567-579.
+
+[8-4] NTSB. Collision Between Vehicle Controlled by Developmental Automated Driving System and Pedestrian: Accident Report NTSB/HAR-19/03 [R]. Washington, DC: National Transportation Safety Board, 2019.
+
+[8-5] 王浩, 雷晓辉, 等. 中国水网自主运行等级体系构建 [J]. 水利学报, 2023, 54(1): 1-15.
+
+[8-6] Litrico X, Fromion V. Modeling and Control of Hydrosystems [M]. London: Springer, 2009.
+
+[8-7] Van Overloop P J. Model Predictive Control on Open Water Systems [M]. Delft: IOS Press, 2006.
+
+[8-8] Camacho E F, Bordons C. Model Predictive Control [M]. 2nd ed. London: Springer, 2007.
+
+[8-9] Malaterre P O, Rogers D C, Schuurmans J. Classification of canal control algorithms [J]. Journal of Irrigation and Drainage Engineering, 1998, 124(1): 3-10.
+
+[8-10] 孔令仲, 雷晓辉, 张召, 等. 多级串联明渠调水工程多目标水位预测控制模型研究 [J]. 水利学报, 2022, 53(4): 471-482.
+
+[8-11] 王浩, 雷晓辉, 尚毅梓. 南水北调中线工程智能调控与应急调度关键技术 [J]. 南水北调与水利科技, 2017, 15(2): 1-8.
+
+[8-12] Cantoni M, Weyer E, Li Y, et al. Control of large-scale irrigation networks [J]. Proceedings of the IEEE, 2007, 95(1): 75-91.
+
+[8-13] 中华人民共和国水利部. 中国水利统计年鉴2022 [M]. 北京: 中国水利水电出版社, 2023.
+
+[8-14] Buyalski C P, Ehler D G, Falvey H T, et al. Canal Systems Automation Manual, Volume 1 [M]. Denver: U.S. Bureau of Reclamation, 1991.
+
+[8-15] Parasuraman R, Sheridan T B, Wickens C D. A model for types and levels of human interaction with automation [J]. IEEE Transactions on Systems, Man, and Cybernetics—Part A: Systems and Humans, 2000, 30(3): 286-297.
+
+[8-16] Koopman P, Wagner M. Autonomous vehicle safety: An interdisciplinary challenge [J]. IEEE Intelligent Transportation Systems Magazine, 2017, 9(1): 90-96.
+
+[8-17] BSI. Operational Design Domain (ODD) Taxonomy for an Automated Driving System (ADS) — Specification: PAS 1883 [S]. London: BSI, 2020.
+
+[8-18] Schuurmans J, Clemmens A J, Dijkstra S, et al. Modeling of irrigation and drainage canals for controller design [J]. Journal of Irrigation and Drainage Engineering, 1999, 125(6): 338-344.
+
+[8-19] Negenborn R R, Maestre J M. Distributed model predictive control: An overview and roadmap of future research opportunities [J]. IEEE Control Systems Magazine, 2014, 34(4): 87-97.

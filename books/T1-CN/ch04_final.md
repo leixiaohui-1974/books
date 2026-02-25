@@ -734,3 +734,30 @@ $$Q_{i,k+1} = Q_{i,k} + \Delta t \cdot f(h_{i,k}, Q_{i,k}, g_{j,k})$$其中 A_i 
  - (c) 定义 ODD 五元组
  - (d) 讨论适合采用哪种降阶路径（空间离散化 vs 线性化降阶），并说明理由
 
+
+
+## 本章参考文献
+
+[4-1] Cunge J A, Holly F M, Verwey A. Practical Aspects of Computational River Hydraulics [M]. London: Pitman Publishing, 1980.
+
+[4-2] Litrico X, Fromion V. Modeling and Control of Hydrosystems [M]. London: Springer, 2009.
+
+[4-3] 孔令仲, 雷晓辉, 张召, 等. 多级串联明渠调水工程多目标水位预测控制模型研究 [J]. 水利学报, 2022, 53(4): 471-482.
+
+[4-4] 张峥, 雷晓辉, 李云辉, 等. 胶东调水工程智能控制系统设计与实施 [J]. 水利水电技术, 2023, 54(3): 78-89.
+
+[4-5] Van Overloop P J. Model Predictive Control on Open Water Systems [M]. Delft: IOS Press, 2006.
+
+[4-6] SAE International. Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles: J3016_202104 [S]. Warrendale, PA: SAE International, 2021.
+
+[4-7] 陈凯歌, 雷晓辉, 等. 长距离调水工程自主运行等级评估方法 [J]. 水利学报, 2023, 54(9): 1123-1135.
+
+[4-8] Malaterre P O, Rogers D C, Schuurmans J. Classification of canal control algorithms [J]. Journal of Irrigation and Drainage Engineering, 1998, 124(1): 3-10.
+
+[4-9] Schuurmans J, Clemmens A J, Dijkstra S, et al. Modeling of irrigation and drainage canals for controller design [J]. Journal of Irrigation and Drainage Engineering, 1999, 125(6): 338-344.
+
+[4-10] Preissmann A. Propagation des intumescences dans les canaux et rivières [C]//First Congress of the French Association for Computation. Grenoble, 1961: 433-442.
+
+[4-11] 雷晓辉, 王浩, 等. 南水北调中线工程智能调控理论与实践 [M]. 北京: 科学出版社, 2020.
+
+[4-12] Cantoni M, Weyer E, Li Y, et al. Control of large-scale irrigation networks [J]. Proceedings of the IEEE, 2007, 95(1): 75-91.
