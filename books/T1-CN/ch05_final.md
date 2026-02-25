@@ -145,6 +145,8 @@ $$\min \sum_{j=1}^P \|y_{k+j} - r\|_Q^2 + \rho \|\varepsilon_j\|^2, \quad \text{
 
 本章前几节重点介绍了单输入单输出（SISO）的 ID/IDZ 模型。然而，大型水网工程往往涉及多个相互耦合的控制回路——多座闸门共同调节多个渠段水位、梯级水电站各站协同控制、水库群联合调度——这些系统本质上是多输入多输出（MIMO）系统，需要专门的耦合建模方法。
 
+![图5-2：MIMO耦合系统拓扑](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_05_02_mimo_topology.png)
+
 ### 4.11b.1 MIMO 水系统的耦合特征
 
 **渠道并联/串联耦合**：在有多个调节闸的长距离渠道中，任意一座闸门的操作不仅影响相邻渠段，还通过水流传播影响远端渠段。上游闸门开度 $u_1$ 对下游第 $k$ 节渠段水位 $h_k$ 的影响需经过 $k$ 个水力传播过程的叠加。
@@ -221,6 +223,8 @@ MIMO 水系统的 MPC 设计面临两个主要挑战：（1）维数灾难——
 ### 5.3.2 递推最小二乘法（RLS）
 
 递推最小二乘（Recursive Least Squares, RLS）是工程中最常用的在线辨识方法，其核心优势是**不需要存储全部历史数据**，可在常数内存中滚动更新。
+
+![图5-3：在线参数辨识流程](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_05_03_online_identification.png)
 
 **标准形式**：将 ID 模型的离散化形式表达为线性回归形式：
 
@@ -407,6 +411,8 @@ $$\epsilon \approx \|\mathcal{G}_{yu}(j\omega)\| \cdot \|\Delta P(j\omega)\|_{\i
 4. **泄漏检测**：在状态估计框架中，引入泄漏节点作为附加状态，利用残差分析定位泄漏。
 
 ### 5.5.5 建模策略快速选择图
+
+![图5-6：面向不同水系统的建模策略决策树](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_05_06_decision_tree.png)
 
 ```
 水系统建模入口
