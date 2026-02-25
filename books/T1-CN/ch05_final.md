@@ -274,7 +274,7 @@ $$
 
 将模型参数扩展为状态变量，可将参数追踪问题纳入卡尔曼滤波框架，获得在统计意义上最优的参数估计，同时提供参数不确定性量化（协方差矩阵$P$）。
 
-**扩展状态向量**：$\tilde{x} = [x_{\text{水位\}}; \theta]$，动力学方程：
+**扩展状态向量**：$\tilde{x} = [x_{\text{水位}}; \theta]$，动力学方程：
 
 $$
 \tilde{x}(k+1) = \begin{bmatrix} f(x, \theta, u) \\ \theta + w_\theta \end{bmatrix}
@@ -362,7 +362,7 @@ $$
 
 <div align="center"><b>图5-5：鲁棒MPC约束收紧策略</b></div>
 
-**标称模型加不确定性界**的设计方法（Robust MPC）：设参数真值满足$\theta^* \in \Theta = {\theta : |\theta - \hat{\theta}| \leq \Delta\theta_{max}}$，设计 MPC 控制器使得在$\Theta$内所有参数取值下，系统均满足约束：
+**标称模型加不确定性界**的设计方法（Robust MPC）：设参数真值$\theta^*$满足不确定性界$|\theta^* - \hat{\theta}| \leq \Delta\theta_{max}$，设计 MPC 控制器使得在该不确定性范围内，系统均满足约束：
 
 $$
 y_{min} + \epsilon(\Delta\theta_{max}) \leq y \leq y_{max} - \epsilon(\Delta\theta_{max})
