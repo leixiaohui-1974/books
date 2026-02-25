@@ -88,6 +88,10 @@ CHS 将可控性从理论判据扩展为工程实施判据，提出"可布设、
 >
 > **与本章理论的联系**：本案例体现了§7.1.2 的可控性有效作用判据，特别是时效性和冗余性条件的重要性。
 
+![fig_06_05](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_05_controllability_criteria.png)
+
+> 图6-5：可控性有效作用判据三要素。存在性、时效性、冗余性三个判据必须同时满足，才能确保系统真正"调得动"。
+
 ### 5.1.3 可控性与 WNAL 等级的关系
 
 可控性是实现 WNAL 高等级自主运行的前提条件 [5-10]。不同 WNAL 等级对可控性的要求如下：
@@ -102,6 +106,10 @@ CHS 将可控性从理论判据扩展为工程实施判据，提出"可布设、
 | L5（完全自主） | 全场景可控 | 在所有 ODD 场景下均保持可控性 |
 
 **工程硬规则**：若关键控制目标不满足可控性有效作用判据，系统不得进入 WNAL L2 及以上等级运行。
+
+![fig_06_06](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_06_wnal_requirements.png)
+
+> 图6-6：WNAL等级与可控可观性要求对应关系。等级越高，对系统可控可观性的要求越严格。
 
 ![fig_06_01](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_01_controllability_observability.png)
 
@@ -216,6 +224,10 @@ CHS 将可观性从理论判据扩展为工程实施判据，提出"双通道观
 >
 > **与本章理论的联系**：本案例体现了§7.2.3 的传感器布局工程规则，基于可控可观性分析优化传感器配置。
 
+![fig_06_04](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_04_state_estimator.png)
+
+> 图6-4：状态估计器（卡尔曼滤波）原理框图。通过模型预测和测量更新两阶段，实现从部分测量推断全部状态。
+
 ---
 
 ## 5.3 传感器优化布局
@@ -261,6 +273,10 @@ $$
 - 使用商业求解器（如 Gurobi、CPLEX）求解
 - 优点：可得到全局最优解
 - 缺点：大规模问题求解时间长
+
+![fig_06_07](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_07_optimization_algorithm.png)
+
+> 图6-7：传感器布局优化贪婪算法流程。每次迭代选择可观性指标提升最大的候选位置，直到满足预算约束。
 
 **4. 信息论方法**
 - 基于互信息、信息熵等指标评估传感器信息增益 [5-9]
