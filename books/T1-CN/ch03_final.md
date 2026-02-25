@@ -449,9 +449,7 @@ MBD 框架与 CHS 八原理是互补关系：
 
 [3-1] SAE International. Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles: SAE J3016 [S]. Warrendale, PA: SAE, 2021.
 
-[3-2] 雷晓辉, 龙岩, 许慧敏, 等. 水系统控制论：提出背景、技术框架与研究范式 [J]. 南水北调与水利科技(中英文), 2025, 23(04): 761-769+904. DOI:10.13476/j.cnki.nsbdqk.2025.0077.
 
-[3-3] 雷晓辉, 苏承国, 龙岩, 等. 基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术 [J]. 南水北调与水利科技(中英文), 2025, 23(04): 778-786. DOI:10.13476/j.cnki.nsbdqk.2025.0079.
 
 [3-4] 钱学森. 工程控制论 [M]. 北京: 科学出版社, 1954.
 

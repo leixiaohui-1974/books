@@ -971,7 +971,6 @@ HydroOS 是 CHS 的软件实现，与 WNAL 等级存在明确映射关系：
 
 [11-22] Wooldridge M. An Introduction to MultiAgent Systems [M]. 2nd ed. Hoboken, NJ: Wiley, 2009.
 
-[11-23] 雷晓辉，苏承国，龙岩，等。基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术 [J]. 南水北调与水利科技 (中英文), 2025, 23(04): 778-786. DOI:11.13476/j.cnki.nsbdqk.2025.0079.
 
 [11-24] 叶尚君，张雷，姬辰，等。SCADA 与 MAS 融合架构在梯级水电站的应用 [J]. 水力发电学报，2025, 44(3): 45-56.
 
