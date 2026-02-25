@@ -234,7 +234,13 @@ CHS 将可观性从理论判据扩展为工程实施判据，提出"双通道观
 
 ### 6.3.1 传感器布局的优化目标
 
-传感器布局优化的目标是在满足可观性要求的前提下，最小化总成本（投资 + 运维）：$$\min \sum_{i=1}^{N} (C_{inv,i} + C_{maint,i}) \cdot z_i$$其中：
+传感器布局优化的目标是在满足可观性要求的前提下，最小化总成本（投资 + 运维）：
+
+$$
+\min \sum_{i=1}^{N} (C_{inv,i} + C_{maint,i}) \cdot z_i
+$$
+
+其中：
 -$N$：候选传感器位置总数
 -$C_{inv,i}$：位置$i$的传感器投资成本
 -$C_{maint,i}$：位置$i$的传感器年运维成本
@@ -399,7 +405,13 @@ CHS 将可观性从理论判据扩展为工程实施判据，提出"双通道观
 
 ### 6.5.1 可控性矩阵
 
-对于线性时不变系统$\dot{x} = Ax + Bu$，可控性矩阵定义为：$$\mathcal{C} = [B, AB, A^2B, \ldots, A^{n-1}B]$$其中$n$为状态维度。
+对于线性时不变系统$\dot{x} = Ax + Bu$，可控性矩阵定义为：
+
+$$
+\mathcal{C} = [B, AB, A^2B, \ldots, A^{n-1}B]
+$$
+
+其中$n$为状态维度。
 
 **Kalman 可控性判据**：系统完全可控当且仅当$\text{rank}(\mathcal{C}) = n$。
 
@@ -407,17 +419,55 @@ CHS 将可观性从理论判据扩展为工程实施判据，提出"双通道观
 -$\text{rank}(\mathcal{C}) = n$：所有状态都可通过控制输入影响
 -$\text{rank}(\mathcal{C}) < n$：存在不可控状态，需要增加执行器或重新设计
 
-**实例**：某双渠池系统$$A = \begin{bmatrix} -0.1 & 0 \\ 0.05 & -0.1 \end{bmatrix}, \quad B = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$$$$\mathcal{C} = [B, AB] = \begin{bmatrix} 1 & -0.1 \\ 0 & 0.05 \end{bmatrix}$$$\text{rank}(\mathcal{C}) = 2$，系统完全可控。
+**实例**：某双渠池系统
+
+$$
+A = \begin{bmatrix} -0.1 & 0 \\ 0.05 & -0.1 \end{bmatrix}, \quad B = \begin{bmatrix} 1 \\ 0 \end{bmatrix}
+$$
+
+$$
+
+$$
+
+\mathcal{C} = [B, AB] = \begin{bmatrix} 1 & -0.1 \\ 0 & 0.05 \end{bmatrix}
+
+$$
+
+$$
+
+\text{rank}(\mathcal{C}) = 2$，系统完全可控。
 
 ### 6.5.2 可观性矩阵
 
-对于线性时不变系统$\dot{x} = Ax + Bu$，$y = Cx$，可观性矩阵定义为：$$\mathcal{O} = \begin{bmatrix} C \\ CA \\ CA^2 \\ \vdots \\ CA^{n-1} \end{bmatrix}$$**Kalman 可观性判据**：系统完全可观当且仅当$\text{rank}(\mathcal{O}) = n$。
+对于线性时不变系统$\dot{x} = Ax + Bu$，$y = Cx$，可观性矩阵定义为：
+
+$$
+\mathcal{O} = \begin{bmatrix} C \\ CA \\ CA^2 \\ \vdots \\ CA^{n-1} \end{bmatrix}
+$$
+
+**Kalman 可观性判据**：系统完全可观当且仅当$\text{rank}(\mathcal{O}) = n$。
 
 **工程含义**：
 -$\text{rank}(\mathcal{O}) = n$：所有状态都可通过输出测量推断
 -$\text{rank}(\mathcal{O}) < n$：存在不可观状态，需要增加传感器或使用观测器
 
-**实例**：某双渠池系统$$A = \begin{bmatrix} -0.1 & 0 \\ 0.05 & -0.1 \end{bmatrix}, \quad C = \begin{bmatrix} 1 & 0 \end{bmatrix}$$$$\mathcal{O} = \begin{bmatrix} C \\ CA \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ -0.1 & 0 \end{bmatrix}$$$\text{rank}(\mathcal{O}) = 1 < 2$，系统不完全可观（第二个渠池水位不可观）。
+**实例**：某双渠池系统
+
+$$
+A = \begin{bmatrix} -0.1 & 0 \\ 0.05 & -0.1 \end{bmatrix}, \quad C = \begin{bmatrix} 1 & 0 \end{bmatrix}
+$$
+
+$$
+
+$$
+
+\mathcal{O} = \begin{bmatrix} C \\ CA \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ -0.1 & 0 \end{bmatrix}
+
+$$
+
+$$
+
+\text{rank}(\mathcal{O}) = 1 < 2$，系统不完全可观（第二个渠池水位不可观）。
 
 **解决方案**：在第二个渠池增加水位传感器，或设计状态观测器。
 
@@ -439,9 +489,21 @@ CHS 将可观性从理论判据扩展为工程实施判据，提出"双通道观
 
 Kalman 判据给出的是"全有或全无"的二值判断，工程中更需要**程度**信息：哪些状态最容易控制？哪些状态最难观测？格拉姆矩阵提供了定量答案。
 
-**可控性格拉姆矩阵**（Controllability Gramian）定义为：$$W_c = \int_0^T e^{At} B B^\top e^{A^\top t} \, dt$$<div align="right">(5-3)</div>$W_c$的特征值分布反映各方向上控制能力的强弱：最小特征值$\lambda_{\min}(W_c)$对应最难控制的方向，$\lambda_{\min}(W_c) \to 0$意味着接近不可控。
+**可控性格拉姆矩阵**（Controllability Gramian）定义为：
 
-**可观性格拉姆矩阵**（Observability Gramian）定义为：$$W_o = \int_0^T e^{A^\top t} C^\top C e^{At} \, dt$$<div align="right">(5-4)</div>
+$$
+W_c = \int_0^T e^{At} B B^\top e^{A^\top t} \, dt
+$$
+
+<div align="right">(5-3)</div>$W_c$的特征值分布反映各方向上控制能力的强弱：最小特征值$\lambda_{\min}(W_c)$对应最难控制的方向，$\lambda_{\min}(W_c) \to 0$意味着接近不可控。
+
+**可观性格拉姆矩阵**（Observability Gramian）定义为：
+
+$$
+W_o = \int_0^T e^{A^\top t} C^\top C e^{At} \, dt
+$$
+
+<div align="right">(5-4)</div>
 
 传感器布局优化问题的核心即选取测量矩阵$C$（等价于选择安装哪些传感器），使得$W_o$的最小特征值最大化（即 E 最优设计），或使$\ln \det(W_o)$最大化（即 D 最优设计）。
 
@@ -464,7 +526,13 @@ Kalman 判据给出的是"全有或全无"的二值判断，工程中更需要**
 
 当传感器数量少于状态维度时（这是水利工程的常态），状态观测器是弥合"可观"与"可测"差距的标准工具 [6-5]。
 
-**基本形式**（连续时间）：$$\dot{\hat{x}} = A\hat{x} + Bu + L(y - C\hat{x})$$<div align="right">(5-5)</div>
+**基本形式**（连续时间）：
+
+$$
+\dot{\hat{x}} = A\hat{x} + Bu + L(y - C\hat{x})
+$$
+
+<div align="right">(5-5)</div>
 
 其中$\hat{x}$为状态估计值，$L$为观测器增益矩阵，$(y - C\hat{x})$为测量残差（创新量）。
 
@@ -504,12 +572,24 @@ $$
 
 状态维度 $n = 40$ （每渠池：目标断面水位 + 流量，共 $2 \times 20$ ），输入维度 $m = 36$ （节制闸 20 + 分水闸 15 + 上游进水闸 1），候选传感器输出维度 $p = 62$ （均匀布设候选点）。
 =======
-基于 IDZ 传递函数模型 [5-6]，建立线性状态空间模型：$$x_{k+1} = A_d x_k + B_d u_k, \quad y_k = C_s x_k + v_k$$状态维度$n = 40$（每渠池：目标断面水位 + 流量，共$2 \times 20$），输入维度$m = 36$（节制闸 20 + 分水闸 15 + 上游进水闸 1），候选传感器输出维度$p = 62$（均匀布设候选点）。
+基于 IDZ 传递函数模型 [5-6]，建立线性状态空间模型：
+
+$$
+x_{k+1} = A_d x_k + B_d u_k, \quad y_k = C_s x_k + v_k
+$$
+
+状态维度$n = 40$（每渠池：目标断面水位 + 流量，共$2 \times 20$），输入维度$m = 36$（节制闸 20 + 分水闸 15 + 上游进水闸 1），候选传感器输出维度$p = 62$（均匀布设候选点）。
 >>>>>>> e95dabd (fix: 全书LaTeX公式格式统一修正)
 
 **步骤二：计算可观性格拉姆矩阵**
 
-采用离散时域有限和公式，计算观测时域$T = 6$小时内的格拉姆矩阵：$$W_o = \sum_{k=0}^{N_T} (A_d^k)^\top C_s^\top C_s A_d^k$$其中$N_T = T / \Delta t = 6h / 5min = 72$，矩阵维度为$40 \times 40$。
+采用离散时域有限和公式，计算观测时域$T = 6$小时内的格拉姆矩阵：
+
+$$
+W_o = \sum_{k=0}^{N_T} (A_d^k)^\top C_s^\top C_s A_d^k
+$$
+
+其中$N_T = T / \Delta t = 6h / 5min = 72$，矩阵维度为$40 \times 40$。
 
 将$W_o$的特征值从小到大排序，最小特征值对应\"最难观测\"的状态方向。原方案（40 个均匀测站）的$\lambda_{\min}(W_o) = 0.012$；设计目标为$\lambda_{\min}(W_o) \geq 0.040$。
 
@@ -692,7 +772,13 @@ $$
 
 **计算可观性 Gramian 的稀疏算法**：
 
-离散时间 Gramian$W_o = \sum_{k=0}^N (A^k)^\top C^\top C A^k$可通过 Lyapunov 方程求解：$$A^\top W_o A - W_o + C^\top C = 0$$对于稀疏矩阵$A$，利用 LAPACK 中的结构化 Sylvester 求解器（如 SB04QD 子程序），计算时间从稠密矩阵的$O(n^3)$降至$O(n^{1.5})$至$O(n^2)$（取决于稀疏结构）。
+离散时间 Gramian$W_o = \sum_{k=0}^N (A^k)^\top C^\top C A^k$可通过 Lyapunov 方程求解：
+
+$$
+A^\top W_o A - W_o + C^\top C = 0
+$$
+
+对于稀疏矩阵$A$，利用 LAPACK 中的结构化 Sylvester 求解器（如 SB04QD 子程序），计算时间从稠密矩阵的$O(n^3)$降至$O(n^{1.5})$至$O(n^2)$（取决于稀疏结构）。
 
 **渠道系统的特殊结构**：串联渠道的$A$矩阵为下三角带状矩阵（上游影响下游，反之不成立），其 Gramian 具有解析递推形式，可逐渠池$O(n)$时间内完成计算。
 
