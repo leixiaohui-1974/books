@@ -304,6 +304,12 @@ $$
 | 8–12 cm | 告警 | 切换至保守控制模式（保守约束） | 人工介入，模型核查 |
 | > 12 cm | 失效 | WNAL 降级至 L1（人工接管） | 启动紧急重辨识程序 |
 
+**自适应MPC完整流程**：综合上述在线辨识、精度监控和模型切换机制，形成自适应MPC的完整算法框图（见图5-8）。该框图展示了从数据采集、参数辨识、模型验证到控制器更新的闭环流程，是CHS原理六（认知增强）和原理八（自主演进）在建模层面的具体实现。
+
+![自适应MPC框图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/H/fig_05_08_adaptive.png)
+
+<div align="center"><b>图5-8：自适应MPC完整算法框图</b></div>
+
 ---
 
 ## 5.4 建模误差的传播与不确定性量化
@@ -626,10 +632,6 @@ $$
 ---
 
 ## 附录 5-A 与在环验证和工程案例的联系
-
-![自适应MPC框图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/H/fig_05_08_adaptive.png)
-
-<div align="center"><b>图5-8：自适应MPC完整算法框图</b></div>
 
 本章的高级建模技术在第十一章"在环验证（xIL）"中得到全面应用：
 
