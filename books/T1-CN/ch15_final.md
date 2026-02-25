@@ -122,11 +122,15 @@
 
 **预测模型**：采用一维明渠非恒定流圣维南方程组作为水动力内核，描述渠道水位和流量的时空演变过程。连续方程为：
 
-$$B\frac{\partial Z}{\partial t}+\frac{\partial Q}{\partial x}=q$$
+$$
+B\frac{\partial Z}{\partial t}+\frac{\partial Q}{\partial x}=q
+$$
 
 动量方程为：
 
-$$\frac{\partial Q}{\partial t}+\frac{\partial}{\partial x}\left(\frac{\alpha Q^2}{A}\right)+gA\frac{\partial Z}{\partial x}+gA S_f=0$$
+$$
+\frac{\partial Q}{\partial t}+\frac{\partial}{\partial x}\left(\frac{\alpha Q^2}{A}\right)+gA\frac{\partial Z}{\partial x}+gA S_f=0
+$$
 
 式中， $B $ 为过水断面表面宽度（m）， $ Z $ 为水位（m）， $ Q $ 为流量（$\text{m}^3$/s）， $ x $ 为沿主流向距离（m）， $ q $ 为旁侧入流（$\text{m}^3$/s）， $ A $ 为过水面积($\text{m}^2$)， $ g $ 为重力加速度， $ S_f $ 为摩阻比降（通过曼宁公式计算， $ S_f = n_c^2 Q^2 / (A^2 R^{4/3})$ ，糙率系数 $ n_c$ 为需率定参数）。采用收敛速度快、稳定性好的Preissmann四点带权隐式差分格式对方程组进行离散求解。
 
@@ -136,7 +140,9 @@ $$\frac{\partial Q}{\partial t}+\frac{\partial}{\partial x}\left(\frac{\alpha Q^
 
 **闸门开度计算**：在确定目标过闸流量后，通过闸门过流公式将流量目标转换为开度指令：
 
-$$Q = m \cdot b \cdot e \cdot \sqrt{2g(H_0 - H_2)}$$
+$$
+Q = m \cdot b \cdot e \cdot \sqrt{2g(H_0 - H_2)}
+$$
 
 式中， $Q $ 为过闸流量（$\text{m}^3$/s）， $ m $ 为闸门综合流量系数， $ b $ 为过水断面宽度（m）， $ e $ 为闸门开度（m）， $ H_0$ 为闸前水深（m）， $ H_2$ 为闸后水深（m，自由出流时设为0）。闸门流量系数 $ m $ 是需通过稳态历史数据持续率定的重要参数，实际工程中不同流量区间的 $ m$ 值存在差异，动态率定是提高开度计算精度的关键。
 
@@ -152,7 +158,9 @@ $$Q = m \cdot b \cdot e \cdot \sqrt{2g(H_0 - H_2)}$$
 
 差分进化算法是一种基于种群的随机全局优化算法，通过变异、交叉和选择三个操作迭代进化。其核心操作是差分变异：对于每个个体 $\mathbf{x}_i $ ，从种群中随机选取三个不同个体 $\mathbf{x}_{r1}$ 、 $\mathbf{x}_{r2}$ 、 $\mathbf{x}_{r3}$ ，产生变异向量：
 
-$$\mathbf{v}_i = \mathbf{x}_{r1} + F(\mathbf{x}_{r2} - \mathbf{x}_{r3})$$
+$$
+\mathbf{v}_i = \mathbf{x}_{r1} + F(\mathbf{x}_{r2} - \mathbf{x}_{r3})
+$$
 
 式中， $F \in [0, 2]$ 为缩放因子，控制变异幅度。变异向量与原个体进行二项交叉产生试验向量，若试验向量的目标函数值更优则替代原个体，否则保留原个体，形成"强者生存"的选择机制。
 
