@@ -534,6 +534,8 @@ $$
 W_o = \sum_{k=0}^{N} A_d^{k\top} C^\top C A_d^k
 $$
 
+<div align="right">(6-10)</div>
+
 3. 对所有候选传感器组合（或采用贪婪算法逐步选择）计算 $\lambda_\{\min\}(W_o)$；
 
 4. 选择使 $\lambda_\{\min\}(W_o)$ 最大的传感器子集作为优化方案。
@@ -552,7 +554,7 @@ $$
 \dot{\hat{x}} = A\hat{x} + Bu + L(y - C\hat{x})
 $$
 
-<div align="right">(6-10)</div>
+<div align="right">(6-11)</div>
 
 <div align="right">(5-5)</div>
 
@@ -593,7 +595,7 @@ $$
 x_{k+1} = A_d x_k + B_d u_k, \quad y_k = C_s x_k + v_k
 $$
 
-<div align="right">(6-11)</div>
+<div align="right">(6-12)</div>
 
 状态维度 $n = 40$ （每渠池：目标断面水位 + 流量，共 $2 \times 20$ ），输入维度 $m = 36$ （节制闸 20 + 分水闸 15 + 上游进水闸 1），候选传感器输出维度 $p = 62$ （均匀布设候选点）。
 =======
@@ -603,7 +605,7 @@ $$
 x_{k+1} = A_d x_k + B_d u_k, \quad y_k = C_s x_k + v_k
 $$
 
-<div align="right">(6-12)</div>
+<div align="right">(6-13)</div>
 
 状态维度$n = 40$（每渠池：目标断面水位 + 流量，共$2 \times 20$），输入维度$m = 36$（节制闸 20 + 分水闸 15 + 上游进水闸 1），候选传感器输出维度$p = 62$（均匀布设候选点）。
 >>>>>>> e95dabd (fix: 全书LaTeX公式格式统一修正)
@@ -616,7 +618,7 @@ $$
 W_o = \sum_{k=0}^{N_T} (A_d^k)^\top C_s^\top C_s A_d^k
 $$
 
-<div align="right">(6-13)</div>
+<div align="right">(6-14)</div>
 
 其中$N_T = T / \Delta t = 6h / 5min = 72$，矩阵维度为$40 \times 40$。
 
@@ -807,13 +809,15 @@ $$
 W_o = \sum_{k=0}^{N} (A^k)^\top C^\top C A^k
 $$
 
+<div align="right">(6-15)</div>
+
 可通过 Lyapunov 方程求解：
 
 $$
 A^\top W_o A - W_o + C^\top C = 0
 $$
 
-<div align="right">(6-14)</div>
+<div align="right">(6-16)</div>
 
 对于稀疏矩阵$A$，利用 LAPACK 中的结构化 Sylvester 求解器（如 SB04QD 子程序），计算时间从稠密矩阵的$O(n^3)$降至$O(n^\{1.5\})$至$O(n^2)$（取决于稀疏结构）。
 
@@ -830,6 +834,8 @@ $$
 $$
 \Sigma = \frac{1}{T}\sum_{k} x(k)x(k)^\top
 $$
+
+<div align="right">(6-17)</div>
 
 2. 对 $\Sigma$ 做特征值分解，选取累积解释方差 > 90% 的前 $r$ 个主成分，形成投影矩阵 $V_r \in \mathbb\{R\}^\{n \times r\}$；
 
