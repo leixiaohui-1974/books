@@ -240,6 +240,8 @@ $$
 \min \sum_{i=1}^{N} (C_{inv,i} + C_{maint,i}) \cdot z_i
 $$
 
+<div align="right">(6-1)</div>
+
 其中：
 -$N$：候选传感器位置总数
 -$C_\{inv,i\}$：位置$i$的传感器投资成本
@@ -411,6 +413,8 @@ $$
 \mathcal{C} = [B, AB, A^2B, \ldots, A^{n-1}B]
 $$
 
+<div align="right">(6-2)</div>
+
 其中$n$为状态维度。
 
 **Kalman 可控性判据**：系统完全可控当且仅当$\text\{rank\}(\mathcal\{C\}) = n$。
@@ -425,11 +429,15 @@ $$
 A = \begin{bmatrix} -0.1 & 0 \\ 0.05 & -0.1 \end{bmatrix}, \quad B = \begin{bmatrix} 1 \\ 0 \end{bmatrix}
 $$
 
+<div align="right">(6-3)</div>
+
 $$
 
 \mathcal{C} = [B, AB] = \begin{bmatrix} 1 & -0.1 \\ 0 & 0.05 \end{bmatrix}
 
 $$
+
+<div align="right">(6-4)</div>
 
 \text{rank}(\mathcal{C}) = 2$，系统完全可控。
 
@@ -440,6 +448,8 @@ $$
 $$
 \mathcal{O} = \begin{bmatrix} C \\ CA \\ CA^2 \\ \vdots \\ CA^{n-1} \end{bmatrix}
 $$
+
+<div align="right">(6-5)</div>
 
 **Kalman 可观性判据**：系统完全可观当且仅当$\text\{rank\}(\mathcal\{O\}) = n$。
 
@@ -453,11 +463,15 @@ $$
 A = \begin{bmatrix} -0.1 & 0 \\ 0.05 & -0.1 \end{bmatrix}, \quad C = \begin{bmatrix} 1 & 0 \end{bmatrix}
 $$
 
+<div align="right">(6-6)</div>
+
 $$
 
 \mathcal{O} = \begin{bmatrix} C \\ CA \end{bmatrix} = \begin{bmatrix} 1 & 0 \\ -0.1 & 0 \end{bmatrix}
 
 $$
+
+<div align="right">(6-7)</div>
 
 \text{rank}(\mathcal{O}) = 1 < 2$，系统不完全可观（第二个渠池水位不可观）。
 
@@ -487,6 +501,8 @@ $$
 W_c = \int_0^T e^{At} B B^\top e^{A^\top t} \, dt
 $$
 
+<div align="right">(6-8)</div>
+
 <div align="right">(5-3)</div>
 
 $W_c$的特征值分布反映各方向上控制能力的强弱：最小特征值$\lambda_\{\min\}(W_c)$对应最难控制的方向，$\lambda_\{\min\}(W_c) \to 0$意味着接近不可控。
@@ -496,6 +512,8 @@ $W_c$的特征值分布反映各方向上控制能力的强弱：最小特征值
 $$
 W_o = \int_0^T e^{A^\top t} C^\top C e^{At} \, dt
 $$
+
+<div align="right">(6-9)</div>
 
 <div align="right">(5-4)</div>
 
@@ -526,6 +544,8 @@ $$
 $$
 \dot{\hat{x}} = A\hat{x} + Bu + L(y - C\hat{x})
 $$
+
+<div align="right">(6-10)</div>
 
 <div align="right">(5-5)</div>
 
@@ -566,6 +586,8 @@ $$
 x_{k+1} = A_d x_k + B_d u_k, \quad y_k = C_s x_k + v_k
 $$
 
+<div align="right">(6-11)</div>
+
 状态维度 $n = 40$ （每渠池：目标断面水位 + 流量，共 $2 \times 20$ ），输入维度 $m = 36$ （节制闸 20 + 分水闸 15 + 上游进水闸 1），候选传感器输出维度 $p = 62$ （均匀布设候选点）。
 =======
 基于 IDZ 传递函数模型 [5-6]，建立线性状态空间模型：
@@ -573,6 +595,8 @@ $$
 $$
 x_{k+1} = A_d x_k + B_d u_k, \quad y_k = C_s x_k + v_k
 $$
+
+<div align="right">(6-12)</div>
 
 状态维度$n = 40$（每渠池：目标断面水位 + 流量，共$2 \times 20$），输入维度$m = 36$（节制闸 20 + 分水闸 15 + 上游进水闸 1），候选传感器输出维度$p = 62$（均匀布设候选点）。
 >>>>>>> e95dabd (fix: 全书LaTeX公式格式统一修正)
@@ -584,6 +608,8 @@ $$
 $$
 W_o = \sum_{k=0}^{N_T} (A_d^k)^\top C_s^\top C_s A_d^k
 $$
+
+<div align="right">(6-13)</div>
 
 其中$N_T = T / \Delta t = 6h / 5min = 72$，矩阵维度为$40 \times 40$。
 
@@ -773,6 +799,8 @@ $$
 $$
 A^\top W_o A - W_o + C^\top C = 0
 $$
+
+<div align="right">(6-14)</div>
 
 对于稀疏矩阵$A$，利用 LAPACK 中的结构化 Sylvester 求解器（如 SB04QD 子程序），计算时间从稠密矩阵的$O(n^3)$降至$O(n^\{1.5\})$至$O(n^2)$（取决于稀疏结构）。
 
