@@ -579,30 +579,3 @@ MIMO 水系统的 MPC 设计面临两个主要挑战：（1）维数灾难——
 2. **在线辨识与控制协同**：设计某渠池的自适应 MPC 方案，要求：(a) 使用 RLS 在线辨识 IDZ 模型参数；(b) 平滑滤波避免参数突变导致控制抖动；(c) 设计参数更新触发条件（何时认为模型漂移需要重新辨识）。给出完整算法框图和关键参数取值建议。
 
 3. **鲁棒 MPC 设计**：某水库模型参数$\theta$的真值范围为$\theta \in [\theta_{min}, \theta_{max}]$。请设计鲁棒 MPC 约束收紧策略，确保在参数不确定性范围内，水库水位始终满足$h_{min} + \Delta h_{safe} \leq h \leq h_{max} - \Delta h_{safe}$。推导约束收紧量$\Delta h_{safe}$与参数不确定性的关系。
-
-
-## 本章参考文献
-
-[5-1] Litrico X, Fromion V. Modeling and Control of Hydrosystems [M]. London: Springer, 2009.
-
-[5-2] Simon D. Optimal State Estimation: Kalman, H∞, and Nonlinear Approaches [M]. Hoboken, NJ: John Wiley & Sons, 2006.
-
-[5-3] Camacho E F, Bordons C. Model Predictive Control [M]. 2nd ed. London: Springer, 2007.
-
-[5-4] Mayne D Q, Rawlings J B, Rao C V, et al. Constrained model predictive control: Stability and optimality [J]. Automatica, 2000, 36(6): 789-814.
-
-[5-5] Ljung L. System Identification: Theory for the User [M]. 2nd ed. Upper Saddle River, NJ: Prentice Hall, 1999.
-
-[5-6] Åström K J, Wittenmark B. Adaptive Control [M]. 2nd ed. Mineola, NY: Dover Publications, 2008.
-
-[5-7] 雷晓辉, 王浩, 等. 南水北调中线工程智能调控理论与实践 [M]. 北京: 科学出版社, 2020.
-
-[5-8] Van Overloop P J. Model Predictive Control on Open Water Systems [M]. Delft: IOS Press, 2006.
-
-[5-9] Negenborn R R, Maestre J M. Distributed model predictive control: An overview and roadmap of future research opportunities [J]. IEEE Control Systems Magazine, 2014, 34(4): 87-97.
-
-[5-10] Schuurmans J, Bosgra O H, Brouwer R. Open-channel flow model approximation for controller design [J]. Applied Mathematical Modelling, 1995, 19(9): 525-530.
-
-[5-11] Åström K J, Hägglund T. PID Controllers: Theory, Design, and Tuning [M]. 2nd ed. Research Triangle Park, NC: Instrument Society of America, 1995.
-
-[5-12] Bemporad A, Morari M. Robust model predictive control: A survey [J]. Robustness in Identification and Control. London: Springer, 1999: 207-226.
