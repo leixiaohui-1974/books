@@ -122,7 +122,7 @@ L5可达性
 
 本节逐级定义WNAL六个等级。每个等级从四个维度描述：技术能力、人的角色、ODD要求、与CHS八原理的对应关系。
 
-![图9-1: WNAL阶梯图](H/fig_09_01_wnal_ladder.png)
+![图9-1: WNAL阶梯图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/H/fig_09_01_wnal_ladder.png)
 
 图9-1: WNAL L0-L5阶梯图
 
@@ -482,7 +482,7 @@ MRC的设计必须满足三个要求：可预演——在SIL/HIL环境中验证M
 
 从任何一个等级跃迁到下一个等级（Lk→Lk+1），必须同时通过四类门槛。这好比申请飞行员执照——你不仅需要通过理论考试（技术门槛）和模拟器考核（验证门槛），还需要具备有效的体检证明和航空法规知识（治理门槛），最后还要完成一定小时数的实际飞行（运行门槛）。任何一个门槛未达标，不应宣布升级。
 
-![图9-2: 四重门槛](H/fig_09_02_four_gates.png)
+![图9-2: 四重门槛](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/H/fig_09_02_four_gates.png)
 
 图9-2: WNAL等级跃迁四重门槛
 
@@ -676,7 +676,7 @@ ODD边界是否文档化且有越界处理流程？
 
 WNAL分级不是独立于CHS理论框架的孤立产物——每个等级的能力要求都根植于第十一章定义的八个基本原理。图9-3的映射图清晰展示了这种对应关系。
 
-![图9-3: 八原理映射](H/fig_09_03_principles_wnal_mapping.png)
+![图9-3: 八原理映射](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/H/fig_09_03_principles_wnal_mapping.png)
 
 图9-3: 八原理与WNAL等级映射图
 

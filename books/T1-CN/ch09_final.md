@@ -55,7 +55,7 @@ v1 2026-02-23: 从 ch03/ch06 提取安全包络和在环验证内容，新增三
 
 ### 9.2.1 三区定义与切换逻辑
 
-![图10-1: 安全包络三区](H/fig_10_01_safety_envelope.png)
+![图10-1: 安全包络三区](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/H/fig_10_01_safety_envelope.png)
 
 > 图10-1: 安全包络红黄绿三区示意图
 {描述：水位时间序列曲线穿越三色区间，附区间切换逻辑流程图。}
@@ -141,7 +141,7 @@ v1 2026-02-23: 从 ch03/ch06 提取安全包络和在环验证内容，新增三
 
 ### 9.3.2 三层验证的目标与输出
 
-![图10-2: xIL深度与WNAL对应](H/fig_10_02_xil_wnal.png)
+![图10-2: xIL深度与WNAL对应](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/H/fig_10_02_xil_wnal.png)
 
 > 图10-2: 在环验证深度与 WNAL 等级对应图
 {描述：MIL/SIL/HIL 三行×L0-L5 六列矩阵，深色表示必须，浅色表示推荐，L2→L3 红色门槛线。}
