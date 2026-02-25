@@ -466,3 +466,6 @@ MBD 框架与 CHS 八原理是互补关系：
 [3-10] Russell S, Norvig P. Artificial Intelligence: A Modern Approach [M]. 4th ed. Hoboken, NJ: Pearson, 2021.
 
 [3-11] Astrom K J, Murray R M. Feedback Systems: An Introduction for Scientists and Engineers [M]. 2nd ed. Princeton: Princeton University Press, 2021.
+
+
+[3-X] 雷晓辉, 龙岩, 许慧敏, 苏承国. 水系统控制论：提出背景、技术框架与研究范式 [J]. 南水北调与水利科技（中英文）, 2025, 23(04): 761-769+904. DOI: 10.13476/j.cnki.nsbdqk.2025.0077.
