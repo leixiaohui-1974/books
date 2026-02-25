@@ -420,8 +420,8 @@ $$
 **Kalman 可控性判据**：系统完全可控当且仅当$\text{rank}(\mathcal{C}) = n$。
 
 **工程含义**：
--$\text{rank}(\mathcal{C}) = n$：所有状态都可通过控制输入影响
--$\text{rank}(\mathcal{C}) < n$：存在不可控状态，需要增加执行器或重新设计
+- $\text{rank}(\mathcal{C}) = n$：所有状态都可通过控制输入影响
+- $\text{rank}(\mathcal{C}) < n$：存在不可控状态，需要增加执行器或重新设计
 
 **实例**：某双渠池系统
 
@@ -454,8 +454,8 @@ $$
 **Kalman 可观性判据**：系统完全可观当且仅当$\text{rank}(\mathcal{O}) = n$。
 
 **工程含义**：
--$\text{rank}(\mathcal{O}) = n$：所有状态都可通过输出测量推断
--$\text{rank}(\mathcal{O}) < n$：存在不可观状态，需要增加传感器或使用观测器
+- $\text{rank}(\mathcal{O}) = n$：所有状态都可通过输出测量推断
+- $\text{rank}(\mathcal{O}) < n$：存在不可观状态，需要增加传感器或使用观测器
 
 **实例**：某双渠池系统
 
