@@ -88,7 +88,7 @@ CHS 将可控性从理论判据扩展为工程实施判据，提出"可布设、
 >
 > **与本章理论的联系**：本案例体现了§7.1.2 的可控性有效作用判据，特别是时效性和冗余性条件的重要性。
 
-![fig_06_01](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_01_controllability_criteria.png)
+![fig_06_01](H/fig_06_01_controllability_criteria.png)
 
 > 图6-1：可控性有效作用判据三要素。存在性、时效性、冗余性三个判据必须同时满足，才能确保系统真正"调得动"。
 
@@ -107,11 +107,11 @@ CHS 将可控性从理论判据扩展为工程实施判据，提出"可布设、
 
 **工程硬规则**：若关键控制目标不满足可控性有效作用判据，系统不得进入 WNAL L2 及以上等级运行。
 
-![fig_06_02](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_02_wnal_requirements.png)
+![fig_06_02](H/fig_06_02_wnal_requirements.png)
 
 > 图6-2：WNAL等级与可控可观性要求对应关系。等级越高，对系统可控可观性的要求越严格。
 
-![fig_06_03](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_03_controllability_observability.png)
+![fig_06_03](H/fig_06_03_controllability_observability.png)
 
 > 图6-3：可控性与可观性示意图。左侧展示可控性三要素（存在性、时效性、冗余性），右侧展示可观性要求（覆盖关键断面、信息独立、拓扑盲端全覆盖）。
 
@@ -224,7 +224,7 @@ CHS 将可观性从理论判据扩展为工程实施判据，提出"双通道观
 >
 > **与本章理论的联系**：本案例体现了§7.2.3 的传感器布局工程规则，基于可控可观性分析优化传感器配置。
 
-![fig_06_04](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_04_state_estimator.png)
+![fig_06_04](H/fig_06_04_state_estimator.png)
 
 > 图6-4：状态估计器（卡尔曼滤波）原理框图。通过模型预测和测量更新两阶段，实现从部分测量推断全部状态。
 
@@ -268,7 +268,7 @@ CHS 将可观性从理论判据扩展为工程实施判据，提出"双通道观
 - 优点：可得到全局最优解
 - 缺点：大规模问题求解时间长
 
-![fig_06_05](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_05_optimization_algorithm.png)
+![fig_06_05](H/fig_06_05_optimization_algorithm.png)
 
 > 图6-5：传感器布局优化贪婪算法流程。每次迭代选择可观性指标提升最大的候选位置，直到满足预算约束。
 
@@ -445,7 +445,7 @@ Kalman 判据给出的是"全有或全无"的二值判断，工程中更需要**
 
 传感器布局优化问题的核心即选取测量矩阵$C$（等价于选择安装哪些传感器），使得$W_o$的最小特征值最大化（即 E 最优设计），或使$\ln \det(W_o)$最大化（即 D 最优设计）。
 
-![fig_06_06](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_06_gramian_eigenvalues.png)
+![fig_06_06](H/fig_06_06_gramian_eigenvalues.png)
 
 > 图6-6：可控性格拉姆矩阵特征值分布。椭球轴长度反映不同方向的控制能力，最小特征值 λ_min 决定系统最难控制的方向。
 
@@ -522,7 +522,7 @@ $$
 
 ### 6.6.3 优化结果
 
-![fig_06_07](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_07_sensor_optimization.png)
+![fig_06_07](H/fig_06_07_sensor_optimization.png)
 
 > 图6-7：传感器布局优化前后对比。优化前均匀覆盖导致末梢盲区多，优化后拓扑驱动实现末梢全覆盖，可观性指标提升142%。
 
