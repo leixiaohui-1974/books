@@ -556,8 +556,13 @@ $$
 
 <div align="right">(6-11)</div>
 
-<div align="right">(5-5)</div>
+观测器设计的基本思路是构造一个动态系统，输入为测量值$y$和控制输入$u$，输出为状态估计$\hat{x}$：
 
+$$
+\dot{\hat{x}} = A\hat{x} + Bu + L(y - C\hat{x})
+$$
+
+<div align="right">(6-12)</div>
 
 其中$\hat{x}$为状态估计值，$L$为观测器增益矩阵，$(y - C\hat{x})$为测量残差（创新量）。
 
