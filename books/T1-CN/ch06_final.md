@@ -103,6 +103,10 @@ CHS 将可控性从理论判据扩展为工程实施判据，提出"可布设、
 
 **工程硬规则**：若关键控制目标不满足可控性有效作用判据，系统不得进入 WNAL L2 及以上等级运行。
 
+![fig_06_01](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_01_controllability_observability.png)
+
+> 图6-1：可控性与可观性示意图。左侧展示可控性三要素（存在性、时效性、冗余性），右侧展示可观性要求（覆盖关键断面、信息独立、拓扑盲端全覆盖）。
+
 ---
 
 ## 5.2 可观性的工程含义
@@ -468,6 +472,10 @@ $$
 
 传感器布局优化问题的核心即选取测量矩阵 $C$ （等价于选择安装哪些传感器），使得 $W_o$ 的最小特征值最大化（即 E 最优设计），或使 $\ln \det(W_o)$ 最大化（即 D 最优设计）。
 
+![fig_06_02](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_02_gramian_eigenvalues.png)
+
+> 图6-2：可控性格拉姆矩阵特征值分布。椭球轴长度反映不同方向的控制能力，最小特征值 λ_min 决定系统最难控制的方向。
+
 **工程计算步骤**：
 
 1. 建立离散时间状态空间模型 $x_{k+1} = A_d x_k + B_d u_k$ ， $y_k = C x_k$ ；
@@ -547,6 +555,10 @@ $$
 3. 覆盖验证：确认所有渠池的主要可观性指标满足要求后停止。
 
 ### 5.6.3 优化结果
+
+![fig_06_03](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_06_03_sensor_optimization.png)
+
+> 图6-3：传感器布局优化前后对比。优化前均匀覆盖导致末梢盲区多，优化后拓扑驱动实现末梢全覆盖，可观性指标提升142%。
 
 **传感器布局变化**：
 
