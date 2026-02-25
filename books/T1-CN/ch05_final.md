@@ -335,6 +335,8 @@ $$\frac{\partial y_{cl}}{\partial \tau} \approx -u(t-\tau) \cdot \frac{1}{A_s}$$
 
 ### 5.4.3 鲁棒性余量设计
 
+![图5-5：鲁棒MPC约束收紧策略](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_05_05_constraint_tightening.png)
+
 **标称模型加不确定性界**的设计方法（Robust MPC）：设参数真值满足 $\theta^* \in \Theta = \{\theta : |\theta - \hat{\theta}| \leq \Delta\theta_{max}\}$ ，设计 MPC 控制器使得在 $\Theta$ 内所有参数取值下，系统均满足约束：
 
 $$y_{min} + \epsilon(\Delta\theta_{max}) \leq y \leq y_{max} - \epsilon(\Delta\theta_{max})$$
@@ -592,6 +594,8 @@ $$
 ---
 
 ## 附录 5-A 与在环验证和工程案例的联系
+
+![图5-8：自适应MPC完整算法框图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_05_08_adaptive_mpc.png)
 
 本章的高级建模技术在第十一章"在环验证（xIL）"中得到全面应用：
 

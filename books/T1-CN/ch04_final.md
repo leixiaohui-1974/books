@@ -77,6 +77,8 @@ $$
 
 **案例 4-1：某水库状态空间建模**
 
+![图4-2：水库状态空间模型示意图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/figure-prompts/generated/fig_04_02_reservoir_state_space.png)
+
 **工程背景**：某大型水库,总库容 13 亿立方米，承担防洪、供水、发电任务。
 
 **问题**：如何确定状态变量？
