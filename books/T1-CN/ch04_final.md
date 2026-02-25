@@ -468,19 +468,23 @@ $$
 
 ID/IDZ 模型的三个参数可以从渠池物理参数通过解析公式计算，无需依赖试验辨识：
 
-**时延 $\tau$ **（波速传播时间）：
+**时延**（ $\tau$ ）（波速传播时间）：
 
-$$\tau = \frac{L}{c + V_0} + \frac{L}{c - V_0} \cdot \varepsilon \approx \frac{L}{c_0}$$
+$$
+\tau = \frac{L}{c + V_0} + \frac{L}{c - V_0} \cdot \varepsilon \approx \frac{L}{c_0}
+$$
 
 式中 $L$ 为渠池长度， $c = \sqrt{g h_0}$ 为小扰动波速（ $h_0$ 为正常水深）， $V_0$ 为正常流速。工程中常用简化公式 $\tau \approx L / (\bar{c} + \bar{V})$ ， $\bar{c}$ 和 $\bar{V}$ 取正常运行水深下的平均值。
 
-**回水区蓄水面积 $A_s$ **：
+**回水区蓄水面积**（ $A_s$ ）：
 
-$$A_s = A_0 \cdot L$$
+$$
+A_s = A_0 \cdot L
+$$
 
 式中 $A_0$ 为正常水深下的过水断面面积（$\text{m}^2$）， $L$ 为渠池长度（m）。 $A_s$ 的物理意义为渠池回水区的水面面积，反映渠池的蓄量惯性。
 
-**零点参数 $p_z$ **：
+**零点参数**（ $p_z$ ）：
 
 $$p_z = \frac{T_p}{2}\left(1 - \frac{2Q_0}{g A_0 c}\right)$$
 
