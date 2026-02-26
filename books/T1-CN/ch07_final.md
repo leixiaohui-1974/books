@@ -741,18 +741,18 @@ CHS 建议每个工程项目都建立一份"人机协同标准操作规程"（SO
 
 | 术语 | 英文 | 定义 | 首次出现 |
 |------|------|------|----------|
-| 传递函数化 | Transfer-Function Formulation | 将复杂水系统关键动态关系转化为可分析的输入—输出映射 | §8.2 |
-| 可控可观性 | Controllability & Observability | 系统关键状态可被观测、关键目标可被控制的能力判据 | §8.3 |
-| 分层分布式 | Hierarchical Distributed Architecture | 以多层级、多节点协调替代单中心控制的系统组织形态 | §8.4 |
-| 安全包络 | Safety Envelope | 为关键变量定义红/黄/绿运行区间的安全约束机制 | §8.5 |
-| 在环验证 | X-in-the-Loop Verification | MIL/SIL/HIL 逐级验证控制策略可信性的方法体系 | §8.6 |
-| 认知增强 | Cognitive Augmentation | 使系统具备语义理解、因果推理和策略解释能力的 AI 层 | §8.7 |
-| 人机共融 | Human-Machine Teaming | 按自主等级动态配置人机权限和接管机制的协作范式 | §8.8 |
-| 全生命周期自主演进 | Autonomous Evolution | 系统在安全约束下通过数据/模型/策略三重闭环持续升级 | §8.9 |
-| MIL/SIL/HIL | Model/Software/Hardware-in-the-Loop | 三层在环验证的标准缩写 | §8.6 |
-| 灰度发布 | Shadow/Canary Deployment | 新旧模型并行运行、对比验证后再切换的部署策略 | §8.9 |
-| 概念漂移 | Concept Drift | 运行数据分布随时间变化导致模型性能退化的现象 | §8.9 |
-| 安全包络约束回边 | Safety Envelope Constraint Feedback | P4 对 P8 的硬约束：演进不得突破安全边界 | §8.1 |
+| 传递函数化 | Transfer-Function Formulation | 将复杂水系统关键动态关系转化为可分析的输入—输出映射 | §7.2 |
+| 可控可观性 | Controllability & Observability | 系统关键状态可被观测、关键目标可被控制的能力判据 | §7.3 |
+| 分层分布式 | Hierarchical Distributed Architecture | 以多层级、多节点协调替代单中心控制的系统组织形态 | §7.4 |
+| 安全包络 | Safety Envelope | 为关键变量定义红/黄/绿运行区间的安全约束机制 | §7.5 |
+| 在环验证 | X-in-the-Loop Verification | MIL/SIL/HIL 逐级验证控制策略可信性的方法体系 | §7.6 |
+| 认知增强 | Cognitive Augmentation | 使系统具备语义理解、因果推理和策略解释能力的 AI 层 | §7.7 |
+| 人机共融 | Human-Machine Teaming | 按自主等级动态配置人机权限和接管机制的协作范式 | §7.8 |
+| 全生命周期自主演进 | Autonomous Evolution | 系统在安全约束下通过数据/模型/策略三重闭环持续升级 | §7.9 |
+| MIL/SIL/HIL | Model/Software/Hardware-in-the-Loop | 三层在环验证的标准缩写 | §7.6 |
+| 灰度发布 | Shadow/Canary Deployment | 新旧模型并行运行、对比验证后再切换的部署策略 | §7.9 |
+| 概念漂移 | Concept Drift | 运行数据分布随时间变化导致模型性能退化的现象 | §7.9 |
+| 安全包络约束回边 | Safety Envelope Constraint Feedback | P4 对 P8 的硬约束：演进不得突破安全边界 | §7.1 |
 
 ---
 
