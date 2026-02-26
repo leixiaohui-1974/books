@@ -16,8 +16,6 @@ v1 2026-02-16: 初稿（基于“继续”命令自动续写）
 
 > 承接 ch05：上一章解决“如何协同执行”，本章解决“如何评价执行效果并持续改进”。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
 
 ## 运行绩效评估框架
 
@@ -161,5 +159,5 @@ $$
 1. **Deming, W.E. (1986). *Out of the Crisis*.**
 2. **Montgomery, D.C. (2019). *Introduction to Statistical Quality Control*.**
 3. **ISO 31000 (Risk Management Guidelines).**
-4. **Lei et al. (2025c). 在环测试与运行验证体系。**
+4. **Lei et al. (2025c). 在环测试系统。**
 5. **Van Overloop, P.J. (2006). *Model Predictive Control on Open Water Systems*.**

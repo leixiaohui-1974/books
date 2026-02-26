@@ -184,7 +184,7 @@ $$
 ## 拓展阅读
 
 1. **Lei et al. (2025b). 自主智能水网架构。**
-2. **Lei et al. (2025c). 在环测试系统与发布门禁。**
+2. **Lei et al. (2025c). 在环测试系统。**
 3. **ISO 31000 (Risk Management Guidelines).**
 4. **IEC 61508 (Functional Safety).**
 5. **PMBOK Guide (Project Risk & Governance).**

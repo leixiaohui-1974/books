@@ -16,8 +16,6 @@ v1 2026-02-16: 初稿（基于“继续”命令自动续写）
 
 > 承接 ch02：上一章解决“如何表示与度量”，本章解决“如何预测与解释变化”。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
 
 ## 运行过程模型：从状态到演化
 
@@ -175,6 +173,6 @@ $$
 
 1. **Kalman, R.E. (1960). A New Approach to Linear Filtering and Prediction Problems.**
 2. **Ljung, L. (1999). *System Identification*.**
-3. **Lei et al. (2025b). 复杂水系统运行与自主控制架构。**
+3. **Lei et al. (2025b). 自主智能水网架构。**
 4. **ISO 31000 (Risk Management Guidelines).**
 5. **Montgomery, D.C. (2019). *Introduction to Statistical Quality Control*.**

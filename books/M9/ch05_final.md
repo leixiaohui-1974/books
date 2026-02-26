@@ -16,8 +16,6 @@ v1 2026-02-16: 初稿（基于“继续”命令自动续写）
 
 > 承接 ch04：上一章解决“如何求解并安全发布策略”，本章解决“如何在多层级组织中稳定执行策略”。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
 
 ## 多层级协同调度架构
 
@@ -180,5 +178,5 @@ $$
 1. **Bertsekas, D.P. (1999). *Nonlinear Programming*.**
 2. **Negenborn, R.R. et al. (2009). Distributed Model Predictive Control for Networked Systems.**
 3. **Rawlings, J.B. et al. (2020). *Model Predictive Control: Theory, Computation, and Design*.**
-4. **Lei et al. (2025c). 在环测试与运行验证体系。**
+4. **Lei et al. (2025c). 在环测试系统。**
 5. **Van Overloop, P.J. (2006). *Model Predictive Control on Open Water Systems*.**

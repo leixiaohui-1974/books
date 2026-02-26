@@ -16,8 +16,6 @@ v1 2026-02-16: 初稿（基于“继续”命令自动续写）
 
 > 承接 ch09：上一章解决“组织能力如何建设”，本章解决“能力如何固化为可执行、可审计的标准流程”。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
 
 ## 为什么要把经验转化为SOP
 
@@ -151,4 +149,4 @@ $$
 2. **ISA-95 (Enterprise-Control System Integration).**
 3. **IEC 62443 (Industrial Automation and Control Systems Security).**
 4. **Lei et al. (2025b). 自主智能水网架构。**
-5. **Lei et al. (2025c). 在环测试与运行验证体系。**
+5. **Lei et al. (2025c). 在环测试系统。**

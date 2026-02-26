@@ -61,7 +61,7 @@ Model and policy updates must be staged, validated, and rollback-ready.
 | 1 | Dynamic unification | Build transfer/state-space interfaces |
 | 2 | Control feasibility | Validate sensor-actuator sufficiency |
 | 3 | Scalable organization | Separate local loops and coordination loops |
-| 4 | Hard safety boundary | Encode lockout/interlock policies |
+| 4 | Hard Safety Envelope | Encode lockout/interlock policies |
 | 5 | Verification before trust | Establish SIM-SIL-HIL release gates |
 | 6 | Explainable intelligence | Require rationale outputs for major actions |
 | 7 | Shared accountability | Define takeover and approval paths |
@@ -109,7 +109,7 @@ When predicted trajectories exit \(\mathcal{X}_{safe}\), systems should trigger 
 
 ## Why CHS is distinct from “AI-only” approaches
 
-AI-only operation often fails at deployment boundaries because it under-specifies hard constraints, responsibility, and lifecycle governance. CHS explicitly couples physical feasibility, control structure, safety boundary, verification pipeline, and governance accountability. In this sense, CHS is an integration logic for critical infrastructure, not a replacement for hydraulic or control theory.
+AI-only operation often fails at deployment boundaries because it under-specifies hard constraints, responsibility, and lifecycle governance. CHS explicitly couples physical feasibility, control structure, Safety Envelope, verification pipeline, and governance accountability. In this sense, CHS is an integration logic for critical infrastructure, not a replacement for hydraulic or control theory.
 
 ## Chapter summary and bridge to Chapter 3
 

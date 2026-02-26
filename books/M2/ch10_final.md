@@ -16,9 +16,6 @@ v1 2026-02-16: 初稿
 
 > 本章承接 ch09：在“安全约束先行”的前提下，讨论如何保证MPC在每个控制周期内“算得出、算得稳、算得起”。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
-
 ## 为什么实时性是MPC工程成败分水岭
 
 离线仿真中可用较长计算时间追求更优解；现场运行中，若在控制时限 $T_c$ 内未输出可行控制量，系统就会从“次优”退化为“失控风险”。
@@ -189,4 +186,4 @@ $$
 2. **Wang, Y. & Boyd, S. (2010). Fast MPC using online optimization.**
 3. **Kouzoupis, D. et al. (2018). Embedded optimization for MPC.**
 4. **IAHR Task Committee (2024). Real-time control practice in large-scale water networks.**
-5. **Lei et al. (2025b). 水网预测控制工程实践。**
+5. **Lei et al. (2025b). 自主智能水网架构。**

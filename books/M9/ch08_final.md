@@ -16,8 +16,6 @@ v1 2026-02-16: 初稿（基于“继续”命令自动续写）
 
 > 承接 ch07：上一章给出了风险治理与韧性框架，本章回答“用什么平台能力把治理要求稳定落地”。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
 
 ## 数字化运行平台的分层能力
 
@@ -169,4 +167,4 @@ $$
 2. **Endsley, M.R. (2017). From Here to Autonomy: Lessons Learned From Human-Automation Research.**
 3. **ISO 31000 (Risk Management Guidelines).**
 4. **Lei et al. (2025b). 自主智能水网架构。**
-5. **Lei et al. (2025c). 在环测试与运行验证体系。**
+5. **Lei et al. (2025c). 在环测试系统。**

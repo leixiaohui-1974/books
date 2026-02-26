@@ -82,7 +82,7 @@ Even with mature concepts, deployment at scale still faces constraints:
 - uneven digital maturity across regions,
 - limited reproducible test infrastructure in smaller organizations.
 
-[TODO: 需补充跨区域实施成本与周期统计]
+[TODO: Cross-region implementation cost and timeline statistics pending data authorization]
 
 ## Ten-year outlook (2026–2035)
 
