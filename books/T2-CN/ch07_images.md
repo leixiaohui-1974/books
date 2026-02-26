@@ -3,15 +3,15 @@
 
 **图7-1　MIL→SIL→HIL "三级火箭"**
 
-![图7-1 MIL→SIL→HIL "三级火箭"](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch07_1.png)
+![图7-1 MIL→SIL→HIL "三级火箭"](H/fig_ch07_1.png)
 *MIL→SIL→HIL "三级火箭"*
 
 **图7-2　验证深度与WNAL等级对应关系**
 
-![图7-2 验证深度与WNAL等级对应关系](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch07_2.png)
+![图7-2 验证深度与WNAL等级对应关系](H/fig_ch07_2.png)
 *验证深度与WNAL等级对应关系*
 
 **图7-3　水利在环验证的特殊挑战与应对**
 
-![图7-3 水利在环验证的特殊挑战与应对](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch07_3.png)
+![图7-3 水利在环验证的特殊挑战与应对](H/fig_ch07_3.png)
 *水利在环验证的特殊挑战与应对*

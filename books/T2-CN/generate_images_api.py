@@ -364,13 +364,11 @@ def update_chapter_md(chapter: str, manifest: dict):
             fig_id = item.get("fig_id", key)
             title = item["title"]
             filename = Path(item["file"]).name
-            github_raw = (
-                f"https://raw.githubusercontent.com/leixiaohui-1974/books"
-                f"/main/books/T2-CN/H/{filename}"
-            )
+            # 使用相对路径，本地和 GitHub 均可正确渲染
+            rel_path = f"H/{filename}"
             lines.append(
                 f"\n**{fig_id}　{title}**\n\n"
-                f"![{fig_id} {title}]({github_raw})\n"
+                f"![{fig_id} {title}]({rel_path})\n"
                 f"*{title}*\n"
             )
         ch_file.write_text("".join(lines), encoding='utf-8')

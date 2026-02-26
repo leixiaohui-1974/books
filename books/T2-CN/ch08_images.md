@@ -3,25 +3,25 @@
 
 **图8-1　HydroOS三层架构（对比手机操作系统）**
 
-![图8-1 HydroOS三层架构（对比手机操作系统）](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch08_1.png)
+![图8-1 HydroOS三层架构（对比手机操作系统）](H/fig_ch08_1.png)
 *HydroOS三层架构（对比手机操作系统）*
 
 **图8-2　四态机状态转换图**
 
-![图8-2 四态机状态转换图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch08_2.png)
+![图8-2 四态机状态转换图](H/fig_ch08_2.png)
 *四态机状态转换图*
 
 **图8-3　HydroOS与SCADA的关系：叠加而非替代**
 
-![图8-3 HydroOS与SCADA的关系：叠加而非替代](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch08_3.png)
+![图8-3 HydroOS与SCADA的关系：叠加而非替代](H/fig_ch08_3.png)
 *HydroOS与SCADA的关系：叠加而非替代*
 
 **图8-4　物理AI与认知AI的职责分界**
 
-![图8-4 物理AI与认知AI的职责分界](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch08_4.png)
+![图8-4 物理AI与认知AI的职责分界](H/fig_ch08_4.png)
 *物理AI与认知AI的职责分界*
 
 **图8-5　断连自治的三级降级策略**
 
-![图8-5 断连自治的三级降级策略](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch08_5.png)
+![图8-5 断连自治的三级降级策略](H/fig_ch08_5.png)
 *断连自治的三级降级策略*

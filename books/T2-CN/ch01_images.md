@@ -3,20 +3,20 @@
 
 **图1-1　水利工程运行管理五代演变时间轴**
 
-![图1-1 水利工程运行管理五代演变时间轴](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch01_1.png)
+![图1-1 水利工程运行管理五代演变时间轴](H/fig_ch01_1.png)
 *水利工程运行管理五代演变时间轴*
 
 **图1-2　"自动化"vs"自主运行"对比图**
 
-![图1-2 "自动化"vs"自主运行"对比图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch01_2.png)
+![图1-2 "自动化"vs"自主运行"对比图](H/fig_ch01_2.png)
 *"自动化"vs"自主运行"对比图*
 
 **图1-3　中国水利基础设施关键数字**
 
-![图1-3 中国水利基础设施关键数字](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch01_3.png)
+![图1-3 中国水利基础设施关键数字](H/fig_ch01_3.png)
 *中国水利基础设施关键数字*
 
 **fig_ch01_opener　第一章扉页：五代人生**
 
-![fig_ch01_opener 第一章扉页：五代人生](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch01_opener.png)
+![fig_ch01_opener 第一章扉页：五代人生](H/fig_ch01_opener.png)
 *第一章扉页：五代人生*
