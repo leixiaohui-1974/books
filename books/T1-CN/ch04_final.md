@@ -819,7 +819,7 @@ $$
 | 降阶 | Model Order Reduction | 从高维 PDE 到低维 ODE/传递函数的简化路径 |
 | 可控模型族 | Controllable Model Family | 高保真→降阶→数据增强的三层模型体系 |
 | 在线辨识 | Online Identification | 利用运行数据实时更新模型参数 |
-| WNAL | Water Network Autonomy Level | 水网自主运行等级（L0-L5） |
+| WNAL | Water Network Autonomy Levels | 水网自主等级（L0-L5） |
 | ODD | Operational Design Domain | 运行设计域，系统可自主运行的条件范围 |
 | MRC | Minimal Risk Condition | 最小风险条件，超出 ODD 时的安全回退状态 |
 

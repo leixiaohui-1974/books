@@ -1,141 +1,189 @@
 {
   "book_id": "T1-CN",
   "book_title": "水系统控制论",
-  "total_chapters": 8,
+  "total_chapters": 15,
+  "last_audit": "2026-02-26",
+  "audit_method": "multi-agent-review-v1 (Agent-A术语/Agent-B结构/Agent-C引用/Agent-D内容)",
   "chapters": {
     "ch01": {
+      "title": "绪论：水系统面临的控制挑战",
       "status": "completed",
-      "word_count": 15000,
+      "word_count": 29000,
       "review_passed": true,
-      "review_scores": {
-        "A": 8,
-        "B": 8,
-        "C": 8
-      },
-      "last_updated": "2026-02-15",
+      "review_scores": {"A": 8, "B": 8, "C": 8},
+      "last_updated": "2026-02-26",
       "issues": [
+        "[P0] 参考文献编号与文献列表不匹配（[1-15]~[1-21]映射错误）",
+        "[P0] 术语表英文HydroOS应为Water Network Operating System",
+        "[P1] 安全域→安全包络（2处）",
+        "[P1] 水网自主运行等级→水网自主等级",
         "[TODO] 需核实最新灌溉面积统计数据"
       ]
     },
     "ch02": {
+      "title": "控制论视角下的水系统",
       "status": "completed",
-      "word_count": 4900,
+      "word_count": 32000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": 9
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": {"A": 9, "B": 9, "C": 9, "D": 9},
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] 按复评重写章节结构并补充形式化定义",
-        "[DONE] 已加入异常工况四态机与人工接管审计要求",
-        "[TODO] 待图件统一阶段补齐图2-1正式图稿",
-        "[DONE] 已完成跨章一致性复检并补充接口声明（r3）"
+        "[P1] 数学公式密度偏高，超过T1先导版<5%标准",
+        "[P1] 与ch04存在大量内容重复",
+        "[P1] IDZ描述为简化模型→降阶模型",
+        "[P1] 预测控制→模型预测控制"
       ]
     },
     "ch03": {
+      "title": "水系统控制论概览",
       "status": "completed",
-      "word_count": 4300,
+      "word_count": 12000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": 9
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": {"A": 9, "B": 9, "C": 9, "D": 9},
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] 已补充八原理依赖导图与最小实施清单",
-        "[DONE] 已强化与WNAL分级章节衔接",
-        "[DONE] 已完成跨章一致性复检并补充接口声明（r3）"
+        "[P0] 阅读指引中多处第十一章引用错误",
+        "[P1] §3.10子节编号为3.6.x，应为3.10.x"
       ]
     },
     "ch04": {
+      "title": "水系统形式化描述",
       "status": "completed",
-      "word_count": 4100,
+      "word_count": 19000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": 9
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": {"A": 9, "B": 7, "C": 9, "D": 9},
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] 已补充WNAL阶梯图与误判纠偏表",
-        "[DONE] 已加入等级准入检查清单与八原理映射",
-        "[DONE] 已完成跨章一致性复检并补充接口声明（r3）"
+        "[P1] 与ch02存在大量内容重复",
+        "[P1] 节号跳跃混乱",
+        "[P1] 术语表WNAL应为复数Levels"
       ]
     },
     "ch05": {
+      "title": "水系统高级建模技术",
       "status": "completed",
-      "word_count": 3600,
+      "word_count": 16000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": 9
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": {"A": 8, "B": 7, "C": 7, "D": 9},
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] 已补充HydroOS三层架构图与角色职责矩阵",
-        "[DONE] 已加入最小上线门槛清单并强化WNAL映射",
-        "[DONE] 已完成跨章一致性复检并补充接口声明（r3）"
+        "[P1] 内部节号引用使用旧编号§6.x而非§5.x"
       ]
     },
     "ch06": {
+      "title": "可控可观性与传感器布局",
       "status": "completed",
-      "word_count": 3300,
+      "word_count": 15000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": 9
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": {"A": 9, "B": 9, "C": 9, "D": 9},
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] 已补充统一评价表与上线前后指标模板",
-        "[TODO] 案例定量指标待工程数据授权后补齐"
+        "[P1] 术语表WNAL为单数应改复数"
       ]
     },
     "ch07": {
+      "title": "水系统控制论八原理",
       "status": "completed",
-      "word_count": 3600,
+      "word_count": 25000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] 已补充能力模型与岗位对应表",
-        "[DONE] 已加入90天启动计划与推进失败点清单",
-        "[DONE] 已强化与WNAL等级跃迁及ODD/Safety Envelope关系"
+        "[P0] 瀚铎大模型→瀚铎水网大模型"
       ]
     },
     "ch08": {
+      "title": "水网自主等级（WNAL L0-L5）",
       "status": "completed",
-      "word_count": 2300,
+      "word_count": 24000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] 已新增上线前闭环检查清单",
-        "[DONE] 已补充跨章术语一致性声明",
-        "[DONE] 已强化WNAL L4/L5前瞻问题"
+        "[P2] 开场案例缺少blockquote格式"
       ]
+    },
+    "ch09": {
+      "title": "安全包络与在环验证",
+      "status": "completed",
+      "word_count": 18000,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-26",
+      "issues": []
+    },
+    "ch10": {
+      "title": "基于模型的定义（MBD）方法论",
+      "status": "completed",
+      "word_count": 12000,
+      "review_passed": true,
+      "review_scores": {"A": 8, "B": 8, "C": 8},
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P1] 闭环测试→在环测试",
+        "[P2] 近孤岛章节，缺乏下一章预告"
+      ]
+    },
+    "ch11": {
+      "title": "HydroOS三层架构",
+      "status": "completed",
+      "word_count": 20000,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P1] 本章小结含自引用错误"
+      ]
+    },
+    "ch12": {
+      "title": "物理AI与认知AI",
+      "status": "completed",
+      "word_count": 15000,
+      "review_passed": true,
+      "review_scores": {"A": 8, "B": 9, "C": 9},
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P0] HanDo→HanDuo（2处拼写错误）",
+        "[P1] 缺少引导性案例"
+      ]
+    },
+    "ch13": {
+      "title": "案例一：沙坪二级水电站",
+      "status": "completed",
+      "word_count": 25000,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P2] 保留编辑元数据"
+      ]
+    },
+    "ch14": {
+      "title": "案例二：大渡河梯级水电站",
+      "status": "completed",
+      "word_count": 20000,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P2] 保留编辑元数据"
+      ]
+    },
+    "ch15": {
+      "title": "案例三：胶东调水工程",
+      "status": "completed",
+      "word_count": 22000,
+      "review_passed": true,
+      "review_scores": {"A": 9, "B": 9, "C": 9},
+      "last_updated": "2026-02-26",
+      "issues": []
     }
   },
-  "overall_progress": "100.0%"
+  "overall_progress": "100.0%",
+  "systematic_issues": {
+    "P0_cross_reference": "102处'第十一章'引用中大部分指向错误章节，需全面修正",
+    "P0_terminology": "HanDo拼写(ch12)、Hydro Operating System(ch01)、瀚铎大模型缺水网(ch07)",
+    "P1_exercises": "全部15章含习题，但CLAUDE.md§6.3规定T1先导版无需习题（需决定保留或移除）",
+    "P1_content_duplication": "ch02与ch04存在约1万字重复内容"
+  }
 }
