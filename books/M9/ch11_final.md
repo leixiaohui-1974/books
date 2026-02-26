@@ -16,8 +16,6 @@ v1 2026-02-16: 初稿（基于“继续”命令自动续写）
 
 > 承接 ch10：上一章解决“流程如何标准化并可审计”，本章进一步解决“异常如何分级治理并形成组织学习闭环”。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
 
 ## 异常事件治理的目标与边界
 
@@ -142,5 +140,5 @@ $$
 1. **IEC 60812 (Failure Modes and Effects Analysis).**
 2. **ISO 22320 (Emergency Management).**
 3. **NIST SP 800-61 (Computer Security Incident Handling Guide).**
-4. **Lei et al. (2025c). 在环测试与运行验证体系。**
+4. **Lei et al. (2025c). 在环测试系统。**
 5. **Lei et al. (2025d). 水资源系统分析学科展望。**

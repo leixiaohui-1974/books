@@ -20,8 +20,6 @@ v1 2026-02-16: 初稿
 > **章首衔接（承接ch12）**  
 > 上一章给出了 HDC 的控制组织结构。本章进一步回答“如何验证并持续改进控制策略”：通过数字孪生与仿真平台，把设计、测试、运行和复盘连接成闭环。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
 
 ## 数字孪生的定义与价值
 
@@ -140,4 +138,4 @@ FMI（Functional Mock-up Interface）用于跨工具模型交换，FMU（Functio
 2. ASME V&V 40: Verification and Validation in Computational Modeling.
 3. Litrico, X. & Fromion, V. *Modeling and Control of Hydrosystems*.
 4. Rawlings, J.B. et al. *Model Predictive Control*.
-5. Lei et al. (2025c). 水网在环测试系统。
+5. Lei et al. (2025c). 在环测试系统。

@@ -16,8 +16,6 @@ v1 2026-02-17: 初稿（基于“继续”命令续写）
 
 > 承接 ch05：上一章完成在线校核与门禁流程，本章进一步回答“在多源不确定性存在时，门禁结论是否仍可靠”。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
 
 ## 多源不确定性分类与验证对象
 
@@ -126,7 +124,7 @@ $$
 
 ## 拓展阅读
 
-1. **Lei et al. (2025c). 在环测试系统与运行门禁。**
+1. **Lei et al. (2025c). 在环测试系统。**
 2. **Litrico & Fromion (2009). Modeling and Control of Hydrosystems.**
 3. **NIST SP 800-30. Guide for Conducting Risk Assessments.**
 4. **IEC 61508 / IEC 61511. Functional Safety Standards.**

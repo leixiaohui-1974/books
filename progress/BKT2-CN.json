@@ -1,0 +1,150 @@
+{
+  "book_id": "T2-CN",
+  "book_title": "水网觉醒",
+  "book_subtitle": "水系统控制论通俗读本",
+  "total_chapters": 13,
+  "last_audit": "2026-02-26",
+  "audit_method": "multi-agent-review-v1 (术语/结构/引用/内容四维度)",
+  "chapters": {
+    "ch00": {
+      "title": "引子：暴雨夜的调度室",
+      "status": "completed",
+      "char_count": 3300,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": []
+    },
+    "ch01": {
+      "title": "水网的五代人生",
+      "status": "completed",
+      "char_count": 7700,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P0][已修复] L117时态错误+前向引用错误"
+      ]
+    },
+    "ch02": {
+      "title": "水系统为什么这么难管？",
+      "status": "completed",
+      "char_count": 8700,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P0][已修复] L159下一章预告指向错误"
+      ]
+    },
+    "ch03": {
+      "title": "给水网做一次"体检"",
+      "status": "completed",
+      "char_count": 8900,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P0][已修复] L121 下一章→第五章"
+      ]
+    },
+    "ch04": {
+      "title": "水网的"交通规则"——CHS八原理",
+      "status": "completed",
+      "char_count": 12600,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P1][已修复] 缺少下一章预告",
+        "[P1][已修复] 深入阅读T1-CN章号映射错误"
+      ]
+    },
+    "ch05": {
+      "title": "水网学开车——从L0到L5",
+      "status": "completed",
+      "char_count": 10300,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": []
+    },
+    "ch06": {
+      "title": "安全第一——水网的"保险丝"和"安全气囊"",
+      "status": "completed",
+      "char_count": 9100,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P0][已修复] 参考文献[6-4]~[6-8]编号重复"
+      ]
+    },
+    "ch07": {
+      "title": "先在电脑里"试驾"——在环验证",
+      "status": "completed",
+      "char_count": 8800,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P1][已修复] 闭环测试→在环测试"
+      ]
+    },
+    "ch08": {
+      "title": "水网的"操作系统"——HydroOS",
+      "status": "completed",
+      "char_count": 10200,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": []
+    },
+    "ch09": {
+      "title": "小水电的大智慧——沙坪二级水电站的故事",
+      "status": "completed",
+      "char_count": 9900,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": [
+        "[P1][待决策] 简化模型(SM)命名与标准术语降阶模型的关系"
+      ]
+    },
+    "ch10": {
+      "title": "大渡河的"接力赛"——梯级水电站的协调控制",
+      "status": "completed",
+      "char_count": 9700,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": []
+    },
+    "ch11": {
+      "title": "千里送水——胶东调水工程的自主运行探索",
+      "status": "completed",
+      "char_count": 10100,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": []
+    },
+    "ch12": {
+      "title": "你的水网，从今天开始觉醒",
+      "status": "completed",
+      "char_count": 7700,
+      "review_passed": true,
+      "last_updated": "2026-02-26",
+      "issues": []
+    }
+  },
+  "ancillary_files": {
+    "97_术语表.md": {
+      "status": "completed",
+      "issues": [
+        "[P2][已修复] MPC首现章节标注错误",
+        "[P2][已修复] Hando→HanDuo拼写修正"
+      ]
+    },
+    "00_目录.md": {
+      "status": "completed",
+      "issues": [
+        "[P0][已修复] TOC与实际章节严重不同步，已从实际标题重新生成"
+      ]
+    }
+  },
+  "overall_progress": "100.0%",
+  "overall_score": "8.3/10",
+  "systematic_issues": {
+    "cross_references": "多处'深入阅读'引用T1-CN旧章号（T1-CN已从8章重组为15章），部分已修正，其余待全面检查",
+    "sm_terminology": "ch09的简化模型(SM)是三层模型族专有名称，与标准术语降阶模型不同，建议添加脚注说明"
+  }
+}

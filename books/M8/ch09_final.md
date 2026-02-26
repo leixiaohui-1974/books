@@ -16,9 +16,6 @@ v1 2026-02-16: 初稿（基于“继续”命令自动续写）
 
 > 承接 ch08：上一章已定义参数口径与约束分层，本章把这些工程语义转化为可求解模型。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
-
 ## 问题定义与建模边界
 
 沙坪场景下，一体化建模不是“单一优化器最大化发电功率”，而是多目标、分时标、受安全硬约束支配的动态决策问题。
@@ -152,7 +149,7 @@ $$
 J_{risk,k}=\rho(h_k,Q_{out,k})
 $$
 
-$\rho(\cdot)$ 可为接近安全边界时快速增大的屏障函数。
+$\rho(\cdot)$ 可为接近安全包络时快速增大的屏障函数。
 
 [物理直觉] 防洪安全不是“超限后再处罚”，而应在靠近边界时就显著抬高代价，主动远离风险区域。
 
@@ -266,6 +263,6 @@ $$
 
 1. **Van Overloop, P.J. (2006). *Model Predictive Control on Open Water Systems*.**
 2. **Kundur, P. (1994). *Power System Stability and Control*.**
-3. **Lei et al. (2025c). 在环测试系统与发布门禁。**
+3. **Lei et al. (2025c). 在环测试系统。**
 4. **ASCE (2014). *MOP 131: Canal Automation for Irrigation Systems*.**
 5. **ISO 31000 (Risk Management Guidelines).**

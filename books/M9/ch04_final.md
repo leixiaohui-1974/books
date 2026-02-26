@@ -16,8 +16,6 @@ v1 2026-02-16: 初稿（基于“继续”命令自动续写）
 
 > 承接 ch03：上一章给出过程模型与不确定性表达，本章回答“在不确定环境中如何做可执行决策”。
 
-> **前章回顾**：上一章介绍了本领域的核心概念与方法。本章在此基础上进一步展开。
-
 
 ## 运行决策问题的标准表达
 
@@ -183,6 +181,6 @@ $$
 
 1. **Boyd, S. & Vandenberghe, L. (2004). *Convex Optimization*.**
 2. **Rawlings, J.B. et al. (2020). *Model Predictive Control: Theory, Computation, and Design*.**
-3. **Lei et al. (2025b). 自主智能水网架构与运行决策。**
+3. **Lei et al. (2025b). 自主智能水网架构。**
 4. **ISO 31000 (Risk Management Guidelines).**
 5. **Van Overloop, P.J. (2006). *Model Predictive Control on Open Water Systems*.**

@@ -2,109 +2,115 @@
   "book_id": "T1-EN",
   "book_title": "Cybernetics of Hydro Systems: Principles and Perspectives",
   "total_chapters": 6,
+  "last_audit": "2026-02-26",
+  "audit_method": "multi-agent-review-round3 (terminology/structure/references/English-quality)",
+  "content_maturity": "outline",
+  "content_maturity_note": "All chapters are extended outlines at 6-14% of target word count. Total ~4,500 words vs target ~55,000 words. Structural framework is solid; needs 8-10x expansion for publication.",
   "chapters": {
     "ch01": {
-      "status": "completed",
-      "word_count": 2800,
-      "review_passed": true,
+      "status": "revision",
+      "word_count_actual": 882,
+      "word_count_target": 8000,
+      "word_count_ratio": "11%",
+      "review_passed": false,
       "review_scores": {
         "A": 9,
         "B": 9,
         "C": 8,
         "D": 9
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] Added key-insight opening and CHS positioning",
-        "[DONE] Clarified WNAL/ODD/Safety Envelope terminology for international readers",
-        "[TODO] Insert finalized Figure 1-1 and Figure 1-2 during unified graphics pass"
+        "[P0] Word count at 11% of target (882/8000)",
+        "[P0] No bibliography/reference list",
+        "[P1] No mention of EMS Five-Generation Framework",
+        "[P1] IAHR context insufficient for IAHR monograph",
+        "[TODO] Insert finalized Figure 1-1 and Figure 1-2"
       ]
     },
     "ch02": {
-      "status": "completed",
-      "word_count": 3000,
-      "review_passed": true,
+      "status": "revision",
+      "word_count_actual": 839,
+      "word_count_target": 12000,
+      "word_count_ratio": "7%",
+      "review_passed": false,
       "review_scores": {
         "A": 9,
         "B": 9,
         "C": 9,
         "D": 9
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] Added minimum deployment gates table",
-        "[DONE] Clarified Safety Envelope boundary-violation trigger sequence",
-        "[DONE] Strengthened Ch2→Ch3 transition and transferability statement"
+        "[P0] Word count at 7% of target (839/12000)",
+        "[P0] No bibliography/reference list",
+        "[P0][已修复] 'safety boundary' used as term → Safety Envelope (2 places)",
+        "[P0] No equation numbering",
+        "[P1] No mention of MPC"
       ]
     },
     "ch03": {
-      "status": "completed",
-      "word_count": 3200,
-      "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": 9
-      },
-      "last_updated": "2026-02-16",
+      "status": "revision",
+      "word_count_actual": 741,
+      "word_count_target": 12000,
+      "word_count_ratio": "6%",
+      "review_passed": false,
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] Added architecture readiness checklist for minimum L3 gate",
-        "[DONE] Anchored Physical AI Engine and Cognitive AI Engine naming consistency",
-        "[DONE] Added staged rollout recommendation for bounded ODD slices"
+        "[P0] Word count at 6% of target (741/12000)",
+        "[P0] No bibliography/reference list",
+        "[P1] HanDuo Water Network Large Model never mentioned"
       ]
     },
     "ch04": {
-      "status": "completed",
-      "word_count": 3100,
-      "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": 9
-      },
-      "last_updated": "2026-02-16",
+      "status": "revision",
+      "word_count_actual": 677,
+      "word_count_target": 10000,
+      "word_count_ratio": "7%",
+      "review_passed": false,
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] Added pre-release checklist for deployment gate control",
-        "[DONE] Clarified runtime monitoring as complement to pre-deployment V&V",
-        "[DONE] Added fixed mitigation trigger order for violation handling"
+        "[P0] Word count at 7% of target (677/10000)",
+        "[P0] No bibliography/reference list"
       ]
     },
     "ch05": {
-      "status": "completed",
-      "word_count": 3000,
-      "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": 9
-      },
-      "last_updated": "2026-02-16",
+      "status": "revision",
+      "word_count_actual": 704,
+      "word_count_target": 8000,
+      "word_count_ratio": "9%",
+      "review_passed": false,
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] Added cross-case go/no-go checklist before scale-up",
-        "[DONE] Explicitly marked quantitative outcomes as pending data authorization",
-        "[DONE] Added benchmark portability statement for cross-region transfer"
+        "[P0] Word count at 9% of target (704/8000)",
+        "[P0] No bibliography/reference list",
+        "[P0] Section numbering inconsistent with other chapters",
+        "[P1] No figures in case study chapter (requires >= 2)",
+        "[P1] Jiaodong case lacks geographic context",
+        "[P1] Shaoping case lacks Dadu River cascade details"
       ]
     },
     "ch06": {
-      "status": "completed",
-      "word_count": 2800,
-      "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": 9
-      },
-      "last_updated": "2026-02-16",
+      "status": "revision",
+      "word_count_actual": 677,
+      "word_count_target": 5000,
+      "word_count_ratio": "14%",
+      "review_passed": false,
+      "last_updated": "2026-02-26",
       "issues": [
-        "[DONE] Added institutional action checklist for 2026-2030 execution window",
-        "[DONE] Strengthened reproducible evidence as cross-site acceptance criterion",
-        "[TODO] Await authorized cross-region implementation cost/time statistics"
+        "[P0] Word count at 14% of target (677/5000)",
+        "[P0] No bibliography/reference list",
+        "[P0][已修复] Chinese TODO translated to English",
+        "[P1] Final remarks section too brief"
       ]
     }
   },
-  "overall_progress": "100.0%"
+  "systematic_issues": {
+    "word_count": "ALL chapters at 6-14% of target. Book is an outline (~4,500 words total vs ~55,000 target).",
+    "bibliography": "ZERO references in entire monograph. Mandatory refs (Wiener 1948, Qian 1954, Litrico 2009, Lei 2025a-d) not cited.",
+    "equation_numbering": "Ch02 has 6 display equations, none numbered. IAHR monograph requires numbered equations.",
+    "terminology_fixed": "'safety boundary' as term (2 places in ch02) → 'Safety Envelope'. Chinese TODO in ch06 → English."
+  },
+  "overall_progress": "100.0%",
+  "overall_maturity": "outline (needs 8-10x expansion)"
 }
