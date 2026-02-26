@@ -1,0 +1,22 @@
+# 第2章 图片索引
+
+
+**图2-1　时滞对比图：水系统 vs 电力系统 vs 化工系统**
+
+![图2-1 时滞对比图：水系统 vs 电力系统 vs 化工系统](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch02_1.png)
+*时滞对比图：水系统 vs 电力系统 vs 化工系统*
+
+**图2-2　一个闸门同时面对的多重约束**
+
+![图2-2 一个闸门同时面对的多重约束](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch02_2.png)
+*一个闸门同时面对的多重约束*
+
+**图2-3　五个控制本质"五角星"示意图**
+
+![图2-3 五个控制本质"五角星"示意图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch02_3.png)
+*五个控制本质"五角星"示意图*
+
+**图2-4　"开闸→水位变化→下游影响"的时间线瀑布图**
+
+![图2-4 "开闸→水位变化→下游影响"的时间线瀑布图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch02_4.png)
+*"开闸→水位变化→下游影响"的时间线瀑布图*

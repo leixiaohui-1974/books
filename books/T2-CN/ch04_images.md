@@ -1,0 +1,27 @@
+# 第4章 图片索引
+
+
+**图4-1　八原理"盖房子"结构图**
+
+![图4-1 八原理"盖房子"结构图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch04_1.png)
+*八原理"盖房子"结构图*
+
+**图4-2　四级管理架构示意图**
+
+![图4-2 四级管理架构示意图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch04_2.png)
+*四级管理架构示意图*
+
+**图4-3　红黄绿三区示意图**
+
+![图4-3 红黄绿三区示意图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch04_3.png)
+*红黄绿三区示意图*
+
+**图4-4　三关考验对比图**
+
+![图4-4 三关考验对比图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch04_4.png)
+*三关考验对比图*
+
+**图4-5　三个"学习圈"示意图**
+
+![图4-5 三个"学习圈"示意图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch04_5.png)
+*三个"学习圈"示意图*

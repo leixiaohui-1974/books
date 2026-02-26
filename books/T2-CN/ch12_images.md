@@ -1,0 +1,7 @@
+# 第12章 图片索引
+
+
+**图12-1　"水网觉醒路线图"全景图**
+
+![图12-1 "水网觉醒路线图"全景图](https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H/fig_ch12_1.png)
+*"水网觉醒路线图"全景图*
