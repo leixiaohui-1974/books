@@ -1,17 +1,79 @@
 # USER.md - About Your Human
 
-_Learn about the person you're helping. Update this as you go._
-
-- **Name:**
-- **What to call them:**
-- **Pronouns:** _(optional)_
-- **Timezone:**
-- **Notes:**
-
-## Context
-
-_(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)_
+- **Name:** 雷晓辉 (Lei Xiaohui)
+- **What to call them:** 雷老师
+- **Email:** leixiaohui@gmail.com
+- **Timezone:** Asia/Shanghai (UTC+8)
+- **GitHub:** https://github.com/leixiaohui-1974/books
+- **联系方式:** Telegram（主要）
 
 ---
 
-The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+## 背景与身份
+
+水利控制论（CHS, Cybernetics of Hydro Systems）领域的开创性研究者，教授/研究员。
+已发表200+篇论文，主导了沙坪梯级水电站、大渡河EDC、胶东调水等多个真实工程的智慧化改造。
+
+**2025年4月**在《南水北调与水利科技》发表了CHS体系核心论文4篇（Lei 2025a-d）：
+- Lei 2025a: 水系统控制论框架（DOI: 10.13476/j.cnki.nsbdqk.2025.0077）
+- Lei 2025b: 水资源系统分析展望（DOI: ...0078）
+- Lei 2025c: 自主运行智慧水网架构（DOI: ...0079）
+- Lei 2025d: 在环测试体系（DOI: ...0080）
+
+---
+
+## 当前核心项目
+
+### T2-CN《水网觉醒》— 主力任务
+- **性质:** 面向传统水利工程师（5-15年工作经验）的CHS通俗教材
+- **目标读者:** 有工程经验但缺控制论/AI背景；零公式风格
+- **状态:** Ch00-Ch12 + 后记 全部完成，完整评审报告已生成（FULL_REVIEW_REPORT.md）
+- **待处理:** 44张插图待生成（Nano Banana API），图注待更新，部分章节细节待优化
+- **GitHub路径:** `books/T2-CN/`
+- **图片脚本:** `books/T2-CN/generate_images_api.py`（需在本地Windows运行）
+- **Gemini API Key:** 已配置（见环境变量NB_API_KEY）
+
+### T1-CN — 学术教材（进行中）
+- CHS理论体系的完整技术版（有公式），面向研究生和工程技术人员
+- 与T2-CN互为姊妹篇
+
+### P系列 — 英文SCI论文
+- 多篇在准备/撰写中
+
+---
+
+## 工作风格偏好
+
+- **直接** — 不要客套，直接给结论和行动
+- **工程师思维** — 用类比、数据、案例说话，不用空洞词汇
+- **要点先行** — 写作前要看大纲，不接受"一锅端"式直接输出
+- **Telegram为主** — 主要在Telegram中交互，指令简洁
+- **图片偏好Nano Banana** — 有API账号，风格：科技蓝+水元素信息图
+
+---
+
+## 关键技术术语（必须严格遵守）
+
+| 标准术语 | 禁止用法 |
+|---------|---------|
+| 水系统控制论 (CHS) | 水利控制论 |
+| WNAL L0-L5 | 自动化等级 |
+| 安全包络 | 安全边界/阈值 |
+| 在环验证 (xIL) | 仿真测试 |
+| HydroOS | 水网操作系统（首次出现后） |
+| 最小风险条件 (MRC) | 停机/急停 |
+| 四态机 | 状态机 |
+
+详见 `knowledge-base/terminology/chs-terms.md`
+
+---
+
+## 工程案例参考（核心三个）
+
+1. **沙坪梯级水电站**（四川，大渡河支流）— T2-CN第9章主角，MPC 80分钟窗口，WNAL L2-L2.5
+2. **大渡河EDC协调**（四川）— 深溪沟AGC停用6年（2012-2018）后重启，Nash均衡陷阱案例
+3. **胶东调水**（山东）— 571km长距离输水，三时间尺度，2024-07-08首次全自动停机
+
+---
+
+_最后更新：2026-02-26，由Cowork会话初始化_
