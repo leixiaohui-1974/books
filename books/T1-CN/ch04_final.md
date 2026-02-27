@@ -838,7 +838,7 @@ $$
 [4-6] SAE International. Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles (J3016). 2021.
 
 
-[4-8] Malaterre P O. SCADA systems for irrigation canals: Control strategies assessment [C]//Proceedings of the 2nd International Conference on Irrigation and Drainage. 1998.
+[4-7] Malaterre P O. SCADA systems for irrigation canals: Control strategies assessment [C]//Proceedings of the 2nd International Conference on Irrigation and Drainage. 1998.
 
 ---
 

@@ -497,44 +497,44 @@ MIL阶段以2019年全年实际运行工况（含3次设备故障、2次通信�
 
 
 
-[10-4] Guan X, Ang B, Chen C, et al. A comprehensive overview of cyber-physical systems: from perspective of feedback system[J]. IEEE/CAA Journal of Automatica Sinica, 2016, 3(1): 1-24.
+[10-1] Guan X, Ang B, Chen C, et al. A comprehensive overview of cyber-physical systems: from perspective of feedback system[J]. IEEE/CAA Journal of Automatica Sinica, 2016, 3(1): 1-24.
 
-[10-5] Kong L, Gao W, Zhang Z, et al. Self-balancing characteristics and disturbance threshold of canal pools in water diversion projects[J]. South-to-North Water Transfers and Water Science & Technology, 2025, 23(01): 10-20.
+[10-2] Kong L, Gao W, Zhang Z, et al. Self-balancing characteristics and disturbance threshold of canal pools in water diversion projects[J]. South-to-North Water Transfers and Water Science & Technology, 2025, 23(01): 10-20.
 
-[10-6] 孔令仲, 雷晓辉, 张召, 等. 多级串联明渠调水工程多目标水位预测控制模型研究[J]. 水利学报，2022，53(4)：471-482.
+[10-3] 孔令仲, 雷晓辉, 张召, 等. 多级串联明渠调水工程多目标水位预测控制模型研究[J]. 水利学报，2022，53(4)：471-482.
 
-[10-7] 管光华, 朱哲立, 王康. 含多分水口的渠道广义积分时滞（ID）控制建模及验证[J]. 水利学报，2022，53(5)：1-10.
+[10-4] 管光华, 朱哲立, 王康. 含多分水口的渠道广义积分时滞（ID）控制建模及验证[J]. 水利学报，2022，53(5)：1-10.
 
-[10-8] Liu W J Y, Guan G H, Tian X, et al. Exploiting a real-time self-correcting digital twin model for the middle route of the South-to-North Water Diversion Project of China[J]. Journal of Water Resources Planning and Management, 2023, 149(7): 04023023.
+[10-5] Liu W J Y, Guan G H, Tian X, et al. Exploiting a real-time self-correcting digital twin model for the middle route of the South-to-North Water Diversion Project of China[J]. Journal of Water Resources Planning and Management, 2023, 149(7): 04023023.
 
-[10-9] Negenborn R R, Maestre J M. Distributed model predictive control: an overview and roadmap[J]. IEEE Control Systems Magazine, 2014, 34(4): 87-97.
+[10-6] Negenborn R R, Maestre J M. Distributed model predictive control: an overview and roadmap[J]. IEEE Control Systems Magazine, 2014, 34(4): 87-97.
 
-[10-10] 何立新, 史博阳, 张峥, 等. 引调水渠道控制系统硬件在环测试平台设计与实现[J]. 南水北调与水利科技（中英文），2025，23(5)：1036-1046.
+[10-7] 何立新, 史博阳, 张峥, 等. 引调水渠道控制系统硬件在环测试平台设计与实现[J]. 南水北调与水利科技（中英文），2025，23(5)：1036-1046.
 
-[10-11] Zhang Z, Lei X, Tian Y, et al. Optimized scheduling of cascade pumping stations in open-channel water transfer systems based on station skipping[J]. Journal of Water Resources Planning and Management, 2019, 145(7): 05019011.
+[10-8] Zhang Z, Lei X, Tian Y, et al. Optimized scheduling of cascade pumping stations in open-channel water transfer systems based on station skipping[J]. Journal of Water Resources Planning and Management, 2019, 145(7): 05019011.
 
-[10-12] Lei X, Tian Y, Zhang Z, et al. Correction of pumping station parameters in a one-dimensional hydrodynamic model using the Ensemble Kalman filter[J]. Journal of Hydrology, 2019, 568: 108-118.
+[10-9] Lei X, Tian Y, Zhang Z, et al. Correction of pumping station parameters in a one-dimensional hydrodynamic model using the Ensemble Kalman filter[J]. Journal of Hydrology, 2019, 568: 108-118.
 
-[10-13] Yan P, Zhang Z, Lei X, et al. A multi-objective optimal control model of cascade pumping stations considering both cost and safety[J]. Journal of Cleaner Production, 2022, 345: 131171.
+[10-10] Yan P, Zhang Z, Lei X, et al. A multi-objective optimal control model of cascade pumping stations considering both cost and safety[J]. Journal of Cleaner Production, 2022, 345: 131171.
 
-[10-14] Li Y, Zhang Z, Kong L, et al. Hydraulic optimization control of a water diversion canal system under emergency scenarios[J]. Journal of Water Resources Planning and Management, 2023, 149(7). DOI: 10.1061/JWRMD5.WRENG-5881.
+[10-11] Li Y, Zhang Z, Kong L, et al. Hydraulic optimization control of a water diversion canal system under emergency scenarios[J]. Journal of Water Resources Planning and Management, 2023, 149(7). DOI: 10.1061/JWRMD5.WRENG-5881.
 
-[10-15] Zhou L, Zhang Z, Zhang W, et al. Real-time water level prediction in open channel water transfer projects based on time series similarity[J]. Water, 2022, 14(13): 2070.
+[10-12] Zhou L, Zhang Z, Zhang W, et al. Real-time water level prediction in open channel water transfer projects based on time series similarity[J]. Water, 2022, 14(13): 2070.
 
-[10-16] Tu, et al. Intelligent operation and management in the Dadu River Basin[J]. River, 2023. DOI: 10.1002/rvr2.34.
+[10-13] Tu, et al. Intelligent operation and management in the Dadu River Basin[J]. River, 2023. DOI: 10.1002/rvr2.34.
 
-[10-17] Zhang, et al. Joint optimal use of sluices of a group of cascade hydropower stations under high-intensity peak shaving and frequency regulation[J]. Water, 2024, 16(2): 275.
+[10-14] Zhang, et al. Joint optimal use of sluices of a group of cascade hydropower stations under high-intensity peak shaving and frequency regulation[J]. Water, 2024, 16(2): 275.
 
-[10-18] Zhang, et al. A deep reinforcement learning approach for joint scheduling of cascade reservoir system[J]. Journal of Hydrology, 2024. DOI: 10.1016/j.jhydrol.2024.019115.
+[10-15] Zhang, et al. A deep reinforcement learning approach for joint scheduling of cascade reservoir system[J]. Journal of Hydrology, 2024. DOI: 10.1016/j.jhydrol.2024.019115.
 
-[10-19] Wang C, Jiang Z, Xu Y, et al. Discussion on the monotonicity principle of the two-stage problem in joint optimal operation of cascade hydropower stations[J]. Journal of Hydrology, 2023, 623: 129803.
+[10-16] Wang C, Jiang Z, Xu Y, et al. Discussion on the monotonicity principle of the two-stage problem in joint optimal operation of cascade hydropower stations[J]. Journal of Hydrology, 2023, 623: 129803.
 
-[10-20] Wang C, Jiang Z, Wang P, et al. A fast local search strategy based on the principle of optimality for the long-term scheduling of large cascade hydropower stations[J]. Water Resources Management, 2024, 38(1): 137-152.
+[10-17] Wang C, Jiang Z, Wang P, et al. A fast local search strategy based on the principle of optimality for the long-term scheduling of large cascade hydropower stations[J]. Water Resources Management, 2024, 38(1): 137-152.
 
-[10-21] Tan Q, Fang G, Wen X, et al. Bayesian stochastic dynamic programming for hydropower generation operation based on Copula functions[J]. Water Resources Management, 2020, 34(5): 1589-1607.
+[10-18] Tan Q, Fang G, Wen X, et al. Bayesian stochastic dynamic programming for hydropower generation operation based on Copula functions[J]. Water Resources Management, 2020, 34(5): 1589-1607.
 
-[10-22] Tan Q, Wen X, Fang G, et al. Long-term optimal operation of cascade hydropower stations based on the utility function of the carryover potential energy[J]. Journal of Hydrology, 2020, 580: 124359.
+[10-19] Tan Q, Wen X, Fang G, et al. Long-term optimal operation of cascade hydropower stations based on the utility function of the carryover potential energy[J]. Journal of Hydrology, 2020, 580: 124359.
 
-[10-23] Ding Z, Wen X, Tan Q, et al. A forecast-driven decision-making model for long-term operation of a hydro-wind-photovoltaic hybrid system[J]. Applied Energy, 2021, 291: 116820.
+[10-20] Ding Z, Wen X, Tan Q, et al. A forecast-driven decision-making model for long-term operation of a hydro-wind-photovoltaic hybrid system[J]. Applied Energy, 2021, 291: 116820.
 
-[10-24] Zhang Z, Lei X, Xue P. A new model for rapid identification of unknown water diversion discharge and location[J]. Hydrological Sciences Journal, 2025, 70(9): 1454-1463.
+[10-21] Zhang Z, Lei X, Xue P. A new model for rapid identification of unknown water diversion discharge and location[J]. Hydrological Sciences Journal, 2025, 70(9): 1454-1463.

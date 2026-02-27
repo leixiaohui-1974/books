@@ -451,21 +451,21 @@ MBD 框架与 CHS 八原理是互补关系：
 
 
 
-[3-4] 钱学森. 工程控制论 [M]. 北京: 科学出版社, 1954.
+[3-2] 钱学森. 工程控制论 [M]. 北京: 科学出版社, 1954.
 
-[3-5] Wiener N. Cybernetics: Or Control and Communication in the Animal and the Machine [M]. Cambridge, MA: MIT Press, 1948.
+[3-3] Wiener N. Cybernetics: Or Control and Communication in the Animal and the Machine [M]. Cambridge, MA: MIT Press, 1948.
 
-[3-6] Kalman R E. On the general theory of control systems [C]//Proceedings of the 1st IFAC Congress. Moscow: USSR Academy of Sciences, 1960: 481-492.
+[3-4] Kalman R E. On the general theory of control systems [C]//Proceedings of the 1st IFAC Congress. Moscow: USSR Academy of Sciences, 1960: 481-492.
 
-[3-7] Negenborn R R, Maestre J M. Distributed model predictive control: an overview and roadmap of future research opportunities [J]. IEEE Control Systems Magazine, 2014, 34(4): 87-97.
+[3-5] Negenborn R R, Maestre J M. Distributed model predictive control: an overview and roadmap of future research opportunities [J]. IEEE Control Systems Magazine, 2014, 34(4): 87-97.
 
-[3-8] ISO. Road Vehicles — Safety of the Intended Functionality: ISO 21448 [S]. Geneva: ISO, 2022.
+[3-6] ISO. Road Vehicles — Safety of the Intended Functionality: ISO 21448 [S]. Geneva: ISO, 2022.
 
-[3-9] Leveson N G. Engineering a Safer World: Systems Thinking Applied to Safety [M]. Cambridge, MA: MIT Press, 2011.
+[3-7] Leveson N G. Engineering a Safer World: Systems Thinking Applied to Safety [M]. Cambridge, MA: MIT Press, 2011.
 
-[3-10] Russell S, Norvig P. Artificial Intelligence: A Modern Approach [M]. 4th ed. Hoboken, NJ: Pearson, 2021.
+[3-8] Russell S, Norvig P. Artificial Intelligence: A Modern Approach [M]. 4th ed. Hoboken, NJ: Pearson, 2021.
 
-[3-11] Astrom K J, Murray R M. Feedback Systems: An Introduction for Scientists and Engineers [M]. 2nd ed. Princeton: Princeton University Press, 2021.
+[3-9] Astrom K J, Murray R M. Feedback Systems: An Introduction for Scientists and Engineers [M]. 2nd ed. Princeton: Princeton University Press, 2021.
 
 
 [3-X] 雷晓辉, 龙岩, 许慧敏, 苏承国. 水系统控制论：提出背景、技术框架与研究范式 [J]. 南水北调与水利科技（中英文）, 2025, 23(04): 761-769+904. DOI: 10.13476/j.cnki.nsbdqk.2025.0077.

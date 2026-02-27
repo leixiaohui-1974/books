@@ -380,7 +380,7 @@ $$
 \epsilon \approx \|\mathcal{G}_{yu}(j\omega)\| \cdot \|\Delta P(j\omega)\|_{\infty} \cdot \|u\|_{\infty}
 $$
 
-其中 $\Delta P(j\omega) = P(j\omega, \theta^*) - P(j\omega, \hat{\theta})$ 为模型误差的频域表示，$\mathcal{G}_{yu}$ 为从控制输入到输出的闭环传递矩阵。
+其中 $\Delta P(j\omega) = P(j\omega, \theta^*) - P(j\omega, \hat{\theta})$ 为模型误差的频域表示，$\mathcal{G}_{yu}$ 为从控制输入到输出的闭环传递函数矩阵。
 
 **实用简化方法**：在 MPC 的约束边界内收紧一个"安全余量"层：若水位允许范围为 $[h_{min}, h_{max}]$（宽度 20cm），则 MPC 优化时使用收紧范围 $[h_{min}+5cm, h_{max}-5cm]$（各收紧 5cm）。这 5cm 的安全余量覆盖了 95% 置信度下的模型误差引起的控制偏差，防止软约束被频繁违反。
 
