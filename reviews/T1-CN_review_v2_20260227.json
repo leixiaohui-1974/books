@@ -1,0 +1,520 @@
+{
+  "files": [
+    {
+      "file": "books/T1-CN/ch01_final.md",
+      "filename": "ch01_final.md",
+      "chapter": 1,
+      "stats": {
+        "char_count": 31501,
+        "line_count": 767,
+        "cn_char_count": 18503,
+        "word_count_approx": 18503,
+        "formula_count": 2,
+        "display_formula_count": 0,
+        "figure_refs": 10,
+        "table_refs": 0,
+        "image_links": 3,
+        "reference_count": 21
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T1-CN/ch02_final.md",
+      "filename": "ch02_final.md",
+      "chapter": 2,
+      "stats": {
+        "char_count": 35643,
+        "line_count": 664,
+        "cn_char_count": 20617,
+        "word_count_approx": 20617,
+        "formula_count": 87,
+        "display_formula_count": 9,
+        "figure_refs": 11,
+        "table_refs": 4,
+        "image_links": 8,
+        "reference_count": 22
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T1-CN/ch03_final.md",
+      "filename": "ch03_final.md",
+      "chapter": 3,
+      "stats": {
+        "char_count": 13919,
+        "line_count": 472,
+        "cn_char_count": 7850,
+        "word_count_approx": 7850,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 2,
+        "table_refs": 0,
+        "image_links": 2,
+        "reference_count": 9
+      },
+      "issues": [
+        {
+          "type": "参考文献",
+          "severity": "Major",
+          "location": "全章",
+          "description": "参考文献编号不连续，缺失: [3-[2, 3]]",
+          "current_text": "已使用编号: [1, 4, 5, 6, 7, 8, 9, 10, 11]",
+          "suggested_fix": "补充缺失的参考文献编号或重新编号",
+          "file": "ch03_final.md",
+          "chapter": "ch03",
+          "id": "CR-T1-CN-ch03-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "total": 1
+      }
+    },
+    {
+      "file": "books/T1-CN/ch04_final.md",
+      "filename": "ch04_final.md",
+      "chapter": 4,
+      "stats": {
+        "char_count": 24578,
+        "line_count": 872,
+        "cn_char_count": 10803,
+        "word_count_approx": 10803,
+        "formula_count": 231,
+        "display_formula_count": 29,
+        "figure_refs": 5,
+        "table_refs": 0,
+        "image_links": 6,
+        "reference_count": 7
+      },
+      "issues": [
+        {
+          "type": "参考文献",
+          "severity": "Major",
+          "location": "全章",
+          "description": "参考文献编号不连续，缺失: [4-[7]]",
+          "current_text": "已使用编号: [1, 2, 3, 4, 5, 6, 8]",
+          "suggested_fix": "补充缺失的参考文献编号或重新编号",
+          "file": "ch04_final.md",
+          "chapter": "ch04",
+          "id": "CR-T1-CN-ch04-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "total": 1
+      }
+    },
+    {
+      "file": "books/T1-CN/ch05_final.md",
+      "filename": "ch05_final.md",
+      "chapter": 5,
+      "stats": {
+        "char_count": 20853,
+        "line_count": 704,
+        "cn_char_count": 8916,
+        "word_count_approx": 8916,
+        "formula_count": 161,
+        "display_formula_count": 23,
+        "figure_refs": 9,
+        "table_refs": 0,
+        "image_links": 8,
+        "reference_count": 0
+      },
+      "issues": [
+        {
+          "type": "术语",
+          "severity": "Major",
+          "location": "第383行",
+          "description": "检测到禁止别名「传递矩阵」",
+          "current_text": "其中 $\\Delta P(j\\omega) = P(j\\omega, \\theta^*) - P(j\\omega, \\hat{\\theta})$ 为模型误差的频域表示，$\\mathcal{G}_{yu",
+          "suggested_fix": "应使用「传递函数」(Transfer Function)",
+          "file": "ch05_final.md",
+          "chapter": "ch05",
+          "id": "CR-T1-CN-ch05-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "total": 1
+      }
+    },
+    {
+      "file": "books/T1-CN/ch06_final.md",
+      "filename": "ch06_final.md",
+      "chapter": 6,
+      "stats": {
+        "char_count": 32593,
+        "line_count": 1110,
+        "cn_char_count": 16391,
+        "word_count_approx": 16391,
+        "formula_count": 135,
+        "display_formula_count": 17,
+        "figure_refs": 7,
+        "table_refs": 0,
+        "image_links": 7,
+        "reference_count": 8
+      },
+      "issues": [
+        {
+          "type": "参考文献",
+          "severity": "Minor",
+          "location": "第590行",
+          "description": "参考文献 [5-6] 章号(5)与当前章号(6)不匹配",
+          "current_text": "",
+          "suggested_fix": "如果是本章参考文献，章号应为 [6-6]",
+          "file": "ch06_final.md",
+          "chapter": "ch06",
+          "id": "CR-T1-CN-ch06-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 1,
+        "total": 1
+      }
+    },
+    {
+      "file": "books/T1-CN/ch07_final.md",
+      "filename": "ch07_final.md",
+      "chapter": 7,
+      "stats": {
+        "char_count": 31413,
+        "line_count": 796,
+        "cn_char_count": 19459,
+        "word_count_approx": 19459,
+        "formula_count": 3,
+        "display_formula_count": 1,
+        "figure_refs": 0,
+        "table_refs": 0,
+        "image_links": 5,
+        "reference_count": 19
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T1-CN/ch08_final.md",
+      "filename": "ch08_final.md",
+      "chapter": 8,
+      "stats": {
+        "char_count": 31166,
+        "line_count": 1106,
+        "cn_char_count": 20609,
+        "word_count_approx": 20609,
+        "formula_count": 4,
+        "display_formula_count": 0,
+        "figure_refs": 0,
+        "table_refs": 0,
+        "image_links": 3,
+        "reference_count": 17
+      },
+      "issues": [
+        {
+          "type": "参考文献",
+          "severity": "Major",
+          "location": "全章",
+          "description": "参考文献编号不连续，缺失: [8-[2, 3]]",
+          "current_text": "已使用编号: [1, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]",
+          "suggested_fix": "补充缺失的参考文献编号或重新编号",
+          "file": "ch08_final.md",
+          "chapter": "ch08",
+          "id": "CR-T1-CN-ch08-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "total": 1
+      }
+    },
+    {
+      "file": "books/T1-CN/ch09_final.md",
+      "filename": "ch09_final.md",
+      "chapter": 9,
+      "stats": {
+        "char_count": 23161,
+        "line_count": 1036,
+        "cn_char_count": 12561,
+        "word_count_approx": 12561,
+        "formula_count": 1,
+        "display_formula_count": 0,
+        "figure_refs": 0,
+        "table_refs": 0,
+        "image_links": 2,
+        "reference_count": 7
+      },
+      "issues": [
+        {
+          "type": "参考文献",
+          "severity": "Major",
+          "location": "全章",
+          "description": "参考文献编号不连续，缺失: [9-[5]]",
+          "current_text": "已使用编号: [1, 2, 3, 4, 6, 7, 8]",
+          "suggested_fix": "补充缺失的参考文献编号或重新编号",
+          "file": "ch09_final.md",
+          "chapter": "ch09",
+          "id": "CR-T1-CN-ch09-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "total": 1
+      }
+    },
+    {
+      "file": "books/T1-CN/ch10_final.md",
+      "filename": "ch10_final.md",
+      "chapter": 10,
+      "stats": {
+        "char_count": 30217,
+        "line_count": 541,
+        "cn_char_count": 17923,
+        "word_count_approx": 17923,
+        "formula_count": 16,
+        "display_formula_count": 1,
+        "figure_refs": 0,
+        "table_refs": 10,
+        "image_links": 0,
+        "reference_count": 21
+      },
+      "issues": [
+        {
+          "type": "参考文献",
+          "severity": "Major",
+          "location": "全章",
+          "description": "参考文献编号不连续，缺失: [10-[1, 2, 3]]",
+          "current_text": "已使用编号: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]",
+          "suggested_fix": "补充缺失的参考文献编号或重新编号",
+          "file": "ch10_final.md",
+          "chapter": "ch10",
+          "id": "CR-T1-CN-ch10-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "total": 1
+      }
+    },
+    {
+      "file": "books/T1-CN/ch11_final.md",
+      "filename": "ch11_final.md",
+      "chapter": 11,
+      "stats": {
+        "char_count": 28607,
+        "line_count": 996,
+        "cn_char_count": 14693,
+        "word_count_approx": 14693,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 0,
+        "table_refs": 0,
+        "image_links": 5,
+        "reference_count": 14
+      },
+      "issues": [
+        {
+          "type": "参考文献",
+          "severity": "Major",
+          "location": "全章",
+          "description": "参考文献编号不连续，缺失: [11-[7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 23, 25]]",
+          "current_text": "已使用编号: [1, 2, 3, 4, 5, 6, 19, 20, 21, 22, 24, 26, 27, 28]",
+          "suggested_fix": "补充缺失的参考文献编号或重新编号",
+          "file": "ch11_final.md",
+          "chapter": "ch11",
+          "id": "CR-T1-CN-ch11-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "total": 1
+      }
+    },
+    {
+      "file": "books/T1-CN/ch12_final.md",
+      "filename": "ch12_final.md",
+      "chapter": 12,
+      "stats": {
+        "char_count": 25868,
+        "line_count": 898,
+        "cn_char_count": 14284,
+        "word_count_approx": 14284,
+        "formula_count": 3,
+        "display_formula_count": 0,
+        "figure_refs": 0,
+        "table_refs": 0,
+        "image_links": 1,
+        "reference_count": 11
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T1-CN/ch13_final.md",
+      "filename": "ch13_final.md",
+      "chapter": 13,
+      "stats": {
+        "char_count": 24231,
+        "line_count": 582,
+        "cn_char_count": 13471,
+        "word_count_approx": 13471,
+        "formula_count": 53,
+        "display_formula_count": 1,
+        "figure_refs": 0,
+        "table_refs": 10,
+        "image_links": 0,
+        "reference_count": 6
+      },
+      "issues": [
+        {
+          "type": "参考文献",
+          "severity": "Major",
+          "location": "全章",
+          "description": "参考文献编号不连续，缺失: [13-[1, 2, 3]]",
+          "current_text": "已使用编号: [4, 5, 6, 7, 8, 9]",
+          "suggested_fix": "补充缺失的参考文献编号或重新编号",
+          "file": "ch13_final.md",
+          "chapter": "ch13",
+          "id": "CR-T1-CN-ch13-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "total": 1
+      }
+    },
+    {
+      "file": "books/T1-CN/ch14_final.md",
+      "filename": "ch14_final.md",
+      "chapter": 14,
+      "stats": {
+        "char_count": 21229,
+        "line_count": 500,
+        "cn_char_count": 13260,
+        "word_count_approx": 13260,
+        "formula_count": 37,
+        "display_formula_count": 1,
+        "figure_refs": 0,
+        "table_refs": 1,
+        "image_links": 0,
+        "reference_count": 6
+      },
+      "issues": [
+        {
+          "type": "参考文献",
+          "severity": "Major",
+          "location": "全章",
+          "description": "参考文献编号不连续，缺失: [14-[1, 3, 5]]",
+          "current_text": "已使用编号: [2, 4, 6, 7, 8, 9]",
+          "suggested_fix": "补充缺失的参考文献编号或重新编号",
+          "file": "ch14_final.md",
+          "chapter": "ch14",
+          "id": "CR-T1-CN-ch14-001"
+        },
+        {
+          "type": "编号",
+          "severity": "Major",
+          "location": "全章",
+          "description": "表编号不连续，缺失: 表14-[1]",
+          "current_text": "已使用: [2]",
+          "suggested_fix": "补充或重新编号",
+          "file": "ch14_final.md",
+          "chapter": "ch14",
+          "id": "CR-T1-CN-ch14-002"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 2,
+        "minor": 0,
+        "total": 2
+      }
+    },
+    {
+      "file": "books/T1-CN/ch15_final.md",
+      "filename": "ch15_final.md",
+      "chapter": 15,
+      "stats": {
+        "char_count": 26463,
+        "line_count": 558,
+        "cn_char_count": 17884,
+        "word_count_approx": 17884,
+        "formula_count": 64,
+        "display_formula_count": 4,
+        "figure_refs": 0,
+        "table_refs": 15,
+        "image_links": 0,
+        "reference_count": 7
+      },
+      "issues": [
+        {
+          "type": "编号",
+          "severity": "Major",
+          "location": "全章",
+          "description": "表编号不连续，缺失: 表15-[7]",
+          "current_text": "已使用: [0, 1, 2, 3, 4, 5, 6, 8, 9]",
+          "suggested_fix": "补充或重新编号",
+          "file": "ch15_final.md",
+          "chapter": "ch15",
+          "id": "CR-T1-CN-ch15-001"
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "major": 1,
+        "minor": 0,
+        "total": 1
+      }
+    }
+  ],
+  "overall": {
+    "book": "T1-CN",
+    "directory": "books/T1-CN",
+    "file_count": 15,
+    "total_issues": 12,
+    "total_critical": 0,
+    "total_major": 11,
+    "total_minor": 1,
+    "total_cn_chars": 227224,
+    "total_formulas": 797,
+    "total_images": 50,
+    "verdict": "PASS"
+  }
+}

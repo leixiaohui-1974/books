@@ -1,0 +1,353 @@
+{
+  "files": [
+    {
+      "file": "books/T2-CN/ch00_引子.md",
+      "filename": "ch00_引子.md",
+      "chapter": 0,
+      "stats": {
+        "char_count": 3929,
+        "line_count": 112,
+        "cn_char_count": 2681,
+        "word_count_approx": 2681,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 3,
+        "table_refs": 0,
+        "image_links": 4,
+        "reference_count": 0
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch01_五代人生.md",
+      "filename": "ch01_五代人生.md",
+      "chapter": 1,
+      "stats": {
+        "char_count": 9246,
+        "line_count": 223,
+        "cn_char_count": 6231,
+        "word_count_approx": 6231,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 9,
+        "table_refs": 0,
+        "image_links": 4,
+        "reference_count": 7
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch02_为什么难管.md",
+      "filename": "ch02_为什么难管.md",
+      "chapter": 2,
+      "stats": {
+        "char_count": 9888,
+        "line_count": 232,
+        "cn_char_count": 7237,
+        "word_count_approx": 7237,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 12,
+        "table_refs": 0,
+        "image_links": 4,
+        "reference_count": 7
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch03_给水网做体检.md",
+      "filename": "ch03_给水网做体检.md",
+      "chapter": 3,
+      "stats": {
+        "char_count": 10502,
+        "line_count": 239,
+        "cn_char_count": 7156,
+        "word_count_approx": 7156,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 12,
+        "table_refs": 0,
+        "image_links": 4,
+        "reference_count": 9
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch04_八原理.md",
+      "filename": "ch04_八原理.md",
+      "chapter": 4,
+      "stats": {
+        "char_count": 15260,
+        "line_count": 501,
+        "cn_char_count": 9903,
+        "word_count_approx": 9903,
+        "formula_count": 1,
+        "display_formula_count": 1,
+        "figure_refs": 15,
+        "table_refs": 0,
+        "image_links": 5,
+        "reference_count": 12
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch05_水网学开车.md",
+      "filename": "ch05_水网学开车.md",
+      "chapter": 5,
+      "stats": {
+        "char_count": 13273,
+        "line_count": 301,
+        "cn_char_count": 8650,
+        "word_count_approx": 8650,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 12,
+        "table_refs": 0,
+        "image_links": 4,
+        "reference_count": 11
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch06_安全第一.md",
+      "filename": "ch06_安全第一.md",
+      "chapter": 6,
+      "stats": {
+        "char_count": 11048,
+        "line_count": 255,
+        "cn_char_count": 7234,
+        "word_count_approx": 7234,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 12,
+        "table_refs": 0,
+        "image_links": 4,
+        "reference_count": 17
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch07_先在电脑里试驾.md",
+      "filename": "ch07_先在电脑里试驾.md",
+      "chapter": 7,
+      "stats": {
+        "char_count": 11052,
+        "line_count": 222,
+        "cn_char_count": 7329,
+        "word_count_approx": 7329,
+        "formula_count": 1,
+        "display_formula_count": 1,
+        "figure_refs": 9,
+        "table_refs": 1,
+        "image_links": 3,
+        "reference_count": 12
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch08_水网操作系统.md",
+      "filename": "ch08_水网操作系统.md",
+      "chapter": 8,
+      "stats": {
+        "char_count": 12835,
+        "line_count": 281,
+        "cn_char_count": 8341,
+        "word_count_approx": 8341,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 15,
+        "table_refs": 0,
+        "image_links": 5,
+        "reference_count": 13
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch09_沙坪故事.md",
+      "filename": "ch09_沙坪故事.md",
+      "chapter": 9,
+      "stats": {
+        "char_count": 11911,
+        "line_count": 225,
+        "cn_char_count": 7948,
+        "word_count_approx": 7948,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 6,
+        "table_refs": 0,
+        "image_links": 2,
+        "reference_count": 13
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch10_大渡河接力赛.md",
+      "filename": "ch10_大渡河接力赛.md",
+      "chapter": 10,
+      "stats": {
+        "char_count": 11787,
+        "line_count": 259,
+        "cn_char_count": 7754,
+        "word_count_approx": 7754,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 12,
+        "table_refs": 0,
+        "image_links": 4,
+        "reference_count": 13
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch11_千里送水.md",
+      "filename": "ch11_千里送水.md",
+      "chapter": 11,
+      "stats": {
+        "char_count": 12694,
+        "line_count": 250,
+        "cn_char_count": 8417,
+        "word_count_approx": 8417,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 9,
+        "table_refs": 0,
+        "image_links": 3,
+        "reference_count": 13
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/ch12_从今天开始觉醒.md",
+      "filename": "ch12_从今天开始觉醒.md",
+      "chapter": 12,
+      "stats": {
+        "char_count": 11248,
+        "line_count": 239,
+        "cn_char_count": 7564,
+        "word_count_approx": 7564,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 3,
+        "table_refs": 0,
+        "image_links": 1,
+        "reference_count": 11
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    },
+    {
+      "file": "books/T2-CN/chapter_image_prompts.md",
+      "filename": "chapter_image_prompts.md",
+      "chapter": null,
+      "stats": {
+        "char_count": 11041,
+        "line_count": 113,
+        "cn_char_count": 394,
+        "word_count_approx": 394,
+        "formula_count": 0,
+        "display_formula_count": 0,
+        "figure_refs": 0,
+        "table_refs": 0,
+        "image_links": 0,
+        "reference_count": 0
+      },
+      "issues": [],
+      "summary": {
+        "critical": 0,
+        "major": 0,
+        "minor": 0,
+        "total": 0
+      }
+    }
+  ],
+  "overall": {
+    "book": "T2-CN",
+    "directory": "books/T2-CN",
+    "file_count": 14,
+    "total_issues": 0,
+    "total_critical": 0,
+    "total_major": 0,
+    "total_minor": 0,
+    "total_cn_chars": 96839,
+    "total_formulas": 2,
+    "total_images": 47,
+    "verdict": "PASS"
+  }
+}
