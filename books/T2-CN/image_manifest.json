@@ -1,0 +1,434 @@
+{
+  "fig_ch00_1": {
+    "fig_id": "图0-1",
+    "title": "古代水利系统",
+    "prompt_en": "Ancient water management system from Han dynasty, irrigation canals and aqueducts, traditional techniques, historical painting style",
+    "file": "H/fig_ch00_1.png",
+    "chapter": "00",
+    "type": "inline"
+  },
+  "fig_ch00_2": {
+    "fig_id": "图0-2",
+    "title": "现代智慧水网",
+    "prompt_en": "Modern smart water network control center, digital displays, automated systems, contemporary infrastructure",
+    "file": "H/fig_ch00_2.png",
+    "chapter": "00",
+    "type": "inline"
+  },
+  "fig_ch00_3": {
+    "fig_id": "图0-3",
+    "title": "未来自主水网",
+    "prompt_en": "Future intelligent autonomous water network, AI-driven control, self-managing water systems, futuristic concept art",
+    "file": "H/fig_ch00_3.png",
+    "chapter": "00",
+    "type": "inline"
+  },
+  "fig_ch01_1": {
+    "fig_id": "图1-1",
+    "title": "民国水利工程师",
+    "prompt_en": "Republican era hydraulic engineer in 1920s, traditional clothing, engineering tools, historical portrait",
+    "file": "H/fig_ch01_1.png",
+    "chapter": "01",
+    "type": "inline"
+  },
+  "fig_ch01_2": {
+    "fig_id": "图1-2",
+    "title": "新中国水利先驱",
+    "prompt_en": "Mid-century water conservancy leader, 1950s-1970s era, technical drawings, construction site",
+    "file": "H/fig_ch01_2.png",
+    "chapter": "01",
+    "type": "inline"
+  },
+  "fig_ch01_3": {
+    "fig_id": "图1-3",
+    "title": "当代水系统研究者",
+    "prompt_en": "Contemporary water systems researcher with modern technology, data analysis, smart systems background",
+    "file": "H/fig_ch01_3.png",
+    "chapter": "01",
+    "type": "inline"
+  },
+  "fig_ch01_4": {
+    "fig_id": "图1-4",
+    "title": "下一代自主水网工程师",
+    "prompt_en": "Next-generation autonomous water network engineer, future vision, digital integration",
+    "file": "H/fig_ch01_4.png",
+    "chapter": "01",
+    "type": "inline"
+  },
+  "fig_ch02_1": {
+    "fig_id": "图2-1",
+    "title": "复杂水网系统",
+    "prompt_en": "Complex water network system diagram showing interconnected reservoirs, channels, pumping stations, technical illustration",
+    "file": "H/fig_ch02_1.png",
+    "chapter": "02",
+    "type": "inline"
+  },
+  "fig_ch02_2": {
+    "fig_id": "图2-2",
+    "title": "多目标冲突",
+    "prompt_en": "Multi-objective conflict visualization: water supply vs. hydropower vs. flood control, competing goals diagram",
+    "file": "H/fig_ch02_2.png",
+    "chapter": "02",
+    "type": "inline"
+  },
+  "fig_ch02_3": {
+    "fig_id": "图2-3",
+    "title": "系统耦合复杂性",
+    "prompt_en": "System coupling complexity: climate variability, demand uncertainty, infrastructure constraints, network diagram",
+    "file": "H/fig_ch02_3.png",
+    "chapter": "02",
+    "type": "inline"
+  },
+  "fig_ch03_1": {
+    "fig_id": "图3-1",
+    "title": "水质传感器阵列",
+    "prompt_en": "Water quality sensor array in reservoir, multiple monitoring instruments, real-time data collection, technical setup",
+    "file": "H/fig_ch03_1.png",
+    "chapter": "03",
+    "type": "inline"
+  },
+  "fig_ch03_2": {
+    "fig_id": "图3-2",
+    "title": "水文监测网络",
+    "prompt_en": "Hydrological monitoring network, distributed sensors across landscape, IoT infrastructure, clean technical style",
+    "file": "H/fig_ch03_2.png",
+    "chapter": "03",
+    "type": "inline"
+  },
+  "fig_ch03_3": {
+    "fig_id": "图3-3",
+    "title": "数据融合中心",
+    "prompt_en": "Data fusion center, processing multi-source information, real-time dashboard, control center visualization",
+    "file": "H/fig_ch03_3.png",
+    "chapter": "03",
+    "type": "inline"
+  },
+  "fig_ch03_4": {
+    "fig_id": "图3-4",
+    "title": "诊断工作流程",
+    "prompt_en": "Diagnostic workflow: data collection → analysis → identification → decision support, process diagram",
+    "file": "H/fig_ch03_4.png",
+    "chapter": "03",
+    "type": "inline"
+  },
+  "fig_ch04_1": {
+    "fig_id": "图4-1",
+    "title": "传递函数可视化",
+    "prompt_en": "Principle 1: Transfer function visualization, input-output relationship, system response curves, mathematical illustration",
+    "file": "H/fig_ch04_1.png",
+    "chapter": "04",
+    "type": "inline"
+  },
+  "fig_ch04_2": {
+    "fig_id": "图4-2",
+    "title": "可控性与可观性",
+    "prompt_en": "Principle 2: Controllability and observability, system state space diagram, control theory illustration",
+    "file": "H/fig_ch04_2.png",
+    "chapter": "04",
+    "type": "inline"
+  },
+  "fig_ch04_3": {
+    "fig_id": "图4-3",
+    "title": "分层分布式控制架构",
+    "prompt_en": "Principle 3: Layered distributed control architecture, multi-level hierarchy, distributed nodes network",
+    "file": "H/fig_ch04_3.png",
+    "chapter": "04",
+    "type": "inline"
+  },
+  "fig_ch04_4": {
+    "fig_id": "图4-4",
+    "title": "安全包络概念",
+    "prompt_en": "Principle 4: Safety envelope concept, dynamic boundaries, safe operating domain visualization",
+    "file": "H/fig_ch04_4.png",
+    "chapter": "04",
+    "type": "inline"
+  },
+  "fig_ch04_5": {
+    "fig_id": "图4-5",
+    "title": "在环测试流程",
+    "prompt_en": "Principle 5: In-the-loop testing progression, MIL-SIL-HIL validation process flow",
+    "file": "H/fig_ch04_5.png",
+    "chapter": "04",
+    "type": "inline"
+  },
+  "fig_ch05_1": {
+    "fig_id": "图5-1",
+    "title": "学习曲线演进",
+    "prompt_en": "Learning curve progression: novice operator → experienced controller, skill development stages, training graph",
+    "file": "H/fig_ch05_1.png",
+    "chapter": "05",
+    "type": "inline"
+  },
+  "fig_ch05_2": {
+    "fig_id": "图5-2",
+    "title": "自动化学习过程",
+    "prompt_en": "Automated learning process, machine learning algorithm visualization, neural network adaptation",
+    "file": "H/fig_ch05_2.png",
+    "chapter": "05",
+    "type": "inline"
+  },
+  "fig_ch05_3": {
+    "fig_id": "图5-3",
+    "title": "人机协同控制",
+    "prompt_en": "Human-machine collaborative control, operator and AI working together, shared control interface",
+    "file": "H/fig_ch05_3.png",
+    "chapter": "05",
+    "type": "inline"
+  },
+  "fig_ch05_4": {
+    "fig_id": "图5-4",
+    "title": "持续改进闭环",
+    "prompt_en": "Continuous improvement feedback loop, performance optimization, iterative enhancement cycle",
+    "file": "H/fig_ch05_4.png",
+    "chapter": "05",
+    "type": "inline"
+  },
+  "fig_ch06_1": {
+    "fig_id": "图6-1",
+    "title": "安全边界可视化",
+    "prompt_en": "Safety boundaries visualization, operational domain limits, safe zone definition, technical diagram",
+    "file": "H/fig_ch06_1.png",
+    "chapter": "06",
+    "type": "inline"
+  },
+  "fig_ch06_2": {
+    "fig_id": "图6-2",
+    "title": "风险评估矩阵",
+    "prompt_en": "Risk assessment matrix, severity vs. probability, fault tree analysis, safety critical system",
+    "file": "H/fig_ch06_2.png",
+    "chapter": "06",
+    "type": "inline"
+  },
+  "fig_ch06_3": {
+    "fig_id": "图6-3",
+    "title": "故障安全机制",
+    "prompt_en": "Fail-safe mechanism, redundancy architecture, backup systems, safety design illustration",
+    "file": "H/fig_ch06_3.png",
+    "chapter": "06",
+    "type": "inline"
+  },
+  "fig_ch06_4": {
+    "fig_id": "图6-4",
+    "title": "应急响应协议",
+    "prompt_en": "Emergency response protocol, cascade failure prevention, system resilience, protective measures",
+    "file": "H/fig_ch06_4.png",
+    "chapter": "06",
+    "type": "inline"
+  },
+  "fig_ch07_1": {
+    "fig_id": "图7-1",
+    "title": "MIL模型在环测试",
+    "prompt_en": "MIL (Model-in-the-Loop) testing phase, simulation environment, virtual water network model",
+    "file": "H/fig_ch07_1.png",
+    "chapter": "07",
+    "type": "inline"
+  },
+  "fig_ch07_2": {
+    "fig_id": "图7-2",
+    "title": "SIL软件在环测试",
+    "prompt_en": "SIL (Software-in-the-Loop) testing, controller software validation, algorithm verification",
+    "file": "H/fig_ch07_2.png",
+    "chapter": "07",
+    "type": "inline"
+  },
+  "fig_ch07_3": {
+    "fig_id": "图7-3",
+    "title": "HIL硬件在环测试",
+    "prompt_en": "HIL (Hardware-in-the-Loop) testing, real hardware integration, physical control systems",
+    "file": "H/fig_ch07_3.png",
+    "chapter": "07",
+    "type": "inline"
+  },
+  "fig_ch07_4": {
+    "fig_id": "图7-4",
+    "title": "完整验证流程",
+    "prompt_en": "Full validation workflow: MIL → SIL → HIL progression, complete testing pipeline visualization",
+    "file": "H/fig_ch07_4.png",
+    "chapter": "07",
+    "type": "inline"
+  },
+  "fig_ch08_1": {
+    "fig_id": "图8-1",
+    "title": "感知层",
+    "prompt_en": "HydroOS Layer 1: Perception Layer, sensor networks, data acquisition, IoT infrastructure",
+    "file": "H/fig_ch08_1.png",
+    "chapter": "08",
+    "type": "inline"
+  },
+  "fig_ch08_2": {
+    "fig_id": "图8-2",
+    "title": "模型层",
+    "prompt_en": "HydroOS Layer 2: Model Layer, multi-fidelity digital twins, simulation engines",
+    "file": "H/fig_ch08_2.png",
+    "chapter": "08",
+    "type": "inline"
+  },
+  "fig_ch08_3": {
+    "fig_id": "图8-3",
+    "title": "决策层",
+    "prompt_en": "HydroOS Layer 3: Decision Layer, distributed control algorithms, optimization engines",
+    "file": "H/fig_ch08_3.png",
+    "chapter": "08",
+    "type": "inline"
+  },
+  "fig_ch08_4": {
+    "fig_id": "图8-4",
+    "title": "执行层",
+    "prompt_en": "HydroOS Layer 4: Execution Layer, command distribution, actuation control, feedback loops",
+    "file": "H/fig_ch08_4.png",
+    "chapter": "08",
+    "type": "inline"
+  },
+  "fig_ch09_1": {
+    "fig_id": "图9-1",
+    "title": "沙坪大坝全景",
+    "prompt_en": "Shaping Dam scenic view, large water storage facility, hydroelectric infrastructure, landscape photography style",
+    "file": "H/fig_ch09_1.png",
+    "chapter": "09",
+    "type": "inline"
+  },
+  "fig_ch09_2": {
+    "fig_id": "图9-2",
+    "title": "电站控制室",
+    "prompt_en": "Power station control room, technical equipment, control panels, operational center",
+    "file": "H/fig_ch09_2.png",
+    "chapter": "09",
+    "type": "inline"
+  },
+  "fig_ch09_3": {
+    "fig_id": "图9-3",
+    "title": "泄洪闸运行",
+    "prompt_en": "Spillway gates in operation, water discharge control, active management, engineering photography",
+    "file": "H/fig_ch09_3.png",
+    "chapter": "09",
+    "type": "inline"
+  },
+  "fig_ch09_4": {
+    "fig_id": "图9-4",
+    "title": "梯级水库系统",
+    "prompt_en": "Cascade reservoir system, multiple water storage facilities, integrated water management",
+    "file": "H/fig_ch09_4.png",
+    "chapter": "09",
+    "type": "inline"
+  },
+  "fig_ch09_5": {
+    "fig_id": "图9-5",
+    "title": "清洁能源发电",
+    "prompt_en": "Renewable energy generation, hydroelectric turbines, clean power production, modern infrastructure",
+    "file": "H/fig_ch09_5.png",
+    "chapter": "09",
+    "type": "inline"
+  },
+  "fig_ch10_1": {
+    "fig_id": "图10-1",
+    "title": "大渡河水坝系统",
+    "prompt_en": "Dadu River dam system, mountainous terrain, cascading reservoirs, spectacular landscape",
+    "file": "H/fig_ch10_1.png",
+    "chapter": "10",
+    "type": "inline"
+  },
+  "fig_ch10_2": {
+    "fig_id": "图10-2",
+    "title": "多级水电系统",
+    "prompt_en": "Multi-stage hydroelectric system, series power stations, coordinated operation, engineering diagram",
+    "file": "H/fig_ch10_2.png",
+    "chapter": "10",
+    "type": "inline"
+  },
+  "fig_ch10_3": {
+    "fig_id": "图10-3",
+    "title": "梯级控制",
+    "prompt_en": "River cascade control, water level regulation, flow management, hydrological control",
+    "file": "H/fig_ch10_3.png",
+    "chapter": "10",
+    "type": "inline"
+  },
+  "fig_ch10_4": {
+    "fig_id": "图10-4",
+    "title": "发电优化",
+    "prompt_en": "Power generation optimization, efficiency maximization, renewable energy focus, technical illustration",
+    "file": "H/fig_ch10_4.png",
+    "chapter": "10",
+    "type": "inline"
+  },
+  "fig_ch10_5": {
+    "fig_id": "图10-5",
+    "title": "水-能-生态平衡",
+    "prompt_en": "Water-energy-ecology balance, sustainable management, environmental protection integration",
+    "file": "H/fig_ch10_5.png",
+    "chapter": "10",
+    "type": "inline"
+  },
+  "fig_ch11_1": {
+    "fig_id": "图11-1",
+    "title": "长距离调水渠道",
+    "prompt_en": "Long-distance water transfer canal, extensive infrastructure, crossing multiple regions, engineering scale",
+    "file": "H/fig_ch11_1.png",
+    "chapter": "11",
+    "type": "inline"
+  },
+  "fig_ch11_2": {
+    "fig_id": "图11-2",
+    "title": "胶东输水系统",
+    "prompt_en": "Jiaodong aqueduct system, complex routing, terrain adaptation, large-scale water conveyance",
+    "file": "H/fig_ch11_2.png",
+    "chapter": "11",
+    "type": "inline"
+  },
+  "fig_ch11_3": {
+    "fig_id": "图11-3",
+    "title": "泵站网络",
+    "prompt_en": "Pump station network, distributed lifting stations, elevation changes management, technical infrastructure",
+    "file": "H/fig_ch11_3.png",
+    "chapter": "11",
+    "type": "inline"
+  },
+  "fig_ch11_4": {
+    "fig_id": "图11-4",
+    "title": "管道优化",
+    "prompt_en": "Pipeline optimization, pressure management, flow control, hydraulic engineering",
+    "file": "H/fig_ch11_4.png",
+    "chapter": "11",
+    "type": "inline"
+  },
+  "fig_ch11_5": {
+    "fig_id": "图11-5",
+    "title": "输水监控",
+    "prompt_en": "Water delivery monitoring, real-time tracking, distribution network, system-wide coordination",
+    "file": "H/fig_ch11_5.png",
+    "chapter": "11",
+    "type": "inline"
+  },
+  "fig_ch12_1": {
+    "fig_id": "图12-1",
+    "title": "智慧水网愿景",
+    "prompt_en": "Smart water network vision, integrated control, autonomous operations, futuristic infrastructure",
+    "file": "H/fig_ch12_1.png",
+    "chapter": "12",
+    "type": "inline"
+  },
+  "fig_ch12_2": {
+    "fig_id": "图12-2",
+    "title": "智能决策系统",
+    "prompt_en": "Intelligent decision-making system, AI optimization, real-time adaptation, smart algorithms",
+    "file": "H/fig_ch12_2.png",
+    "chapter": "12",
+    "type": "inline"
+  },
+  "fig_ch12_3": {
+    "fig_id": "图12-3",
+    "title": "可持续水管理",
+    "prompt_en": "Sustainable water management, environmental protection, resource optimization, green future",
+    "file": "H/fig_ch12_3.png",
+    "chapter": "12",
+    "type": "inline"
+  },
+  "fig_ch12_4": {
+    "fig_id": "图12-4",
+    "title": "人机生态系统",
+    "prompt_en": "Integrated human-technology ecosystem, collaborative intelligence, next-generation water systems",
+    "file": "H/fig_ch12_4.png",
+    "chapter": "12",
+    "type": "inline"
+  }
+}

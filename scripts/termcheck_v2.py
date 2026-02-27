@@ -120,12 +120,14 @@ def extract_chapter_num(filepath):
 
 
 def find_all_chapters(directory):
-    """找到目录下所有章节文件，返回章号集合"""
+    """找到目录下所有章节文件，返回章号集合（排除 _archive/ 和旧版文件）"""
     chapters = set()
     p = Path(directory)
     for f in p.glob('ch*.md'):
-        # 排除 _v1, _backup 等版本文件
-        if '_v1' in f.name or '_backup' in f.name:
+        if '_archive' in str(f.parent):
+            continue
+        if any(pat in f.stem for pat in ['_v1', '_v2', '_v3', '_v4', '_v5',
+               '_backup', '_OLD', '_old', '_temp', '_archive', '_restructured']):
             continue
         ch = extract_chapter_num(f)
         if ch is not None:
@@ -630,8 +632,12 @@ def check_directory(dirpath, book_name='', file_pattern=None):
     else:
         md_files = sorted(dirpath.glob('ch*.md'))
 
-    # 排除备份和版本文件
-    md_files = [f for f in md_files if '_v1' not in f.name and '_backup' not in f.name]
+    # 排除 _archive/ 子目录和旧版文件
+    EXCLUDE_PATTERNS = ['_v1', '_v2', '_v3', '_v4', '_v5', '_backup', '_OLD',
+                        '_old', '_temp', '_archive', '_restructured']
+    md_files = [f for f in md_files
+                if '_archive' not in str(f.parent)
+                and not any(pat in f.stem for pat in EXCLUDE_PATTERNS)]
 
     if not md_files:
         print(f"WARNING: 在 {dirpath} 中未找到匹配的章节文件", file=sys.stderr)

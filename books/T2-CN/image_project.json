@@ -1,0 +1,12 @@
+{
+  "_comment": "T2-CN《水网觉醒》图片生成项目配置",
+  "style": "chinese_engineering",
+  "output_dir": "H",
+  "aspect_ratio": "16:9",
+  "resolution": "1K",
+  "output_format": "png",
+  "manifest_file": "image_manifest.json",
+  "openers_file": "chapter_openers.json",
+  "github_raw_base": "https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H",
+  "_style_options": "可选: chinese_engineering, academic_neutral, modern_tech, minimal, 或直接写自定义风格文本"
+}
