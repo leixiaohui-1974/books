@@ -5,25 +5,26 @@
   "chapters": {
     "ch01": {
       "status": "completed",
-      "word_count": 5200,
+      "word_count": 15000,
       "review_passed": true,
       "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
+        "A": 8.5,
+        "B": 8.0,
+        "C": 8.5,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成上册回顾与下册能力迁移导论框架",
-        "[DONE] 已补充模型驱动到数据驱动转型路径与风险边界",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图1-1与图1-2待统一出图阶段生成正式图稿"
+        "[DONE] v2从骨架版(5.2k字)全面扩写至~1.5万字(T2a五模块回顾/三阶段演进/三类范式/双引擎架构/五层能力路线/三条红线/WNAL L2→L3跃迁)",
+        "[DONE] v2含4个公式、3例题(L2→L3过渡/双引擎仲裁/范式适用性)、15习题、20参考文献",
+        "[DONE] 三角色评审(A:8.5/B:8.0/C:8.5)——P0修复：20条参考文献全部在正文引用(Wiener/钱学森/Litrico/LeCun/Brunton/García等各补1处)",
+        "[DONE] v3定稿：自引率20%(4/20)，导论章引用全部CHS核心论文合理",
+        "[TODO] 图1-1至图1-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch02": {
       "status": "completed",
-      "word_count": 5400,
+      "word_count": 30000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -31,17 +32,18 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成机器学习任务类型、数据划分与交叉验证章节框架",
-        "[DONE] 已补充SVM/RF/GBDT选型、评估指标与上线门禁流程",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
+        "[DONE] v2从骨架版(5.4k字)全面扩写至~3万字(数据质量五问题/时序CV/特征工程四类/SVM-RF-GBDT详解/SHAP可解释性/精度-安全-治理三重门禁)",
+        "[DONE] v2含11个公式、7例题(选型/检测/SHAP诊断/CV设计/不平衡/特征工程/漂移)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0修复：25条参考文献全部在正文引用(Lei 2025a/b/d、Géron、Brunton、Goodfellow、Ke/LightGBM、Ribeiro/LIME、Chawla/SMOTE各补1处)",
+        "[DONE] v3定稿：自引率16%(4/25)，基础章引用CHS核心论文合理",
         "[TODO] 图2-1与图2-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch03": {
       "status": "completed",
-      "word_count": 5600,
+      "word_count": 30000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -49,18 +51,18 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成CNN/LSTM/Transformer与时空建模章节框架",
-        "[DONE] 已补充分位误差评估、迁移学习与深度模型上线门禁",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图3-1与图3-2待统一出图阶段生成正式图稿",
-        "[TODO] 跨流域迁移样本规模与增益统计待补充"
+        "[DONE] v2从骨架版(5.6k字)全面扩写至~3万字(CNN/LSTM门控/Transformer时序变体/GNN空间建模/迁移学习/不确定性量化MC-Dropout/深度集成/工程门禁)",
+        "[DONE] v2含9个公式(3-1至3-9)、5例题(LSTM-vs-Transformer/ConvLSTM降雨/GNN管网/跨流域迁移/不确定性裕度)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0修复：25条参考文献全部在正文引用",
+        "[DONE] v3定稿：自引率12%(3/25)，深度学习章引用CHS核心论文合理",
+        "[TODO] 图3-1与图3-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch04": {
       "status": "completed",
-      "word_count": 5500,
+      "word_count": 30000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -68,18 +70,18 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成PINN原理、损失构造与水动力学建模章节框架",
-        "[DONE] 已补充正反问题、部署门禁与参数反演例题",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图4-1待统一出图阶段生成正式图稿",
-        "[TODO] 典型渠段反问题实测对比数据待补充"
+        "[DONE] v2从骨架版(5.5k字)全面扩写至~3万字(PINN理论基础/自动微分/Saint-Venant PINN/正反问题/训练策略NTK+课程+XPINN/传统方法对比/工程门禁)",
+        "[DONE] v2含11个公式(4-1至4-11)、4例题(正问题/反问题/数据同化/空间变异反演)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0修复：25条参考文献全部在正文引用(LeCun/Shen/Lagaris/Brunton/Goodfellow/Litrico/Cai/Mao/Sun/Raissi2020/Chen/Kissas/McClenny/Cuomo/Yang各补1处)",
+        "[DONE] v3定稿：自引率12%(3/25)，PINN章引用CHS核心论文合理",
+        "[TODO] 图4-1至图4-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch05": {
       "status": "completed",
-      "word_count": 5300,
+      "word_count": 30000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -87,56 +89,61 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-15",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成MDP建模、Q-learning/DQN/PPO/SAC与安全强化学习章节框架",
-        "[DONE] 已补充ODD/Safety Envelope门禁与最小风险状态回退机制",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图5-1与图5-2待统一出图阶段生成正式图稿",
-        "[TODO] 安全约束MPC与RL对比算例待补充"
+        "[DONE] v2从骨架版(5.3k字)全面扩写至~3万字(MDP水系统建模/Bellman方程/Q-learning/DQN+Double+Dueling/PPO截断代理/SAC最大熵/水库-泵站-梯级应用/CMDP安全RL/三层约束/部署门禁)",
+        "[DONE] v2含13个公式(5-1至5-13)、5例题(MDP建模/泵站DQN/PPO-SAC对比/三层安全/分级放权)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0修复：25条参考文献全部在正文引用(Silver/Lillicrap/Goodfellow/Litrico/Shen/Xu/Brunton各补1处)",
+        "[DONE] v3定稿：自引率12%(3/25)，RL章引用CHS核心论文合理",
+        "[TODO] 图5-1至图5-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch06": {
       "status": "completed",
-      "word_count": 5500,
+      "word_count": 33500,
       "review_passed": true,
       "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
+        "A": 8.5,
+        "B": 9.0,
+        "C": 8.5,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成LLM任务拆解、RAG与知识图谱章节框架",
-        "[DONE] 已补充认知AI与SCADA+MAS融合部署及门禁流程",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图6-1与图6-2待统一出图阶段生成正式图稿",
-        "[TODO] 规程冲突处理与人机一致性评估算例待补充"
+        "[DONE] v2全面重构：以快慢思考为主线，五层架构+MCP+Skill/Agent分工+认知API四维",
+        "[DONE] 三角色评审(A:8.5/B:9.0/C:8.5)，P0/P1修复完成",
+        "[DONE] 自引率9.5%(4/42)，42篇参考文献，15篇拓展阅读",
+        "[DONE] 新增例6-1至例6-4，12道习题",
+        "[DONE] xIL引用修正为Lei 2025c，EPANET/MIKE区分，部署配置表",
+        "[DONE] 认知API演示场景(IDZ辨识/PI设计)添加T2a交叉引用",
+        "[DONE] §6.2 增补 L0-L4 ↔ CHS/WNAL 映射表，明确与 T2a 能力栈和自治等级的对照关系",
+        "[TODO] 图6-1与图6-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch07": {
       "status": "completed",
-      "word_count": 5600,
+      "word_count": 29000,
       "review_passed": true,
       "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
+        "A": 8.0,
+        "B": 8.5,
+        "C": 8.0,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成MAS建模、共识机制与分层协同章节框架",
-        "[DONE] 已补充SCADA+MAS融合部署、冲突仲裁与回退机制",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图7-1与图7-2待统一出图阶段生成正式图稿",
-        "[TODO] 时变拓扑收敛性对比算例待补充"
+        "[DONE] v2基于HydroClaw v0.2.2全面重构：新增智能体通信(§7.5)、DAG编排(§7.6)、理论→实现对照(§7.7)",
+        "[DONE] 三角色评审(A:8.0/B:8.5/C:8.0)，无P0，6个P1全部修复",
+        "[DONE] 自引率7.4%(2/27)，27篇参考文献，8篇拓展阅读",
+        "[DONE] 7个编号公式(7-1至7-7)，3个例题，7道习题",
+        "[DONE] 压缩Physical AI内容：共识收敛证明→简述+引T2a ch12、ADMM推导+数值示例→概念描述+引T2a ch07、博弈矩阵→工程含义",
+        "[DONE] §7.1 补充 MAS Agent↔T2a/T2b/WNAL 对照表，明确物理AI底座与认知AI增强关系",
+        "[TODO] 图7-1至图7-4待统一出图阶段生成正式图稿"
       ]
     },
     "ch08": {
       "status": "completed",
-      "word_count": 5500,
+      "word_count": 25000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -144,37 +151,39 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成WNAL L0-L5定义、ODD耦合与最小风险状态章节框架",
-        "[DONE] 已补充等级跃迁门禁、降级策略与实施例题",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图8-1与图8-2待统一出图阶段生成正式图稿",
-        "[TODO] 跨流域自主等级对比算例待补充"
+        "[DONE] v2从骨架版(5.5k字)全面扩写至~2.5万字(SAE J3016类比/L0-L5逐级定义/ODD形式化/MRS降级链路/三维评估/跃迁门禁/框架协同)",
+        "[DONE] v2含4个公式(8-1至8-4)、4例题(等级评估/L2→L3方案/MRS验证/跨流域对比)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0修复：25条参考文献全部在正文引用(Rasmussen/Billings/Sarter/Fitts/Lee&See/Goodfellow/Sutton/Buyalski/García/Wiener各补1处)",
+        "[DONE] v3定稿：自引率12%(3/25)，WNAL章引用CHS核心论文合理",
+        "[TODO] 图8-1至图8-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch09": {
       "status": "completed",
-      "word_count": 5600,
+      "word_count": 25000,
       "review_passed": true,
       "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
+        "A": 8.0,
+        "B": 7.5,
+        "C": 8.0,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成HydroOS三层架构、设备抽象与调度引擎章节框架",
-        "[DONE] 已补充API设计、微服务治理与MVP实施例题",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图9-1与图9-2待统一出图阶段生成正式图稿",
-        "[TODO] 跨域API兼容与时延阈值算例待补充"
+        "[DONE] v2基于HydroClaw v0.2.2全面重构：新增工作台层(§9.5)、认知API四维(§9.6)、增量部署(§9.7)",
+        "[DONE] 三角色评审(A:8.0/B:7.5/C:8.0)，2个P0+5个P1全部修复",
+        "[DONE] 自引率9.1%(2/22)，22篇参考文献，8篇拓展阅读",
+        "[DONE] 2个编号公式(9-1至9-2)，3个例题，7道习题",
+        "[DONE] 修复：引用格式统一为编号制、全部文献已在正文引用、删除不相关文献、验收标准补充说明",
+        "[DONE] §9.2.2澄清L0 Core为T2a算法集成、§9.4.1策略表重构为OS管理视角+添加T2a交叉引用",
+        "[TODO] 图9-1至图9-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch10": {
       "status": "completed",
-      "word_count": 5600,
+      "word_count": 30000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -182,18 +191,18 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成MIL/SIL/HIL分层框架、覆盖度与门禁章节框架",
-        "[DONE] 已补充缺陷分级、回归机制与发布前验证例题",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图10-1与图10-2待统一出图阶段生成正式图稿",
-        "[TODO] 覆盖度量化对比与处置时限算例待补充"
+        "[DONE] v2从骨架版(5.6k字)全面扩写至~3万字(xIL体系定位/MIL-SIL-HIL-PIL详解/测试用例设计/覆盖度体系/缺陷分级/ODD联动验证/测试基础设施)",
+        "[DONE] v2含6个公式(10-1至10-6)、5例题(MIL用例/SIL异常注入/HIL联锁/PIL影子运行/版本发布门禁)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0修复：25条参考文献全部在正文引用(Lei 2025c/Buyalski/ASCE/Brunton/Goodfellow/Wiener各补1处)",
+        "[DONE] v3定稿：自引率12%(3/25)，在环测试章引用CHS核心论文+航空汽车标准合理",
+        "[TODO] 图10-1至图10-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch11": {
       "status": "completed",
-      "word_count": 5500,
+      "word_count": 20000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -201,18 +210,18 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成威胁图谱、纵深防御与零信任章节框架",
-        "[DONE] 已补充分级处置、安全-控制协同与实战例题",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图11-1与图11-2待统一出图阶段生成正式图稿",
-        "[TODO] 攻击仿真对比与响应时限算例待补充"
+        "[DONE] v2从骨架版(5.5k字)全面扩写至~2万字(IT/OT融合/威胁图谱/纵深防御/零信任/入侵检测/安全-控制协同/合规标准)",
+        "[DONE] v2含2个公式(11-1至11-2)、4例题(远程登录/FDI检测/联动演练/供应链评估)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0修复：25条参考文献全部在正文引用(Lei 2025b/Leveson/Van Overloop/Wiener/Goodfellow/Hollnagel各补1处)",
+        "[DONE] v3定稿：自引率12%(3/25)，信息安全章引用CPS安全+工控安全文献合理",
+        "[TODO] 图11-1至图11-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch12": {
       "status": "completed",
-      "word_count": 5600,
+      "word_count": 20000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -220,18 +229,19 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成胶东调水智能化升级路径与架构章节框架",
-        "[DONE] 已补充SCADA+MAS部署、在环验证与实战例题",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图12-1与图12-2待统一出图阶段生成正式图稿",
-        "[TODO] 跨季节对比与响应时限算例待补充"
+        "[DONE] v2从骨架版(5.6k字)全面扩写至~2万字(工程背景/智能化升级路径/SCADA+MAS部署/认知AI辅助/在环测试与分级放权/运行成效与复盘/四预闭环实战)",
+        "[DONE] v2含1个公式(12-1)、4例题(协同调度/孤岛运行/影子运行偏差/ODD扩展)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0修复：25条参考文献全部在正文引用(Lei 2025a/Lei 2025c/Buyalski/SAE/Kopetz/Parasuraman/Sheridan/Clemmens/Lee&See/Woods&Hollnagel/Myers各补1处)",
+        "[DONE] v3定稿：自引率16%(4/25)，案例章引用CHS核心论文+明渠控制经典合理",
+        "[DONE] §12.1/12.5 引用胶东调水项目报告（技术手册/SCADA评估/在环测试总结），确保案例基于现有档案",
+        "[TODO] 图12-1至图12-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch13": {
       "status": "completed",
-      "word_count": 5600,
+      "word_count": 20000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -239,20 +249,19 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成沙坪梯级协同、ODD放权与一键调流程章节框架",
-        "[DONE] 已补充认知AI协同、门禁回退与暴雨+检修例题",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[DONE] 已完成章节质量检查清单（对照§6）并补充到定稿",
-        "[DONE] 已完成r2复核：质量检查条目细化为§6全量清单",
-        "[TODO] 图13-1与图13-2待统一出图阶段生成正式图稿",
-        "[TODO] 跨季节量化对比与响应时限样例待补充"
+        "[DONE] v2从骨架版(5.6k字)全面扩写至~2万字(沙坪梯级概况/三层MAS架构/认知AI发电-泄洪耦合/ODD驱动放权/一键调六步流程/在环测试/成效对比)",
+        "[DONE] v2含1个公式(13-1)、4例题(暴雨+检修协同/电网调峰冲突/影子运行偏差/ODD汛期扩展)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0通过：25条参考文献全部在正文引用，无需修复",
+        "[DONE] v2定稿：自引率16%(4/25)，案例章引用CHS核心论文+水力控制经典合理",
+        "[DONE] 沙坪vs胶东交叉对比表(Family α/β、MRS策略差异、治理共性短板)",
+        "[TODO] 图13-1至图13-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch14": {
       "status": "completed",
-      "word_count": 5600,
+      "word_count": 15000,
       "review_passed": true,
       "review_scores": {
         "A": 9,
@@ -260,15 +269,13 @@
         "C": 9,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成CHS学科四支柱、WNAL+ODD路线图与标准化章节框架",
-        "[DONE] 已补充3年升级蓝图例题与学科建设自评清单",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[DONE] 已完成章节质量检查清单（对照§6）并补充到定稿",
-        "[DONE] 已完成r2复核：质量检查条目细化为§6全量清单",
-        "[TODO] 图14-1与图14-2待统一出图阶段生成正式图稿",
-        "[TODO] 国际对标量化样本与里程碑看板示例待补充"
+        "[DONE] v2从骨架版(5.6k字)全面扩写至~1.5万字(学科化必要性/四支柱框架+成熟度模型/十年路线图/标准化三层路径/课程体系与实验平台/六大研究前沿/全书回顾总结)",
+        "[DONE] v2含1个公式(14-1)、3例题(实施蓝图/课程设计/标准化评估)、15习题、25参考文献",
+        "[DONE] 三角色评审(A:9/B:9/C:9)——P0修复：25条参考文献全部在正文引用(Litrico/Buyalski/Parasuraman各补1处)",
+        "[DONE] v3定稿：自引率16%(4/25)，展望章引用CHS核心论文+跨学科经典合理",
+        "[TODO] 图14-1至图14-2待统一出图阶段生成正式图稿"
       ]
     }
   },

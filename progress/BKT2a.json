@@ -5,294 +5,260 @@
   "chapters": {
     "ch01": {
       "status": "completed",
-      "word_count": 6200,
+      "word_count": 28000,
       "review_passed": true,
       "review_scores": {
-        "A": 9,
+        "A": 8.5,
         "B": 9,
-        "C": 9,
+        "C": 8.5,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-02-28",
       "issues": [
-        "[DONE] 已补充学习目标、例题、习题与拓展阅读完整教学结构",
-        "[DONE] 已建立八原理与WNAL、HydroOS、ODD/Safety Envelope跨章接口",
-        "[TODO] 图1-1与图1-2待统一出图阶段生成正式图稿"
+        "[DONE] v5修订：为P1-P5各原理补充带实际参数的工程实例",
+        "[DONE] v5修订：补充ODD量化方法五步流程",
+        "[DONE] v5修订：补充人工接管标准操作规程SOP",
+        "[DONE] v5修订：参考文献从20篇扩充至40篇，自引率从20%降至10%",
+        "[DONE] v5修订：补充过渡段落平滑难度梯度",
+        "[DONE] v5评审通过(A:8.5 B:9 C:8.5)",
+        "[DONE] Lei 2025a-d参考文献修正为正确的标题/作者/卷期页码",
+        "[TODO] 图1-1至图1-6待统一出图阶段生成正式图稿"
       ]
     },
     "ch02": {
       "status": "completed",
-      "word_count": 5100,
+      "word_count": 30000,
       "review_passed": true,
       "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 8,
+        "A": 8.5,
+        "B": 8.0,
+        "C": 8.0,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-02-28",
       "issues": [
-        "[DONE] 已补充控制结构选型检查清单，增强可教性",
-        "[DONE] 已显式统一 X_safe 与 X_ODD 的集合关系表达",
-        "[DONE] 已增加前馈失效降级策略条目以提升可治理性",
-        "[TODO] 图2-1与表2-1待统一出图阶段生成正式图稿"
+        "[DONE] v5 重写为明渠水动力学基础（原ch02误为控制论视角内容，已备份）",
+        "[DONE] v6 修复5个🔴致命问题（线性化公式/矩阵元素/附注引用/IDZ响应/梯形断面例题）",
+        "[DONE] v7 扩写至3万字（新增典型断面/回水曲线/特征线工程应用/线性化精度/Bode图/参数灵敏度/边界条件/求解器/状态空间/网络扩展，例题10道+习题15道+参考文献33篇）",
+        "[DONE] v8 评审修复1个🔴+9个🟡（式2-8假设声明/习题参数独立化/渐变流推导/运动波速规范化/穿越频率条件/自引率9%/SIC2文献/例2-10参数自洽/表2-4b来源/IDZ辨识实操）",
+        "[DONE] v8 评审通过(A:8.5 B:8.0 C:8.0)",
+        "[DONE] Lei 2025a-d参考文献修正为正确的标题/作者/卷期页码",
+        "[TODO] 图2-1至图2-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch03": {
       "status": "completed",
-      "word_count": 4300,
+      "word_count": 30000,
       "review_passed": true,
       "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
+        "A": 8.5,
+        "B": 8.5,
+        "C": 8.5,
         "D": null
       },
-      "last_updated": "2026-02-16",
+      "last_updated": "2026-02-28",
       "issues": [
-        "[DONE] 已完成稳态方程、瞬态水锤与传递矩阵法的统一教学叙述",
-        "[DONE] 已补充稳态-瞬态联合校核例题与上线核对清单",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图3-1待统一出图阶段生成正式图稿",
-        "[DONE] 已根据复评补充参数建议表、二级例题与基础题答案要点（r2）"
+        "[DONE] v4 从骨架版(4300字)全面扩写至~3万字",
+        "[DONE] v5 修复3个🔴致命(泵公式/HC迭代/模型标定)和4个🟡重要(Laplace步骤/习题参数/Jacobi条件/上线清单)",
+        "[DONE] v5 补充2020年后参考文献3篇(I-5): TSNet瞬态仿真、管网标定比较、GCN数字孪生",
+        "[DONE] v5 评审通过(A:8.5 B:8.5 C:8.5)",
+        "[DONE] Lei 2025a-d参考文献修正为正确的标题/作者/卷期页码",
+        "[TODO] 图3-1至图3-2待统一出图阶段生成正式图稿"
       ]
     },
     "ch04": {
       "status": "completed",
-      "word_count": 6400,
+      "word_count": 28400,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.5, "C": 8.0, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成 Muskingum-Cunge、IDZ、频率域辨识与数据驱动ROM的章节骨架",
-        "[DONE] 已补充降阶模型上线检查清单与双轨切换策略",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图4-1与图4-2待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(6.4k字)全面扩写至~2.84万字",
+        "[DONE] v2 补充Muskingum完整推导/IDZ从SV推导/M-IDZ对偶证明/频域辨识/数据驱动降阶",
+        "[DONE] v2 例题7道(例4-1~4-7)+习题15道+参考文献34篇",
+        "[DONE] v2 自引率8.8%(3/34), Lei 2025a/c/d逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.5 C:8.0)",
+        "[TODO] 图4-1至图4-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch05": {
       "status": "completed",
-      "word_count": 6100,
+      "word_count": 25300,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.5, "C": 8.0, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成 PI/PID、前馈-反馈、解耦与频域设计教学框架",
-        "[DONE] 已补充经典控制上线检查清单与降级策略",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图5-1与图5-2待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(6.1k字)全面扩写至~2.53万字",
+        "[DONE] v2 覆盖PI/PID整定(Z-N/SIMC/Litrico-Fromion)/Anti-windup/前馈-反馈/RGA解耦/Bode-Nyquist/Smith预估器/CHS部署",
+        "[DONE] v2 例题7道(例5-1~5-7)+习题15道+参考文献30篇",
+        "[DONE] v2 自引率10%(3/30), Lei 2025a/c/d逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.5 C:8.0)",
+        "[TODO] 图5-1至图5-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch06": {
       "status": "completed",
-      "word_count": 5900,
+      "word_count": 29900,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.0, "C": 8.0, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成状态空间、LQR/LQG、H∞与自适应控制章节框架",
-        "[DONE] 已补充现代控制上线检查清单与失效回退路径",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图6-1与图6-2待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(5.9k字)扩写至~2.99万字",
+        "[DONE] v2 覆盖状态空间/LQR/Kalman(EKF+UKF)/LQG/H∞/自适应/CHS部署",
+        "[DONE] v2 例题7道(例6-1~6-7)+习题15道+参考文献35篇",
+        "[DONE] v2 自引率11.4%(4/35), Lei 2025a/b/c/d逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.0 C:8.0)",
+        "[TODO] 图6-1至图6-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch07": {
       "status": "completed",
-      "word_count": 6200,
+      "word_count": 35000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.5, "C": 8.5, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成线性/非线性/分布式MPC及安全联锁章节框架",
-        "[DONE] 已补充MPC上线检查清单与求解失败回退路径",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图7-1与图7-2待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(6.2k字)全面扩写至~3.5万字(等效中文字符35,041)",
+        "[DONE] v2 覆盖线性MPC/参数整定/稳定性/扰动处理/NMPC/DMPC(ADMM)/鲁棒MPC(Tube)/随机MPC/经济MPC/CHS集成部署",
+        "[DONE] v2 例题8道(例7-1~7-8)+习题15道+参考文献38篇",
+        "[DONE] v2 自引率7.9%(3/38), Lei 2025a/c/d逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.5 C:8.5)",
+        "[TODO] 图7-1至图7-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch08": {
       "status": "completed",
-      "word_count": 6000,
+      "word_count": 30000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.0, "C": 8.0, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成LP/NLP、多目标、随机优化与进化算法章节框架",
-        "[DONE] 已补充优化上线检查清单与求解失败回退策略",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图8-1与图8-2待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(6k字)全面扩写至~3万字(等效中文字符30,038)",
+        "[DONE] v2 覆盖凸优化/LP/QP/NLP/多目标/随机优化/鲁棒优化/进化算法/分解方法/算法选型",
+        "[DONE] v2 例题7道(例8-1~8-7)+习题15道+参考文献33篇",
+        "[DONE] v2 自引率9.1%(3/33), Lei 2025a/c/d逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.0 C:8.0)",
+        "[TODO] 图8-1至图8-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch09": {
       "status": "completed",
-      "word_count": 5600,
+      "word_count": 25000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.5, "C": 8.0, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成可控可观判别、测控布设与ODD联动章节框架",
-        "[DONE] 已补充可控可观上线检查清单与改造路径",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图9-1与图9-2待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(5.6k字)全面扩写至~2.5万字(870行,75k字节)",
+        "[DONE] v2 覆盖可控可观性(秩判据/Gramian/PBH)/Kalman分解/结构可控性(Lin图论)/布局优化(D/A/E-最优+信息论)/ODD-WNAL联动/胶东调水案例",
+        "[DONE] v2 例题7道(例9-1~9-7)+习题15道(含2道编程题)+参考文献29篇",
+        "[DONE] v2 自引率10.3%(3/29), Lei 2025a/c/d逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.5 C:8.0)",
+        "[TODO] 图9-1至图9-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch10": {
       "status": "completed",
-      "word_count": 5800,
+      "word_count": 30500,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.0, "C": 8.0, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成安全包络、ODD、三色分区与联锁章节框架",
-        "[DONE] 已补充MRS处置流程与安全上线检查清单",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图10-1与图10-2待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(5.8k字)扩写至~3.05万字(1063行,75.6k字节)",
+        "[DONE] v2 覆盖安全约束形式化/红黄绿三区间/ODD五步量化/MRS可达可维持/三级联锁/CBF安全过滤器/MPC约束集成/xIL安全验证",
+        "[DONE] v2 例题7道(例10-1~10-7)+习题15道+参考文献33篇",
+        "[DONE] v2 自引率9.1%(3/33), Lei 2025a/b/d逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.0 C:8.0)",
+        "[TODO] 图10-1至图10-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch11": {
       "status": "completed",
-      "word_count": 5800,
+      "word_count": 25500,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.0, "C": 8.0, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成Kalman/EKF/UKF/PF与融合架构章节框架",
-        "[DONE] 已补充FDI流程与状态估计上线检查清单",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图11-1待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(5.8k字)扩写至~2.55万字(920行,66k字节)",
+        "[DONE] v2 覆盖Kalman滤波(Q/R标定)/EKF(Jacobian)/UKF(Sigma点)/粒子滤波/多源数据融合/FDI(CUSUM+GLR)/估计可信度管理",
+        "[DONE] v2 例题5道(例11-1~11-5)+工程案例3个+习题15道+参考文献31篇",
+        "[DONE] v2 自引率9.7%(3/31), Lei 2025a/b/c逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.0 C:8.0)",
+        "[TODO] 图11-1至图11-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch12": {
       "status": "completed",
-      "word_count": 5900,
+      "word_count": 32900,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.5, "C": 8.5, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成HDC分层职责、协调机制与信息流章节框架",
-        "[DONE] 已补充分布式协调例题与HDC上线检查清单",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图12-1与图12-2待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(5.9k字)扩写至~3.29万字(1582行,110k字节)",
+        "[DONE] v2 覆盖HDC三层架构/信息流协议/ADMM-DMPC/降级策略/渐进部署/国际实践对比",
+        "[DONE] v2 例题7道(例12-1~12-7)+习题16道(含1道编程题)+参考文献42篇",
+        "[DONE] v2 自引率9.5%(4/42), Lei 2025a/c/d逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.5 C:8.5), 3个P0+全部P1修复完成",
+        "[TODO] 图12-1至图12-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch13": {
       "status": "completed",
-      "word_count": 6000,
+      "word_count": 25700,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.0, "C": 8.0, "D": null },
+      "last_updated": "2026-03-01",
       "issues": [
-        "[DONE] 已完成数字孪生定义、FMI/FMU与在线校正章节框架",
-        "[DONE] 已补充发布门禁流程、例题与上线检查清单",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图13-1与图13-2待统一出图阶段生成正式图稿"
+        "[DONE] v2 从骨架版(6k字)扩写至~2.57万字(1358行,89k字节)",
+        "[DONE] v2 覆盖DT定义/三类仿真形态/FMI-FMU封装/实时仿真引擎/EnKF在线校正/xIL协同/置信度管理/平台架构/信息安全",
+        "[DONE] v2 例题7道(例13-1~13-7)+习题16道(含1道编程题)+参考文献32篇",
+        "[DONE] v2 自引率9.4%(3/32), Lei 2025a/b/c逐字验证通过",
+        "[DONE] v2 评审通过(A:8.5 B:8.0 C:8.0), 1个P0+8个P1全部修复",
+        "[TODO] 图13-1至图13-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch14": {
       "status": "completed",
-      "word_count": 4500,
+      "word_count": 21000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.0, "C": 8.5, "D": null },
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成胶东调水工程概况、建模、SCADA+MAS融合与HDC策略章节框架",
-        "[DONE] 已补充MIL场景判据、闸泵协同例题与上线检查清单",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图14-1待统一出图阶段生成正式图稿"
+        "[DONE] v2从骨架版(4.5k字)全面扩写至~2万字，含14个公式、3例题、12习题、30参考文献",
+        "[DONE] 三角色评审(A:8.5/B:8.0/C:8.5)，P0(自引率26.7%)修复：删除5篇未引用Lei合著文献，自引率降至12%(3/25)",
+        "[DONE] P1修复：为9篇第三方文献补充正文引用；补充DE+POA算法背景；修正Litrico&Fromion误标引用",
+        "[DONE] v3定稿：25篇参考文献全部在正文引用，14个编号公式",
+        "[TODO] 图14-1至图14-3待统一出图阶段生成正式图稿"
       ]
     },
     "ch15": {
       "status": "completed",
-      "word_count": 4700,
+      "word_count": 20000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 7.5, "C": 8.5, "D": null },
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成沙坪水电站发电-泄洪一体化与梯级一键调章节框架",
-        "[DONE] 已补充ODD门禁、SIL/HIL验证、例题与上线检查清单",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[TODO] 图15-1与图15-2待统一出图阶段生成正式图稿",
-        "[TODO] 关键工程参数待与现场最新校核数据对齐后补充"
+        "[DONE] v2从骨架版(4.7k字)全面扩写至~2万字，基于原始工程报告使用正确沙坪二级参数(6×58MW/550-554m/585万m³)",
+        "[DONE] v2含14个编号公式、3例题(预泄/负荷分配/通信中断)、12习题、25参考文献",
+        "[DONE] 三角色评审(A:8.5/B:7.5/C:8.5)——P0修复：修正Lei 2025a-d标签映射/修正幽灵引文'Lei et al.,2020'→'王孝群等,2020'/删除11条未引用参考文献(25→14)，补引9条正文引用",
+        "[DONE] P1修复：统一SV方程$q_l$处理（补充说明$q_l=0$），自引率21.4%(3/14，工程案例章目标20-25%)",
+        "[DONE] v3定稿：14篇参考文献全部在正文引用",
+        "[TODO] 图15-1至图15-X待统一出图阶段生成正式图稿"
       ]
     },
     "ch16": {
       "status": "completed",
-      "word_count": 4600,
+      "word_count": 10000,
       "review_passed": true,
-      "review_scores": {
-        "A": 9,
-        "B": 9,
-        "C": 9,
-        "D": null
-      },
-      "last_updated": "2026-02-16",
+      "review_scores": { "A": 8.5, "B": 8.5, "C": 8.5, "D": null },
+      "last_updated": "2026-03-02",
       "issues": [
-        "[DONE] 已完成全书方法闭环总结与T2a→T2b衔接路线",
-        "[DONE] 已补充能力迁移表、升级例题与全册收束检查清单",
-        "[DONE] 已完成四角色评审并执行🟡级修改",
-        "[DONE] 已完成全书统一校审（术语/符号/引用一致性）并形成BKT2a_fullbook_quality_r1",
+        "[DONE] v2从骨架版(4.6k字)扩写至~1万字(八原理工程闭环/三类失配案例/T2a→T2b章级映射/5个开放问题/2例题/9习题)",
+        "[DONE] 三角色评审(A:8.5/B:8.5/C:8.5)通过——15条参考文献全部在正文引用，自引率26.7%(4/15)",
+        "[DONE] v3定稿：Lei 2025a-d逐字验证通过",
         "[TODO] 图16-1待统一出图阶段生成正式图稿"
       ]
     }
   },
-  "overall_progress": "100.0%"
+  "overall_progress": "100%",
+  "note": "T2a全部16章已完成扩写+三角色评审+参考文献验证。ch01-ch03约3万字/章，ch04-ch13约2.5-3.5万字/章，ch14-ch15约2万字/章（工程案例），ch16约1万字（总结展望）。全书总字数约40万字。下一步：统一出图阶段+最终定稿。"
 }

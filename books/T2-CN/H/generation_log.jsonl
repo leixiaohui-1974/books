@@ -1,0 +1,3 @@
+{"timestamp": "2026-02-27T13:11:25.128945", "mode": "skip", "provider": "Google 官方", "model": "gemini-3-pro-image-preview", "total": 1, "success": 1, "failed": []}
+{"timestamp": "2026-02-27T13:58:13.270246", "mode": "skip", "provider": "Google 官方", "model": "gemini-3-pro-image-preview", "total": 68, "success": 67, "failed": ["opener_ch11"]}
+{"timestamp": "2026-02-27T13:58:14.700935", "mode": "skip", "provider": "Google 官方", "model": "gemini-3-pro-image-preview", "total": 68, "success": 68, "failed": []}
