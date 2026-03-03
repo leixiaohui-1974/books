@@ -1,0 +1,35 @@
+# ===== 大型二进制文件 =====
+*.docx
+*.pdf
+*.doc
+*.pptx
+*.xlsx
+
+# ===== 参考资料目录（大型文档） =====
+*/H/
+**/H/
+
+# ===== 备份与归档 =====
+*/backup/
+**/backup/
+*/_archive/
+**/_archive/
+*_backup*.md
+*.backup
+*.backup2
+
+# ===== 中间版本（只保留 _final.md 和 _revised.md） =====
+*_v[0-9].md
+*_v[0-9][0-9].md
+
+# ===== 图片生成提示词（含生成的大图） =====
+*/figure-prompts/
+
+# ===== 版本管理文档 =====
+*/00_版本管理/
+
+# ===== 编译输出 =====
+*_complete.md
+*_complete_*.md
+*_manus.md
+*_revised_v*_manus.md

@@ -1,0 +1,39 @@
+{
+  "book_id": "T2-CN",
+  "book_title": "水网觉醒：给水利人的自主运行入门书",
+  "language": "zh-CN",
+  "archive_dir": "_archive",
+  "image_dir": "H",
+  "current_files": [
+    "ch00_引子.md",
+    "ch01_五代人生.md",
+    "ch02_为什么难管.md",
+    "ch03_给水网做体检.md",
+    "ch04_八原理.md",
+    "ch05_水网学开车.md",
+    "ch06_安全第一.md",
+    "ch07_先在电脑里试驾.md",
+    "ch08_水网操作系统.md",
+    "ch09_沙坪故事.md",
+    "ch10_大渡河接力赛.md",
+    "ch11_千里送水.md",
+    "ch12_从今天开始觉醒.md"
+  ],
+  "chapter_map": {
+    "ch00": {"file": "ch00_引子.md", "title": "引子：一滴水的旅程"},
+    "ch01": {"file": "ch01_五代人生.md", "title": "五代人生"},
+    "ch02": {"file": "ch02_为什么难管.md", "title": "为什么难管"},
+    "ch03": {"file": "ch03_给水网做体检.md", "title": "给水网做体检"},
+    "ch04": {"file": "ch04_八原理.md", "title": "八原理"},
+    "ch05": {"file": "ch05_水网学开车.md", "title": "水网学开车——WNAL自主运行等级"},
+    "ch06": {"file": "ch06_安全第一.md", "title": "安全第一——安全包络的三色世界"},
+    "ch07": {"file": "ch07_先在电脑里试驾.md", "title": "先在电脑里试驾——在环验证"},
+    "ch08": {"file": "ch08_水网操作系统.md", "title": "水网操作系统——HydroOS"},
+    "ch09": {"file": "ch09_沙坪故事.md", "title": "沙坪故事"},
+    "ch10": {"file": "ch10_大渡河接力赛.md", "title": "大渡河的接力赛——梯级水电站的协调控制"},
+    "ch11": {"file": "ch11_千里送水.md", "title": "千里送水——胶东调水工程"},
+    "ch12": {"file": "ch12_从今天开始觉醒.md", "title": "从今天开始觉醒"}
+  },
+  "naming_convention": "ch{NN}_{中文标题}.md — 当前版本; _archive/ — 旧版归档",
+  "image_url_base": "https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T2-CN/H"
+}

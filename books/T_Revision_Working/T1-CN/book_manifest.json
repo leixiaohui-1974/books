@@ -1,0 +1,43 @@
+{
+  "book_id": "T1-CN",
+  "book_title": "水系统控制论",
+  "language": "zh-CN",
+  "archive_dir": "_archive",
+  "image_dir": "H",
+  "current_files": [
+    "ch01_final.md",
+    "ch02_final.md",
+    "ch03_final.md",
+    "ch04_final.md",
+    "ch05_final.md",
+    "ch06_final.md",
+    "ch07_final.md",
+    "ch08_final.md",
+    "ch09_final.md",
+    "ch10_final.md",
+    "ch11_final.md",
+    "ch12_final.md",
+    "ch13_final.md",
+    "ch14_final.md",
+    "ch15_final.md"
+  ],
+  "chapter_map": {
+    "ch01": {"file": "ch01_final.md", "title": "绪论：从数字化走向自主运行"},
+    "ch02": {"file": "ch02_final.md", "title": "概念框架：ODD + 四可原则 + L1-L5"},
+    "ch03": {"file": "ch03_final.md", "title": "学科第一性原理与跨行业对标"},
+    "ch04": {"file": "ch04_final.md", "title": "总体技术架构：云边端 + 数字孪生 + MAS"},
+    "ch05": {"file": "ch05_final.md", "title": "关键技术一：统一建模与降阶"},
+    "ch06": {"file": "ch06_final.md", "title": "关键技术二：状态重构与预测"},
+    "ch07": {"file": "ch07_final.md", "title": "关键技术三：分层分布式优化调度"},
+    "ch08": {"file": "ch08_final.md", "title": "关键技术四：安全边界锁定与约束管理"},
+    "ch09": {"file": "ch09_final.md", "title": "关键技术五：SIL/HIL 场景库验证与工程准入"},
+    "ch10": {"file": "ch10_final.md", "title": "运维可溯与持续改进"},
+    "ch11": {"file": "ch11_final.md", "title": "HydroOS水网操作系统"},
+    "ch12": {"file": "ch12_final.md", "title": "物理AI与认知AI双引擎"},
+    "ch13": {"file": "ch13_final.md", "title": "案例一：沙坪二级水电站"},
+    "ch14": {"file": "ch14_final.md", "title": "案例二：大渡河梯级水电站群"},
+    "ch15": {"file": "ch15_final.md", "title": "案例三：胶东调水工程"}
+  },
+  "naming_convention": "ch{NN}_final.md — 当前版本; _archive/ — 旧版归档",
+  "image_url_base": "https://raw.githubusercontent.com/leixiaohui-1974/books/main/books/T1-CN/H"
+}
