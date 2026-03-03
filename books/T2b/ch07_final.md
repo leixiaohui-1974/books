@@ -606,6 +606,9 @@ def replan(self, plan: TaskPlan, failed_task_id: str) -> TaskPlan:
 
 ## 7.7 从 MAS 理论到 HydroClaw 实现
 
+> **【HydroClaw 原型系统说明】**
+> 本节中的理论—实现对照基于 HydroClaw v0.2.2 版本。HydroClaw 是 CHS 理论体系的**初版原型**（initial prototype）水网智能体系统，目前仅用胶东调水和沙坪水电站两个工程案例验证过其多智能体协调架构。读者不应将其视为生产级产品，而应参考其设计理念（消息驱动通信、能力注册发现、DAG 编排、四级路由等）在具体工程中进行定制开发。物理 AI 层面的算法细节（MPC、DMPC 等）请参见 T2a 对应章节。
+
 本节将前六节的理论概念与 HydroClaw v0.2.2 的工程实现进行系统对照，帮助读者理解"理论如何落地"。
 
 ### 7.7.1 理论—实现对照表

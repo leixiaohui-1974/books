@@ -1,0 +1,64 @@
+{
+  "book_id": "M6",
+  "book_title": "M6",
+  "language": "zh-CN",
+  "archive_dir": "_archive",
+  "image_dir": "H",
+  "current_files": [
+    "ch01_final.md",
+    "ch02_final.md",
+    "ch03_final.md",
+    "ch04_final.md",
+    "ch05_final.md",
+    "ch06_final.md",
+    "ch07_final.md",
+    "ch08_final.md",
+    "ch09_final.md",
+    "ch10_final.md"
+  ],
+  "chapter_map": {
+    "ch01": {
+      "file": "ch01_final.md",
+      "title": ""
+    },
+    "ch02": {
+      "file": "ch02_final.md",
+      "title": ""
+    },
+    "ch03": {
+      "file": "ch03_final.md",
+      "title": ""
+    },
+    "ch04": {
+      "file": "ch04_final.md",
+      "title": ""
+    },
+    "ch05": {
+      "file": "ch05_final.md",
+      "title": ""
+    },
+    "ch06": {
+      "file": "ch06_final.md",
+      "title": ""
+    },
+    "ch07": {
+      "file": "ch07_final.md",
+      "title": ""
+    },
+    "ch08": {
+      "file": "ch08_final.md",
+      "title": ""
+    },
+    "ch09": {
+      "file": "ch09_final.md",
+      "title": ""
+    },
+    "ch10": {
+      "file": "ch10_final.md",
+      "title": ""
+    }
+  },
+  "naming_convention": "",
+  "image_url_base": "",
+  "updated_at": "2026-02-27 15:28:06"
+}

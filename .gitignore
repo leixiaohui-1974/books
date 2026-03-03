@@ -1,13 +1,21 @@
-# 本地生成的图片（已上传到 figures/ 图床）
+# ===== 安全：API 密钥和凭据 =====
+# 绝不提交 .env 文件（含 API Key、密码等敏感信息）
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.local
+
+# ===== 本地生成的图片 =====
 books/T1-CN/figure-prompts/generated/*.png
 books/T1-CN/figure-prompts/generated/*.jpg
 
-# 临时文件
+# ===== 临时文件 =====
 *.tmp
 *.bak
 *~
 
-# 编辑器文件
+# ===== 编辑器文件 =====
 .vscode/
 .idea/
 *.swp

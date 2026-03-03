@@ -311,7 +311,7 @@ CHS 框架下的可控可观性包含三个层面的工程判据：
 | L4 | 全工况+极端+对抗（≥99%） | 必须 | 必须（全部回路） |
 | L5 | 全工况+生成式测试 | 必须+形式化验证 | 必须+长期耐久测试 |
 
-**L3 是分水岭**：从 L2 向 L3 的跃迁，意味着系统开始承担实质性的自主决策权，在环验证的完整性从"推荐"变为"强制"。雷晓辉等（Lei 2025c）在提出的在环测试体系中明确指出，WNAL L3 准入要求 MIL 覆盖率不低于 90%、SIL 通过、关键回路 HIL 完成，三者缺一不可。
+**L3 是分水岭**：从 L2 向 L3 的跃迁，意味着系统开始承担实质性的自主决策权，在环验证的完整性从"推荐"变为"强制"。雷晓辉等 [7-20] 在自主运行智能水网的在环测试体系中明确指出，WNAL L3 准入要求 MIL 覆盖率不低于 90%、SIL 通过、关键回路 HIL 完成，三者缺一不可。
 
 ### 7.6.4 水利行业在环验证的特殊挑战
 
@@ -794,3 +794,5 @@ CHS 建议每个工程项目都建立一份"人机协同标准操作规程"（SO
 [7-18] Buyalski C P, Ehler D G, Falvey H T, et al. Canal Systems Automation Manual, Volume 1 [M]. Denver: U.S. Bureau of Reclamation, 1991.
 
 [7-19] Astrom K J, Murray R M. Feedback Systems: An Introduction for Scientists and Engineers [M]. 2nd ed. Princeton: Princeton University Press, 2021.
+
+[7-20] 雷晓辉,张峥,苏承国,等.自主运行智能水网的在环测试体系[J].南水北调与水利科技(中英文),2025,23(04):787-793.DOI:10.13476/j.cnki.nsbdqk.2025.0080.
