@@ -118,7 +118,7 @@ CHS研究生核心教材分为上下两册，分工明确且互为支撑：
 | **理论基础** | 经典/现代控制论、优化理论 | 机器学习、强化学习、大语言模型 |
 | **关键方法** | 传递函数、状态空间、MPC、LQR | PINN、DRL、RAG、MAS |
 | **安全理念** | Safety Envelope嵌入约束 | ODD动态扩展+认知增强 |
-| **工程接口** | 传感器→模型→控制器→执行器 | 认知引擎→决策引擎→人机协作 |
+| **工程接口** | 传感器→模型→控制器→执行器 | 认知引擎→认知AI引擎→人机协作 |
 | **八原理覆盖** | P1-P5（运行四元组+在环验证） | P6-P8（认知增强+人机共融+自主演进） |
 | **类比** | "让系统能稳定运行" | "让系统越来越聪明" |
 
@@ -482,7 +482,7 @@ $$\mathcal{X}_{\text{safe}} \subseteq \mathcal{X}_{\text{ODD}} \tag{1-6}$$
 | 分层分布式控制 | Hierarchical Distributed Control (HDC) | 多层级多区域的控制架构 |
 | 模型预测控制 | Model Predictive Control (MPC) | 基于模型的滚动优化控制方法 |
 | 传递函数 | Transfer Function | 系统输入-输出的频域表示 |
-| 降阶模型 | Reduced-Order Model (ROM) | 保留关键动力学的简化模型 |
+| 降阶模型 | Reduced-Order Model (ROM) | 保留关键动力学的降阶模型 |
 | 多智能体系统 | Multi-Agent System (MAS) | 分布式协作的自主决策架构 |
 | 在环测试 | In-the-Loop Testing (xIL) | MIL/SIL/HIL三级系统性验证 |
 

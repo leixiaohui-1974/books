@@ -510,7 +510,7 @@ $$
 \mathbf{y}_{\min,\text{physical}} < \mathbf{y}_{\min,\text{safety}} < \mathbf{y}_{\min,\text{MPC}} < \mathbf{y}_{\max,\text{MPC}} < \mathbf{y}_{\max,\text{safety}} < \mathbf{y}_{\max,\text{physical}} \tag{7-25d}
 $$
 
-其中"physical"为物理极限（渠底/堤顶），"safety"为安全包络边界（红线），"MPC"为MPC优化中使用的约束。MPC约束在安全边界内部，留出的裕度用于应对模型预测误差和未知扰动。
+其中"physical"为物理极限（渠底/堤顶），"safety"为安全包络边界（红线），"MPC"为MPC优化中使用的约束。MPC约束在安全包络内部，留出的裕度用于应对模型预测误差和未知扰动。
 
 **增量约束与闸门寿命的关联。** 闸门的增量约束$\Delta u_{\max}$不仅受限于机械极限，还应考虑长期运维成本。频繁的大幅闸门动作会加速密封件磨损和电机老化。一个实用的整定方法是：收集闸门制造商提供的设计动作次数$N_{\text{life}}$和当前累积动作次数$N_{\text{cum}}$，计算剩余寿命比例$r = 1 - N_{\text{cum}}/N_{\text{life}}$。当$r < 0.3$时，应将$\Delta u_{\max}$降低到机械极限的50%，以延长闸门使用寿命至下一次大修周期。
 

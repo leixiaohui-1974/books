@@ -1,1 +1,5 @@
 {"timestamp": "2026-02-27T14:20:35.162965", "mode": "skip", "provider": "Google 官方", "model": "gemini-3-pro-image-preview", "total": 65, "success": 65, "failed": []}
+{"timestamp": "2026-03-04T07:28:03.102347", "mode": "overwrite", "provider": "Google 官方", "model": "nb2", "total": 1, "success": 0, "failed": ["fig_09_01"]}
+{"timestamp": "2026-03-04T07:28:22.628547", "mode": "overwrite", "provider": "Google 官方", "model": "nb2", "total": 1, "success": 0, "failed": ["fig_09_02"]}
+{"timestamp": "2026-03-04T07:28:54.011417", "mode": "overwrite", "provider": "Google 官方", "model": "nb2", "total": 2, "success": 0, "failed": ["fig_10_01", "fig_10_02"]}
+{"timestamp": "2026-03-04T09:19:49.309834", "mode": "overwrite", "provider": "Google 官方", "model": "nb2", "total": 2, "success": 0, "failed": ["fig_10_01", "fig_10_02"]}

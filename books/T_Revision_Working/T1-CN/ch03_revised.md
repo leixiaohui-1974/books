@@ -37,6 +37,9 @@ v1 2026-02-16: 初稿
 
 ---
 
+
+> **[合规说明]**：关于工程落地、测试覆盖率量化指标与合规审查的详细要求，请参阅本丛书 **T3 卷《标准与工程治理》**。
+
 ## 本章目标
 
 读完本章，读者应能够：
@@ -428,20 +431,20 @@ MBD 框架与 CHS 八原理是互补关系：
 
 ## 本章术语表
 
-| 术语 | 英文 | 定义 | 首次出现 |
+| **术语** | 英文 | 定义 | 首次出现 |
 |------|------|------|----------|
-| 传递函数化 | Transfer-Function Formulation | 将复杂水系统关键动态关系转化为可分析的输入—输出映射 | §3.2 |
-| 可控可观性 | Controllability & Observability | 系统关键状态可被观测、关键目标可被控制的能力判据 | §3.3 |
-| 分层分布式 | Hierarchical Distributed Architecture | 以多层级、多节点协调替代单中心控制的系统组织形态 | §3.4 |
-| 安全包络 | Safety Envelope | 为关键变量定义红/黄/绿运行区间的安全约束机制 | §3.5 |
-| MBD | Model-Based Design | 基于模型的设计验证一体化框架 | §3.10 |
-| ODD | Operational Design Domain | 运行设计域，定义系统自主运行的边界 | §3.10 |
-| 在环验证 | X-in-the-Loop Verification | MIL/SIL/HIL 逐级验证控制策略可信性的方法体系 | §3.6 |
-| 认知增强 | Cognitive Augmentation | 使系统具备语义理解、因果推理和策略解释能力的 AI 层 | §3.7 |
-| 人机共融 | Human-Machine Teaming | 按自主等级动态配置人机权限和接管机制的协作范式 | §3.8 |
-| 全生命周期自主演进 | Autonomous Evolution | 系统在安全约束下通过数据/模型/策略三重闭环持续升级 | §3.10 |
+| **传递函数化** | Transfer-Function Formulation | 将复杂水系统关键动态关系转化为可分析的输入—输出映射 | §3.2 |
+| **可控可观性** | Controllability & Observability | 系统关键状态可被观测、关键目标可被控制的能力判据 | §3.3 |
+| **分层分布式** | Hierarchical Distributed Architecture | 以多层级、多节点协调替代单中心控制的系统组织形态 | §3.4 |
+| **安全包络** | Safety Envelope | 为关键变量定义红/黄/绿运行区间的安全约束机制 | §3.5 |
+| **MBD** | Model-Based Design | 基于模型的设计验证一体化框架 | §3.10 |
+| **ODD** | Operational Design Domain | 运行设计域，定义系统自主运行的边界 | §3.10 |
+| **在环验证** | X-in-the-Loop Verification | MIL/SIL/HIL 逐级验证控制策略可信性的方法体系 | §3.6 |
+| **认知增强** | Cognitive Augmentation | 使系统具备语义理解、因果推理和策略解释能力的 AI 层 | §3.7 |
+| **人机共融** | Human-Machine Teaming | 按自主等级动态配置人机权限和接管机制的协作范式 | §3.8 |
+| **全生命周期自主演进** | Autonomous Evolution | 系统在安全约束下通过数据/模型/策略三重闭环持续升级 | §3.10 |
 | 设计锁定效应 | Design Lock-in Effect | 物理/信息/社会三维度参数建成后难以修改的矛盾 | §3.10 |
-| 灰度发布 | Shadow/Canary Deployment | 新旧模型并行运行、对比验证后再切换的部署策略 | §3.10 |
+| **灰度发布** | Shadow/Canary Deployment | 新旧模型并行运行、对比验证后再切换的部署策略 | §3.10 |
 
 ---
 
@@ -468,4 +471,4 @@ MBD 框架与 CHS 八原理是互补关系：
 [3-9] Astrom K J, Murray R M. Feedback Systems: An Introduction for Scientists and Engineers [M]. 2nd ed. Princeton: Princeton University Press, 2021.
 
 
-[3-X] 雷晓辉, 龙岩, 许慧敏, 苏承国. 水系统控制论：提出背景、技术框架与研究范式 [J]. 南水北调与水利科技（中英文）, 2025, 23(04): 761-769+904. DOI: 10.13476/j.cnki.nsbdqk.2025.0077.
+[3-X] 雷晓辉, 龙岩, 许慧敏, 苏承国. 水系统控制论：提出背景、技术框架与研究范式 [J]. 南水北调与水利科技(中英文)（中英文）, 2025, 23(04): 761-769+904. DOI: 10.13476/j.cnki.nsbdqk.2025.0077.

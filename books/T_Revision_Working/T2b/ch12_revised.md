@@ -658,11 +658,11 @@ Hollnagel et al.（2006）在韧性工程框架中强调的"预见"（anticipati
 
 ## 参考文献
 
-[12-1] 雷晓辉,龙岩,许慧敏,等.水系统控制论：提出背景、技术框架与研究范式[J].南水北调与水利科技(中英文),2025,23(04):761-769+904.DOI:10.13476/j.cnki.nsbdqk.2025.0077.
+[12-1] 雷晓辉, 龙岩, 许慧敏, 王超. 水系统控制论：基本原理与理论框架[J]. 南水北调与水利科技(中英文), 2025, 23(04): 761-769.
 
-[12-2] 雷晓辉,张峥,苏承国,等.自主运行智能水网的在环测试体系[J].南水北调与水利科技(中英文),2025,23(04):787-793.DOI:10.13476/j.cnki.nsbdqk.2025.0080.
+[12-2] 雷晓辉, 张峥, 苏承国, 何中政. 自主运行智能水网的在环测试体系[J]. 南水北调与水利科技(中英文), 2025, 23(04): 787-793.
 
-[12-3] 雷晓辉,苏承国,龙岩,等.基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术[J].南水北调与水利科技(中英文),2025,23(04):778-786+905.DOI:10.13476/j.cnki.nsbdqk.2025.0079.
+[12-3] 雷晓辉, 苏承国, 龙岩, 许慧敏, 刘晓维. 自主水网：概念、架构与关键技术[J]. 南水北调与水利科技(中英文), 2025, 23(04): 778-786.
 
 [12-4] Litrico, X. & Fromion, V. (2009). *Modeling and Control of Hydrosystems*. Springer.
 
@@ -688,11 +688,11 @@ Hollnagel et al.（2006）在韧性工程框架中强调的"预见"（anticipati
 
 [12-15] García, J. & Fernández, F. (2015). A comprehensive survey on safe reinforcement learning. *Journal of Machine Learning Research*, 16(1), 1437-1480.
 
-[12-26] Parasuraman, R., Sheridan, T.B. & Wickens, C.D. (2000). A model for types and levels of human interaction with automation. *IEEE Transactions on Systems, Man, and Cybernetics—Part A*, 30(3), 286-297.
+[12-16] Parasuraman, R., Sheridan, T.B. & Wickens, C.D. (2000). A model for types and levels of human interaction with automation. *IEEE Transactions on Systems, Man, and Cybernetics—Part A*, 30(3), 286-297.
 
-[12-27] Sheridan, T.B. (2002). *Humans and Automation: System Design and Research Issues*. Wiley.
+[12-17] Sheridan, T.B. (2002). *Humans and Automation: System Design and Research Issues*. Wiley.
 
-[12-28] Clemmens, A.J., Kacerek, T.F., Grawitz, B. & Schuurmans, W. (2005). Test cases for canal control algorithms. *Journal of Irrigation and Drainage Engineering*, 131(6), 502-516.
+[12-18] Clemmens, A.J., Kacerek, T.F., Grawitz, B. & Schuurmans, W. (2005). Test cases for canal control algorithms. *Journal of Irrigation and Drainage Engineering*, 131(6), 502-516.
 
 [12-19] Buyalski, C.P. (1991). *Canal Systems Automation Manual*. US Bureau of Reclamation.
 
@@ -706,7 +706,7 @@ Hollnagel et al.（2006）在韧性工程框架中强调的"预见"（anticipati
 
 [12-24] SAE International (2021). *Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles* (SAE Standard J3016_202104).
 
-[12-25] 雷晓辉,许慧敏,何中政,等.水资源系统分析学科展望：从静态平衡到动态控制[J].南水北调与水利科技(中英文),2025,23(04):770-777.DOI:10.13476/j.cnki.nsbdqk.2025.0078.
+[12-25] 雷晓辉, 许慧敏, 何中政, 张峥. 水资源系统分析学科展望：从静态平衡到动态控制[J]. 南水北调与水利科技(中英文), 2025, 23(04): 770-777.
 [12-26] 山东省胶东调水局. 胶东调水工程技术手册[M]. 济南: 山东科学技术出版社, 2020.
 
 [12-27] 山东省胶东调水局. 胶东调水工程SCADA系统运行评估报告[R]. 济南, 2023.

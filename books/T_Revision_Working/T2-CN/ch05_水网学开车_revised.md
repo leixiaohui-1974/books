@@ -300,9 +300,9 @@ A：$T_c$ 分析是一个非常有效的投资依据工具。具体步骤：（1
 
 [5-1] SAE International. (2021). Taxonomy and Definitions for Terms Related to Driving Automation Systems for On-Road Motor Vehicles: SAE J3016. Warrendale, PA: SAE.
 
-[5-2] 雷晓辉, 苏承国, 龙岩, 等. (2025). 基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术 [J]. *南水北调与水利科技*, 23(04): 778-786. doi:10.13476/j.cnki.nsbdqk.2025.0079.
+[5-2] 雷晓辉, 苏承国, 龙岩, 等. (2025). 基于无人驾驶理念的下一代自主运行智慧水网架构与关键技术 [J]. *南水北调与水利科技(中英文)*, 23(04): 778-786. doi:10.13476/j.cnki.nsbdqk.2025.0079.
 
-[5-3] 雷晓辉, 龙岩, 许慧敏, 等. (2025). 水系统控制论：提出背景、技术框架与研究范式 [J]. *南水北调与水利科技*, 23(04): 761-769+904. doi:10.13476/j.cnki.nsbdqk.2025.0077.
+[5-3] 雷晓辉, 龙岩, 许慧敏, 等. (2025). 水系统控制论：提出背景、技术框架与研究范式 [J]. *南水北调与水利科技(中英文)*, 23(04): 761-769+904. doi:10.13476/j.cnki.nsbdqk.2025.0077.
 
 [5-4] Negenborn, R. R., & Maestre, J. M. (2014). Distributed model predictive control: An overview and roadmap of future research opportunities. *IEEE Control Systems Magazine*, 34(4): 87-97.
 
@@ -310,11 +310,11 @@ A：$T_c$ 分析是一个非常有效的投资依据工具。具体步骤：（1
 
 [5-6] Ogata, K. (2010). *Modern Control Engineering* (5th ed.). Prentice Hall.
 
-[5-7] 雷晓辉, 张峥, 苏承国, 等. (2025). 自主运行智能水网的在环测试体系 [J]. *南水北调与水利科技*, 23(04): 787-793. doi:10.13476/j.cnki.nsbdqk.2025.0080.
+[5-7] 雷晓辉, 张峥, 苏承国, 等. (2025). 自主运行智能水网的在环测试体系 [J]. *南水北调与水利科技(中英文)*, 23(04): 787-793. doi:10.13476/j.cnki.nsbdqk.2025.0080.
 
 [5-8] Kalman, R. E. (1960). On the general theory of control systems. In *Proceedings of the 1st IFAC Congress on Automatic Control* (Vol. 1, pp. 481-492). Moscow: USSR Academy of Sciences.
 
-[5-9] 雷晓辉, 许慧敏, 何中政, 等. (2025). 水资源系统分析学科展望：从静态平衡到动态控制 [J]. *南水北调与水利科技*, 23(04): 770-777. doi:10.13476/j.cnki.nsbdqk.2025.0078.
+[5-9] 雷晓辉, 许慧敏, 何中政, 等. (2025). 水资源系统分析学科展望：从静态平衡到动态控制 [J]. *南水北调与水利科技(中英文)*, 23(04): 770-777. doi:10.13476/j.cnki.nsbdqk.2025.0078.
 
 [5-10] Sutton, R. S., & Barto, A. G. (2018). *Reinforcement Learning: An Introduction* (2nd ed.). MIT Press.
 

@@ -1028,7 +1028,7 @@ $$u_{\min}^{\text{SE}} \leq u(t) \leq u_{\max}^{\text{SE}} \tag{5-42}$$
 
 经典控制器的设计和整定基于特定的工况假设（如标称流量、标称水位）。当运行工况偏离设计点时，控制器参数可能不再最优，甚至导致性能不可接受。
 
-操作设计域（Operational Design Domain, ODD）定义了控制器可以正常工作的工况范围。对于PI控制器，ODD可以表述为
+运行设计域（Operational Design Domain, ODD）定义了控制器可以正常工作的工况范围。对于PI控制器，ODD可以表述为
 
 $$\text{ODD}_{\text{PI}} = \{(Q_0, h_0, \tau_d, A_s) \;|\; \text{PM}(K_p, T_i, Q_0, h_0) \geq \text{PM}_{\min}\} \tag{5-43}$$
 
